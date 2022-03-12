@@ -8,32 +8,31 @@ class Liste_Annonce_2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeScreen = MediaQuery.of(context).size.width;
-    // print(sizeScreen);
+    print(sizeScreen);
     return ScreenUtilInit(
         designSize: const Size(360, 690),
         splitScreenMode: true,
         builder: () {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: ExactAssetImage('assets/images/bac.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
+          return Container(
+            margin: EdgeInsets.only(top: 20.h, left: 20.w),
+            width: 150.w,
+            height: 120.h,
+            child: Row(
+              children: [
+                Container(
+                  width: 140.w,
+                  height: 120.h,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: ExactAssetImage('assets/images/bac.jpg'),
+                        fit: BoxFit.fill,
+                      ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10))),
                 ),
-                margin: EdgeInsets.only(top: 14.w, left: 15.w),
-                width: 150.w,
-                height: 120.h,
-              ),
-              Container(
-                  margin: EdgeInsets.only(top: 14.w, left: 0),
-                  //  margin: EdgeInsets.symmetric(horizontal: 20.w),
+                Container(
                   width: 180.w,
                   height: 120.h,
                   decoration: const BoxDecoration(
@@ -42,16 +41,18 @@ class Liste_Annonce_2 extends StatelessWidget {
                           topRight: Radius.circular(10),
                           bottomRight: Radius.circular(10))),
                   child: Column(
-                    //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Container(
-                      //     height: 15,
-                      //     margin: const EdgeInsets.only(
-                      //         right: 0, top: 0, left: 155, bottom: 20),
-                      //     child: const Icon(Icons.more_vert)),
                       Container(
-                          margin: EdgeInsets.only(
-                              right: 85.w, top: 15.w, bottom: 0, left: 6.w),
+                        margin: EdgeInsets.only(top: 5.h, right: 5.w),
+                        alignment: Alignment.topRight,
+                        child: const Icon(
+                          Icons.more_vert,
+                          size: 15,
+                        ),
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(top: 5.h, left: 5.w),
+                          alignment: Alignment.topLeft,
                           child: const Text(
                             "250000 dh",
                             style: TextStyle(
@@ -62,46 +63,51 @@ class Liste_Annonce_2 extends StatelessWidget {
                             ),
                           )),
                       Container(
+                        alignment: Alignment.topLeft,
                         // width: 350.w,
-                        margin: EdgeInsets.only(
-                            top: 1.w, right: 85.w, bottom: 15.h, left: 6.w),
+                        margin: EdgeInsets.only(top: 3.h, left: 5.w),
                         child: Text(
-                          "Ville casablanca et grand dfsdf ",
+                          "Ville casablanca et grand  ",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                            fontSize: 10.sp,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 0.h, left: 12.w),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on_rounded,
-                                size: 12,
+                      Container(
+                        margin: EdgeInsets.only(top: 35.h, left: 5.w),
+                        alignment: Alignment.topLeft,
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on_rounded,
+                              size: 12,
+                            ),
+                            const Text(" data "),
+                            const Icon(
+                              Icons.home,
+                              size: 11,
+                            ),
+                            const Text(" data "),
+                            SizedBox(
+                              width: sizeScreen > 320 ? 70.w : 50.w,
+                            ),
+                            Container(
+                              //margin: EdgeInsets.symmetric(horizontal: 15.w),
+                              alignment: Alignment.topRight,
+                              child: const Icon(
+                                Icons.favorite_border,
+                                size: 14,
                               ),
-                              const Text(" data "),
-                              const Icon(
-                                Icons.home,
-                                size: 11,
-                              ),
-                              const Text(" data "),
-                              Container(
-                                child: const Icon(
-                                  Icons.favorite_border,
-                                  size: 14,
-                                ),
-                                margin: EdgeInsets.only(left: 45.w),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
-                  ))
-            ],
+                  ),
+                ),
+              ],
+            ),
           );
         });
   }

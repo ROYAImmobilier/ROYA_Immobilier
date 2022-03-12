@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 import 'listeanonnce_2.dart';
 
 final colors = Color(0xefefef);
@@ -123,7 +122,7 @@ class StackWidget_2 extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
               child: ListView.builder(
-                  itemCount: 4,
+                  itemCount: 1,
                   itemBuilder: (BuildContext context, int index) {
                     return const Liste_Annonce_2();
                   })),
