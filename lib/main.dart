@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roya_immobilie/routing_screen.dart';
+import 'package:roya_immobilie/View/routing_screen.dart';
 
-import 'home.dart';
+import 'View/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
