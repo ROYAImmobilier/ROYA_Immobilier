@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roya_immobilie/drawerpage.dart';
 import 'package:roya_immobilie/stackwidget_2.dart';
 
 class Home_page extends StatelessWidget {
@@ -8,6 +9,7 @@ class Home_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      drawer: DrawerPage(),
       appBar: AppBar(
         title: const Center(
             child: Icon(
@@ -20,10 +22,24 @@ class Home_page extends StatelessWidget {
             color: Colors.black,
           )
         ],
-        leading: const Icon(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu_outlined,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        /*const Icon(
           Icons.menu_outlined,
           color: Colors.black,
-        ),
+        ),*/
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
