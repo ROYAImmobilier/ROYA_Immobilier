@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roya_immobilie/drawerpage.dart';
+import 'package:roya_immobilie/stackwidget.dart';
 import 'package:roya_immobilie/stackwidget_2.dart';
 
 class Home_page extends StatelessWidget {
@@ -43,7 +44,7 @@ class Home_page extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: const StackWidget_2(),
+      body: const StackWidget(),
     );
   }
 }

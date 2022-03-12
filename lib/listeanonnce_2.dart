@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
@@ -74,35 +75,33 @@ class Liste_Annonce_2 extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10, top: 10),
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on_rounded,
-                                size: 12,
+                      Container(
+                        margin: EdgeInsets.only(top: 35.h, left: 5.w),
+                        alignment: Alignment.topLeft,
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on_rounded,
+                              size: 12,
+                            ),
+                            const Text(" data "),
+                            const Icon(
+                              Icons.home,
+                              size: 11,
+                            ),
+                            const Text(" data "),
+                            SizedBox(
+                              width: sizeScreen > 320 ? 70.w : 50.w,
+                            ),
+                            Container(
+                              //margin: EdgeInsets.symmetric(horizontal: 15.w),
+                              alignment: Alignment.topRight,
+                              child: const Icon(
+                                Icons.favorite_border,
+                                size: 14,
                               ),
-                              const Text(" data "),
-                              const Icon(
-                                Icons.home,
-                                size: 11,
-                              ),
-                              const Text(" data "),
-                              SizedBox(
-                                width: sizeScreen > 320 ? 70.w : 50.w,
-                              ),
-                              Container(
-                                //margin: EdgeInsets.symmetric(horizontal: 15.w),
-                                alignment: Alignment.topRight,
-                                child: const Icon(
-                                  Icons.favorite_border,
-                                  size: 14,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

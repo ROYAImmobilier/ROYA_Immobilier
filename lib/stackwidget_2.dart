@@ -100,7 +100,8 @@ class StackWidget_2 extends StatelessWidget {
                           width: 3,
                         ),
                         // color: Colors.blue,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderRadius:
+                            BorderRadius.all(const Radius.circular(20)),
                       ),
                       width: 150,
                       height: 100,
