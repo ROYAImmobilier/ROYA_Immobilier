@@ -16,7 +16,7 @@ class StackWidget_2 extends StatelessWidget {
         children: [
           //const SizedBox(width: 50),
           Container(
-            // margin: const EdgeInsets.all(8),
+            //margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: Color(0xffefefef),
                 borderRadius: BorderRadius.only(
@@ -34,7 +34,7 @@ class StackWidget_2 extends StatelessWidget {
                 ],
               ),
             ),
-            width: double.infinity.w,
+            width: double.infinity,
             height: 70.h,
           ),
           Padding(
@@ -48,49 +48,80 @@ class StackWidget_2 extends StatelessWidget {
               width: MediaQuery.of(context).size.width.toDouble(),
               height: 170.h,
               child: Padding(
-                padding:
-                    EdgeInsets.only(left: 2.w, right: 2.w, top: 5, bottom: 20),
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 9,
-                    itemBuilder: (context, index) {
-                      return Expanded(
-                          child: Padding(
-                        padding: EdgeInsets.only(top: 12.h, bottom: 12.h),
+                padding: EdgeInsets.only(bottom: 15.0.h),
+                child: Row(
+                  children: [
+                    Expanded(
                         child: Card(
-                          clipBehavior: Clip.antiAlias,
-                          elevation: 0,
-                          color: const Color(0xffb58350),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image: ExactAssetImage('assets/images/bac.jpg'),
-                                fit: BoxFit.fill,
-                              ),
-                              border: Border.all(
-                                color: const Color(0xff857c88),
-                                width: 3.w,
-                              ),
-                              color: Colors.red,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.r)),
-                            ),
-                            width: 150.w,
-                            height: 100.h,
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 0,
+                      color: const Color(0xffb58350),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: ExactAssetImage('assets/images/bac.jpg'),
+                            fit: BoxFit.fill,
                           ),
+                          border: Border.all(
+                            color: const Color(0xff857c88),
+                            width: 3.w,
+                          ),
+                          color: Colors.red,
+                          borderRadius: BorderRadius.all(Radius.circular(20.r)),
                         ),
-                      ));
-                    }),
+                        width: 150.w,
+                        height: 100.h,
+                      ),
+                    )),
+                    Expanded(
+                        child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 0,
+                      color: const Color(0xffb58350),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color(0xff857c88),
+                            width: 3.w,
+                          ),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        width: 150.w,
+                        height: 100.h,
+                      ),
+                    )),
+                    Expanded(
+                        child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 0,
+                      color: const Color(0xffb58350),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color(0xff857c88),
+                            width: 3.w,
+                          ),
+                          // color: Colors.blue,
+                          borderRadius:
+                              BorderRadius.all(const Radius.circular(20)),
+                        ),
+                        width: 150.w,
+                        height: 100.h,
+                      ),
+                    )),
+                  ],
+                ),
               ),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 190.0.h),
             child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color(0xffefefef),
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20.r),
+                        topRight: Radius.circular(20),
                         topLeft: Radius.circular(20))),
                 width: double.infinity,
                 height: double.infinity,
