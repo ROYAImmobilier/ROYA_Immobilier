@@ -104,8 +104,8 @@ class StackWidget extends StatelessWidget {
                       mainAxisExtent:
                           (MediaQuery.of(context).size.width * 0.56).h,
                       childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 2),
+                      crossAxisSpacing: 2.h,
+                      mainAxisSpacing: 2.w),
                   itemBuilder: (BuildContext ctx, index) {
                     return const Liste_Annonce();
                   }),
