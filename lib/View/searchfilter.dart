@@ -37,6 +37,7 @@ class SearchFiltter extends StatelessWidget {
         splitScreenMode: true,
         builder: () {
           return Container(
+            height: double.infinity,
             margin: const EdgeInsets.all(25),
             child: SingleChildScrollView(
               child: Column(
