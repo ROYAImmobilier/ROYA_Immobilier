@@ -23,7 +23,7 @@ class Liste_Annonce_2 extends StatelessWidget {
                   width: 140.w,
                   height: 120.h,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: ExactAssetImage('assets/images/bac.jpg'),
                         fit: BoxFit.fill,
                       ),
@@ -75,7 +75,8 @@ class Liste_Annonce_2 extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 35.h, left: 5.w),
+                        margin: EdgeInsets.only(left: 5.w),
+                        padding: EdgeInsets.only(top: 20.h),
                         alignment: Alignment.topLeft,
                         child: Row(
                           children: [
