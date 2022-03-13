@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:roya_immobilie/View/home.dart';
 import 'package:roya_immobilie/View/notification_page.dart';
 
+import '../searchfilter.dart';
 import 'chat_page.dart';
 import 'favorite_page.dart';
 
@@ -45,7 +46,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
   Widget build(BuildContext context) {
     final pageView = PageView(
         controller: pageController,
-        children: [HomePage(), FavoritePage(), ChatPage(), NotificationPage()],
+        children: [HomePage(), FavoritePage(), ChatPage(), SearchFiltter()],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
 
