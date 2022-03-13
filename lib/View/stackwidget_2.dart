@@ -16,7 +16,7 @@ class StackWidget_2 extends StatelessWidget {
         children: [
           //const SizedBox(width: 50),
           Container(
-            // margin: const EdgeInsets.all(8),
+            //margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: Color(0xffefefef),
                 borderRadius: BorderRadius.only(
@@ -35,7 +35,7 @@ class StackWidget_2 extends StatelessWidget {
               ),
             ),
             width: double.infinity,
-            height: 70,
+            height: 70.h,
           ),
           Padding(
             padding: EdgeInsets.only(top: 40.0.h),

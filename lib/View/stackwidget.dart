@@ -23,7 +23,7 @@ class StackWidget extends StatelessWidget {
                     topRight: Radius.circular(20.r),
                     topLeft: Radius.circular(20.r))),
             child: Padding(
-              padding: EdgeInsets.only(left: 13.w, bottom: 30.h),
+              padding: EdgeInsets.only(left: 15.w, bottom: 39.h),
               child: Row(
                 children: [
                   Icon(Icons.clean_hands_outlined),
@@ -35,7 +35,7 @@ class StackWidget extends StatelessWidget {
               ),
             ),
             width: double.infinity,
-            height: 70.h,
+            height: 90.h,
           ),
           Padding(
             padding: EdgeInsets.only(top: 40.0.h),
