@@ -40,30 +40,34 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
               children: [
                 Container(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      'Area (m²) :',
-                      style: TextStyle(),
+                    child: RichText(
+                      text: const TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: "Area ",
+                            style: TextStyle(color: Colors.black)),
+                        TextSpan(
+                            text: "(m²)",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold)),
+                      ]),
                     )),
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: TextFormField(
-                    //controller: ,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        //fillColor: Colors.white,
-                        // labelText: "",
-                        hintText: '120',
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3),
-                            borderRadius: BorderRadius.circular(5))),
-                    keyboardType: TextInputType.text,
-                  ),
+                TextFormField(
+                  //controller: ,
+                  cursorColor: Colors.white,
+                  decoration: InputDecoration(
+                      //fillColor: Colors.white,
+                      // labelText: "",
+                      isDense: true, // Added this
+                      contentPadding: EdgeInsets.all(8),
+                      hintText: '120',
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 3),
+                          borderRadius: BorderRadius.circular(5))),
+                  keyboardType: TextInputType.text,
                 ),
                 const SizedBox(
                   height: 15,
@@ -75,7 +79,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                 Row(
                   children: [
                     Container(
-                      height: 40,
+                      height: 35,
                       width: MediaQuery.of(context).size.width * 0.6,
                       decoration: const BoxDecoration(
                           color: Colors.white,
@@ -84,6 +88,8 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                         //controller: ,
                         cursorColor: Colors.white,
                         decoration: InputDecoration(
+                            //    isDense: true, // Added this
+                            contentPadding: EdgeInsets.all(8),
                             //fillColor: Colors.white,
                             // labelText: "",
                             hintText: '25000',
@@ -94,7 +100,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                       ),
                     ),
                     Container(
-                      height: 40,
+                      height: 35,
                       width: MediaQuery.of(context).size.width * 0.3,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -129,16 +135,13 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                 const SizedBox(
                   height: 25,
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
                 Container(
                     alignment: Alignment.topLeft, child: const Text('Age')),
                 const SizedBox(
                   height: 15,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -176,7 +179,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                   height: 15,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -205,7 +208,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                   ),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 25,
                 ),
                 Wrap(
                   children: [
@@ -219,7 +222,11 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
-                                child: Container(child: Icon(Icons.add)),
+                                child: Container(
+                                    child: Icon(
+                                  Icons.data_saver_on,
+                                  color: Color(0xffbfa280),
+                                )),
                                 onTap: () {
                                   setState(() {
                                     quntity2++;
@@ -227,18 +234,18 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                 },
                               ),
                               Text(quntity1.toString()),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 15),
-                                child: GestureDetector(
-                                  child: Container(
-                                    child: Icon(Icons.minimize),
+                              GestureDetector(
+                                child: Container(
+                                  child: Icon(
+                                    Icons.remove_circle_outline,
+                                    color: Color(0xffbfa280),
                                   ),
-                                  onTap: () {
-                                    if (quntity2 >= 0) {
-                                      quntity2--;
-                                    }
-                                  },
                                 ),
+                                onTap: () {
+                                  if (quntity2 >= 0) {
+                                    quntity2--;
+                                  }
+                                },
                               )
                             ],
                           ),
@@ -258,26 +265,30 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
-                                child: Container(child: Icon(Icons.add)),
+                                child: Container(
+                                    child: Icon(
+                                  Icons.data_saver_on,
+                                  color: Color(0xffbfa280),
+                                )),
                                 onTap: () {
                                   setState(() {
-                                    quntity1++;
+                                    quntity2++;
                                   });
                                 },
                               ),
                               Text(quntity1.toString()),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 15),
-                                child: GestureDetector(
-                                  child: Container(
-                                    child: Icon(Icons.minimize),
+                              GestureDetector(
+                                child: Container(
+                                  child: Icon(
+                                    Icons.remove_circle_outline,
+                                    color: Color(0xffbfa280),
                                   ),
-                                  onTap: () {
-                                    if (quntity2 >= 0) {
-                                      quntity2--;
-                                    }
-                                  },
                                 ),
+                                onTap: () {
+                                  if (quntity2 >= 0) {
+                                    quntity2--;
+                                  }
+                                },
                               )
                             ],
                           ),
@@ -297,22 +308,30 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
-                                child: Container(child: Icon(Icons.add)),
+                                child: Container(
+                                    child: Icon(
+                                  Icons.data_saver_on,
+                                  color: Color(0xffbfa280),
+                                )),
                                 onTap: () {
                                   setState(() {
-                                    kichens++;
+                                    quntity2++;
                                   });
                                 },
                               ),
-                              Text(kichens.toString()),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 15),
-                                child: GestureDetector(
-                                  child: Container(
-                                    child: Icon(Icons.minimize),
+                              Text(quntity1.toString()),
+                              GestureDetector(
+                                child: Container(
+                                  child: Icon(
+                                    Icons.remove_circle_outline,
+                                    color: Color(0xffbfa280),
                                   ),
-                                  onTap: () {},
                                 ),
+                                onTap: () {
+                                  if (quntity2 >= 0) {
+                                    quntity2--;
+                                  }
+                                },
                               )
                             ],
                           ),
@@ -325,8 +344,13 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                   ],
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    color: Color.fromARGB(255, 213, 215, 219),
+                  ),
                   width: double.infinity,
-                  color: Color.fromARGB(255, 213, 215, 219),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: MaterialButton(
@@ -340,8 +364,14 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                   height: 20,
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    color: Color.fromARGB(255, 213, 215, 219),
+                  ),
                   width: double.infinity,
-                  color: Color.fromARGB(255, 213, 215, 219),
+                  // color: Color.fromARGB(255, 213, 215, 219),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: MaterialButton(
@@ -355,8 +385,14 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                   height: 20,
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    color: Color.fromARGB(255, 213, 215, 219),
+                  ),
                   width: double.infinity,
-                  color: Color.fromARGB(255, 213, 215, 219),
+                  //color: Color.fromARGB(255, 213, 215, 219),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: MaterialButton(
@@ -384,7 +420,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           padding: EdgeInsets.only(
                               top: 10, left: 25, bottom: 10, right: 25),
                           child: const Text(
-                            "Suivant",
+                            "Précédent",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -394,7 +430,8 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                       alignment: Alignment.topRight,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
                             return ContactInfo();
                           }));
                         },
@@ -403,7 +440,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                               color: Color(0xffbfa280),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               top: 10, left: 25, bottom: 10, right: 25),
                           child: const Text(
                             "Suivant",

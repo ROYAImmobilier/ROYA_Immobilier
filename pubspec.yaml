@@ -38,6 +38,7 @@ dependencies:
   status_change: ^2.0.0
   status_stepper: ^1.0.0
   image_picker: 
+  get: ^4.6.1
 
 dev_dependencies:
   flutter_test:

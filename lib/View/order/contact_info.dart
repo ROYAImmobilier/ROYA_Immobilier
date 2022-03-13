@@ -58,185 +58,203 @@ class _ContactInfoState extends State<ContactInfo> {
           Icons.check_circle_rounded,
           color: Colors.black,
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                          alignment: Alignment.topLeft, child: Text('Title :')),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        //  controller: title,
-                        decoration: const InputDecoration(
-                          // labelText: "",
-                          border: OutlineInputBorder(),
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: 30,
+                color: const Color(0xffefefef),
+              ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: Text('Title :')),
+                        const SizedBox(
+                          height: 15,
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Text('Description :')),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        maxLines: 3,
-                        //  controller: title,
-                        decoration: const InputDecoration(
-                          // labelText: "",
-                          border: OutlineInputBorder(),
+                        TextFormField(
+                          //  controller: title,
+                          decoration: const InputDecoration(
+                            isDense: true, // Added this
+                            contentPadding: EdgeInsets.all(8),
+                            // labelText: "",
+                            border: OutlineInputBorder(),
+                          ),
+                          keyboardType: TextInputType.text,
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Text('Phone 1 :')),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        maxLength: 10,
-                        //  controller: title,
-                        decoration: const InputDecoration(
-                          // labelText: "",
-                          border: OutlineInputBorder(),
+                        const SizedBox(
+                          height: 15,
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Text('Phone 2 :')),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        maxLength: 10,
-                        //  controller
-                        //: title,
-                        decoration: const InputDecoration(
-                          // labelText: "",
-                          border: OutlineInputBorder(),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: Text('Description :')),
+                        const SizedBox(
+                          height: 15,
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Text('Phone 3 :')),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        maxLength: 10,
-                        //  controller: title,
-                        decoration: const InputDecoration(
-                          // labelText: "",
-                          border: OutlineInputBorder(),
+                        TextFormField(
+                          maxLines: 3,
+                          //  controller: title,
+                          decoration: const InputDecoration(
+                            isDense: true, // Added this
+                            contentPadding: EdgeInsets.all(8),
+                            // labelText: "",
+                            border: OutlineInputBorder(),
+                          ),
+                          keyboardType: TextInputType.text,
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          child: Text('Upload image(jpg-png-jpeg')),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          //selected img
-                          setState(() {
-                            choseImage();
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 40),
-                          child: _image.length == 0
-                              ? Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Image.asset(
-                                    'assets/images/select.png',
-                                    height: 50,
-                                    width: 50,
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: Text('Phone 1 :')),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          maxLength: 10,
+                          //  controller: title,
+                          decoration: const InputDecoration(
+                            isDense: true, // Added this
+                            contentPadding: EdgeInsets.all(8),
+                            // labelText: "",
+                            border: OutlineInputBorder(),
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: Text('Phone 2 :')),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          maxLength: 10,
+                          //  controller
+                          //: title,
+                          decoration: const InputDecoration(
+                            isDense: true, // Added this
+                            contentPadding: EdgeInsets.all(8),
+                            // labelText: "",
+                            border: OutlineInputBorder(),
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: Text('Phone 3 :')),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          maxLength: 10,
+                          //  controller: title,
+                          decoration: const InputDecoration(
+                            isDense: true, // Added this
+                            contentPadding: EdgeInsets.all(8),
+                            // labelText: "",
+                            border: OutlineInputBorder(),
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: Text('Upload image(jpg-png-jpeg)')),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            //selected img
+                            setState(() {
+                              choseImage();
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 40),
+                            child: _image.length == 0
+                                ? Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Image.asset(
+                                      'assets/images/select.png',
+                                      height: 50,
+                                      width: 50,
+                                    ),
+                                  )
+                                : Container(
+                                    height: 60,
+                                    // width: 60,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: FileImage(_image[0]))),
                                   ),
-                                )
-                              : Container(
-                                  height: 60,
-                                  // width: 60,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: FileImage(_image[0]))),
-                                ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MaterialButton(
-                    color: Color(0xffbfa280),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(12),
-                        side: BorderSide(color: Color(0xE2DDD9))),
-                    onPressed: () {},
-                    child: Text(
-                      "Precedent",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(12)),
-                    onPressed: () {},
-                    child: Text(
-                      "Reservez ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    color: Color(0xffbfa280),
-                  ),
-                ],
+              const SizedBox(
+                height: 10,
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MaterialButton(
+                      color: const Color(0xffbfa280),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: const BorderSide(color: Color(0xE2DDD9))),
+                      onPressed: () {},
+                      child: const Text(
+                        "Precedent",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      onPressed: () {},
+                      child: const Text(
+                        "Reservez ",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                      color: Color(0xffbfa280),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

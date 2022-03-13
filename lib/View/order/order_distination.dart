@@ -71,23 +71,19 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: TextFormField(
-                    //controller: ,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        //fillColor: Colors.white,
-                        // labelText: "",
-                        hintText: 'select property',
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3),
-                            borderRadius: BorderRadius.circular(5))),
-                    keyboardType: TextInputType.text,
-                  ),
+                TextFormField(
+                  //controller: ,
+                  cursorColor: Colors.white,
+                  decoration: InputDecoration(
+                      isDense: true, // Added this
+                      contentPadding: EdgeInsets.all(8),
+                      //fillColor: Colors.white,
+                      // labelText: "",
+                      hintText: 'select property',
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 3),
+                          borderRadius: BorderRadius.circular(5))),
+                  keyboardType: TextInputType.text,
                 ),
                 const SizedBox(
                   height: 15,
@@ -97,7 +93,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   height: 15,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -140,23 +136,19 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: TextFormField(
-                    //controller: ,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        //fillColor: Colors.white,
-                        // labelText: "",
-                        hintText: 'Adresse',
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3),
-                            borderRadius: BorderRadius.circular(5))),
-                    keyboardType: TextInputType.text,
-                  ),
+                TextFormField(
+                  //controller: ,
+                  cursorColor: Colors.white,
+                  decoration: InputDecoration(
+                      isDense: true, // Added this
+                      contentPadding: EdgeInsets.all(8),
+                      //fillColor: Colors.white,
+                      // labelText: "",
+                      hintText: 'Adresse',
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 3),
+                          borderRadius: BorderRadius.circular(5))),
+                  keyboardType: TextInputType.text,
                 ),
                 const SizedBox(
                   height: 15,
@@ -166,7 +158,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   height: 15,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -202,7 +194,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   height: 15,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -238,23 +230,19 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: TextFormField(
-                    //controller: ,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        //fillColor: Colors.white,
-                        // labelText: "",
-                        hintText: 'Adresse',
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3),
-                            borderRadius: BorderRadius.circular(5))),
-                    keyboardType: TextInputType.text,
-                  ),
+                TextFormField(
+                  //controller: ,
+                  cursorColor: Colors.white,
+                  decoration: InputDecoration(
+                      isDense: true, // Added this
+                      contentPadding: EdgeInsets.all(8),
+                      //fillColor: Colors.white,
+                      // labelText: "",
+                      hintText: 'Adresse',
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 3),
+                          borderRadius: BorderRadius.circular(5))),
+                  keyboardType: TextInputType.text,
                 ),
                 const SizedBox(
                   height: 15,
