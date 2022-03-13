@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:status_change/status_change.dart';
 
-class Add_Annonce_2 extends StatefulWidget {
-  const Add_Annonce_2({Key? key}) : super(key: key);
+import 'order_details.dart';
+
+class Add_Annonce extends StatefulWidget {
+  const Add_Annonce({Key? key}) : super(key: key);
 
   @override
-  State<Add_Annonce_2> createState() => _Add_AnnonceState();
+  State<Add_Annonce> createState() => _Add_AnnonceState();
 }
 
-class _Add_AnnonceState extends State<Add_Annonce_2> {
+class _Add_AnnonceState extends State<Add_Annonce> {
   var dropdownValue = "One";
   @override
   Widget build(BuildContext context) {
@@ -35,11 +38,36 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
             child: Column(
               children: [
                 Container(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Area (m²) :',
-                      style: TextStyle(),
-                    )),
+                  alignment: Alignment.topLeft,
+                  child: const Text(
+                    "Property details",
+                    style: TextStyle(color: Color(0xffbfa280)),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Radio(
+                      value: 3,
+                      groupValue: 0,
+                      onChanged: (value) {},
+                    ),
+                    Text('Vente'),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Radio(
+                      value: 3,
+                      groupValue: 0,
+                      onChanged: (value) {},
+                    ),
+                    Text('À location'),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                    alignment: Alignment.topLeft, child: Text('Catégorie')),
                 const SizedBox(
                   height: 15,
                 ),
@@ -234,7 +262,13 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                 Container(
                   alignment: Alignment.topRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Add_Annonce_2()),
+                      );
+                    },
                     child: Container(
                       decoration: const BoxDecoration(
                           color: Color(0xffbfa280),
