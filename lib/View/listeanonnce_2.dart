@@ -2,6 +2,9 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'home.dart';
 
 class Liste_Annonce_2 extends StatelessWidget {
   const Liste_Annonce_2({Key? key}) : super(key: key);
@@ -84,7 +87,7 @@ class Liste_Annonce_2 extends StatelessWidget {
                               Icons.location_on_rounded,
                               size: 12.sp,
                             ),
-                            const Text(" data "),
+                            Text("data"),
                             Icon(
                               Icons.home,
                               size: 11.sp,

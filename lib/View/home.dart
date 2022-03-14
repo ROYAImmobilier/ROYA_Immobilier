@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/drawerpage.dart';
 import 'package:roya_immobilie/View/stackwidget.dart';
 import 'package:roya_immobilie/View/stackwidget_2.dart';
@@ -21,7 +23,7 @@ class HomePage extends StatelessWidget {
             Icon(
               Icons.search,
               color: Colors.black,
-            )
+            ),
           ],
           leading: Builder(
             builder: (BuildContext context) {
@@ -44,7 +46,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: const StackWidget(),
+        body: const StackWidget_2(),
       ),
     );
   }

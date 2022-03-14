@@ -75,7 +75,7 @@ class Liste_Annonce extends StatelessWidget {
                         size: 12.sp,
                       ),
                       Text(
-                        " data ",
+                        "data",
                         style: TextStyle(fontSize: 11.sp),
                       ),
                       SizedBox(

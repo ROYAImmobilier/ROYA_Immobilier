@@ -1,7 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class DrawerPage extends StatelessWidget {
+import 'home.dart';
+
+class DrawerPage extends StatefulWidget {
   const DrawerPage({Key? key}) : super(key: key);
+
+  @override
+  State<DrawerPage> createState() => _DrawerPageState();
+}
+
+class _DrawerPageState extends State<DrawerPage> {
+  final List locale = [
+    {'name': 'English', 'locale': const Locale('en', 'US')},
+    {'name': 'France', 'locale': const Locale('fr', 'FR')},
+    {'name': 'Arabic', 'locale': const Locale('ar', 'MA')},
+  ];
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  buildLanguageDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: Text('Choose Your Language'.tr),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name'.tr]),
+                        onTap: () {
+                          // print(locale[index]['name']);
+                          updateLanguage(locale[index]['locale']);
+                        },
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: Colors.blue,
+                    );
+                  },
+                  itemCount: locale.length),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +81,14 @@ class DrawerPage extends StatelessWidget {
                     child: Container(
                       width: 300,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.only(left: 20, right: 5),
                         child: Column(
                           children: [
                             Row(
                               children: [
                                 Text(
-                                  "Bienvenue ,",
-                                  style: TextStyle(
+                                  "Bienvenue ,".tr,
+                                  style: const TextStyle(
                                     fontSize: 24,
                                   ),
                                 ),
@@ -45,8 +97,8 @@ class DrawerPage extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  'pour une experience optimisee , ',
-                                  style: TextStyle(
+                                  'pour une experience optimisee , '.tr,
+                                  style: const TextStyle(
                                     fontSize: 18,
                                   ),
                                 ),
@@ -55,7 +107,7 @@ class DrawerPage extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  'veuillez vous connecter',
+                                  'veuillez vous connecter'.tr,
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -80,16 +132,19 @@ class DrawerPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.camera_alt_outlined,
                       color: Colors.white,
                       size: 24,
                     ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Text(
-                      'DEPOSER UNE ANNONCE',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      'DEPOSER UNE ANNONCE'.tr,
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 ),
@@ -110,7 +165,7 @@ class DrawerPage extends StatelessWidget {
                 SizedBox(
                   width: 24,
                 ),
-                Text('Se connecter', style: TextStyle(fontSize: 20))
+                Text('Se connecter'.tr, style: TextStyle(fontSize: 20))
               ],
             ),
           ),
@@ -128,7 +183,7 @@ class DrawerPage extends StatelessWidget {
                 SizedBox(
                   width: 24,
                 ),
-                Text('Chat', style: TextStyle(fontSize: 20))
+                Text('Chat'.tr, style: TextStyle(fontSize: 20))
               ],
             ),
           ),
@@ -146,7 +201,7 @@ class DrawerPage extends StatelessWidget {
                 SizedBox(
                   width: 24,
                 ),
-                Text('Mes favoris', style: TextStyle(fontSize: 20))
+                Text('Mes favoris'.tr, style: TextStyle(fontSize: 20))
               ],
             ),
           ),
@@ -161,7 +216,21 @@ class DrawerPage extends StatelessWidget {
                 SizedBox(
                   width: 24,
                 ),
-                Text('Langues', style: TextStyle(fontSize: 20))
+                TextButton(
+                  onPressed: () {
+                    buildLanguageDialog(context);
+                    // setState(() {
+                    //   var locale = Locale('ar', 'MA');
+                    //   Get.updateLocale(locale);
+                    // });
+                  },
+                  child: Text(
+                    'Langues'.tr,
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -179,7 +248,7 @@ class DrawerPage extends StatelessWidget {
                 SizedBox(
                   width: 24,
                 ),
-                Text('Contactez nous', style: TextStyle(fontSize: 20))
+                Text('Contactez nous'.tr, style: TextStyle(fontSize: 20))
               ],
             ),
           ),

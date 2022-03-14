@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SearchFiltter extends StatelessWidget {
   const SearchFiltter({Key? key}) : super(key: key);
@@ -67,7 +68,7 @@ class SearchFiltter extends StatelessWidget {
                       ),
                       Container(
                           alignment: Alignment.topLeft,
-                          child: Text('Catégorie')),
+                          child: Text('Catégorie'.tr)),
                       const SizedBox(
                         height: 15,
                       ),
@@ -104,7 +105,8 @@ class SearchFiltter extends StatelessWidget {
                         height: 15,
                       ),
                       Container(
-                          alignment: Alignment.topLeft, child: Text('Ville')),
+                          alignment: Alignment.topLeft,
+                          child: Text('Ville'.tr)),
                       const SizedBox(
                         height: 15,
                       ),
@@ -116,7 +118,7 @@ class SearchFiltter extends StatelessWidget {
                           controller: search,
                           decoration: InputDecoration(
                               // labelText: "",
-                              hintText: 'Entrez le nom de la ville ?',
+                              hintText: 'Entrez le nom de la ville ?'.tr,
                               border: OutlineInputBorder(
                                   borderSide: const BorderSide(width: 3),
                                   borderRadius: BorderRadius.circular(5))),
@@ -128,7 +130,7 @@ class SearchFiltter extends StatelessWidget {
                       ),
                       Container(
                           alignment: Alignment.topLeft,
-                          child: const Text('Type d\'annonce')),
+                          child: Text('Type d\'annonce'.tr)),
                       const SizedBox(
                         height: 2,
                       ),
@@ -142,7 +144,7 @@ class SearchFiltter extends StatelessWidget {
                                 groupValue: 0,
                                 onChanged: (value) {},
                               ),
-                              Text('Vente'),
+                              Text('Vente'.tr),
                             ],
                           ),
                           Row(
@@ -152,7 +154,7 @@ class SearchFiltter extends StatelessWidget {
                                 groupValue: 0,
                                 onChanged: (value) {},
                               ),
-                              Text('À location'),
+                              Text('À location'.tr),
                             ],
                           ),
                           Row(
@@ -162,7 +164,7 @@ class SearchFiltter extends StatelessWidget {
                                 groupValue: 0,
                                 onChanged: (value) {},
                               ),
-                              Text('Demande'),
+                              Text('Demande'.tr),
                             ],
                           ),
                         ],
@@ -176,8 +178,8 @@ class SearchFiltter extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: TextButton(
                       onPressed: () {},
-                      child: const Text(
-                        'RECHERCHER (56242)',
+                      child: Text(
+                        'RECHERCHER (56242)'.tr,
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
