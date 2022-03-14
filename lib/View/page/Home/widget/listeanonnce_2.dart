@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Liste_Annonce_2 extends StatelessWidget {
-  late String image;
-  Liste_Annonce_2({required this.image});
+  const Liste_Annonce_2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +24,8 @@ class Liste_Annonce_2 extends StatelessWidget {
                   width: 140.w,
                   height: 120.h,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(image),
+                      image: const DecorationImage(
+                        image: ExactAssetImage('assets/images/bac.jpg'),
                         fit: BoxFit.fill,
                       ),
                       color: Colors.white,

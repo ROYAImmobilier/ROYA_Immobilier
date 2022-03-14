@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Liste_Annonce extends StatelessWidget {
-  late String image;
-  Liste_Annonce({required this.image});
+  const Liste_Annonce({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -13,8 +13,8 @@ class Liste_Annonce extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(image),
+              image: const DecorationImage(
+                image: ExactAssetImage('assets/images/bac.jpg'),
                 fit: BoxFit.fill,
               ),
               color: Colors.white,

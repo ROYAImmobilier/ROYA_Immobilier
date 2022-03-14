@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/Home/widget/stackwidget_2.dart';
+
+import 'package:roya_immobilie/View/page/widget/stackwidget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -18,14 +22,9 @@ class HomePage extends StatelessWidget {
             color: Colors.black,
           )),
           actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SvgPicture.asset(
-                'assets/icon/search.svg',
-                width: 20,
-                height: 20,
-                color: Colors.black,
-              ),
+            SvgPicture.asset(
+              'assests/icon/search.svg',
+              color: Colors.black,
             ),
           ],
           leading: Builder(
@@ -34,8 +33,6 @@ class HomePage extends StatelessWidget {
                 //menu.svg
                 icon: SvgPicture.asset(
                   'assets/icon/menu.svg',
-                  width: 25,
-                  height: 25,
                 ),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();

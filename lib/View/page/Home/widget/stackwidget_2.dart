@@ -16,16 +16,6 @@ class StackWidget_2 extends StatefulWidget {
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
-  List<String> imge = [
-    'https://st2.depositphotos.com/1007034/9755/i/950/depositphotos_97554836-stock-photo-luxurious-villa-with-pool.jpg'
-        'https://st2.depositphotos.com/1007034/6589/i/950/depositphotos_65894943-stock-photo-luxury-villa-bunker.jpg',
-    'https://img3.goodfon.com/wallpaper/nbig/5/f4/ssha-newport-beach-dom-villa.jpg',
-    'https://i.pinimg.com/originals/0e/3a/5f/0e3a5f409b2bf6e1fa5bcb52a59a17c5.jpg',
-    'https://s1.1zoom.me/big0/202/414713-svetik.jpg',
-    'https://ws.pap.fr/cdnV1/57d80de0eccc22495148005e/57d80de0eccc22495148005e-1516023084-1024x546.jpg',
-    'https://www.villanovo.fr/photos/5136/marrakech-villa-melka-4202355915da86556526203.02934761.1920.jpg',
-    'https://www.marbella-hills-homes.com/cms/wp-content/uploads/2018/05/mh2998_1_villa-and-pool.jpg'
-  ];
   bool grid = true;
   @override
   Widget build(BuildContext context) {
@@ -82,36 +72,71 @@ class _StackWidget_2State extends State<StackWidget_2> {
               width: MediaQuery.of(context).size.width.toDouble(),
               height: 170.h,
               child: Padding(
-                  padding: EdgeInsets.only(
-                      bottom: 30.0.h, top: 10.h, left: 2.w, right: 2.w),
-                  child: ListView.builder(
-                      itemCount: imge.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, i) {
-                        return Expanded(
-                            child: Card(
-                          clipBehavior: Clip.antiAlias,
-                          elevation: 0,
-                          color: const Color(0xffb58350),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(imge[i]),
-                                fit: BoxFit.fill,
-                              ),
-                              border: Border.all(
-                                color: const Color(0xff857c88),
-                                width: 3.w,
-                              ),
-                              color: Colors.red,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.r)),
-                            ),
-                            width: 150.w,
-                            height: 100.h,
+                padding: EdgeInsets.only(bottom: 15.0.h),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 0,
+                      color: const Color(0xffb58350),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: ExactAssetImage('assets/images/bac.jpg'),
+                            fit: BoxFit.fill,
                           ),
-                        ));
-                      })),
+                          border: Border.all(
+                            color: const Color(0xff857c88),
+                            width: 3.w,
+                          ),
+                          color: Colors.red,
+                          borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                        ),
+                        width: 150.w,
+                        height: 100.h,
+                      ),
+                    )),
+                    Expanded(
+                        child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 0,
+                      color: const Color(0xffb58350),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color(0xff857c88),
+                            width: 3.w,
+                          ),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        width: 150.w,
+                        height: 100.h,
+                      ),
+                    )),
+                    Expanded(
+                        child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 0,
+                      color: const Color(0xffb58350),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color(0xff857c88),
+                            width: 3.w,
+                          ),
+                          // color: Colors.blue,
+                          borderRadius:
+                              BorderRadius.all(const Radius.circular(20)),
+                        ),
+                        width: 150.w,
+                        height: 100.h,
+                      ),
+                    )),
+                  ],
+                ),
+              ),
             ),
           ),
           Padding(
@@ -138,12 +163,12 @@ class _StackWidget_2State extends State<StackWidget_2> {
                             crossAxisSpacing: 2.h,
                             mainAxisSpacing: 2.w),
                         itemBuilder: (BuildContext ctx, index) {
-                          return Liste_Annonce(image: imge[index]);
+                          return const Liste_Annonce();
                         })
                     : ListView.builder(
-                        itemCount: imge.length,
+                        itemCount: 4,
                         itemBuilder: (BuildContext context, int index) {
-                          return Liste_Annonce_2(image: imge[index]);
+                          return Liste_Annonce_2();
                         })),
           ),
         ],
