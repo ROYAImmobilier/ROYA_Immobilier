@@ -126,7 +126,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                 // height: double.infinity,
                 child: grid
                     ? GridView.builder(
-                        itemCount: 8,
+                        itemCount: imge.length,
                         shrinkWrap: true,
                         padding: EdgeInsets.only(
                             top: 15.h, bottom: 15.h, left: 15.w, right: 15.w),
@@ -141,9 +141,14 @@ class _StackWidget_2State extends State<StackWidget_2> {
                           return Liste_Annonce(image: imge[index]);
                         })
                     : ListView.builder(
-                        itemCount: imge.length,
+                        shrinkWrap: true,
+                        itemCount: imge.length + 1,
                         itemBuilder: (BuildContext context, int index) {
-                          return Liste_Annonce_2(image: imge[index]);
+                          return index == imge.length
+                              ? SizedBox(
+                                  height: 25.h,
+                                )
+                              : Liste_Annonce_2(image: imge[index]);
                         })),
           ),
         ],
