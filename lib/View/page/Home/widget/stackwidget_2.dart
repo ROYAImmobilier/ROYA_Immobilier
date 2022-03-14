@@ -7,6 +7,16 @@ import 'drawerpage.dart';
 import 'listeanonnce.dart';
 import 'listeanonnce_2.dart';
 
+List<String> imge = [
+  'https://st2.depositphotos.com/1007034/9755/i/950/depositphotos_97554836-stock-photo-luxurious-villa-with-pool.jpg'
+      'https://st2.depositphotos.com/1007034/6589/i/950/depositphotos_65894943-stock-photo-luxury-villa-bunker.jpg',
+  'https://img3.goodfon.com/wallpaper/nbig/5/f4/ssha-newport-beach-dom-villa.jpg',
+  'https://i.pinimg.com/originals/0e/3a/5f/0e3a5f409b2bf6e1fa5bcb52a59a17c5.jpg',
+  'https://s1.1zoom.me/big0/202/414713-svetik.jpg',
+  'https://ws.pap.fr/cdnV1/57d80de0eccc22495148005e/57d80de0eccc22495148005e-1516023084-1024x546.jpg',
+  'https://www.villanovo.fr/photos/5136/marrakech-villa-melka-4202355915da86556526203.02934761.1920.jpg',
+  'https://www.marbella-hills-homes.com/cms/wp-content/uploads/2018/05/mh2998_1_villa-and-pool.jpg'
+];
 final colors = Color(0xefefef);
 
 class StackWidget_2 extends StatefulWidget {
@@ -17,16 +27,6 @@ class StackWidget_2 extends StatefulWidget {
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
-  List<String> imge = [
-    'https://st2.depositphotos.com/1007034/9755/i/950/depositphotos_97554836-stock-photo-luxurious-villa-with-pool.jpg'
-        'https://st2.depositphotos.com/1007034/6589/i/950/depositphotos_65894943-stock-photo-luxury-villa-bunker.jpg',
-    'https://img3.goodfon.com/wallpaper/nbig/5/f4/ssha-newport-beach-dom-villa.jpg',
-    'https://i.pinimg.com/originals/0e/3a/5f/0e3a5f409b2bf6e1fa5bcb52a59a17c5.jpg',
-    'https://s1.1zoom.me/big0/202/414713-svetik.jpg',
-    'https://ws.pap.fr/cdnV1/57d80de0eccc22495148005e/57d80de0eccc22495148005e-1516023084-1024x546.jpg',
-    'https://www.villanovo.fr/photos/5136/marrakech-villa-melka-4202355915da86556526203.02934761.1920.jpg',
-    'https://www.marbella-hills-homes.com/cms/wp-content/uploads/2018/05/mh2998_1_villa-and-pool.jpg'
-  ];
   bool grid = true;
   @override
   Widget build(BuildContext context) {
