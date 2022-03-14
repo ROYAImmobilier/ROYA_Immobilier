@@ -3,6 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+final List locale = [
+  {'name': 'English', 'locale': const Locale('en', 'US')},
+  {'name': 'France', 'locale': const Locale('fr', 'FR')},
+  {'name': 'Arabic', 'locale': const Locale('ar', 'MA')},
+];
+
 class DrawerPage extends StatefulWidget {
   const DrawerPage({Key? key}) : super(key: key);
 
@@ -11,11 +17,6 @@ class DrawerPage extends StatefulWidget {
 }
 
 class _DrawerPageState extends State<DrawerPage> {
-  final List locale = [
-    {'name': 'English', 'locale': const Locale('en', 'US')},
-    {'name': 'France', 'locale': const Locale('fr', 'FR')},
-    {'name': 'Arabic', 'locale': const Locale('ar', 'MA')},
-  ];
   updateLanguage(Locale locale) {
     Get.back();
     Get.updateLocale(locale);

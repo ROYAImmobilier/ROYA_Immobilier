@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-import 'package:status_change/status_change.dart';
-
+import '../page/Home/widget/drawerpage.dart';
 import 'order_details.dart';
 
 class Add_Annonce extends StatefulWidget {
@@ -39,13 +39,18 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   top: 15.h, bottom: 15.h, left: 15.w, right: 15.w),
               // margin: const EdgeInsets.all(15),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Property details",
-                      style:
-                          TextStyle(fontSize: 14.sp, color: Color(0xffbfa280)),
+                    child: Directionality(
+                      textDirection: locale == 'fr'
+                          ? TextDirection.ltr
+                          : TextDirection.rtl,
+                      child: Text(
+                        "Property details".tr,
+                        style: TextStyle(
+                            fontSize: 14.sp, color: Color(0xffbfa280)),
+                      ),
                     ),
                   ),
                   Row(
@@ -55,7 +60,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         groupValue: 0,
                         onChanged: (value) {},
                       ),
-                      Text('Vente',
+                      Text('Vente'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           )),
@@ -67,7 +72,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         groupValue: 0,
                         onChanged: (value) {},
                       ),
-                      Text('À location',
+                      Text('À location'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           )),
@@ -78,7 +83,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('Catégorie',
+                      child: Text('Catégorie'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           ))),
@@ -94,7 +99,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
                         //fillColor: Colors.white,
                         // labelText: "",
-                        hintText: 'select property',
+                        hintText: 'select property'.tr,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(width: 3),
                             borderRadius: BorderRadius.circular(5.r))),
@@ -105,7 +110,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('Stauts',
+                      child: Text('Statut'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           ))),
@@ -146,7 +151,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('Location',
+                      child: Text('Location'.tr,
                           style: TextStyle(
                               color: Color(0xffbfa280), fontSize: 14.sp))),
                   const SizedBox(
@@ -154,7 +159,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('Adresse',
+                      child: Text('Adresse'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           ))),
@@ -169,7 +174,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         contentPadding: EdgeInsets.all(8),
                         //fillColor: Colors.white,
                         // labelText: "",
-                        hintText: 'Adresse',
+                        hintText: 'Adresse'.tr,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(width: 3.w),
                             borderRadius: BorderRadius.circular(5))),
@@ -180,7 +185,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('Region',
+                      child: Text('Region'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           ))),
@@ -221,7 +226,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('City',
+                      child: Text('Ville'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           ))),
@@ -262,7 +267,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Container(
                       alignment: Alignment.topLeft,
-                      child: Text('Quartier',
+                      child: Text('Quartier'.tr,
                           style: TextStyle(
                             fontSize: 14.sp,
                           ))),
@@ -277,7 +282,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         contentPadding: EdgeInsets.all(8),
                         //fillColor: Colors.white,
                         // labelText: "",
-                        hintText: 'Adresse',
+                        hintText: 'Adresse'.tr,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(width: 3.w),
                             borderRadius: BorderRadius.circular(5.r))),
@@ -303,7 +308,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 BorderRadius.all(Radius.circular(10))),
                         padding: EdgeInsets.only(
                             top: 10.h, left: 25.w, bottom: 10.h, right: 25.w),
-                        child: Text("Suivant",
+                        child: Text("Suivant".tr,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14.sp,

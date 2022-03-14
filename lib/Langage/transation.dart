@@ -5,9 +5,21 @@ class Transation extends Translations {
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
         'ar_MA': {
+          'Property details': 'تفاصيل اوضح',
+          'Vente': 'بيع',
+          'À location': 'للايجار',
+          'Catégorie': 'فئة',
+          'Adresse': 'عنوان',
+          'Statut': 'الحالة',
+          'Region': 'منطقة',
+          'Ville': 'مدينة',
+          'Quartier': 'حي',
+          'select property': 'اختر خاصية',
+          'Location': 'تأجير',
           'France': 'الفرنسية',
           'English': 'الانجليزية',
           'Arabic': 'العربية',
+          'Suivant': 'التالي',
           'Langues': 'تغيير اللغة',
           'Contactez nous': 'اتصل بنا',
           'Choose Your Language': "اختر لغتك",
@@ -19,9 +31,20 @@ class Transation extends Translations {
           "Bienvenue ,": 'مرحبا ،',
           'pour une experience optimisee , ': 'لتجربة محسّنة ،',
           'veuillez vous connecter': 'الرجاء تسجيل الدخول',
-
         },
         'fr_FR': {
+          'Suivant': 'Suivant',
+          'Property details': 'Property details',
+          'Vente': 'Vente',
+          'À location': 'À location',
+          'Catégorie': 'Catégorie',
+          'Adresse': 'Adresse',
+          'Statut': 'Statut',
+          'Region': 'Region',
+          'Ville': 'Ville',
+          'Quartier': 'Quartier',
+          'select property': 'select property',
+          'Location': 'Location',
           'veuillez vous connecter': 'veuillez vous connecter',
           'pour une experience optimisee , ':
               'pour une experience optimisee , ',
@@ -37,6 +60,18 @@ class Transation extends Translations {
           'DEPOSER UNE ANNONCE': 'DEPOSER UNE ANNONCE',
         },
         'en_US': {
+          'Suivant': 'Next',
+          'Property details': 'Property details',
+          'Vente': 'Sale',
+          'À location': 'For hire',
+          'Catégorie': 'Category',
+          'Adresse': 'Address',
+          'Statut': 'Status',
+          'Region': 'Region',
+          'Ville': 'City',
+          'Quartier': 'District',
+          'select property': 'sselect property',
+          'Location': 'Location',
           'Chat': 'Chat',
           'Mes favoris': 'My favorites',
           'Se connecter': 'Loging',
@@ -50,7 +85,7 @@ class Transation extends Translations {
           'Arabic': 'Arabic',
           'Choose Your Language': 'Choose Your Language',
           'casablaca': 'casablaca',
-          'Langues': 'Languesة',
+          'Langues': 'Langues',
           'Contactez nous': 'Contactez nous'
         }
       };

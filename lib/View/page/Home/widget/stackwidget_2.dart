@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'drawerpage.dart';
 import 'listeanonnce.dart';
 import 'listeanonnce_2.dart';
 
@@ -41,13 +42,14 @@ class _StackWidget_2State extends State<StackWidget_2> {
                     topRight: Radius.circular(20.r),
                     topLeft: Radius.circular(20.r))),
             child: Padding(
-              padding: EdgeInsets.only(left: 13.w, bottom: 30.h),
+              padding: EdgeInsets.only(left: 13.w, bottom: 30.h, right: 13.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.clean_hands_outlined),
+                      SvgPicture.asset('assets/icon/annonces/hand.svg',
+                          width: 25, height: 25, matchTextDirection: true),
                       Text(
                         " Immobulier Neuf",
                         style: TextStyle(fontSize: 14.sp),
@@ -126,7 +128,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                 // height: double.infinity,
                 child: grid
                     ? GridView.builder(
-                        itemCount: 8,
+                        itemCount: imge.length,
                         shrinkWrap: true,
                         padding: EdgeInsets.only(
                             top: 15.h, bottom: 15.h, left: 15.w, right: 15.w),

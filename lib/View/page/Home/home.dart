@@ -32,11 +32,8 @@ class HomePage extends StatelessWidget {
             builder: (BuildContext context) {
               return IconButton(
                 //menu.svg
-                icon: SvgPicture.asset(
-                  'assets/icon/menu.svg',
-                  width: 25,
-                  height: 25,
-                ),
+                icon: SvgPicture.asset('assets/icon/menu.svg',
+                    width: 25, height: 25, matchTextDirection: true),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },

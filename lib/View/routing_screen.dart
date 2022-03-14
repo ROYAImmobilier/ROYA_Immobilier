@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
 import 'package:roya_immobilie/View/page/notification_page.dart';
 
+import '../page_details/details.dart';
 import 'order/order_distination.dart';
 import 'page/searchfilter.dart';
 import 'page/chat_page.dart';
@@ -51,11 +52,11 @@ class _RoutingScreenState extends State<RoutingScreen> {
     final pageView = PageView(
         controller: pageController,
         children: [
-          HomePage(),
+          Details(),
           FavoritePage(),
           ChatPage(),
           ChatPage(),
-          NotificationPage()
+          Add_Annonce()
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
