@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-import 'package:roya_immobilie/View/home.dart';
-import 'package:roya_immobilie/View/notification_page.dart';
+import 'package:roya_immobilie/View/page/Home/home.dart';
+import 'package:roya_immobilie/View/page/notification_page.dart';
 
 import 'order/order_distination.dart';
-import 'searchfilter.dart';
-import 'chat_page.dart';
-import 'favorite_page.dart';
+import 'page/searchfilter.dart';
+import 'page/chat_page.dart';
+import 'page/favorite_page.dart';
 
 class RoutingScreen extends StatefulWidget {
   static final id = "RoutingScreen";
@@ -31,7 +34,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
   void OnbottomTapped(int index) {
     if ((bottomSelectedIndex - index.abs() == 1)) {
       pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          duration: const Duration(milliseconds: 400), curve: Curves.ease);
     } else {
       pageController.jumpToPage(index);
     }
@@ -47,59 +50,89 @@ class _RoutingScreenState extends State<RoutingScreen> {
   Widget build(BuildContext context) {
     final pageView = PageView(
         controller: pageController,
-        children: [HomePage(), FavoritePage(), ChatPage(), Add_Annonce()],
+        children: [
+          HomePage(),
+          FavoritePage(),
+          ChatPage(),
+          ChatPage(),
+          NotificationPage()
+        ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        elevation: 1,
-        // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(0)),
-        isExtended: true,
-        backgroundColor: Color.fromARGB(255, 130, 108, 219),
-        // mini: true,
-        child: Icon(Icons.camera_enhance_outlined),
-        onPressed: () {},
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
+    return ScreenUtilInit(
+      builder: () => Scaffold(
+        backgroundColor: Colors.white,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          elevation: 1,
+          // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(0)),
+          isExtended: true,
+          backgroundColor: Color.fromARGB(255, 130, 108, 219),
+          // mini: true,
+          child: SvgPicture.asset(
+            'assets/icon/camera_light.svg',
+            width: 30.w,
+            height: 30.h,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Get.to(Add_Annonce());
+          },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          type: BottomNavigationBarType.shifting,
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: Colors.white,
+                icon: Icon(Icons.home_filled, color: Colors.black54, size: 25),
+                label: 'Annonces'),
+            BottomNavigationBarItem(
               backgroundColor: Colors.white,
-              icon: Icon(Icons.home_filled, color: Colors.grey[600], size: 20),
-              label: 'Annonces'),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.favorite_border_outlined,
-                color: Colors.grey[600], size: 20),
-            label: 'Favoris',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.camera, color: Colors.white, size: 20),
-            label: 'Annoncer',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon:
-                Icon(Icons.message_rounded, color: Colors.grey[600], size: 20),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.notifications, color: Colors.grey[600], size: 20),
-            label: 'Notification',
-          ),
-        ],
-        onTap: OnbottomTapped,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        currentIndex: bottomSelectedIndex,
+              //favor.svg
+              icon: SvgPicture.asset(
+                'assets/icon/annonces/favor.svg',
+                color: Colors.black54,
+                width: 25.w,
+                height: 25.h,
+              ),
+
+              label: 'Favoris',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: Icon(Icons.camera, color: Colors.white, size: 20),
+              label: 'Annoncer',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: SvgPicture.asset(
+                'assets/icon/LC_icon_message_fill_1.svg',
+                color: Colors.black54,
+                width: 25.w,
+                height: 25.h,
+              ),
+              label: 'Chat',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: SvgPicture.asset(
+                'assets/icon/notification.svg',
+                color: Colors.black54,
+                width: 25.w,
+                height: 25.h,
+              ),
+              label: 'Notification',
+            ),
+          ],
+          onTap: OnbottomTapped,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black54,
+          currentIndex: bottomSelectedIndex,
+        ),
+        body: pageView,
       ),
-      body: pageView,
     );
   }
 }

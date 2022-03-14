@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import 'contact_info.dart';
 
@@ -446,7 +447,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                       Container(
                         alignment: Alignment.topRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {Get.back();},
                           child: Container(
                             decoration: const BoxDecoration(
                                 color: Color(0xffbfa280),

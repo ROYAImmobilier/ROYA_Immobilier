@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:path/path.dart' as Path;
 import 'package:image_picker/image_picker.dart';
 
@@ -255,7 +258,9 @@ class _ContactInfoState extends State<ContactInfo> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.r),
                             side: const BorderSide(color: Color(0xE2DDD9))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.back();
+                        },
                         child: Text(
                           "Precedent",
                           style: TextStyle(
@@ -275,7 +280,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             color: Colors.white,
                           ),
                         ),
-                        color: Color(0xffbfa280),
+                        color: const Color(0xffbfa280),
                       ),
                     ],
                   ),
