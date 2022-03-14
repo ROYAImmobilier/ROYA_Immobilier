@@ -52,7 +52,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
     final pageView = PageView(
         controller: pageController,
         children: [
-          Details(),
+          HomePage(),
           FavoritePage(),
           ChatPage(),
           ChatPage(),

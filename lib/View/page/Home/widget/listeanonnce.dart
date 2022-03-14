@@ -4,9 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Liste_Annonce extends StatelessWidget {
+class Liste_Annonce extends StatefulWidget {
   late String image;
   Liste_Annonce({required this.image});
+
+  @override
+  State<Liste_Annonce> createState() => _Liste_AnnonceState();
+}
+
+class _Liste_AnnonceState extends State<Liste_Annonce> {
+  bool fav = true;
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -18,7 +25,7 @@ class Liste_Annonce extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(image),
+                  image: NetworkImage(widget.image),
                   fit: BoxFit.fill,
                 ),
                 color: Colors.white,
@@ -53,15 +60,28 @@ class Liste_Annonce extends StatelessWidget {
                                 fontSize: 14.sp, color: Color(0xffb58350)),
                           )),
                       Container(
-                          margin: EdgeInsets.only(top: 5.h, right: 10.w),
-                          child: Icon(
-                            Icons.favorite_border,
-                            size: 20.sp,
-                          ))
+                          margin: EdgeInsets.only(top: 0.h, right: 10.w),
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                fav = !fav;
+                              });
+                            },
+                            icon: fav
+                                ? Icon(
+                                    Icons.favorite_border,
+                                    size: 15.sp,
+                                  )
+                                : Icon(
+                                    Icons.favorite_outlined,
+                                    color: Colors.red,
+                                    size: 15.sp,
+                                  ),
+                          )),
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5.h),
+                    margin: EdgeInsets.only(top: 0.h),
                     child: Text(
                       "Ville casablanca et grand",
                       maxLines: 1,

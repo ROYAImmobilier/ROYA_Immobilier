@@ -4,10 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Liste_Annonce_2 extends StatelessWidget {
+class Liste_Annonce_2 extends StatefulWidget {
   late String image;
   Liste_Annonce_2({required this.image});
 
+  @override
+  State<Liste_Annonce_2> createState() => _Liste_Annonce_2State();
+}
+
+class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
+  bool fav = true;
   @override
   Widget build(BuildContext context) {
     var sizeScreen = MediaQuery.of(context).size.width;
@@ -18,8 +24,8 @@ class Liste_Annonce_2 extends StatelessWidget {
           return Directionality(
             textDirection: TextDirection.ltr,
             child: Container(
-              margin: EdgeInsets.only(top: 20.h, left: 20.w),
-              width: 150.w,
+              margin: EdgeInsets.only(top: 5.h, left: 5.w),
+              width: double.infinity,
               height: 120.h,
               child: Row(
                 children: [
@@ -28,7 +34,7 @@ class Liste_Annonce_2 extends StatelessWidget {
                     height: 120.h,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(image),
+                          image: NetworkImage(widget.image),
                           fit: BoxFit.fill,
                         ),
                         color: Colors.white,
@@ -37,7 +43,7 @@ class Liste_Annonce_2 extends StatelessWidget {
                             bottomLeft: Radius.circular(10.r))),
                   ),
                   Container(
-                    width: 180.w,
+                    width: 200.w,
                     height: 120.h,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -80,7 +86,7 @@ class Liste_Annonce_2 extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.only(left: 5.w),
-                          padding: EdgeInsets.only(top: 20.h),
+                          padding: EdgeInsets.only(top: 10.h),
                           alignment: Alignment.topLeft,
                           child: Row(
                             children: [
@@ -89,22 +95,37 @@ class Liste_Annonce_2 extends StatelessWidget {
                                 size: 12.sp,
                               ),
                               Text("data"),
+                              SizedBox(
+                                width: 5.w,
+                              ),
                               Icon(
                                 Icons.home,
                                 size: 11.sp,
                               ),
                               const Text(" data "),
                               SizedBox(
-                                width: sizeScreen > 320 ? 70.w : 50.w,
+                                width: sizeScreen > 320 ? 60.w : 40.w,
                               ),
                               Container(
-                                //margin: EdgeInsets.symmetric(horizontal: 15.w),
-                                alignment: Alignment.topRight,
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  size: 14.sp,
-                                ),
-                              ),
+                                  //margin: EdgeInsets.symmetric(horizontal: 15.w),
+                                  alignment: Alignment.topRight,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        fav = !fav;
+                                      });
+                                    },
+                                    icon: fav
+                                        ? Icon(
+                                            Icons.favorite_border,
+                                            size: 15.sp,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_outlined,
+                                            color: Colors.red,
+                                            size: 15.sp,
+                                          ),
+                                  )),
                             ],
                           ),
                         ),

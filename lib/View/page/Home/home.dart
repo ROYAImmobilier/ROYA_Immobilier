@@ -41,8 +41,8 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          backgroundColor: Colors.white,
+          elevation: 1,
         ),
         body: const StackWidget_2(),
       ),
