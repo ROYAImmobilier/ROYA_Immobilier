@@ -56,7 +56,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                       Container(
                           margin: EdgeInsets.only(top: 5.h, left: 10.w),
                           child: Text(
-                            widget.data['price'].toString(),
+                            widget.data['price'].toString() + ' dh',
                             style: TextStyle(
                                 fontSize: 14.sp, color: Color(0xffb58350)),
                           )),

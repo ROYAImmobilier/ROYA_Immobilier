@@ -44,7 +44,6 @@ class _TestaState extends State<Testa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: FutureBuilder(
         future: AnnonceRepository.featcherAnnonce(),
         builder: (context, AsyncSnapshot snapshot) {

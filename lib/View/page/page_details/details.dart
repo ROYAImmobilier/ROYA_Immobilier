@@ -20,13 +20,6 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  List<String> imgecate = [
-    "https://cdn-icons-png.flaticon.com/512/201/201465.png",
-    "https://cdn4.vectorstock.com/i/1000x1000/29/78/cute-villa-black-icon-concept-villa-vector-20952978.jpg",
-    "https://cdn.iconscout.com/icon/free/png-256/villa-73-1138931.png",
-    "https://w7.pngwing.com/pngs/808/39/png-transparent-house-elite-villas-javea-computer-icons-building-house-angle-building-apartment.png",
-    "https://img2.arabpng.com/20180608/fhu/kisspng-computer-icons-building-office-buildings-5b1a218460c0c6.4853580515284391723963.jpg",
-  ];
   bool grid = true;
   @override
   Widget build(BuildContext context) {
@@ -306,8 +299,8 @@ class _DetailsState extends State<Details> {
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                const Text(
-                                  "3 Beds",
+                                Text(
+                                  "${widget.data["bedrooms"]} Beds",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -325,8 +318,8 @@ class _DetailsState extends State<Details> {
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                const Text(
-                                  "4 Boths",
+                                Text(
+                                  "${widget.data['bathrooms']} Boths",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -344,8 +337,8 @@ class _DetailsState extends State<Details> {
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                const Text(
-                                  "400 m²",
+                                Text(
+                                  "${widget.data['area']} m²",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),

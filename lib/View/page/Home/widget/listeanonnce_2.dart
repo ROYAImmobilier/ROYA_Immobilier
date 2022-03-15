@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 
 class Liste_Annonce_2 extends StatefulWidget {
   late String image;
-  Liste_Annonce_2({required this.image});
+  late var data;
+  Liste_Annonce_2({required this.image, required this.data});
 
   @override
   State<Liste_Annonce_2> createState() => _Liste_Annonce_2State();
@@ -64,7 +65,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                             margin: EdgeInsets.only(top: 5.h, left: 5.w),
                             alignment: Alignment.topLeft,
                             child: Text(
-                              "250000 dh",
+                              widget.data['price'].toString() + ' dh',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Color(
@@ -77,7 +78,8 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                           // width: 350.w,
                           margin: EdgeInsets.only(top: 3.h, left: 5.w),
                           child: Text(
-                            "Ville casablanca et grand  ",
+                            widget.data['title'],
+                            maxLines: 1,
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 14.sp,
