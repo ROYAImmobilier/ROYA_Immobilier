@@ -214,7 +214,8 @@ class _StackWidget_2State extends State<StackWidget_2> {
                             itemBuilder: (BuildContext ctx, index) {
                               return GestureDetector(
                                   onTap: () => Get.to(Details(
-                                      image: widget.data[index]['cover'])),
+                                      image: widget.data[index]['cover'],
+                                      data: widget.data[index])),
                                   child: Liste_Annonce(
                                     image: widget.data[index]['cover'],
                                     data: widget.data[index],
@@ -230,8 +231,10 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                       height: 25.h,
                                     )
                                   : GestureDetector(
-                                      onTap: () =>
-                                          Get.to(Details(image: imge[index])),
+                                      onTap: () => Get.to(Details(
+                                            image: imge[index],
+                                            data: widget.data[index],
+                                          )),
                                       child:
                                           Liste_Annonce_2(image: imge[index]));
                             })),

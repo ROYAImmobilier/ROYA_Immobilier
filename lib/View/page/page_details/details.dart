@@ -12,7 +12,8 @@ import 'icon_status.dart';
 
 class Details extends StatefulWidget {
   late String image;
-  Details({required this.image});
+  var data;
+  Details({required this.image, required this.data});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -284,8 +285,8 @@ class _DetailsState extends State<Details> {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10.r),
                               )),
-                          child: const Text(
-                            "Appartement à vendre à Agadir",
+                          child: Text(
+                            widget.data['title'],
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
@@ -374,8 +375,10 @@ class _DetailsState extends State<Details> {
                                   child: Text("Adresse")),
                               Container(
                                 alignment: Alignment.center,
-                                child: const Text(
-                                  "Hay Salam Agadir",
+                                child: Text(
+                                  widget.data["address"] +
+                                      ' => ' +
+                                      widget.data['quartier'],
                                 ),
                               )
                             ],
@@ -411,8 +414,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
-                          child: const Text(
-                              'Sublime villa pour l\'habitation en location pour la longue durée villa bien ensoleillé dans un quartier calme et propre à Casablanca située a Californie d\'une superficie habitab…'),
+                          child: Text(widget.data['description']),
                         ),
                         const SizedBox(
                           height: 10,
