@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../page_details/details.dart';
+import '../../../../page_details/icon_status.dart';
 import '../../searchfilter.dart';
 import 'drawerpage.dart';
 import 'listeanonnce.dart';
@@ -46,14 +47,15 @@ class _StackWidget_2State extends State<StackWidget_2> {
           children: [
             //const SizedBox(width: 50),
             Container(
-              //margin: const EdgeInsets.all(8),
+              padding: EdgeInsets.only(bottom: 35.h),
+              //margin: EdgeInsets.only(bottom: 60.h),
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 252, 252, 252),
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20.r),
                       topLeft: Radius.circular(20.r))),
               child: Padding(
-                padding: EdgeInsets.only(left: 13.w, bottom: 30.h, right: 13.w),
+                padding: EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -102,12 +104,12 @@ class _StackWidget_2State extends State<StackWidget_2> {
                 ),
               ),
               width: double.infinity,
-              height: 70.h,
+              height: 80.h,
             ),
             Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 40.0.h),
+                  padding: EdgeInsets.only(top: 50.0.h),
                   child: Container(
                     decoration: BoxDecoration(
                         color: Color(0xffefefef),
@@ -120,42 +122,43 @@ class _StackWidget_2State extends State<StackWidget_2> {
                         padding:
                             EdgeInsets.only(top: 15.h, left: 2.w, right: 2.w),
                         child: ListView.builder(
-                            itemCount: imgecate.length,
+                            itemCount: 6,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, i) {
-                              return Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        height: 60.h,
-                                        width: 60.h,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(imgecate[i]),
-                                            ),
-                                            color: Colors.white,
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                                width: 1.w,
-                                                color: Colors.white)),
-                                      ),
-                                      SizedBox(
-                                        height: 10.w,
-                                      ),
-                                      Text(
-                                        'Partomant',
-                                        style: TextStyle(
-                                            fontSize: 12.sp,
-                                            color: Color(0xffC0A280)),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  )
-                                ],
-                              );
+                              return const Icon_Status();
+                              //   Row(
+                              //   children: [
+                              //     Column(
+                              //       children: [
+                              //         Container(
+                              //           height: 60.h,
+                              //           width: 60.h,
+                              //           decoration: BoxDecoration(
+                              //               image: DecorationImage(
+                              //                 image: NetworkImage(imgecate[i]),
+                              //               ),
+                              //               color: Colors.white,
+                              //               shape: BoxShape.circle,
+                              //               border: Border.all(
+                              //                   width: 1.w,
+                              //                   color: Colors.white)),
+                              //         ),
+                              //         SizedBox(
+                              //           height: 10.w,
+                              //         ),
+                              //         Text(
+                              //           'Partomant',
+                              //           style: TextStyle(
+                              //               fontSize: 12.sp,
+                              //               color: Color(0xffC0A280)),
+                              //         )
+                              //       ],
+                              //     ),
+                              //     SizedBox(
+                              //       width: 10.w,
+                              //     )
+                              //   ],
+                              // );
 
                               /* Expanded(
                               child: Card(

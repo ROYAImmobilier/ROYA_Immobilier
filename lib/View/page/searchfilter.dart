@@ -46,22 +46,21 @@ class SearchFiltter extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        child: TextFormField(
-                          controller: search,
-                          cursorColor: Colors.white,
-                          decoration: InputDecoration(
-                              //fillColor: Colors.white,
-                              // labelText: "",
-                              hintText: 'Que rechercher vous ?',
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(width: 3.w),
-                                  borderRadius: BorderRadius.circular(5))),
-                          keyboardType: TextInputType.text,
-                        ),
+                      TextFormField(
+                        controller: search,
+                        decoration: InputDecoration(
+                            isDense: true,
+                            contentPadding: EdgeInsets.only(
+                                top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
+                            //fillColor: Colors.white,
+                            // labelText: "",
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'Que rechercher vous ?',
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(width: 3.w),
+                                borderRadius: BorderRadius.circular(5))),
+                        keyboardType: TextInputType.text,
                       ),
                       const SizedBox(
                         height: 15,
@@ -73,6 +72,7 @@ class SearchFiltter extends StatelessWidget {
                         height: 15,
                       ),
                       Container(
+                        height: 35.h,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius:
@@ -117,6 +117,13 @@ class SearchFiltter extends StatelessWidget {
                         child: TextFormField(
                           controller: search,
                           decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: EdgeInsets.only(
+                                  top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
+                              //fillColor: Colors.white,
+                              // labelText: "",
+                              fillColor: Colors.white,
+                              filled: true,
                               // labelText: "",
                               hintText: 'Entrez le nom de la ville ?'.tr,
                               border: OutlineInputBorder(

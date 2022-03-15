@@ -13,11 +13,11 @@ class ListView_in_Detalis extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                child: Text(
+                child: const Text(
                   'À vendre',
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 margin: EdgeInsets.only(top: 10.h, left: 10.w),
                 //width: 50.h,
                 // height: 20,
@@ -28,7 +28,7 @@ class ListView_in_Detalis extends StatelessWidget {
             ],
           ),
           margin: EdgeInsets.only(top: 20.h, right: 20.w, left: 20.w),
-          height: 120.h,
+          height: 100.h,
           width: 150.w,
           decoration: BoxDecoration(
               image: const DecorationImage(
@@ -42,21 +42,22 @@ class ListView_in_Detalis extends StatelessWidget {
         ),
         Container(
           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-          height: 35.h,
+          height: 25.h,
           width: 150.w,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(10.r),
                   bottomRight: Radius.circular(10.r))),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Text(
-              'Villa de 400 m²',
-              style: TextStyle(fontSize: 10),
-            ),
-            Text('502 0000 Dhs', style: TextStyle(fontSize: 10))
-          ]),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Text(
+                  'Villa de 400 m²',
+                  style: TextStyle(fontSize: 10),
+                ),
+                Text('502 0000 Dhs', style: TextStyle(fontSize: 10))
+              ]),
         )
       ]),
     );

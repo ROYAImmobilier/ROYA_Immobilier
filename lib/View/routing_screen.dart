@@ -55,7 +55,10 @@ class _RoutingScreenState extends State<RoutingScreen> {
           HomePage(),
           FavoritePage(),
           ChatPage(),
-          ChatPage(),
+          Details(
+            image:
+                'https://cdn.futura-sciences.com/buildsv6/images/mediumoriginal/e/0/b/e0bdff7665_50172799_chicago-1791002-1280.jpg',
+          ),
           Add_Annonce()
         ],
         physics: NeverScrollableScrollPhysics(),
