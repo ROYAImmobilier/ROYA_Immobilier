@@ -195,7 +195,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                         ? GridView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: widget.leng,
+                            itemCount: widget.leng - 1,
                             /* padding: EdgeInsets.only(
                                 top: 15.h,
                                 bottom: 15.h,
@@ -216,7 +216,9 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                   onTap: () => Get.to(Details(
                                       image: widget.data[index]['cover'])),
                                   child: Liste_Annonce(
-                                      image: widget.data[index]['cover']));
+                                    image: widget.data[index]['cover'],
+                                    data: widget.data[index],
+                                  ));
                             })
                         : ListView.builder(
                             shrinkWrap: true,

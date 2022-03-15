@@ -6,7 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Liste_Annonce extends StatefulWidget {
   late String image;
-  Liste_Annonce({required this.image});
+  var data;
+  Liste_Annonce({required this.image, required this.data});
 
   @override
   State<Liste_Annonce> createState() => _Liste_AnnonceState();
@@ -55,7 +56,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                       Container(
                           margin: EdgeInsets.only(top: 5.h, left: 10.w),
                           child: Text(
-                            "250000 dh",
+                            widget.data['price'].toString(),
                             style: TextStyle(
                                 fontSize: 14.sp, color: Color(0xffb58350)),
                           )),
@@ -83,7 +84,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                   Container(
                     margin: EdgeInsets.only(top: 0.h),
                     child: Text(
-                      "Ville casablanca et grand",
+                      widget.data['title'],
                       maxLines: 1,
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 11.sp),
