@@ -13,6 +13,7 @@ import 'icon_status.dart';
 class Details extends StatefulWidget {
   late String image;
   var data;
+
   Details({required this.image, required this.data});
 
   @override
@@ -175,7 +176,8 @@ class _DetailsState extends State<Details> {
                                         // alignment: Alignment.topLeft,
                                         padding: EdgeInsets.only(
                                             top: 15.h, left: 10.w),
-                                        child: Text("Manager")),
+                                        child: Text(
+                                            "${widget.data['advertiser']}")),
                                     Container(
                                       padding:
                                           EdgeInsets.only(top: 3.h, left: 10.w),

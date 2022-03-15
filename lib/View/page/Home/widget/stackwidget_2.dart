@@ -180,12 +180,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                           ? GridView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: widget.leng - 1,
-                              /* padding: EdgeInsets.only(
-                                  top: 15.h,
-                                  bottom: 15.h,
-                                  left: 15.w,
-                                  right: 15.w),*/
+                              itemCount: widget.leng,
                               gridDelegate:
                                   SliverGridDelegateWithMaxCrossAxisExtent(
                                       maxCrossAxisExtent: 202.h,
@@ -199,17 +194,22 @@ class _StackWidget_2State extends State<StackWidget_2> {
                               itemBuilder: (BuildContext ctx, index) {
                                 return GestureDetector(
                                     onTap: () => Get.to(Details(
-                                        image: widget.data[index]['cover'],
+                                        image: widget.data[index]['cover'] !=
+                                                null
+                                            ? widget.data[index]['cover']
+                                            : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                         data: widget.data[index])),
                                     child: Liste_Annonce(
-                                      image: widget.data[index]['cover'],
+                                      image: widget.data[index]['cover'] != null
+                                          ? widget.data[index]['cover']
+                                          : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                       data: widget.data[index],
                                     ));
                               })
                           : ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: widget.leng - 1,
+                              itemCount: widget.leng,
                               itemBuilder: (BuildContext context, int index) {
                                 return index == widget.leng
                                     ? SizedBox(
@@ -217,13 +217,20 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                       )
                                     : GestureDetector(
                                         onTap: () => Get.to(Details(
-                                              image: widget.data['cover'],
+                                              image: widget.data[index]
+                                                          ['cover'] !=
+                                                      null
+                                                  ? widget.data[index]['cover']
+                                                  : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                               data: widget.data[index],
                                             )),
                                         child: Liste_Annonce_2(
                                             data: widget.data[index],
                                             image: widget.data[index]
-                                                ['cover']));
+                                                        ['cover'] !=
+                                                    null
+                                                ? widget.data[index]['cover']
+                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
                               })),
                 ],
               ),
