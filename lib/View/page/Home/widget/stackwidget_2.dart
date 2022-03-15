@@ -13,7 +13,9 @@ import 'listeanonnce_2.dart';
 final colors = Color(0xefefef);
 
 class StackWidget_2 extends StatefulWidget {
-  const StackWidget_2({Key? key}) : super(key: key);
+  var data;
+  int leng;
+  StackWidget_2({required this.data, required this.leng});
 
   @override
   State<StackWidget_2> createState() => _StackWidget_2State();
@@ -193,7 +195,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                         ? GridView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: imge.length,
+                            itemCount: widget.leng,
                             /* padding: EdgeInsets.only(
                                 top: 15.h,
                                 bottom: 15.h,
@@ -211,9 +213,10 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                     mainAxisSpacing: 2.w),
                             itemBuilder: (BuildContext ctx, index) {
                               return GestureDetector(
-                                  onTap: () =>
-                                      Get.to(Details(image: imge[index])),
-                                  child: Liste_Annonce(image: imge[index]));
+                                  onTap: () => Get.to(Details(
+                                      image: widget.data[index]['cover'])),
+                                  child: Liste_Annonce(
+                                      image: widget.data[index]['cover']));
                             })
                         : ListView.builder(
                             shrinkWrap: true,
