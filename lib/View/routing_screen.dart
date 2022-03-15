@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import 'package:roya_immobilie/View/page/Home/home.dart';
 import 'package:roya_immobilie/View/page/notification_page.dart';
-
-import '../page_details/details.dart';
 import 'order/order_distination.dart';
 import 'page/searchfilter.dart';
 import 'page/chat_page.dart';
@@ -55,10 +52,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
           HomePage(),
           FavoritePage(),
           ChatPage(),
-          Details(
-            image:
-                'https://cdn.futura-sciences.com/buildsv6/images/mediumoriginal/e/0/b/e0bdff7665_50172799_chicago-1791002-1280.jpg',
-          ),
+          ChatPage(),
           Add_Annonce()
         ],
         physics: NeverScrollableScrollPhysics(),

@@ -7,6 +7,7 @@ import 'View/page/Home/home.dart';
 
 import 'View/order/order_distination.dart';
 import 'View/routing_screen.dart';
+import 'helpear/binding.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: Binding(),
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),

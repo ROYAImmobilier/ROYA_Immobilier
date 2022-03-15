@@ -6,12 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:roya_immobilie/page_details/listview_in_detalis.dart';
-
-import '../View/page/Home/widget/listeanonnce.dart';
-import '../View/page/Home/widget/listeanonnce_2.dart';
-import '../View/page/Home/widget/stackwidget_2.dart';
-import '../View/page/searchfilter.dart';
+import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
+import 'package:roya_immobilie/View/page/searchfilter.dart';
 import 'icon_status.dart';
 
 class Details extends StatefulWidget {
