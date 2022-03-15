@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 
+import 'Controller/AnonceController.dart';
+import 'Model/anonce_model.dart';
+import 'Model/repositery.dart';
 import 'View/page/Home/home.dart';
 
 import 'View/order/order_distination.dart';
@@ -24,7 +28,48 @@ class MyApp extends StatelessWidget {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home: RoutingScreen(),
+      home: Testa(),
+    );
+  }
+}
+
+class Testa extends StatefulWidget {
+  const Testa({Key? key}) : super(key: key);
+
+  @override
+  State<Testa> createState() => _TestaState();
+}
+
+class _TestaState extends State<Testa> {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder(
+      init: AnnonceController(),
+      builder: (controller) => Scaffold(
+        appBar: AppBar(),
+        body: Container(),
+
+        /* FutureBuilder(
+          future: AnnonceRepository.featcherAnnonce(),
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              if (snapshot.hasData) {
+                //  var totalData = snapshot.data.length;
+                //  print(snapshot.data.["floor_type"][0]);
+                return Center(child: Text(snapshot.data[0]["floor_type"]));
+              } else {
+                return const Center(
+                  child: Text("No data Available"),
+                );
+              }
+            }
+          },
+        ),*/
+      ),
     );
   }
 }

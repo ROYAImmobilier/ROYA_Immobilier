@@ -12,24 +12,35 @@ import 'package:roya_immobilie/Model/repositery.dart';
 class AnnonceController extends GetxController {
   AnnonceController() {
     getAnnonce();
+    getJokeys();
   }
 
-  List<Annonce> ListAnnonce = [];
+  var ListAnnonce = <Annonce>[].obs;
 
   getAnnonce() async {
     try {
-      print("aaaaaaaa");
       var annonce = await AnnonceRepository.featcherAnnonce();
+
+      print("annonce " + annonce.toString());
       if (annonce != null) {
-        ListAnnonce = annonce as List<Annonce>;
-        print("aaaaaaaa" + ListAnnonce.toString());
+        ListAnnonce.value = annonce as List<Annonce>;
+        print(ListAnnonce.length);
+      }
+    } catch (e) {
+    } finally {}
+  }
+
+  getJokeys() async {
+    try {
+      var jokes = await AnnonceRepository.featcherAnnonce();
+      if (jokes != null) {
+        ListAnnonce.value = jokes as List<Annonce>;
+        print(ListAnnonce.length);
       }
     } catch (e) {
     } finally {}
   }
 }
-
-
 
   
 /*
