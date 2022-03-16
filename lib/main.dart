@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home: Testa(),
+      home: RoutingScreen(),
     );
   }
 }
