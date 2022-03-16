@@ -33,8 +33,8 @@ class _StackWidget_2State extends State<StackWidget_2> {
             children: [
               //const SizedBox(width: 50),
               Container(
-                padding: EdgeInsets.only(bottom: 30.h),
-                //  margin: EdgeInsets.only(bottom: 60.h),
+                padding: EdgeInsets.only(bottom: 35.h),
+                //margin: EdgeInsets.only(bottom: 60.h),
                 decoration: BoxDecoration(
                     color: Color.fromARGB(255, 252, 252, 252),
                     borderRadius: BorderRadius.only(
@@ -92,90 +92,147 @@ class _StackWidget_2State extends State<StackWidget_2> {
                 width: double.infinity,
                 height: 80.h,
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 50.0.h),
-                child: Container(
-                  padding: EdgeInsets.only(bottom: 90.h),
-                  decoration: BoxDecoration(
-                      color: const Color(0xffefefef),
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.r),
-                          topLeft: Radius.circular(20.r))),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width.toDouble(),
-                        height: 100.h,
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                                top: 15.h, left: 2.w, right: 2.w),
-                            child: ListView.builder(
-                                itemCount: 6,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, i) {
-                                  return const Icon_Status();
-                                })),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 25.h),
-                        child: Stack(children: [
-                          Container(
-                              margin: EdgeInsets.only(bottom: 90.h),
-                              child: grid
-                                  ? GridView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: widget.leng - 1,
-                                      gridDelegate:
-                                          SliverGridDelegateWithMaxCrossAxisExtent(
-                                              maxCrossAxisExtent: 202.h,
-                                              mainAxisExtent:
-                                                  (MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.56)
-                                                      .h,
-                                              childAspectRatio: 3 / 2,
-                                              crossAxisSpacing: 2.h,
-                                              mainAxisSpacing: 2.w),
-                                      itemBuilder: (BuildContext ctx, index) {
-                                        return GestureDetector(
-                                            onTap: () => Get.to(Details(
-                                                image: widget.data[index]
-                                                    ['cover'],
-                                                data: widget.data[index])),
-                                            child: Liste_Annonce(
-                                              image: widget.data[index]
-                                                  ['cover'],
-                                              data: widget.data[index],
-                                            ));
-                                      })
-                                  : ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: widget.leng - 1,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return index == widget.leng
-                                            ? SizedBox(
-                                                height: 25.h,
-                                              )
-                                            : GestureDetector(
-                                                onTap: () => Get.to(Details(
-                                                      image: widget.data[index]
-                                                          ['cover'],
-                                                      data: widget.data[index],
-                                                    )),
-                                                child: Liste_Annonce_2(
-                                                    data: widget.data[index],
-                                                    image: widget.data[index]
-                                                        ['cover']));
-                                      })),
-                        ]),
-                      ),
-                    ],
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 50.0.h),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xffefefef),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20.r),
+                              topLeft: Radius.circular(20.r))),
+                      width: MediaQuery.of(context).size.width.toDouble(),
+                      height: 110.h,
+                      child: Padding(
+                          padding:
+                              EdgeInsets.only(top: 15.h, left: 2.w, right: 2.w),
+                          child: ListView.builder(
+                              itemCount: 6,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, i) {
+                                return const Icon_Status();
+                                //   Row(
+                                //   children: [
+                                //     Column(
+                                //       children: [
+                                //         Container(
+                                //           height: 60.h,
+                                //           width: 60.h,
+                                //           decoration: BoxDecoration(
+                                //               image: DecorationImage(
+                                //                 image: NetworkImage(imgecate[i]),
+                                //               ),
+                                //               color: Colors.white,
+                                //               shape: BoxShape.circle,
+                                //               border: Border.all(
+                                //                   width: 1.w,
+                                //                   color: Colors.white)),
+                                //         ),
+                                //         SizedBox(
+                                //           height: 10.w,
+                                //         ),
+                                //         Text(
+                                //           'Partomant',
+                                //           style: TextStyle(
+                                //               fontSize: 12.sp,
+                                //               color: Color(0xffC0A280)),
+                                //         )
+                                //       ],
+                                //     ),
+                                //     SizedBox(
+                                //       width: 10.w,
+                                //     )
+                                //   ],
+                                // );
+
+                                /* Expanded(
+                                child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              elevation: 0,
+                              color: const Color(0xffb58350),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(imge[i]),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  border: Border.all(
+                                    color: const Color(0xff857c88),
+                                    width: 3.w,
+                                  ),
+                                  color: Colors.red,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.r)),
+                                ),
+                                width: 150.w,
+                                height: 100.h,
+                              ),
+                            ));*/
+                              })),
+                    ),
                   ),
-                ),
+                  Container(
+                      color: Color(0xffefefef),
+
+                      // height: double.infinity,
+                      child: grid
+                          ? GridView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: widget.leng,
+                              gridDelegate:
+                                  SliverGridDelegateWithMaxCrossAxisExtent(
+                                      maxCrossAxisExtent: 202.h,
+                                      mainAxisExtent:
+                                          (MediaQuery.of(context).size.width *
+                                                  0.56)
+                                              .h,
+                                      childAspectRatio: 3 / 2,
+                                      crossAxisSpacing: 2.h,
+                                      mainAxisSpacing: 2.w),
+                              itemBuilder: (BuildContext ctx, index) {
+                                return GestureDetector(
+                                    onTap: () => Get.to(Details(
+                                        image: widget.data[index]['cover'] !=
+                                                null
+                                            ? widget.data[index]['cover']
+                                            : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                        data: widget.data[index])),
+                                    child: Liste_Annonce(
+                                      image: widget.data[index]['cover'] != null
+                                          ? widget.data[index]['cover']
+                                          : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                      data: widget.data[index],
+                                    ));
+                              })
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: widget.leng,
+                              itemBuilder: (BuildContext context, int index) {
+                                return index == widget.leng
+                                    ? SizedBox(
+                                        height: 25.h,
+                                      )
+                                    : GestureDetector(
+                                        onTap: () => Get.to(Details(
+                                              image: widget.data[index]
+                                                          ['cover'] !=
+                                                      null
+                                                  ? widget.data[index]['cover']
+                                                  : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                              data: widget.data[index],
+                                            )),
+                                        child: Liste_Annonce_2(
+                                            data: widget.data[index],
+                                            image: widget.data[index]
+                                                        ['cover'] !=
+                                                    null
+                                                ? widget.data[index]['cover']
+                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
+                              })),
+                ],
               ),
             ],
           ),

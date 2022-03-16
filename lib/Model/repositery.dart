@@ -9,7 +9,7 @@ class AnnonceRepository {
 
   static featcherAnnonce() async {
     var res = await client
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces'));
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/'));
     var jsoon = res.body;
     var a = json.decode(jsoon);
     print(a["data"]);

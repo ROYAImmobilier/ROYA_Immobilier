@@ -6,6 +6,8 @@ import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/Home/widget/stackwidget_2.dart';
 
+import '../serche_page.dart';
+
 Widget HomePage(data, lengh) {
   return ScreenUtilInit(
     builder: () => Scaffold(
@@ -18,13 +20,16 @@ Widget HomePage(data, lengh) {
           color: Colors.black,
         )),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SvgPicture.asset(
-              'assets/icon/search.svg',
-              width: 20,
-              height: 20,
-              color: Colors.black,
+          GestureDetector(
+            onTap: (() => Get.to(Sercher())),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SvgPicture.asset(
+                'assets/icon/search.svg',
+                width: 20,
+                height: 20,
+                color: Colors.black,
+              ),
             ),
           ),
         ],
