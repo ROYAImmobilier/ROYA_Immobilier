@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Controller/AnonceController.dart';
+import 'package:roya_immobilie/Model/anonce_model_favote.dart';
 
 class Liste_Annonce_2 extends StatefulWidget {
   late String image;
@@ -109,25 +111,63 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                 width: sizeScreen > 320 ? 60.w : 40.w,
                               ),
                               Container(
-                                  //margin: EdgeInsets.symmetric(horizontal: 15.w),
-                                  alignment: Alignment.topRight,
-                                  child: IconButton(
+                                //margin: EdgeInsets.symmetric(horizontal: 15.w),
+                                alignment: Alignment.topRight,
+                                child: GetBuilder<AnnonceController>(
+                                  init: AnnonceController(),
+                                  builder: (controller) => IconButton(
                                     onPressed: () {
-                                      setState(() {
-                                        fav = !fav;
-                                      });
+                                      controller.addBook(FavoriteAnnonceModel(
+                                          id: widget.data["id"],
+                                          advertiser:
+                                              widget.data["advertiser"] ?? '',
+                                          region: widget.data["region"] ?? '',
+                                          city: widget.data["city"] ?? '',
+                                          transaction:
+                                              widget.data["transaction"] ?? "",
+                                          propertyType:
+                                              widget.data["propertyType"] ?? '',
+                                          status: widget.data["status"] ?? "",
+                                          address: widget.data["address"] ?? "",
+                                          quartier:
+                                              widget.data["quartier"] ?? "",
+                                          area: widget.data["area"] ?? "",
+                                          price: widget.data["price"] ?? "",
+                                          age: widget.data["age"] ?? "",
+                                          floorType:
+                                              widget.data["floorType"] ?? "",
+                                          floor: widget.data["floor"] ?? "",
+                                          apartment:
+                                              widget.data["apartment"] ?? "",
+                                          bedrooms:
+                                              widget.data["bedrooms"] ?? "",
+                                          bathrooms:
+                                              widget.data["bathrooms"] ?? "",
+                                          kitchens:
+                                              widget.data["kitchens"] ?? "",
+                                          title: widget.data["title"] ?? "",
+                                          description:
+                                              widget.data["description"] ?? "",
+                                          phone1: widget.data["phone1"] ?? "",
+                                          phone2: widget.data['phone2'] ?? "",
+                                          phone3: widget.data["phone3"] ?? "",
+                                          validated:
+                                              widget.data["validated"] ?? "",
+                                          createdAt:
+                                              widget.data["createdAt"] ?? "",
+                                          cover: widget.data["cover"] ?? ''));
                                     },
-                                    icon: fav
-                                        ? Icon(
-                                            Icons.favorite_border,
-                                            size: 15.sp,
-                                          )
-                                        : Icon(
-                                            Icons.favorite_outlined,
-                                            color: Colors.red,
-                                            size: 15.sp,
-                                          ),
-                                  )),
+                                    icon:
+                                        controller.FavIcon(widget.data) == true
+                                            ? Icon(
+                                                Icons.favorite,
+                                                color: Colors.red,
+                                              )
+                                            : Icon(Icons.favorite_border,
+                                                color: Colors.red),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),

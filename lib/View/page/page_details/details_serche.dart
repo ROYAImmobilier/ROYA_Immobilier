@@ -78,46 +78,6 @@ class _DetailsState extends State<DetailSerche> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Container(
-                      //   //margin: const EdgeInsets.all(8),
-                      //   decoration: BoxDecoration(
-                      //       color: Color.fromARGB(255, 252, 252, 252),
-                      //       borderRadius: BorderRadius.only(
-                      //           topRight: Radius.circular(20.r),
-                      //           topLeft: Radius.circular(20.r))),
-                      //   child: Row(
-                      //     crossAxisAlignment: CrossAxisAlignment.center,
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       Row(
-                      //         children: [
-                      //           SvgPicture.asset(
-                      //               'assets/icon/annonces/hand.svg',
-                      //               width: 25,
-                      //               height: 25,
-                      //               matchTextDirection: true),
-                      //           Text(
-                      //             " Immobulier Neuf",
-                      //             style: TextStyle(fontSize: 14.sp),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //       Row(
-                      //         children: [
-                      //           IconButton(
-                      //               onPressed: () => Get.to(SearchFiltter()),
-                      //               icon: SvgPicture.asset(
-                      //                 'assets/icon/filter.svg',
-                      //                 width: 20,
-                      //                 height: 20,
-                      //               )),
-                      //         ],
-                      //       )
-                      //     ],
-                      //   ),
-                      //   width: double.infinity,
-                      //   height: 70.h,
-                      // ),
                       Container(
                         decoration: BoxDecoration(
                             color: Color(0xffe3e3e3),
