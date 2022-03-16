@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -98,17 +99,159 @@ class _HomePageState extends State<Sercher> {
                                 data: _searchResult,
                                 image: _searchResult[i].cover,
                               ))),
-                          child: Card(
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  _searchResult[i].cover,
-                                ),
-                              ),
-                              title: Text(_searchResult[i].title),
-                            ),
-                            margin: const EdgeInsets.all(0.0),
-                          ),
+                          child: ScreenUtilInit(
+                              splitScreenMode: true,
+                              builder: () {
+                                return Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Container(
+                                    margin:
+                                        EdgeInsets.only(top: 5.h, left: 5.w),
+                                    width: double.infinity,
+                                    height: 120.h,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 140.w,
+                                          height: 120.h,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                    _searchResult[i].cover),
+                                                fit: BoxFit.fill,
+                                              ),
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft:
+                                                      Radius.circular(10.r),
+                                                  bottomLeft:
+                                                      Radius.circular(10.r))),
+                                        ),
+                                        Container(
+                                          width: 200.w,
+                                          height: 130.h,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                  topRight:
+                                                      Radius.circular(10.r),
+                                                  bottomRight:
+                                                      Radius.circular(10.r))),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(right: 5.w),
+                                                alignment: Alignment.topRight,
+                                                child: Icon(
+                                                  Icons.more_vert,
+                                                  size: 15.sp,
+                                                ),
+                                              ),
+                                              Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 5.w),
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    _searchResult[i]
+                                                            .price
+                                                            .toString() +
+                                                        ' dh',
+                                                    style: TextStyle(
+                                                      fontSize: 18.sp,
+                                                      color: Color(
+                                                        0xffb58350,
+                                                      ),
+                                                    ),
+                                                  )),
+                                              Container(
+                                                alignment: Alignment.topLeft,
+                                                // width: 350.w,
+                                                margin: EdgeInsets.only(
+                                                    top: 3.h, left: 5.w),
+                                                child: Text(
+                                                  _searchResult[i].title,
+                                                  maxLines: 1,
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                  ),
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Container(
+                                                    child: Row(children: [
+                                                      SvgPicture.asset(
+                                                        'assets/icon/annonces/bed-sharp.svg',
+                                                        width: 20.w,
+                                                        height: 20.h,
+                                                        matchTextDirection:
+                                                            true,
+                                                        color:
+                                                            Color(0xff8a8a8a),
+                                                      ),
+                                                      Text(
+                                                        "${_searchResult[i].bedrooms} Beds",
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0xff8a8a8a)),
+                                                      )
+                                                    ]),
+                                                  ),
+                                                  Container(
+                                                    child: Row(children: [
+                                                      SvgPicture.asset(
+                                                        'assets/icon/annonces/bathroom.svg',
+                                                        width: 20.w,
+                                                        height: 20.h,
+                                                        matchTextDirection:
+                                                            true,
+                                                        color:
+                                                            Color(0xff8a8a8a),
+                                                      ),
+                                                      Text(
+                                                        "${_searchResult[i].bathrooms} Boths",
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0xff8a8a8a)),
+                                                      )
+                                                    ]),
+                                                  ),
+                                                  Container(
+                                                    child: Row(children: [
+                                                      SvgPicture.asset(
+                                                        'assets/icon/m.svg',
+                                                        width: 20.w,
+                                                        height: 20.h,
+                                                        matchTextDirection:
+                                                            true,
+                                                        color:
+                                                            Color(0xff8a8a8a),
+                                                      ),
+                                                      Text(
+                                                        "${_searchResult[i].area} m²",
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0xff8a8a8a)),
+                                                      )
+                                                    ]),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
                         );
                       },
                     )
