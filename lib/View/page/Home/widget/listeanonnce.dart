@@ -100,7 +100,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           size: 12.sp,
                         ),
                         Text(
-                          "data",
+                          widget.data['region'],
                           style: TextStyle(fontSize: 11.sp),
                         ),
                         SizedBox(
@@ -111,7 +111,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           size: 11.sp,
                         ),
                         Text(
-                          " data ",
+                          widget.data['city'],
                           style: TextStyle(fontSize: 11.sp),
                         ),
                       ],

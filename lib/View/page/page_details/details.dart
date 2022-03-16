@@ -280,6 +280,7 @@ class _DetailsState extends State<Details> {
                               )),
                           child: Text(
                             widget.data['title'],
+                            textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
