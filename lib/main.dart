@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home: TextCity(),
+      home: Add_Annonce(),
     );
   }
 }

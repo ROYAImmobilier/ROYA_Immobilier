@@ -12,11 +12,6 @@ import '../page/Home/widget/drawerpage.dart';
 import 'order_details.dart';
 
 class Add_Annonce extends StatefulWidget {
-  var data;
-  int long;
-
-  Add_Annonce({required this.data, required this.long});
-
   @override
   State<Add_Annonce> createState() => _Add_AnnonceState();
 }
@@ -24,9 +19,11 @@ class Add_Annonce extends StatefulWidget {
 class _Add_AnnonceState extends State<Add_Annonce> {
   var adresse;
   var quartier;
+  var id_region;
   String? value;
   List<City>? _users;
   List<Region>? _region;
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +37,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
         _region = regions!;
       });
     });
+  }
+
+  void test(String? value_2) {
+    for (int i = 0; i < _region!.length; i++) {
+      if (_region![i].regionName == value_2) {
+        id_region = _region![i].id;
+      }
+    }
   }
 
   @override
@@ -265,9 +270,10 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 child: Text("  " + value.regionName),
                               );
                             }).toList(),
-                            onChanged: (value) {
+                            onChanged: (value_2) {
                               setState(() {
-                                this.value = value;
+                                this.value = value_2;
+                                test(value_2);
                               });
                             },
                           ),
