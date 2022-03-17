@@ -192,8 +192,8 @@ class _HomePageState extends State<Sercher> {
                                                     child: Row(children: [
                                                       SvgPicture.asset(
                                                         'assets/icon/annonces/bed-sharp.svg',
-                                                        width: 20.w,
-                                                        height: 20.h,
+                                                        width: 10.w,
+                                                        height: 10.h,
                                                         matchTextDirection:
                                                             true,
                                                         color:
@@ -211,8 +211,8 @@ class _HomePageState extends State<Sercher> {
                                                     child: Row(children: [
                                                       SvgPicture.asset(
                                                         'assets/icon/annonces/bathroom.svg',
-                                                        width: 20.w,
-                                                        height: 20.h,
+                                                        width: 10.w,
+                                                        height: 10.h,
                                                         matchTextDirection:
                                                             true,
                                                         color:
@@ -230,8 +230,8 @@ class _HomePageState extends State<Sercher> {
                                                     child: Row(children: [
                                                       SvgPicture.asset(
                                                         'assets/icon/m.svg',
-                                                        width: 20.w,
-                                                        height: 20.h,
+                                                        width: 10.w,
+                                                        height: 10.h,
                                                         matchTextDirection:
                                                             true,
                                                         color:

@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:roya_immobilie/View/order/contact_info.dart';
+
+import '../../../../Controller/AnonceController.dart';
+import '../../../../Controller/cityController.dart';
+import '../../../../Model/repositery.dart';
+import '../../../order/order_distination.dart';
 
 final List locale = [
   {'name': 'English', 'locale': const Locale('en', 'US')},
@@ -15,6 +21,7 @@ class DrawerPage extends StatefulWidget {
 }
 
 class _DrawerPageState extends State<DrawerPage> {
+  final CityController annonceController = Get.put(CityController());
   updateLanguage(Locale locale) {
     Get.back();
     Get.updateLocale(locale);
@@ -275,7 +282,15 @@ class _DrawerPageState extends State<DrawerPage> {
                   SizedBox(
                     width: 24,
                   ),
-                  Text('Informations', style: TextStyle(fontSize: 20))
+                  TextButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Add_Annonce()),
+                      // );
+                    },
+                    child: Text('Informations', style: TextStyle(fontSize: 20)),
+                  )
                 ],
               ),
             )

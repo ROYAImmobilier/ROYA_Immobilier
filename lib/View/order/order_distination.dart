@@ -2,28 +2,50 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Model/repositery.dart';
 
+import '../../Model/city.dart';
+import '../../Model/cityrepo.dart';
+import '../../varia_ble/variable.dart';
 import '../page/Home/widget/drawerpage.dart';
 import 'order_details.dart';
 
 class Add_Annonce extends StatefulWidget {
-  const Add_Annonce({Key? key}) : super(key: key);
+  var data;
+  int long;
+
+  Add_Annonce({required this.data, required this.long});
 
   @override
   State<Add_Annonce> createState() => _Add_AnnonceState();
 }
 
 class _Add_AnnonceState extends State<Add_Annonce> {
-  var dropdownValue = "One";
+  var adresse;
+  var quartier;
   @override
   Widget build(BuildContext context) {
+    late List<City> _users;
+    late bool _loading;
+    @override
+    void initState() {
+      super.initState();
+      _loading = true;
+      Services.getUsers().then((users) {
+        setState(() {
+          _users = users!;
+          _loading = false;
+        });
+      });
+    }
+
     return ScreenUtilInit(
       builder: () => Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
-            title: Text(
-              ' Stepper ',
+            title: const Text(
+              "hh",
               style: TextStyle(color: Colors.black),
             ),
             centerTitle: true,
@@ -118,34 +140,39 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                     height: 15.h,
                   ),
                   Container(
-                    height: 35.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(5.r)),
-                      border: Border.all(
-                        color: Colors.grey,
+                      height: 35.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                    child: DropdownButton<String>(
-                      icon: const Icon(Icons.keyboard_arrow_down_sharp),
-                      elevation: 16,
-                      isExpanded: true,
-                      // style: const TextStyle(color: Colors.deepPurple),
-                      underline: Container(
-                        height: 2.h,
-                        // color: Colors.deepPurpleAccent,
-                      ),
-                      value: dropdownValue,
-                      items: <String>['One', 'Two', 'Free', 'Four']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text("  $value"),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {},
-                    ),
-                  ),
+                      child: DropdownButton<String>(
+                        icon: const Icon(Icons.keyboard_arrow_down_sharp),
+                        // iconSize: 30,
+                        // style: const TextStyle(
+                        //   color: Colors.black54,
+                        //   fontSize: 16,
+                        // ),
+                        elevation: 16,
+                        isExpanded: true,
+                        hint: Text('Select State'),
+                        underline: Container(
+                          height: 2.h,
+                          // color: Colors.deepPurpleAccent,
+                        ),
+                        //  value: dropdownValue,
+
+                        items: <String>['One', 'Two', 'Free', 'Four']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text("  $value"),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {},
+                      )),
                   SizedBox(
                     height: 25.h,
                   ),
@@ -167,7 +194,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                     height: 15.h,
                   ),
                   TextFormField(
-                    //controller: ,
+                    controller: adresse,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                         isDense: true, // Added this
@@ -210,7 +237,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         height: 2.h,
                         // color: Colors.deepPurpleAccent,
                       ),
-                      value: dropdownValue,
+                      value: "One",
                       items: <String>['One', 'Two', 'Free', 'Four']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -251,7 +278,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         height: 2,
                         // color: Colors.deepPurpleAccent,
                       ),
-                      value: dropdownValue,
+                      value: "One",
                       items: <String>['One', 'Two', 'Free', 'Four']
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -275,7 +302,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                     height: 15.h,
                   ),
                   TextFormField(
-                    //controller: ,
+                    controller: quartier,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                         isDense: true, // Added this

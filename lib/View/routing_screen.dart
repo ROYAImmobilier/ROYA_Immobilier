@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
 import 'package:roya_immobilie/View/page/notification_page.dart';
 import 'package:roya_immobilie/main.dart';
+import '../Controller/cityController.dart';
 import 'order/order_distination.dart';
 import 'page/searchfilter.dart';
 import 'page/chat_page.dart';
@@ -21,6 +22,7 @@ class RoutingScreen extends StatefulWidget {
 }
 
 class _RoutingScreenState extends State<RoutingScreen> {
+  final CityController annonceController = Get.put(CityController());
   int bottomSelectedIndex = 0;
   var pageController;
 
@@ -54,7 +56,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
           FavoritePage(),
           ChatPage(),
           ChatPage(),
-          Add_Annonce()
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
@@ -76,7 +77,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
             color: Colors.white,
           ),
           onPressed: () {
-            Get.to(Add_Annonce());
+            Get.to(ChatPage());
           },
         ),
         bottomNavigationBar: BottomNavigationBar(

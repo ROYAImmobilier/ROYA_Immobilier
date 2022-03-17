@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:roya_immobilie/Model/city.dart';
 
 import 'anonce_model.dart';
 
@@ -12,7 +13,7 @@ class AnnonceRepository {
         .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/'));
     var jsoon = res.body;
     var a = json.decode(jsoon);
-    print(a["data"]);
+    // print(a["data"]);
     //List<Annonce> dataa = a["data"];
 
     return a["data"];

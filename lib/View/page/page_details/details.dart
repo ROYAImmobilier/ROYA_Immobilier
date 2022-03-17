@@ -299,9 +299,6 @@ class _DetailsState extends State<Details> {
                                   matchTextDirection: true,
                                   color: Color(0xff8a8a8a),
                                 ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
                                 Text(
                                   "${widget.data["bedrooms"]} Beds",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
@@ -317,9 +314,6 @@ class _DetailsState extends State<Details> {
                                   height: 20.h,
                                   matchTextDirection: true,
                                   color: Color(0xff8a8a8a),
-                                ),
-                                SizedBox(
-                                  width: 5.w,
                                 ),
                                 Text(
                                   "${widget.data['bathrooms']} Boths",
