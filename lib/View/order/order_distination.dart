@@ -6,6 +6,7 @@ import 'package:roya_immobilie/Model/repositery.dart';
 
 import '../../Model/city.dart';
 import '../../Model/cityrepo.dart';
+import '../../Model/region.dart';
 import '../../varia_ble/variable.dart';
 import '../page/Home/widget/drawerpage.dart';
 import 'order_details.dart';
@@ -23,23 +24,26 @@ class Add_Annonce extends StatefulWidget {
 class _Add_AnnonceState extends State<Add_Annonce> {
   var adresse;
   var quartier;
+  String? value;
+  List<City>? _users;
+  List<Region>? _region;
+  @override
+  void initState() {
+    super.initState();
+    Services.getUsers().then((users) {
+      setState(() {
+        _users = users!;
+      });
+    });
+    ServicesRgion.getUsers().then((regions) {
+      setState(() {
+        _region = regions!;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    late List<City> _users;
-    late bool _loading;
-    @override
-    void initState() {
-      super.initState();
-      _loading = true;
-      Services.getUsers().then((users) {
-        setState(() {
-          _users = users!;
-          _loading = false;
-        });
-      });
-    }
-
     return ScreenUtilInit(
       builder: () => Scaffold(
           appBar: AppBar(
@@ -151,11 +155,11 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                       ),
                       child: DropdownButton<String>(
                         icon: const Icon(Icons.keyboard_arrow_down_sharp),
-                        // iconSize: 30,
-                        // style: const TextStyle(
-                        //   color: Colors.black54,
-                        //   fontSize: 16,
-                        // ),
+                        iconSize: 30,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                        ),
                         elevation: 16,
                         isExpanded: true,
                         hint: Text('Select State'),
@@ -223,30 +227,52 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   Container(
                     height: 35.h,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      // color: Colors.white,
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
                       border: Border.all(
                         color: Colors.grey,
                       ),
                     ),
-                    child: DropdownButton<String>(
-                      icon: const Icon(Icons.keyboard_arrow_down_sharp),
-                      elevation: 16,
-                      isExpanded: true,
-                      // style: const TextStyle(color: Colors.deepPurple),
-                      underline: Container(
-                        height: 2.h,
-                        // color: Colors.deepPurpleAccent,
-                      ),
-                      value: "One",
-                      items: <String>['One', 'Two', 'Free', 'Four']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text("  $value"),
+                    child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, index) {
+                        Region user = _region![index];
+                        return Container(
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: DropdownButton<String>(
+                            icon: const Icon(Icons.keyboard_arrow_down_sharp),
+                            elevation: 16,
+                            isExpanded: true,
+                            // style: const TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              // color: Colors.deepPurpleAccent,
+                            ),
+                            hint: Text("test"),
+                            value: value,
+                            items:
+                                _region?.map<DropdownMenuItem<String>>((value) {
+                              return DropdownMenuItem<String>(
+                                value: value.regionName,
+                                child: Text("  " + value.regionName),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                this.value = value;
+                              });
+                            },
+                          ),
                         );
-                      }).toList(),
-                      onChanged: (String? newValue) {},
+                      },
                     ),
                   ),
                   SizedBox(

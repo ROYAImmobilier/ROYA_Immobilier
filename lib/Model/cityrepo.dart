@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:roya_immobilie/Model/region.dart';
+import '../varia_ble/variable.dart';
 import 'city.dart';
 
 class CityRepo {
@@ -34,7 +36,7 @@ class CityRepo {
 
 class Services {
   //
-  static const String url = 'http://jsonplaceholder.typicode.com/users';
+
   static Future<List<City>?> getUsers() async {
     try {
       final response =
@@ -44,6 +46,25 @@ class Services {
         return users;
       } else {
         return cityFromJson(response.body);
+      }
+    } catch (e) {
+      // return List<City>();
+    }
+  }
+}
+
+class ServicesRgion {
+  //
+
+  static Future<List<Region>?> getUsers() async {
+    try {
+      final response = await http
+          .get(Uri.parse('https://dashboard.royaimmo.ma/api/regions'));
+      if (200 == response.statusCode) {
+        final List<Region> region = regionFromJson(response.body);
+        return region;
+      } else {
+        return regionFromJson(response.body);
       }
     } catch (e) {
       // return List<City>();
