@@ -37,13 +37,14 @@ class CityRepo {
 class Services {
   //
 
-  static Future<List<City>?> getUsers() async {
+  static Future<List<City>?> getCity() async {
     try {
       final response =
           await http.get(Uri.parse('https://dashboard.royaimmo.ma/api/cities'));
       if (200 == response.statusCode) {
-        final List<City> users = cityFromJson(response.body);
-        return users;
+        //final List<City> citys = cityFromJson(response.body);
+
+        return cityFromJson(response.body);
       } else {
         return cityFromJson(response.body);
       }

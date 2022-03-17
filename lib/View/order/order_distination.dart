@@ -12,11 +12,6 @@ import '../page/Home/widget/drawerpage.dart';
 import 'order_details.dart';
 
 class Add_Annonce extends StatefulWidget {
-  var data;
-  int long;
-
-  Add_Annonce({required this.data, required this.long});
-
   @override
   State<Add_Annonce> createState() => _Add_AnnonceState();
 }
@@ -24,20 +19,40 @@ class Add_Annonce extends StatefulWidget {
 class _Add_AnnonceState extends State<Add_Annonce> {
   var adresse;
   var quartier;
+  late int id_region;
   String? value;
-  List<City>? _users;
+  List<City>? _city;
   List<Region>? _region;
+  List<City> listCity = [];
   @override
   void initState() {
     super.initState();
-    Services.getUsers().then((users) {
-      setState(() {
-        _users = users!;
-      });
-    });
+
     ServicesRgion.getUsers().then((regions) {
       setState(() {
         _region = regions!;
+      });
+    });
+  }
+
+  void test(String? value_2) {
+    for (int i = 0; i < _region!.length; i++) {
+      if (_region![i].regionName == value_2) {
+        id_region = _region![i].id;
+        getCity();
+      }
+    }
+  }
+
+  getCity() {
+    Services.getCity().then((city) {
+      setState(() {
+        _city = city!;
+        for (int i = 0; i < _city!.length; i++) {
+          if (id_region == _city![i].regionId) {
+            listCity.add(_city![i]);
+          }
+        }
       });
     });
   }
@@ -236,7 +251,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                     child: ListView.builder(
                       itemCount: 1,
                       itemBuilder: (context, index) {
-                        Region user = _region![index];
+                        // Region user = _region![index];
                         return Container(
                           height: 35.h,
                           decoration: BoxDecoration(
@@ -265,9 +280,10 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 child: Text("  " + value.regionName),
                               );
                             }).toList(),
-                            onChanged: (value) {
+                            onChanged: (value_2) {
                               setState(() {
-                                this.value = value;
+                                this.value = value_2;
+                                test(value_2);
                               });
                             },
                           ),
@@ -305,12 +321,11 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         height: 2,
                         // color: Colors.deepPurpleAccent,
                       ),
-                      value: "One",
-                      items: <String>['One', 'Two', 'Free', 'Four']
-                          .map<DropdownMenuItem<String>>((String value) {
+
+                      items: listCity?.map<DropdownMenuItem<String>>((value) {
                         return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text("  $value"),
+                          value: value.cityName,
+                          child: Text("${value.cityName}"),
                         );
                       }).toList(),
                       onChanged: (String? newValue) {},
