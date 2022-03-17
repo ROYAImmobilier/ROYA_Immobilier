@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/anonce_model.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
+import 'package:roya_immobilie/View/page/page_details/details_serche.dart';
 
 class Sercher extends StatefulWidget {
   @override
@@ -95,10 +96,12 @@ class _HomePageState extends State<Sercher> {
                       itemCount: _searchResult.length,
                       itemBuilder: (context, i) {
                         return GestureDetector(
-                          onTap: (() => Get.to(Details(
-                                data: _searchResult,
-                                image: _searchResult[i].cover,
-                              ))),
+                          onTap: (() {
+                            Get.to(DetailSerche(
+                              data: _searchResult[i],
+                            ));
+                            print("aaaaaaaa" + _searchResult[i].toString());
+                          }),
                           child: ScreenUtilInit(
                               splitScreenMode: true,
                               builder: () {
@@ -255,22 +258,7 @@ class _HomePageState extends State<Sercher> {
                         );
                       },
                     )
-                  : ListView.builder(
-                      itemCount: _userDetails.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                _userDetails[index].cover,
-                              ),
-                            ),
-                            title: Text(_userDetails[index].title),
-                          ),
-                          margin: const EdgeInsets.all(0.0),
-                        );
-                      },
-                    ),
+                  : Container(),
             ),
           ],
         ),
