@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:roya_immobilie/Controller/AnonceController.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -7,7 +9,12 @@ class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        appBar: AppBar(),
+        body: GetBuilder<AnnonceController>(
+            init: AnnonceController(),
+            builder: (controller) => Text(controller.favoriteBook.toString()))
+
+        /*Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
@@ -23,7 +30,7 @@ class FavoritePage extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
+      ),*/
+        );
   }
 }

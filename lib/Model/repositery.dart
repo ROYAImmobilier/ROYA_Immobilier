@@ -15,7 +15,6 @@ class AnnonceRepository {
     var a = json.decode(jsoon);
     // print(a["data"]);
     //List<Annonce> dataa = a["data"];
-
     return a["data"];
   }
 }

@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:roya_immobilie/Controller/AnonceController.dart';
+import 'package:roya_immobilie/Model/anonce_model_favote.dart';
 
 class Liste_Annonce extends StatefulWidget {
   late String image;
@@ -61,24 +64,29 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                                 fontSize: 14.sp, color: Color(0xffb58350)),
                           )),
                       Container(
-                          margin: EdgeInsets.only(top: 0.h, right: 10.w),
-                          child: IconButton(
+                        margin: EdgeInsets.only(top: 0.h, right: 10.w),
+                        child: GetBuilder<AnnonceController>(
+                          init: AnnonceController(),
+                          builder: (controller) => IconButton(
                             onPressed: () {
-                              setState(() {
-                                fav = !fav;
-                              });
+                              print("aaaaaa");
+                              controller.addBook(FavoriteAnnonceModel(
+                                  id: widget.data["id"],
+                                  region: widget.data["region"],
+                                  city: widget.data["city"],
+                                  title: widget.data["title"],
+                                  cover: widget.data["cover"] ?? " "));
                             },
-                            icon: fav
+                            icon: controller.FavIcon(widget.data) == true
                                 ? Icon(
-                                    Icons.favorite_border,
-                                    size: 15.sp,
-                                  )
-                                : Icon(
-                                    Icons.favorite_outlined,
+                                    Icons.favorite,
                                     color: Colors.red,
-                                    size: 15.sp,
-                                  ),
-                          )),
+                                  )
+                                : Icon(Icons.favorite_border,
+                                    color: Colors.red),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   Container(

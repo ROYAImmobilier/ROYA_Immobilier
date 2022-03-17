@@ -322,7 +322,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         // color: Colors.deepPurpleAccent,
                       ),
 
-                      items: listCity?.map<DropdownMenuItem<String>>((value) {
+                      items: listCity.map<DropdownMenuItem<String>>((value) {
                         return DropdownMenuItem<String>(
                           value: value.cityName,
                           child: Text("${value.cityName}"),

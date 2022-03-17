@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+
 import 'package:get/state_manager.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/anonce_model.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
-
 import '../Model/anonce_model_favote.dart';
+import '../Model/region.dart';
 import '../service/database/favorite_database_local.dart';
 
 class AnnonceController extends GetxController {
@@ -50,48 +50,39 @@ class AnnonceController extends GetxController {
     _loading = true;
     var dbHelper = CordDatabaseHelper.db;
     _favoriteBook = await dbHelper.getAllProdects();
+    print('bbbbb' + _favoriteBook.length.toString());
     _loading = false;
     update();
   }
 
   addBook(FavoriteAnnonceModel fav) async {
+    var dbHelper = CordDatabaseHelper.db;
     loding.value = true;
-    for (int i = 0; i < _favoriteBook.length; i++) {
-      if (_favoriteBook[i].title == fav.title &&
-          _favoriteBook[i].id == fav.id) {
-        removebook(
-          FavoriteAnnonceModel(
-              id: fav.id,
-              advertiser: fav.advertiser,
-              region: fav.region,
-              city: fav.city,
-              transaction: fav.transaction,
-              propertyType: fav.propertyType,
-              status: fav.status,
-              address: fav.address,
-              quartier: fav.quartier,
-              area: fav.area,
-              price: fav.price,
-              age: fav.age,
-              floorType: fav.floorType,
-              floor: fav.floor,
-              apartment: fav.apartment,
-              bedrooms: fav.bedrooms,
-              bathrooms: fav.bathrooms,
-              kitchens: fav.kitchens,
-              title: fav.title,
-              description: fav.description,
-              phone1: fav.phone1,
-              phone2: fav.phone2,
-              phone3: fav.phone3,
-              validated: fav.validated,
-              createdAt: fav.createdAt,
-              cover: fav.cover),
-        );
-        return;
-      }
-    }
+    //for (int i = 0; i < _favoriteBook.length; i++) {
+    //  if (_favoriteBook[i].title == fav.title &&
+    //      _favoriteBook[i].id == fav.id) {
+    //    removebook(
+    //      FavoriteAnnonceModel(
+    //          id: fav.id,
+    //          address: fav.address,
+    //          region: fav.region,
+    //          city: fav.city,
+    //          area: fav.area,
+    //          price: fav.price,
+    //          bedrooms: fav.bedrooms,
+    //          bathrooms: fav.bathrooms,
+    //          title: fav.title,
+    //          description: fav.description,
+    //          phone1: fav.phone1,
+    //          cover: fav.cover),
+    //    );
+    //    return;
+    //  }
+    //}
+    print("fav ; " + fav.title);
     await dbHalper.inser(fav);
+    print("db ; " + dbHelper.getAllProdects().toString());
+
     loding.value = false;
     update();
   }
@@ -105,14 +96,24 @@ class AnnonceController extends GetxController {
   FavIcon(mode) {
     for (int i = 0; i < _favoriteBook.length; i++) {
       if (mode["title"] == _favoriteBook[i].title &&
-          mode["id"] == _favoriteBook[i].id &&
-          mode['address'] == _favoriteBook[i].address) {
+          mode["id"] == _favoriteBook[i].id) {
         return true;
       }
     }
-
     return false;
   }
-
+// var allJokes = <Region>[].obs;
+// getRegions() async {
+//   try {print("aaa");
+//     var jokes = await AnnonceRepository.featcherregion();
+//     print("aaa");
+//     print(jokes.toString());
+//     if (jokes != null) {
+//       allJokes.value = jokes;
+//     }
+//   } catch (e) {
+//   } finally {
+//   }
+  // }
   ///////favorite end
 }
