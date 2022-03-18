@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/anonce_model.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import '../Model/anonce_model_favote.dart';
+import '../Model/joke.dart';
 import '../Model/region.dart';
 import '../service/database/favorite_database_local.dart';
 
@@ -16,25 +17,32 @@ class AnnonceController extends GetxController {
   ValueNotifier<bool> get loding => _loding;
   ValueNotifier<bool> _loding = ValueNotifier(false);
   AnnonceController() {
+    getJokeys();
     getFavoriteBook();
   }
 
   List<Annonce> ListAnnonce = [];
 
-  getAnnonce() async {
+  var allJokes =<Joke> [].obs;
+
+
+
+
+  getJokeys() async {
     try {
-      var annonce = await AnnonceRepository.featcherAnnonce();
+      var jokes = await jokeRepository.featcherJoke();
 
-      //print("annonce " + annonce.toString());
-      //var d = annonceFromJson(annonce);
+      if (jokes != null) {
+        allJokes.value = jokes;
+        print("gg 00 : "+allJokes[0].title.toString());
+        print("gg 00 : "+allJokes.length.toString());
 
-      //print("+++ " + annonce.length.toString());
-      /* if (annonce != null) {
-        ListAnnonce.value = annonce as List<Annonce>;
-        print(ListAnnonce.length);
-      }*/
+      }
     } catch (e) {
-    } finally {}
+
+    } finally {
+
+    }update();
   }
 
   // Local database Favorite book ***********************************

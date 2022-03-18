@@ -20,10 +20,16 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   var adresse;
   var quartier;
   late int id_region;
+
   String? value;
+  String? city;
+  String? _categorie;
+  String? _typeAvent;
   List<City>? _city;
   List<Region>? _region;
   List<City> listCity = [];
+  var _keyVent = GlobalKey<FormState>();
+  var _keyLocal = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -97,10 +103,17 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   ),
                   Row(
                     children: [
-                      Radio(
-                        value: 3,
-                        groupValue: 0,
-                        onChanged: (value) {},
+                      Form(
+                        key: _keyVent,
+                        child: Radio(
+                          value: "Vente",
+                          groupValue: _typeAvent,
+                          onChanged: (value) {
+                            setState(() {
+                              _typeAvent = 'Vente';
+                            });
+                          },
+                        ),
                       ),
                       Text('Vente'.tr,
                           style: TextStyle(
@@ -109,10 +122,17 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                       SizedBox(
                         width: 10.w,
                       ),
-                      Radio(
-                        value: 3,
-                        groupValue: 0,
-                        onChanged: (value) {},
+                      Form(
+                        key: _keyLocal,
+                        child: Radio(
+                          value: 'À location',
+                          groupValue: _typeAvent,
+                          onChanged: (value) {
+                            setState(() {
+                              _typeAvent = 'À location';
+                            });
+                          },
+                        ),
                       ),
                       Text('À location'.tr,
                           style: TextStyle(
@@ -132,21 +152,58 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                   SizedBox(
                     height: 15.h,
                   ),
-                  TextFormField(
-                    //controller: ,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.only(
-                            top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
-                        //fillColor: Colors.white,
-                        // labelText: "",
-                        hintText: 'select property'.tr,
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3),
-                            borderRadius: BorderRadius.circular(5.r))),
-                    keyboardType: TextInputType.text,
-                  ),
+                  // TextFormField(
+                  //   //controller: ,
+                  //   cursorColor: Colors.white,
+                  //   decoration: InputDecoration(
+                  //       isDense: true, // Added this
+                  //       contentPadding: EdgeInsets.only(
+                  //           top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
+                  //       //fillColor: Colors.white,
+                  //       // labelText: "",
+                  //       hintText: 'select property'.tr,
+                  //       border: OutlineInputBorder(
+                  //           borderSide: BorderSide(width: 3),
+                  //           borderRadius: BorderRadius.circular(5.r))),
+                  //   keyboardType: TextInputType.text,
+                  // ),
+                  Container(
+                      height: 35.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        icon: const Icon(Icons.keyboard_arrow_down_sharp),
+                        iconSize: 30,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                        ),
+                        elevation: 16,
+                        isExpanded: true,
+                        underline: Container(
+                          height: 2.h,
+                        ),
+                        hint: Text('select property'.tr),
+                        value: _categorie,
+                        items: categorie
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text("  $value"),
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          setState(() {
+                            // print(newValue);
+                            _categorie = newValue;
+                          });
+                        },
+                      )),
                   SizedBox(
                     height: 15.h,
                   ),
@@ -282,7 +339,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             }).toList(),
                             onChanged: (value_2) {
                               setState(() {
-                                this.value = value_2;
+                                value = value_2;
                                 test(value_2);
                               });
                             },
@@ -316,19 +373,24 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                       icon: const Icon(Icons.keyboard_arrow_down_sharp),
                       elevation: 16,
                       isExpanded: true,
+                      hint: Text("  Ville"),
                       // style: const TextStyle(color: Colors.deepPurple),
                       underline: Container(
                         height: 2,
                         // color: Colors.deepPurpleAccent,
                       ),
-
+                      value: city,
                       items: listCity.map<DropdownMenuItem<String>>((value) {
                         return DropdownMenuItem<String>(
                           value: value.cityName,
-                          child: Text("${value.cityName}"),
+                          child: Text(value.cityName),
                         );
                       }).toList(),
-                      onChanged: (String? newValue) {},
+                      onChanged: (String? Value) {
+                        setState(() {
+                          city = Value;
+                        });
+                      },
                     ),
                   ),
                   SizedBox(

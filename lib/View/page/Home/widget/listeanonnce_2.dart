@@ -67,7 +67,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                             margin: EdgeInsets.only(top: 5.h, left: 5.w),
                             alignment: Alignment.topLeft,
                             child: Text(
-                              widget.data['price'].toString() + ' dh',
+                              widget.data.price.toString() + ' dh',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Color(
@@ -80,7 +80,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                           // width: 350.w,
                           margin: EdgeInsets.only(top: 3.h, left: 5.w),
                           child: Text(
-                            widget.data['title'],
+                            widget.data.title,
                             maxLines: 1,
                             textAlign: TextAlign.start,
                             style: TextStyle(
@@ -113,28 +113,21 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                               Container(
                                 //margin: EdgeInsets.symmetric(horizontal: 15.w),
                                 alignment: Alignment.topRight,
-                                child: GetBuilder<AnnonceController>(
-                                  init: AnnonceController(),
-                                  builder: (controller) => IconButton(
+                                child: IconButton(
                                     onPressed: () {
-                                      controller.addBook(FavoriteAnnonceModel(
-                                        id: widget.data["id"],
-                                        region: widget.data["region"],
-                                        city: widget.data["city"],
-                                        title: widget.data["title"],
-                                        cover: widget.data["cover"],
-                                      ));
+                                      // controller.addBook(FavoriteAnnonceModel(
+                                      //   id: widget.data.id,
+                                      //   region: widget.data.region,
+                                      //   city: widget.data.city,
+                                      //   title: widget.data.title,
+                                      //   cover: widget.data.cover,
+                                      // ));
                                     },
                                     icon:
-                                        controller.FavIcon(widget.data) == true
-                                            ? Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                              )
-                                            : Icon(Icons.favorite_border,
+                                        Icon(Icons.favorite_border,
                                                 color: Colors.red),
                                   ),
-                                ),
+
                               ),
                             ],
                           ),

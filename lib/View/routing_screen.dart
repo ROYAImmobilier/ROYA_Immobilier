@@ -52,10 +52,10 @@ class _RoutingScreenState extends State<RoutingScreen> {
     final pageView = PageView(
         controller: pageController,
         children: [
-          Testa(),
+          HomePage(),
           FavoritePage(),
           ChatPage(),
-          ChatPage(),
+          Add_Annonce(),
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);

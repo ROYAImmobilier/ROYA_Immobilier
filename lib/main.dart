@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
@@ -16,7 +17,10 @@ import 'helpear/binding.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+/*
 class Testa extends StatefulWidget {
   const Testa({Key? key}) : super(key: key);
 
@@ -69,4 +73,4 @@ class _TestaState extends State<Testa> {
       ),
     );
   }
-}
+}*/
