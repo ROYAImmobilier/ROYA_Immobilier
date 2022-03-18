@@ -2,6 +2,15 @@ import '../Model/city.dart';
 
 var region_1;
 
+final categorie = [
+  "Apartement",
+  "Maison",
+  "Terrain",
+  "Bureau",
+  "Plateau",
+  "Villa",
+];
+
 class Region_1 {
   static List<String> region(var data, int x) {
     for (int i = 1; i <= x; i++) {

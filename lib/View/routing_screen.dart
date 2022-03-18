@@ -55,7 +55,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
           Testa(),
           FavoritePage(),
           ChatPage(),
-          ChatPage(),
+          Add_Annonce(),
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
