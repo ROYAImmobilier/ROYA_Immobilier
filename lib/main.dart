@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+/*
 class Testa extends StatefulWidget {
   const Testa({Key? key}) : super(key: key);
 
@@ -73,4 +73,4 @@ class _TestaState extends State<Testa> {
       ),
     );
   }
-}
+}*/

@@ -6,6 +6,23 @@ import 'package:get/get.dart';
 import 'contact_info.dart';
 
 class Add_Annonce_2 extends StatefulWidget {
+  String? Property_details;
+  String? categorie;
+  String? statut;
+  String? adress;
+  String? region;
+  String? ville;
+  String? quartier;
+
+  Add_Annonce_2(
+      {required this.Property_details,
+      required this.categorie,
+      required this.statut,
+      required this.adress,
+      required this.region,
+      required this.ville,
+      required this.quartier});
+
   @override
   State<Add_Annonce_2> createState() => _Add_AnnonceState();
 }
@@ -447,7 +464,9 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                       Container(
                         alignment: Alignment.topRight,
                         child: TextButton(
-                          onPressed: () {Get.back();},
+                          onPressed: () {
+                            Get.back();
+                          },
                           child: Container(
                             decoration: const BoxDecoration(
                                 color: Color(0xffbfa280),

@@ -59,40 +59,38 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                       Container(
                           margin: EdgeInsets.only(top: 5.h, left: 10.w),
                           child: Text(
-                            widget.data['price'].toString() + ' dh',
+                            widget.data.price.toString() + ' dh',
                             style: TextStyle(
                                 fontSize: 14.sp, color: Color(0xffb58350)),
                           )),
                       Container(
                         margin: EdgeInsets.only(top: 0.h, right: 10.w),
-                        child: GetBuilder<AnnonceController>(
-                          init: AnnonceController(),
-                          builder: (controller) => IconButton(
+                        child:  IconButton(
                             onPressed: () {
-                              print("aaaaaa");
-                              controller.addBook(FavoriteAnnonceModel(
-                                  id: widget.data["id"],
-                                  region: widget.data["region"],
-                                  city: widget.data["city"],
-                                  title: widget.data["title"],
-                                  cover: widget.data["cover"] ?? " "));
+                              // print("aaaaaa");
+                              // .addBook(FavoriteAnnonceModel(
+                              //     id:  widget.data.id,
+                              //     region: widget.data.region,
+                              //     city: widget.data.city,
+                              //     title: widget.data.title,
+                              //     cover: widget.data.cover ?? " "));
                             },
-                            icon: controller.FavIcon(widget.data) == true
-                                ? Icon(
+                            icon: //controller.FavIcon(widget.data) == true
+                                 Icon(
                                     Icons.favorite,
                                     color: Colors.red,
                                   )
-                                : Icon(Icons.favorite_border,
-                                    color: Colors.red),
+                                // : Icon(Icons.favorite_border,
+                                //     color: Colors.red),
                           ),
                         ),
-                      )
+
                     ],
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 0.h),
                     child: Text(
-                      widget.data['title'],
+                      widget.data.title,
                       maxLines: 1,
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 11.sp),
@@ -108,7 +106,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           size: 12.sp,
                         ),
                         Text(
-                          widget.data['region'],
+                          widget.data.region,
                           style: TextStyle(fontSize: 11.sp),
                         ),
                         SizedBox(
@@ -119,7 +117,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           size: 11.sp,
                         ),
                         Text(
-                          widget.data['city'],
+                          widget.data.city,
                           style: TextStyle(fontSize: 11.sp),
                         ),
                       ],

@@ -177,7 +177,7 @@ class _DetailsState extends State<Details> {
                                         padding: EdgeInsets.only(
                                             top: 15.h, left: 10.w),
                                         child: Text(
-                                            "${widget.data['advertiser']}")),
+                                            "${widget.data.advertiser}")),
                                     Container(
                                       padding:
                                           EdgeInsets.only(top: 3.h, left: 10.w),
@@ -281,7 +281,7 @@ class _DetailsState extends State<Details> {
                                 Radius.circular(10.r),
                               )),
                           child: Text(
-                            widget.data['title'],
+                            widget.data.title,
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 24),
                           ),
@@ -300,7 +300,7 @@ class _DetailsState extends State<Details> {
                                   color: Color(0xff8a8a8a),
                                 ),
                                 Text(
-                                  "${widget.data["bedrooms"]} Beds",
+                                  "${widget.data.bedrooms} Beds",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -316,7 +316,7 @@ class _DetailsState extends State<Details> {
                                   color: Color(0xff8a8a8a),
                                 ),
                                 Text(
-                                  "${widget.data['bathrooms']} Boths",
+                                  "${widget.data.bathrooms} Boths",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -335,7 +335,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data['area']} m²",
+                                  "${widget.data.area} m²",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -366,9 +366,9 @@ class _DetailsState extends State<Details> {
                               Container(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  widget.data["address"] +
+                                  widget.data.address +
                                       ' => ' +
-                                      widget.data['quartier'],
+                                      widget.data.quartier,
                                 ),
                               )
                             ],
@@ -404,7 +404,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
-                          child: Text(widget.data['description']),
+                          child: Text(widget.data.description),
                         ),
                         const SizedBox(
                           height: 10,
