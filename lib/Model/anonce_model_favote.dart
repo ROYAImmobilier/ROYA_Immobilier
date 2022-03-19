@@ -1,47 +1,72 @@
-// To parse this JSON data, do
-//
-//     final annonce = annonceFromJson(jsonString);
-
-import 'dart:convert';
-
-FavoriteAnnonceModel annonceFromJson(String str) =>
-    FavoriteAnnonceModel.fromJson(json.decode(str));
-
-String annonceToJson(FavoriteAnnonceModel data) => json.encode(data.toJson());
-
-class FavoriteAnnonceModel {
-  FavoriteAnnonceModel({
-    required this.id,
-    required this.region,
-    required this.city,
-    required this.title,
-    required this.cover,
-  });
-
+class FavCategoryItem {
   late int id;
   late String region;
   late String city;
-  late String title = "";
+  late String title;
   late String cover;
-
-  FavoriteAnnonceModel.fromJson(Map<dynamic, dynamic> json) {
-    id:
-    json["id"];
-    region:
-    json["region"];
-    city:
-    json["city"];
-    title:
-    json["title"] ?? "";
-    cover:
-    json["cover"];
+  late int apartment;
+  late int bedrooms;
+  late int bathrooms;
+  late int kitchens;
+  late String address;
+  late String description;
+  late String advertiser;
+  late String phone1;
+  late String area;
+  late String quartier;
+  FavCategoryItem(
+      {required this.id,
+      required this.region,
+      required this.city,
+      required this.title,
+      required this.cover,
+      required this.apartment,
+      required this.bathrooms,
+      required this.bedrooms,
+      required this.kitchens,
+      required this.address,
+      required this.description,
+      required this.advertiser,
+      required this.phone1,
+      required this.area,
+      required this.quartier});
+  FavCategoryItem.fromJson(Map<dynamic, dynamic> map) {
+    if (map == null) {
+      return;
+    }
+    id = map["id"];
+    region = map['region'];
+    city = map['city'];
+    title = map['title'].toString();
+    cover = map['cover'].toString();
+    apartment = map['apartment'];
+    bedrooms = map['bedrooms'];
+    bathrooms = map["bathrooms"];
+    kitchens = map["kitchens"];
+    address = map["address"];
+    description = map["description"];
+    advertiser = map["advertiser"];
+    phone1 = map["phone1"];
+    area = map["area"];
+    quartier = map["quartier"];
   }
-
-  toJson() => {
-        "id": id,
-        "region": region,
-        "city": city,
-        "title": title,
-        "cover": cover,
-      };
+  toJson() {
+    return {
+      'id': id,
+      'region': region,
+      'city': city,
+      'title': title,
+      'cover': cover,
+      "bedrooms": bedrooms,
+      "bathrooms": bathrooms,
+      "apartment": apartment,
+      "kitchens": kitchens,
+      "address": address,
+      "description": description,
+      "advertiser": advertiser,
+      "phone1": phone1,
+      "area": area,
+      "quartier": quartier,
+    };
+  }
 }

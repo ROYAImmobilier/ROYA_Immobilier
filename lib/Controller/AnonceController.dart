@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/state_manager.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/anonce_model.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
@@ -18,110 +16,80 @@ class AnnonceController extends GetxController {
   ValueNotifier<bool> _loding = ValueNotifier(false);
   AnnonceController() {
     getJokeys();
-    getFavoriteBook();
+    getAllProducts();
   }
-
   List<Annonce> ListAnnonce = [];
-
-  var allJokes =<Joke> [].obs;
-
-
-
-
+  var allJokes = <Joke>[].obs;
   getJokeys() async {
     try {
       var jokes = await jokeRepository.featcherJoke();
 
       if (jokes != null) {
         allJokes.value = jokes;
-        print("gg 00 : "+allJokes[0].title.toString());
-        print("gg 00 : "+allJokes.length.toString());
-
       }
     } catch (e) {
-
-    } finally {
-
-    }update();
+    } finally {}
+    update();
   }
 
-  // Local database Favorite book ***********************************
-
+  ////favorite add / delete
   var dbHalper = CordDatabaseHelper.db;
   bool get loading => _loading;
   bool _loading = false;
+  List<FavCategoryItem> _cartProductsModel = [];
+  List<FavCategoryItem> get cartProductsModel => _cartProductsModel;
+  double _totlaprice = 0;
+  bool verife = false;
 
-  List<FavoriteAnnonceModel> _favoriteBook = [];
-  List<FavoriteAnnonceModel> get favoriteBook => _favoriteBook;
-
-  getFavoriteBook() async {
+  getAllProducts() async {
     _loading = true;
     var dbHelper = CordDatabaseHelper.db;
-    _favoriteBook = await dbHelper.getAllProdects();
-    print('bbbbb' + _favoriteBook.length.toString());
-    _loading = false;
+    _cartProductsModel =
+        (await dbHelper.getAllProdects()).cast<FavCategoryItem>();
+    print(_cartProductsModel.length);
+    // print(_cartProductsModel[0].toJson());
     update();
   }
 
-  addBook(FavoriteAnnonceModel fav) async {
-    var dbHelper = CordDatabaseHelper.db;
-    loding.value = true;
-    //for (int i = 0; i < _favoriteBook.length; i++) {
-    //  if (_favoriteBook[i].title == fav.title &&
-    //      _favoriteBook[i].id == fav.id) {
-    //    removebook(
-    //      FavoriteAnnonceModel(
-    //          id: fav.id,
-    //          address: fav.address,
-    //          region: fav.region,
-    //          city: fav.city,
-    //          area: fav.area,
-    //          price: fav.price,
-    //          bedrooms: fav.bedrooms,
-    //          bathrooms: fav.bathrooms,
-    //          title: fav.title,
-    //          description: fav.description,
-    //          phone1: fav.phone1,
-    //          cover: fav.cover),
-    //    );
-    //    return;
-    //  }
-    //}
-    print("fav ; " + fav.title);
-    await dbHalper.inser(fav);
-    print("db ; " + dbHelper.getAllProdects().toString());
-
-    loding.value = false;
-    update();
-  }
-
-  removebook(FavoriteAnnonceModel model) async {
-    await dbHalper.removeProducs(model);
-    getFavoriteBook();
-    update();
-  }
-
-  FavIcon(mode) {
-    for (int i = 0; i < _favoriteBook.length; i++) {
-      if (mode["title"] == _favoriteBook[i].title &&
-          mode["id"] == _favoriteBook[i].id) {
+  bool FavIcon(Joke mode) {
+    for (int i = 0; i < _cartProductsModel.length; i++) {
+      if (mode.id == _cartProductsModel[i].id) {
         return true;
       }
     }
     return false;
   }
-// var allJokes = <Region>[].obs;
-// getRegions() async {
-//   try {print("aaa");
-//     var jokes = await AnnonceRepository.featcherregion();
-//     print("aaa");
-//     print(jokes.toString());
-//     if (jokes != null) {
-//       allJokes.value = jokes;
-//     }
-//   } catch (e) {
-//   } finally {
-//   }
-  // }
-  ///////favorite end
+
+  addProducts(FavCategoryItem data) async {
+    for (int i = 0; i < _cartProductsModel.length; i++) {
+      if (_cartProductsModel[i].id == data.id) {
+        removebook(FavCategoryItem(
+          id: data.id,
+          region: data.region,
+          city: data.city,
+          title: data.title,
+          cover: data.cover,
+          apartment: data.apartment,
+          bedrooms: data.bedrooms,
+          bathrooms: data.bathrooms,
+          kitchens: data.kitchens,
+          address: data.address,
+          description: data.description,
+          phone1: data.phone1,
+          advertiser: data.advertiser,
+          area: data.area.toString(),
+          quartier: data.quartier,
+        ));
+        return;
+      }
+    }
+    await dbHalper.inser(data);
+    update();
+  }
+
+  removebook(FavCategoryItem model) async {
+    await dbHalper.removeProducs(model);
+    getAllProducts();
+    update();
+  }
 }

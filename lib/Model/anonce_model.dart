@@ -91,7 +91,7 @@ class Annonce {
         phone3: json["phone3"],
         validated: json["validated"],
         createdAt: json["created_at"],
-        cover: json["cover"] ?? '',
+        cover: json["cover"],
       );
 
   Map<String, dynamic> toJson() => {

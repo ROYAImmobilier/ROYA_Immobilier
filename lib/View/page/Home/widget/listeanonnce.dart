@@ -65,26 +65,39 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           )),
                       Container(
                         margin: EdgeInsets.only(top: 0.h, right: 10.w),
-                        child:  IconButton(
+                        child: GetBuilder<AnnonceController>(
+                          init: AnnonceController(),
+                          builder: (controller) => IconButton(
                             onPressed: () {
-                              // print("aaaaaa");
-                              // .addBook(FavoriteAnnonceModel(
-                              //     id:  widget.data.id,
-                              //     region: widget.data.region,
-                              //     city: widget.data.city,
-                              //     title: widget.data.title,
-                              //     cover: widget.data.cover ?? " "));
+                              controller.addProducts(FavCategoryItem(
+                                id: widget.data.id,
+                                region: widget.data.region,
+                                city: widget.data.city,
+                                title: widget.data.title,
+                                cover: widget.data.cover,
+                                apartment: widget.data.apartment,
+                                bedrooms: widget.data.bedrooms,
+                                bathrooms: widget.data.bathrooms,
+                                kitchens: widget.data.kitchens,
+                                address: widget.data.address,
+                                description: widget.data.description,
+                                phone1: widget.data.phone1,
+                                advertiser: widget.data.advertiser,
+                                area: widget.data.area.toString(),
+                                quartier: widget.data.quartier,
+                              ));
+                              controller.getAllProducts();
                             },
-                            icon: //controller.FavIcon(widget.data) == true
-                                 Icon(
+                            icon: controller.FavIcon(widget.data) == true
+                                ? Icon(
                                     Icons.favorite,
                                     color: Colors.red,
                                   )
-                                // : Icon(Icons.favorite_border,
-                                //     color: Colors.red),
+                                : Icon(Icons.favorite_border,
+                                    color: Colors.red),
                           ),
                         ),
-
+                      ),
                     ],
                   ),
                   Container(

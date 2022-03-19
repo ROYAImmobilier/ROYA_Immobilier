@@ -195,7 +195,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                                             .width *
                                                         0.56)
                                                     .h,
-                                            childAspectRatio: 3 / 2,
+                                            childAspectRatio: 2,
                                             crossAxisSpacing: 2.h,
                                             mainAxisSpacing: 2.w),
                                     itemBuilder: (BuildContext ctx, index) {
