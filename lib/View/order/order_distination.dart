@@ -192,12 +192,12 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text("  $value"),
+                              child: Text("$value"),
                             );
                           }).toList(),
                           onChanged: (newValue) {
                             setState(() {
-                              // print(newValue);
+                             //// print(newValue);
                               _categorie = newValue;
                             });
                           },
@@ -306,7 +306,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                       decoration: BoxDecoration(
                         // color: Colors.white,
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
+                        const BorderRadius.all(Radius.circular(5)),
                         border: Border.all(
                           color: Colors.grey,
                         ),
@@ -320,7 +320,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                               border: Border.all(
                                 color: Colors.grey,
                               ),
@@ -453,7 +453,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                           decoration: const BoxDecoration(
                               color: Color(0xffbfa280),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
+                              BorderRadius.all(Radius.circular(10))),
                           padding: EdgeInsets.only(
                               top: 10.h, left: 25.w, bottom: 10.h, right: 25.w),
                           child: Text("Suivant".tr,

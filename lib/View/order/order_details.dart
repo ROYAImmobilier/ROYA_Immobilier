@@ -16,12 +16,12 @@ class Add_Annonce_2 extends StatefulWidget {
 
   Add_Annonce_2(
       {required this.Property_details,
-      required this.categorie,
-      required this.statut,
-      required this.adress,
-      required this.region,
-      required this.ville,
-      required this.quartier});
+        required this.categorie,
+        required this.statut,
+        required this.adress,
+        required this.region,
+        required this.ville,
+        required this.quartier});
 
   @override
   State<Add_Annonce_2> createState() => _Add_AnnonceState();
@@ -82,8 +82,8 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                     //controller: ,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                        //fillColor: Colors.white,
-                        // labelText: "",
+                      //fillColor: Colors.white,
+                      // labelText: "",
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.only(
                             left: 8.w, right: 8.w, bottom: 8.h, top: 8.h),
@@ -108,12 +108,12 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius:
-                                BorderRadius.all(Radius.circular(5.r))),
+                            BorderRadius.all(Radius.circular(5.r))),
                         child: TextFormField(
                           //controller: ,
                           cursorColor: Colors.white,
                           decoration: InputDecoration(
-                              //    isDense: true, // Added this
+                            //    isDense: true, // Added this
                               contentPadding: EdgeInsets.only(
                                   left: 8.w, right: 8.w, bottom: 8.h, top: 8.h),
                               //fillColor: Colors.white,
@@ -208,7 +208,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                   Container(
                       alignment: Alignment.topLeft,
                       child:
-                          Text('Flooring', style: TextStyle(fontSize: 14.sp))),
+                      Text('Flooring', style: TextStyle(fontSize: 14.sp))),
                   const SizedBox(
                     height: 15,
                   ),
@@ -258,10 +258,10 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                 GestureDetector(
                                   child: Container(
                                       child: Icon(
-                                    Icons.data_saver_on,
-                                    size: 20.sp,
-                                    color: Color(0xffbfa280),
-                                  )),
+                                        Icons.data_saver_on,
+                                        size: 20.sp,
+                                        color: Color(0xffbfa280),
+                                      )),
                                   onTap: () {
                                     setState(() {
                                       quntity2++;
@@ -306,10 +306,10 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                 GestureDetector(
                                   child: Container(
                                       child: Icon(
-                                    Icons.data_saver_on,
-                                    size: 20.sp,
-                                    color: Color(0xffbfa280),
-                                  )),
+                                        Icons.data_saver_on,
+                                        size: 20.sp,
+                                        color: Color(0xffbfa280),
+                                      )),
                                   onTap: () {
                                     setState(() {
                                       quntity1++;
@@ -354,10 +354,10 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                 GestureDetector(
                                   child: Container(
                                       child: Icon(
-                                    Icons.data_saver_on,
-                                    size: 20.sp,
-                                    color: Color(0xffbfa280),
-                                  )),
+                                        Icons.data_saver_on,
+                                        size: 20.sp,
+                                        color: Color(0xffbfa280),
+                                      )),
                                   onTap: () {
                                     setState(() {
                                       kichens++;
@@ -471,7 +471,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             decoration: const BoxDecoration(
                                 color: Color(0xffbfa280),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                                BorderRadius.all(Radius.circular(10))),
                             padding: EdgeInsets.only(
                                 top: 10, left: 25, bottom: 10, right: 25),
                             child: Text(
@@ -488,14 +488,14 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return ContactInfo();
-                            }));
+                                  return ContactInfo();
+                                }));
                           },
                           child: Container(
                             decoration: const BoxDecoration(
                                 color: Color(0xffbfa280),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                                BorderRadius.all(Radius.circular(10))),
                             padding: EdgeInsets.only(
                                 top: 10.h,
                                 left: 25.w,

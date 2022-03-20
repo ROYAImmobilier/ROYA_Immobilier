@@ -188,16 +188,16 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                     itemCount: widget.leng,
                                     gridDelegate:
                                         SliverGridDelegateWithMaxCrossAxisExtent(
-                                            maxCrossAxisExtent: 202.h,
+                                            maxCrossAxisExtent: 205.h,
                                             mainAxisExtent:
                                                 (MediaQuery.of(context)
                                                             .size
                                                             .width *
-                                                        0.56)
+                                                        0.50)
                                                     .h,
                                             childAspectRatio: 2,
-                                            crossAxisSpacing: 2.h,
-                                            mainAxisSpacing: 2.w),
+                                            crossAxisSpacing:5.h,
+                                            mainAxisSpacing: 5.w),
                                     itemBuilder: (BuildContext ctx, index) {
                                       return GestureDetector(
                                           onTap: () => Get.to(Details(

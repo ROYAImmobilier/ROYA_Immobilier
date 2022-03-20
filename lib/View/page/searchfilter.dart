@@ -2,15 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/controller.dart';
 
-class SearchFiltter extends StatelessWidget {
+import '../../varia_ble/variable.dart';
+
+class SearchFiltter extends StatefulWidget {
   const SearchFiltter({Key? key}) : super(key: key);
 
   @override
+  State<SearchFiltter> createState() => _SearchFiltterState();
+}
+
+class _SearchFiltterState extends State<SearchFiltter> {
+  @override
   Widget build(BuildContext context) {
-    var search;
-    var dropdownValue = "One";
-    var isChecked = false;
+
+     String? _categorie;
+    var _keyVent = GlobalKey<FormState>();
+    var _keylocation = GlobalKey<FormState>();
+    var _keyDemande = GlobalKey<FormState>();
+    String _propritr_filter = 'ventr';
+
+  late  String  searchvlue ;
+   late String? searchVille ;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -47,7 +62,14 @@ class SearchFiltter extends StatelessWidget {
                   Column(
                     children: [
                       TextFormField(
-                        controller: search,
+                        onChanged: ((value){
+                          setState(() {
+                            searchvlue = value;
+                            print(searchvlue);
+                          });
+
+
+                        }),
                         decoration: InputDecoration(
                             isDense: true,
                             contentPadding: EdgeInsets.only(
@@ -85,20 +107,29 @@ class SearchFiltter extends StatelessWidget {
                           icon: const Icon(Icons.keyboard_arrow_down_sharp),
                           elevation: 16,
                           isExpanded: true,
+
                           // style: const TextStyle(color: Colors.deepPurple),
                           underline: Container(
                             height: 2,
                             // color: Colors.deepPurpleAccent,
                           ),
-                          value: dropdownValue,
-                          items: <String>['One', 'Two', 'Free', 'Four']
+                            hint: Text('Category'),
+                          value: _categorie,
+                         // value: dropdownValue,
+                          items: categorie
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
+
                               value: value,
                               child: Text("  $value"),
                             );
                           }).toList(),
-                          onChanged: (String? newValue) {},
+                          onChanged: (newValue) {
+                           setState(() {
+                             _categorie = newValue ;
+                           });
+                          },
+
                         ),
                       ),
                       const SizedBox(
@@ -115,7 +146,11 @@ class SearchFiltter extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(5))),
                         child: TextFormField(
-                          controller: search,
+                          onChanged: ((value){
+                           setState(() {
+                             searchVille = value;
+                           });
+                          }),
                           decoration: InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.only(
@@ -144,32 +179,62 @@ class SearchFiltter extends StatelessWidget {
                       Wrap(
                         //  mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                         //
                           Row(
                             children: [
-                              Radio(
-                                value: 3,
-                                groupValue: 0,
-                                onChanged: (value) {},
+                              Form(
+                                key:_keyVent ,
+                                child: Radio(
+                                  value:'Vente',
+                                  groupValue: _propritr_filter ,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _propritr_filter='Vente';
+                                      print(_propritr_filter);
+
+                                    });
+                                  },
+                                ),
                               ),
                               Text('Vente'.tr),
                             ],
                           ),
+
+
+
                           Row(
                             children: [
-                              Radio(
-                                value: 3,
-                                groupValue: 0,
-                                onChanged: (value) {},
+                              Form(
+                                key: _keylocation,
+                                child: Radio(
+                                  value: 'À location',
+                                  groupValue: _propritr_filter,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _propritr_filter='À location';
+                                       print(_propritr_filter);
+                                    });
+                                  },
+                                ),
                               ),
                               Text('À location'.tr),
                             ],
                           ),
                           Row(
                             children: [
-                              Radio(
-                                value: 3,
-                                groupValue: 0,
-                                onChanged: (value) {},
+                              Form(
+                                key: _keyDemande,
+                                child: Radio(
+                                  value: 'Demande',
+                                  groupValue: _propritr_filter,
+                                  onChanged: (value) {
+                                    setState(() {
+
+                                      _propritr_filter='Demande';
+                                      print(_propritr_filter);
+                                    });
+                                  },
+                                ),
                               ),
                               Text('Demande'.tr),
                             ],
@@ -184,12 +249,16 @@ class SearchFiltter extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     alignment: Alignment.bottomCenter,
                     child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'RECHERCHER (56242)'.tr,
-                        style: TextStyle(color: Colors.white),
+                        onPressed: () {
+                          print(searchvlue.toString() +"+"+_categorie.toString() + " "+searchVille.toString() + " "+_propritr_filter.toString());
+                       //  controller.getFilter(searchvlue , _categorie , searchVille,_propritr_filter );
+                        },
+                        child: Text(
+                          'RECHERCHER (56242)'.tr,
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
+
                   ),
                 ],
               ),
