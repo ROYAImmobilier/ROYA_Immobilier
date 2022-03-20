@@ -82,13 +82,13 @@ class HomeC extends StatelessWidget {
                           ),
                         ],
                       ),
-                      IconButton(
-                          onPressed: () => Get.to(SearchFiltter()),
-                          icon: SvgPicture.asset(
-                            'assets/icon/filter.svg',
-                            width: 20,
-                            height: 20,
-                          ))
+                      // IconButton(
+                      //     onPressed: () {},//=> Get.to(SearchFiltter()),
+                      //     icon: SvgPicture.asset(
+                      //       'assets/icon/filter.svg',
+                      //       width: 20,
+                      //       height: 20,
+                      //     ))
                     ],
                   ),
                 ),

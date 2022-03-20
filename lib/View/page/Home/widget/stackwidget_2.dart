@@ -58,7 +58,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       Row(
                         children: [
                           IconButton(
-                              onPressed: () => Get.to(SearchFiltter()),
+                              onPressed: () => Get.to(SearchFiltter(data: widget.data,)),
                               icon: SvgPicture.asset(
                                 'assets/icon/filter.svg',
                                 width: 20,

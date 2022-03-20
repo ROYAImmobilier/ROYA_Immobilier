@@ -17,9 +17,13 @@ class AnnonceController extends GetxController {
   AnnonceController() {
     getJokeys();
     getAllProducts();
+
   }
   List<Annonce> ListAnnonce = [];
   var allJokes = <Joke>[].obs;
+
+
+
   getJokeys() async {
     try {
       var jokes = await jokeRepository.featcherJoke();
@@ -92,4 +96,7 @@ class AnnonceController extends GetxController {
     getAllProducts();
     update();
   }
+
+
+
 }

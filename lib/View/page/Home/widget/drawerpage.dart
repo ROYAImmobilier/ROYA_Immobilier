@@ -8,6 +8,7 @@ import '../../../../Controller/AnonceController.dart';
 import '../../../../Controller/cityController.dart';
 import '../../../../Model/repositery.dart';
 import '../../../order/order_distination.dart';
+import '../../auth/Login/login_screen.dart';
 
 final List locale = [
   {'name': 'English', 'locale': const Locale('en', 'US')},
@@ -163,18 +164,23 @@ class _DrawerPageState extends State<DrawerPage> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    'assets/icon/nav_menu/person.svg',
-                    width: 25,
-                    height: 25,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  Text('Se connecter'.tr, style: TextStyle(fontSize: 20))
-                ],
+              child: GestureDetector(
+                onTap: (){
+                  Get.to(LoginScreen());
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icon/nav_menu/person.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    SizedBox(
+                      width: 24,
+                    ),
+                    Text('Se connecter'.tr, style: TextStyle(fontSize: 20))
+                  ],
+                ),
               ),
             ),
             SizedBox(

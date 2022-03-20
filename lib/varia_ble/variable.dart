@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../Model/city.dart';
 
 var region_1;
@@ -49,3 +51,6 @@ final String columnphone3 = 'phone3';
 final String columnvalidated = 'validated';
 final String columnvcreated_at = 'created_at';
 final String columncover = 'cover';
+
+const kPrimaryColor = Color(0xFF6F35A5);
+const kPrimaryLightColor = Color(0xFFF1E6FF);

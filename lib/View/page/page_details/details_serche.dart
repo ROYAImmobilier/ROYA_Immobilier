@@ -54,13 +54,13 @@ class _DetailsState extends State<DetailSerche> {
                     ),
                     Row(
                       children: [
-                        IconButton(
-                            onPressed: () => Get.to(SearchFiltter()),
-                            icon: SvgPicture.asset(
-                              'assets/icon/filter.svg',
-                              width: 20.w,
-                              height: 20.h,
-                            )),
+                        // IconButton(
+                        //     onPressed: () => Get.to(SearchFiltter()),
+                        //     icon: SvgPicture.asset(
+                        //       'assets/icon/filter.svg',
+                        //       width: 20.w,
+                        //       height: 20.h,
+                        //     )),
                       ],
                     )
                   ],
