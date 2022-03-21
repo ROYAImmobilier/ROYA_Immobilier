@@ -1,5 +1,7 @@
 
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,28 +59,68 @@ class _ContactInfoState extends State<ContactInfo> {
  var _phone2=TextEditingController();
  var _phone3=TextEditingController();
   List<File> _image = [];
-  final picker = ImagePicker();
+ final picker = ImagePicker();
 
-  choseImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    setState(() {
-      // _image.add(File(pickedFile?.path));
-      _image.add(File(pickedFile!.path));
-    });
-    if (pickedFile!.path == null) retrieveLostData();
-  }
+ final ImagePicker imgpicker = ImagePicker();
+ String imagepath = "";
 
-  Future<void> retrieveLostData() async {
-    final LostData response = await picker.getLostData();
-    if (response.isEmpty) {}
-    if (response.exception != null) {
-      setState(() {
-        _image.add(File(response.file!.path));
-      });
-    } else {
-      print(response.file);
-    }
-  }
+ openImage() async {
+   try {
+     var pickedFile = await picker.getImage(source: ImageSource.gallery);
+     //you can use ImageCourse.camera for Camera capture
+     if(pickedFile != null){
+       imagepath = pickedFile.path;
+       print(imagepath);
+       //output /data/user/0/com.example.testapp/cache/image_picker7973898508152261600.jpg
+
+       File imagefile = File(imagepath); //convert Path to File
+       Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
+       String base64string = base64.encode(imagebytes); //convert bytes to base64 string
+       print("test");
+       //a=base64string;
+       print(base64string);
+       /* Output:
+              /9j/4Q0nRXhpZgAATU0AKgAAAAgAFAIgAAQAAAABAAAAAAEAAAQAAAABAAAJ3
+              wIhAAQAAAABAAAAAAEBAAQAAAABAAAJ5gIiAAQAAAABAAAAAAIjAAQAAAABAAA
+              AAAIkAAQAAAABAAAAAAIlAAIAAAAgAAAA/gEoAA ... long string output
+              */
+
+       Uint8List decodedbytes = base64.decode(base64string);
+       //decode base64 stirng to bytes
+
+       setState(() {
+
+       });
+     }else{
+       print("No image is selected.");
+     }
+   }catch (e) {
+     print("error while picking file.");
+   }
+ }
+
+
+
+  // choseImage() async {
+  //   final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     // _image.add(File(pickedFile?.path));
+  //     _image.add(File(pickedFile!.path));
+  //   });
+  //   if (pickedFile!.path == null) retrieveLostData();
+  // }
+  //
+  // Future<void> retrieveLostData() async {
+  //   final LostData response = await picker.getLostData();
+  //   if (response.isEmpty) {}
+  //   if (response.exception != null) {
+  //     setState(() {
+  //       _image.add(File(response.file!.path));
+  //     });
+  //   } else {
+  //     print(response.file);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +324,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               onTap: () {
                                 //selected img
                                 setState(() {
-                                  choseImage();
+                                  openImage();
                                 });
                               },
                               child: Padding(
