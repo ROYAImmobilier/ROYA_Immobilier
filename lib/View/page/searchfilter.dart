@@ -261,13 +261,13 @@ class _SearchFiltterState extends State<SearchFiltter> {
 
                                     setState(() {
 
-                                      searchvlue = 'aaaaaaaa';
-                                      searchVille = 'aaaaaaaaaa';
-                                      _categorie='aaaaaaaaaa';
-                                      _propritr_filter='';
+                                      searchvlue = 'Appartement à louer à Aourir';
+                                      searchVille = 'Agadir';
+                                      _categorie='Apartement';
+                                      _propritr_filter='Vent';
                                       for(int i=0;i<widget.data.length;i++)
-                                        if((widget.data[i].city.contains(searchVille!) &&
-                                            widget.data[i].propertyType.contains(_categorie!)) &&
+                                        if((widget.data[i].city.contains(searchVille!) ||
+                                            widget.data[i].propertyType.contains(_categorie!)) ||
                                             (widget.data[i].propertyType.contains(_propritr_filter) ||
                                             widget.data[i].title.contains(searchvlue))
                                         ){

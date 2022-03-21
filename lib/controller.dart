@@ -12,26 +12,26 @@ class AnnonceController extends GetxController {
    onInit() {
 
    
-    getJokeys();
+   // getJokeys();
    
 
     super.onInit();
   }
-  getJokeys() async {
-    try {
-      var jokes = await jokeRepository.featcherJoke();
-     
-      if (jokes != null) {
-          allJokes.value = jokes;
-          print("gg 00 : "+allJokes[0].title.toString());
-          print("gg 00 : "+allJokes.length.toString());
-
-      }
-    } catch (e) {
-
-    } finally {
-
-    }update();
-  }
+  // getJokeys() async {
+  //   try {
+  //     var jokes = await jokeRepository.featcherJoke();
+  //
+  //     if (jokes != null) {
+  //         allJokes.value = jokes;
+  //         print("gg 00 : "+allJokes[0].title.toString());
+  //         print("gg 00 : "+allJokes.length.toString());
+  //
+  //     }
+  //   } catch (e) {
+  //
+  //   } finally {
+  //
+  //   }update();
+  // }
   
 }

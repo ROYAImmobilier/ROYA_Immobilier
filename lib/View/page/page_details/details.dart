@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/page/searchfilter.dart';
+import 'package:roya_immobilie/View/routing_screen.dart';
 import 'icon_status.dart';
 
 class Details extends StatefulWidget {
@@ -422,7 +423,7 @@ class _DetailsState extends State<Details> {
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
-                              itemCount: 5,
+                              itemCount: allAnnonce.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return ListView_in_Detalis();
                               }),

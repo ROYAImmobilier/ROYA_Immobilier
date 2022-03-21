@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListView_in_Detalis extends StatelessWidget {
-  const ListView_in_Detalis({Key? key}) : super(key: key);
+  // var data;
+  //  ListView_in_Detalis({required this.data});
 
   @override
   Widget build(BuildContext context) {

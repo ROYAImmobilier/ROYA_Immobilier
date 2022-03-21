@@ -60,38 +60,38 @@ class Annonce {
   String description;
   String phone1;
   String phone2;
-  dynamic phone3;
+  String phone3;
   int validated;
   String createdAt;
   String cover;
 
   factory Annonce.fromJson(Map<String, dynamic> json) => Annonce(
         id: json["id"],
-        advertiser: json["advertiser"],
-        region: json["region"],
-        city: json["city"],
-        transaction: json["transaction"],
-        propertyType: json["property_type"],
-        status: json["status"],
-        address: json["address"],
-        quartier: json["quartier"],
-        area: json["area"].toDouble(),
-        price: json["price"],
-        age: json["age"],
-        floorType: json["floor_type"],
-        floor: json["floor"],
-        apartment: json["apartment"],
-        bedrooms: json["bedrooms"],
-        bathrooms: json["bathrooms"],
-        kitchens: json["kitchens"],
-        title: json["title"],
-        description: json["description"],
-        phone1: json["phone1"],
-        phone2: json["phone2"],
-        phone3: json["phone3"],
-        validated: json["validated"],
-        createdAt: json["created_at"],
-        cover: json["cover"],
+        advertiser: json["advertiser"]??'null',
+        region: json["region"]??'null',
+        city: json["city"]??'null',
+        transaction: json["transaction"]??'null',
+        propertyType: json["property_type"]??'null',
+        status: json["status"]??'null',
+        address: json["address"]??'null',
+        quartier: json["quartier"]??'null',
+        area: json["area"].toDouble()??0.0,
+        price: json["price"]??'null',
+        age: json["age"]??'null',
+        floorType: json["floor_type"]??'null',
+        floor: json["floor"]??0,
+        apartment: json["apartment"]??0,
+        bedrooms: json["bedrooms"]??0,
+        bathrooms: json["bathrooms"]??0,
+        kitchens: json["kitchens"]??0,
+        title: json["title"]??'null',
+        description: json["description"]??'null',
+        phone1: json["phone1"]??'null',
+        phone2: json["phone2"]??'null',
+        phone3: json["phone3"]??'null',
+        validated: json["validated"]??0,
+        createdAt: json["created_at"]??'null',
+        cover: json["cover"]??'null',
       );
 
   Map<String, dynamic> toJson() => {

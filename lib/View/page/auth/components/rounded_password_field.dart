@@ -14,11 +14,20 @@ class RoundedPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
+        validator: (val){
+          if(val!.isEmpty){
+            return "entre voter password";
+          } else
+        {
+            return null;
+          }
+        },
+
         obscureText: true,
         onChanged: onChanged,
         cursorColor: kPrimaryColor,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           hintText: "Password",
           icon: Icon(
             Icons.lock,
