@@ -356,7 +356,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(_phone2.text);
                             print(_phone3.text);
                             if(_key_Contact.currentState!.validate()){
-                           // Get.to(LoginScreen());
+                           Get.to(LoginScreen());
                             }
                           },
                           child: Text(
