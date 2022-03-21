@@ -8,7 +8,6 @@ import 'package:roya_immobilie/Model/anonce_model.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import '../Model/anonce_model_favote.dart';
 import '../Model/joke.dart';
-import '../Model/region.dart';
 import '../service/database/favorite_database_local.dart';
 
 class AnnonceController extends GetxController {
@@ -30,6 +29,7 @@ class AnnonceController extends GetxController {
 
       if (jokes != null) {
         allJokes.value = jokes;
+        print(allJokes);
       }
     } catch (e) {
     } finally {}

@@ -1,6 +1,7 @@
-
+import 'dart:convert';
 import 'dart:io';
-
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,34 +14,32 @@ import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
 
 class ContactInfo extends StatefulWidget {
-  String? Property_details ;
+  String? Property_details;
   String? categorie;
   String? statut;
   String? adress;
   String? region_1;
   String? ville;
   String? quartier;
-  int bedroms ;
-  int bathrooms ;
-  int kichens ;
+  int bedroms;
+  int bathrooms;
+  int kichens;
 
   String? area;
 
-
   ContactInfo({
-    required  this.Property_details,
-    required   this.categorie,
-    required  this.statut,
-    required  this.adress,
+    required this.Property_details,
+    required this.categorie,
+    required this.statut,
+    required this.adress,
     required this.region_1,
     required this.ville,
     required this.quartier,
-      required this.bedroms,
-      required this.bathrooms,
-      required this.kichens,
+    required this.bedroms,
+    required this.bathrooms,
+    required this.kichens,
     required this.value,
     required this.city,
-
   });
 
   String? value;
@@ -50,35 +49,72 @@ class ContactInfo extends StatefulWidget {
 }
 
 class _ContactInfoState extends State<ContactInfo> {
- var _key_Contact=GlobalKey<FormState>();
- var _titel=TextEditingController();
- var _description=TextEditingController();
- var _phone1=TextEditingController();
- var _phone2=TextEditingController();
- var _phone3=TextEditingController();
+  var _key_Contact = GlobalKey<FormState>();
+  var _titel = TextEditingController();
+  var _description = TextEditingController();
+  var _phone1 = TextEditingController();
+  var _phone2 = TextEditingController();
+  var _phone3 = TextEditingController();
   List<File> _image = [];
   final picker = ImagePicker();
 
-  choseImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    setState(() {
-      // _image.add(File(pickedFile?.path));
-      _image.add(File(pickedFile!.path));
-    });
-    if (pickedFile!.path == null) retrieveLostData();
-  }
+  final ImagePicker imgpicker = ImagePicker();
+  String imagepath = "";
 
-  Future<void> retrieveLostData() async {
-    final LostData response = await picker.getLostData();
-    if (response.isEmpty) {}
-    if (response.exception != null) {
-      setState(() {
-        _image.add(File(response.file!.path));
-      });
-    } else {
-      print(response.file);
+  openImage() async {
+    try {
+      var pickedFile = await picker.getImage(source: ImageSource.gallery);
+      //you can use ImageCourse.camera for Camera capture
+      if (pickedFile != null) {
+        imagepath = pickedFile.path;
+        print(imagepath);
+        //output /data/user/0/com.example.testapp/cache/image_picker7973898508152261600.jpg
+
+        File imagefile = File(imagepath); //convert Path to File
+        Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
+        String base64string =
+            base64.encode(imagebytes); //convert bytes to base64 string
+        print("test");
+        //a=base64string;
+        print(base64string);
+        /* Output:
+              /9j/4Q0nRXhpZgAATU0AKgAAAAgAFAIgAAQAAAABAAAAAAEAAAQAAAABAAAJ3
+              wIhAAQAAAABAAAAAAEBAAQAAAABAAAJ5gIiAAQAAAABAAAAAAIjAAQAAAABAAA
+              AAAIkAAQAAAABAAAAAAIlAAIAAAAgAAAA/gEoAA ... long string output
+              */
+
+        Uint8List decodedbytes = base64.decode(base64string);
+        //decode base64 stirng to bytes
+
+        setState(() {});
+      } else {
+        print("No image is selected.");
+      }
+    } catch (e) {
+      print("error while picking file.");
     }
   }
+
+  // choseImage() async {
+  //   final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     // _image.add(File(pickedFile?.path));
+  //     _image.add(File(pickedFile!.path));
+  //   });
+  //   if (pickedFile!.path == null) retrieveLostData();
+  // }
+  //
+  // Future<void> retrieveLostData() async {
+  //   final LostData response = await picker.getLostData();
+  //   if (response.isEmpty) {}
+  //   if (response.exception != null) {
+  //     setState(() {
+  //       _image.add(File(response.file!.path));
+  //     });
+  //   } else {
+  //     print(response.file);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -231,7 +267,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             ),
                             TextFormField(
                               maxLength: 10,
-                               controller:_phone2,
+                              controller: _phone2,
                               //: title,
                               decoration: const InputDecoration(
                                 isDense: true, // Added this
@@ -256,7 +292,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             ),
                             TextFormField(
                               maxLength: 10,
-                               controller: _phone3,
+                              controller: _phone3,
                               decoration: const InputDecoration(
                                 isDense: true, // Added this
                                 contentPadding: EdgeInsets.only(
@@ -282,7 +318,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               onTap: () {
                                 //selected img
                                 setState(() {
-                                  choseImage();
+                                  openImage();
                                 });
                               },
                               child: Padding(
@@ -355,8 +391,25 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(_phone1.text);
                             print(_phone2.text);
                             print(_phone3.text);
-                            if(_key_Contact.currentState!.validate()){
-                           Get.to(LoginScreen());
+                            if (_key_Contact.currentState!.validate()) {
+                              // Get.to(LoginScreen());
+
+                              setState(() {
+                                postdata(
+                                  widget.Property_details,
+                                  widget.categorie,
+                                  widget.statut,
+                                  widget.adress,
+                                  widget.region_1,
+                                  widget.ville,
+                                  widget.quartier,
+                                  widget.bedroms,
+                                  widget.bathrooms,
+                                  widget.kichens,
+                                  widget.value,
+                                  widget.city,
+                                );
+                              });
                             }
                           },
                           child: Text(
@@ -378,5 +431,20 @@ class _ContactInfoState extends State<ContactInfo> {
         ),
       ),
     );
+  }
+
+  postdata(Property_details, categorie, statut, adress, region_1, ville,
+      quartier, bedroms, bathrooms, kichens, value, city) async {
+    try {
+      var response = await http
+          .post(Uri.parse('https://jsonplaceholder.typicode.com/posts'), body: {
+        "userId": '10',
+        "title": "aaaaaaaaaaaaaaaaa",
+        "body": "bbbbbbbbbbbbbbbbbbbbbbbb",
+      });
+      print(response.body);
+    } catch (e) {
+      print('error' + e.toString());
+    }
   }
 }
