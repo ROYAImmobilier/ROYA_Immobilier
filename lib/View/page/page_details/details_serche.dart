@@ -10,6 +10,7 @@ import 'package:roya_immobilie/Model/anonce_model.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/page/searchfilter.dart';
+import 'package:roya_immobilie/View/routing_screen.dart';
 import 'icon_status.dart';
 
 class DetailSerche extends StatefulWidget {
@@ -385,9 +386,9 @@ class _DetailsState extends State<DetailSerche> {
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: 5,
+                            itemCount: allAnnonce.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return ListView_in_Detalis();
+                              return ListView_in_Detalis(data:allAnnonce[index]);
                             }),
                       ),
                       const SizedBox(

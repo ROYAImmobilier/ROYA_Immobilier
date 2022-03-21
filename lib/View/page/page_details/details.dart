@@ -425,7 +425,7 @@ class _DetailsState extends State<Details> {
                               shrinkWrap: true,
                               itemCount: allAnnonce.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return ListView_in_Detalis();
+                                return ListView_in_Detalis(data:allAnnonce[index]);
                               }),
                         ),
                         const SizedBox(

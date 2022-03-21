@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../Model/joke.dart';
+
 class ListView_in_Detalis extends StatelessWidget {
-  // var data;
-  //  ListView_in_Detalis({required this.data});
+   var data;
+    ListView_in_Detalis({required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +34,8 @@ class ListView_in_Detalis extends StatelessWidget {
           height: 100.h,
           width: 150.w,
           decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: ExactAssetImage('assets/images/bac.jpg'),
+              image:  DecorationImage(
+                image: NetworkImage(data.cover),
                 fit: BoxFit.fill,
               ),
               color: Colors.white,
@@ -52,12 +54,12 @@ class ListView_in_Detalis extends StatelessWidget {
                   bottomRight: Radius.circular(10.r))),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children:  [
                 Text(
-                  'Villa de 400 m²',
+                  data.propertyType+' de '+data.area.toString(),
                   style: TextStyle(fontSize: 10),
                 ),
-                Text('502 0000 Dhs', style: TextStyle(fontSize: 10))
+                Text(data.price.toString()+' Dhs', style: TextStyle(fontSize: 10))
               ]),
         )
       ]),
