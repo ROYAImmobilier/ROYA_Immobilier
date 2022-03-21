@@ -10,6 +10,7 @@ import '../../../../Model/repositery.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
 
+
 final List locale = [
   {'name': 'English', 'locale': const Locale('en', 'US')},
   {'name': 'France', 'locale': const Locale('fr', 'FR')},

@@ -17,8 +17,8 @@ class Add_Annonce extends StatefulWidget {
 }
 
 class _Add_AnnonceState extends State<Add_Annonce> {
-  var adresse;
-  var quartier_;
+  var adresse=TextEditingController();
+  var quartier_=TextEditingController();
   late int id_region;
 
   String? _Property_details = "Vente";
@@ -116,17 +116,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                     ),
                     Row(
                       children: [
-                        Form(
-                          key: _keyVent,
-                          child: Radio(
-                            value: "Vente",
-                            groupValue: _Property_details,
-                            onChanged: (value) {
-                              setState(() {
-                                _Property_details = 'Vente';
-                              });
-                            },
-                          ),
+                        Radio(
+                          value: "Vente",
+                          groupValue: _Property_details,
+                          onChanged: (value) {
+                            setState(() {
+                              _Property_details = 'Vente';
+                            });
+                          },
                         ),
                         Text('Vente'.tr,
                             style: TextStyle(
@@ -135,17 +132,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         SizedBox(
                           width: 10.w,
                         ),
-                        Form(
-                          key: _keyLocal,
-                          child: Radio(
-                            value: 'À location',
-                            groupValue: _Property_details,
-                            onChanged: (value) {
-                              setState(() {
-                                _Property_details = 'À location';
-                              });
-                            },
-                          ),
+                        Radio(
+                          value: 'À location',
+                          groupValue: _Property_details,
+                          onChanged: (value) {
+                            setState(() {
+                              _Property_details = 'À location';
+                            });
+                          },
                         ),
                         Text('À location'.tr,
                             style: TextStyle(
@@ -192,12 +186,12 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text("$value"),
+                              child: Text("  $value"),
                             );
                           }).toList(),
                           onChanged: (newValue) {
                             setState(() {
-                             //// print(newValue);
+                              // print(newValue);
                               _categorie = newValue;
                             });
                           },
@@ -238,7 +232,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             // color: Colors.deepPurpleAccent,
                           ),
                           //  value: dropdownValue,
-
+                          value: _statut,
                           items: <String>['One', 'Two', 'Free', 'Four']
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
@@ -246,7 +240,9 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               child: Text("  $value"),
                             );
                           }).toList(),
-                          onChanged: (String? newValue) {},
+                          onChanged: (String? newValue) {
+                            _statut=newValue;
+                          },
                         )),
                     SizedBox(
                       height: 25.h,
@@ -438,15 +434,27 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                       alignment: Alignment.topRight,
                       child: TextButton(
                         onPressed: () {
-                          if (_keytest.currentState!.validate()) {
+
+                          print(_Property_details);
+                          print(_categorie);
+                          print(_statut);
+                          print(adresse.text);
+                          print(value);
+                          print(city);
+                          print(quartier_.text);
+                        //  print(city);
+                          if (_keytest.currentState!.validate() &&
+                              value != null &&
+                              city != null ) {
+                           //
                             Get.to(Add_Annonce_2(
                                 Property_details: _Property_details,
                                 categorie: _categorie,
                                 statut: _statut,
-                                adress: _adress,
-                                region: _region_1,
-                                ville: _ville,
-                                quartier: _quartier));
+                                adress: adresse.text,
+                                region: value,
+                                ville: city,
+                                quartier: quartier_.text));
                           }
                         },
                         child: Container(
