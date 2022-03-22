@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:responsive_framework/responsive_grid.dart';
 import '../../page_details/details.dart';
 import '../../page_details/icon_status.dart';
 import '../../searchfilter.dart';
@@ -106,115 +107,63 @@ class _StackWidget_2State extends State<StackWidget_2> {
                               topRight: Radius.circular(20.r),
                               topLeft: Radius.circular(20.r))),
                       width: MediaQuery.of(context).size.width.toDouble(),
-                      child: Column(children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: 5.h, left: 5.w, right: 5.w),
-                          child: SizedBox(
-                            height: 85.h,
-                            child: ListView.builder(
-                                itemCount: 6,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, i) {
-                                  return const Icon_Status();
-                                  //   Row(
-                                  //   children: [
-                                  //     Column(
-                                  //       children: [
-                                  //         Container(
-                                  //           height: 60.h,
-                                  //           width: 60.h,
-                                  //           decoration: BoxDecoration(
-                                  //               image: DecorationImage(
-                                  //                 image: NetworkImage(imgecate[i]),
-                                  //               ),
-                                  //               color: Colors.white,
-                                  //               shape: BoxShape.circle,
-                                  //               border: Border.all(
-                                  //                   width: 1.w,
-                                  //                   color: Colors.white)),
-                                  //         ),
-                                  //         SizedBox(
-                                  //           height: 10.w,
-                                  //         ),
-                                  //         Text(
-                                  //           'Partomant',
-                                  //           style: TextStyle(
-                                  //               fontSize: 12.sp,
-                                  //               color: Color(0xffC0A280)),
-                                  //         )
-                                  //       ],
-                                  //     ),
-                                  //     SizedBox(
-                                  //       width: 10.w,
-                                  //     )
-                                  //   ],
-                                  // );
+                      child: SingleChildScrollView(
+                        child: Column(children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(top: 5.h, left: 5.w, right: 5.w),
+                            child: SizedBox(
+                              height: 85.h,
+                              child: ListView.builder(
+                                  itemCount: 6,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, i) {
+                                    return const Icon_Status();
 
-                                  /* Expanded(
-                                  child: Card(
-                                clipBehavior: Clip.antiAlias,
-                                elevation: 0,
-                                color: const Color(0xffb58350),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(imge[i]),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    border: Border.all(
-                                      color: const Color(0xff857c88),
-                                      width: 3.w,
-                                    ),
-                                    color: Colors.red,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20.r)),
-                                  ),
-                                  width: 150.w,
-                                  height: 100.h,
-                                ),
-                              ));*/
-                                }),
+
+                                  }),
+                            ),
                           ),
-                        ),
-                        Container(
-                            color: Color(0xffefefef),
-
-                            // height: double.infinity,
-                            child: grid
-                                ? GridView.builder(
+                          Container(
+                              color: const Color(0xffefefef),
+height: MediaQuery.of(context).size.height.h,
+                              // height: double.infinity,
+                              margin: EdgeInsets.all(15),
+                              child: ListView(
+                                children:[ grid
+                                    ? GridView.builder(
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: widget.leng,
                                     gridDelegate:
-                                        SliverGridDelegateWithMaxCrossAxisExtent(
-                                            maxCrossAxisExtent: 205.h,
-                                            mainAxisExtent:
-                                                (MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.50)
-                                                    .h,
-                                            childAspectRatio: 2,
-                                            crossAxisSpacing:5.h,
-                                            mainAxisSpacing: 5.w),
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 205.h,
+                                        mainAxisExtent:
+                                        (MediaQuery.of(context)
+                                            .size
+                                            .width *
+                                            0.50)
+                                            .h,
+                                        childAspectRatio: 2,
+                                        crossAxisSpacing:5.h,
+                                        mainAxisSpacing: 5.w),
                                     itemBuilder: (BuildContext ctx, index) {
                                       return GestureDetector(
                                           onTap: () => Get.to(Details(
                                               image: widget.data[index].cover !=
-                                                      null
+                                                  null
                                                   ? widget.data[index].cover
                                                   : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                               data: widget.data[index])),
                                           child: Liste_Annonce(
                                             image: widget.data[index].cover !=
-                                                    null
+                                                null
                                                 ? widget.data[index].cover
                                                 : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                             data: widget.data[index],
                                           ));
                                     })
-                                : ListView.builder(
+                                    : ListView.builder(
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: widget.leng,
@@ -222,27 +171,29 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                         (BuildContext context, int index) {
                                       return index == widget.leng
                                           ? SizedBox(
-                                              height: 25.h,
-                                            )
+                                        height: 25.h,
+                                      )
                                           : GestureDetector(
-                                              onTap: () => Get.to(Details(
-                                                    image: widget.data[index]
-                                                                .cover !=
-                                                            null
-                                                        ? widget
-                                                            .data[index].cover
-                                                        : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                                    data: widget.data[index],
-                                                  )),
-                                              child: Liste_Annonce_2(
-                                                  data: widget.data[index],
-                                                  image: widget.data[index]
-                                                              .cover !=
-                                                          null
-                                                      ? widget.data[index].cover
-                                                      : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
-                                    })),
-                      ]),
+                                          onTap: () => Get.to(Details(
+                                            image: widget.data[index]
+                                                .cover !=
+                                                null
+                                                ? widget
+                                                .data[index].cover
+                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                            data: widget.data[index],
+                                          )),
+                                          child: Liste_Annonce_2(
+                                              data: widget.data[index],
+                                              image: widget.data[index]
+                                                  .cover !=
+                                                  null
+                                                  ? widget.data[index].cover
+                                                  : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
+                                        }),
+                              ])),
+                        ]),
+                      ),
                     ),
                   ),
                 ],

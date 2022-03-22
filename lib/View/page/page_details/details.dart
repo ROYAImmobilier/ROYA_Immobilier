@@ -141,7 +141,7 @@ class _DetailsState extends State<Details> {
                           height: 150.h,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(widget.image),
+                                image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
                                 fit: BoxFit.fill,
                               ),
                               color: Colors.white,

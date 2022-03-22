@@ -35,7 +35,7 @@ class ListView_in_Detalis extends StatelessWidget {
           width: 150.w,
           decoration: BoxDecoration(
               image:  DecorationImage(
-                image: NetworkImage(data.cover),
+                image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+data.cover),
                 fit: BoxFit.fill,
               ),
               color: Colors.white,

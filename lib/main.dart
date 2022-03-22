@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/testciyt.dart';
@@ -59,8 +61,15 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
 
+    return GetMaterialApp(
+        builder: (context, widget) => ResponsiveWrapper.builder(
+      ClampingScrollWrapper.builder(context, widget!),
+      breakpoints: const [
+        ResponsiveBreakpoint.resize(350, name: MOBILE),
+        ResponsiveBreakpoint.autoScale(600, name: TABLET),
+        ResponsiveBreakpoint.resize(800, name: DESKTOP),
+      ],),
       debugShowCheckedModeBanner: false,
     //  initialBinding: Binding(),
       translations: Transation(),

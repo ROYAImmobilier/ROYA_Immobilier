@@ -37,7 +37,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                     height: 120.h,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(widget.image),
+                          image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
                           fit: BoxFit.fill,
                         ),
                         color: Colors.white,
@@ -78,7 +78,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                         Container(
                           alignment: Alignment.topLeft,
                           // width: 350.w,
-                          margin: EdgeInsets.only(top: 3.h, left: 5.w),
+                          margin: EdgeInsets.only(top: 3.h, left: 5.w,bottom: 25),
                           child: Text(
                             widget.data.title,
                             maxLines: 1,
@@ -98,7 +98,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                 Icons.location_on_rounded,
                                 size: 12.sp,
                               ),
-                              Text("data"),
+                              Text( widget.data.region,style: TextStyle(fontSize: 9),),
                               SizedBox(
                                 width: 5.w,
                               ),
@@ -106,7 +106,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                 Icons.home,
                                 size: 11.sp,
                               ),
-                              const Text(" data "),
+                               Text( widget.data.city,style: TextStyle(fontSize: 9),),
                               SizedBox(
                                 width: sizeScreen > 320 ? 60.w : 40.w,
                               ),

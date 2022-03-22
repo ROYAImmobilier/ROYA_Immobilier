@@ -136,7 +136,9 @@ class _DrawerPageState extends State<DrawerPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(8.0),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(Add_Annonce());
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(

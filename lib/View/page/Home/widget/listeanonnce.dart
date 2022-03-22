@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,124 +24,119 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
     return ScreenUtilInit(
       builder: () => Directionality(
         textDirection: TextDirection.ltr,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(widget.image),
-                  fit: BoxFit.fill,
+        child:Container(
+          padding: EdgeInsets.all(5),
+          child: Stack(
+            children: [
+              Container(
+                height: 100,
+                width: 150,
+                decoration:  BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
+                    fit: BoxFit.fill,
+                  ),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
                 ),
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.r),
-                    topRight: Radius.circular(10.r)),
               ),
-              width: 150.w,
-              height: 100.h,
-            ),
-            Container(
-              width: 150.w,
-              height: 75.h,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10.r),
-                    bottomRight: Radius.circular(10.r)),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(top: 5.h, left: 10.w),
-                          child: Text(
-                            widget.data.price.toString() + ' dh',
-                            style: TextStyle(
-                                fontSize: 14.sp, color: Color(0xffb58350)),
-                          )),
-                      Container(
-                        margin: EdgeInsets.only(top: 0.h, right: 10.w),
-                        child: GetBuilder<AnnonceController>(
-                          init: AnnonceController(),
-                          builder: (controller) => IconButton(
-                            onPressed: () {
-                              controller.addProducts(FavCategoryItem(
-                                id: widget.data.id,
-                                region: widget.data.region,
-                                city: widget.data.city,
-                                title: widget.data.title,
-                                cover: widget.data.cover,
-                                apartment: widget.data.apartment,
-                                bedrooms: widget.data.bedrooms,
-                                bathrooms: widget.data.bathrooms,
-                                kitchens: widget.data.kitchens,
-                                address: widget.data.address,
-                                description: widget.data.description,
-                                phone1: widget.data.phone1,
-                                advertiser: widget.data.advertiser,
-                                area: widget.data.area.toString(),
-                                quartier: widget.data.quartier,
-                              ));
-                              controller.getAllProducts();
-                            },
-                            icon: controller.FavIcon(widget.data) == true
-                                ? Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  )
-                                : Icon(Icons.favorite_border,
-                                    color: Colors.red),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 0.h),
-                    child: Text(
-                      widget.data.title,
-                      maxLines: 1,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 11.sp),
+              Container(
+                margin: EdgeInsets.only(top: 95),
+                height: 85,
+                width: 150,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                ),
+                child: Stack(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 5,left: 5),
+                      child: Text(widget.data.price.toString()),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5.h, left: 10.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.location_on_rounded,
-                          size: 12.sp,
-                        ),
-                        Text(
-                          widget.data.region,
-                          style: TextStyle(fontSize: 11.sp),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Icon(
-                          Icons.home,
-                          size: 11.sp,
-                        ),
-                        Text(
-                          widget.data.city,
-                          style: TextStyle(fontSize: 11.sp),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+
+                    Positioned(
+                      //padding: EdgeInsets.only(bottom: 10,right: 5),
+                     // margin: EdgeInsets.only(bottom: 35,left: 15),
+                     top: -10,
+                      right: 0,
+                      child: GetBuilder<AnnonceController>(
+                        init: AnnonceController(),
+          builder: (controller) => Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () {
+                controller.addProducts(FavCategoryItem(
+                  id: widget.data.id,
+                  region: widget.data.region,
+                  city: widget.data.city,
+                  title: widget.data.title,
+                  cover: widget.data.cover,
+                  apartment: widget.data.apartment,
+                  bedrooms: widget.data.bedrooms,
+                  bathrooms: widget.data.bathrooms,
+                  kitchens: widget.data.kitchens,
+                  address: widget.data.address,
+                  description: widget.data.description,
+                  phone1: widget.data.phone1,
+                  advertiser: widget.data.advertiser,
+                  area: widget.data.area.toString(),
+                  quartier: widget.data.quartier,
+                ));
+                controller.getAllProducts();
+              },
+              icon: controller.FavIcon(widget.data) == true
+                  ? Icon(
+                Icons.favorite,
+                color: Colors.red,
+              )
+                  : Icon(Icons.favorite_border,
+                  color: Colors.red),
             ),
-          ],
+          ),
         ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 35,left: 5),
+                      child: Text( widget.data.title,maxLines: 1,),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 65,left: 5),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.location_on_rounded,
+                            size: 12,
+                          ),
+                          Text(
+                            widget.data.region,
+                            style: TextStyle(fontSize: 11),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.home,
+                            size: 11,
+                          ),
+                          Text(
+                            widget.data.city,
+                            style: TextStyle(fontSize: 11),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+            ],
+          ),
+        ) ,
       ),
     );
   }

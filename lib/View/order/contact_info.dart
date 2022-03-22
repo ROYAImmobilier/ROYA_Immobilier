@@ -155,10 +155,11 @@ class _ContactInfoState extends State<ContactInfo> {
         ),
         body: Form(
           key: _key_Contact,
-          child: SingleChildScrollView(
-            child: Container(
-              color: Colors.white,
-              child: Column(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            color: Colors.white,
+            child: ListView(
+              children: [Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -405,15 +406,15 @@ class _ContactInfoState extends State<ContactInfo> {
                               // Get.to(LoginScreen());
 
                               setState(() {
-                                postdata(address: widget.adress,
-                                    floor_type: "", title: _titel.text, media: base64string, bathrooms: widget.bathrooms.toString(), transaction: "", status: widget.statut,
-                                    confirmation_password: "12345678", kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
-                                    floor: widget.flooring, region_id: "1", city_id: "3", email: "test_1@gmail.com", phone1: _phone1.text,
-                                    bedrooms: widget.bedroms.toString(), apartment: widget.categorie, description: _description.text,
-                                    name: "Abdellah", phone2: _phone2.text, property_type: widget.Property_details,
-                                    age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "1234567"
-
-                                );
+                                // postdata(address: widget.adress,
+                                //     floor_type: "", title: _titel.text, media: base64string, bathrooms: widget.bathrooms.toString(), transaction: "", status: widget.statut,
+                                //     confirmation_password: "12345678", kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
+                                //     floor: widget.flooring, region_id: "1", city_id: "3", email: "abde@gmail.com", phone1: _phone1.text,
+                                //     bedrooms: widget.bedroms.toString(), apartment: widget.categorie, description: _description.text,
+                                //     name: "Abde", phone2: _phone2.text, property_type: widget.Property_details,
+                                //     age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "12345678"
+                                //
+                                // );
                               });
                             }
                           },
@@ -431,7 +432,7 @@ class _ContactInfoState extends State<ContactInfo> {
                   )
                 ],
               ),
-            ),
+            ]),
           ),
         ),
       ),
@@ -473,7 +474,7 @@ class _ContactInfoState extends State<ContactInfo> {
       });
       print(response.body);
       if(response.statusCode==201){
-        print("test");
+        print("test" +response.body);
       }
     } catch (e) {
       print('error ' + e.toString());

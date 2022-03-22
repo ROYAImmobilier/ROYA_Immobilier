@@ -79,7 +79,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
           HomePage(),
           FavoritePage(),
           ChatPage(),
-          Add_Annonce(),
+          ChatPage(),
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
