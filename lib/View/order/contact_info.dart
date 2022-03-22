@@ -408,13 +408,15 @@ class _ContactInfoState extends State<ContactInfo> {
                               setState(() {
                                 // postdata(address: widget.adress,
                                 //     floor_type: "", title: _titel.text, media: base64string, bathrooms: widget.bathrooms.toString(), transaction: "", status: widget.statut,
-                                //     confirmation_password: "12345678", kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
+                                //      kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
                                 //     floor: widget.flooring, region_id: "1", city_id: "3", email: "abde@gmail.com", phone1: _phone1.text,
                                 //     bedrooms: widget.bedroms.toString(), apartment: widget.categorie, description: _description.text,
-                                //     name: "Abde", phone2: _phone2.text, property_type: widget.Property_details,
-                                //     age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "12345678"
+                                //      phone2: _phone2.text, property_type: widget.Property_details,
+                                //     age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "12345678", name: "abde"
                                 //
                                 // );
+                                postdata_1(email: "abde@gmail.com", password: "12345678");
+
                               });
                             }
                           },
@@ -439,7 +441,16 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 
-  postdata({required region_id,required city_id,required transaction,required property_type,required status,required address,required quartier,required area,required price,required age,required floor_type,required floor,required apartment,required bedrooms,required bathrooms,required kitchens,required title,required description,required phone1,required phone2,required name,required email,required password,required confirmation_password,required abilities,required media}) async {
+  postdata({required region_id,required city_id,required transaction,
+    required property_type,required status,required address,required quartier,
+    required area,required price,required age,required floor_type,required floor,
+    required apartment,required bedrooms,required bathrooms,
+    required kitchens,required title,required description,
+    required phone1,required phone2,
+    required name,
+    required email,required password,
+    //required confirmation_password,
+    required abilities,required media}) async {
     try {
       var response = await http
           .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
@@ -468,7 +479,7 @@ class _ContactInfoState extends State<ContactInfo> {
         "name": name,
         "email": email,
         "password": password,
-        "confirmation_password": confirmation_password,
+     //   "confirmation_password": confirmation_password,
         "abilities[id]": abilities,
         "media[image base64]": media,
       });
@@ -479,5 +490,27 @@ class _ContactInfoState extends State<ContactInfo> {
     } catch (e) {
       print('error ' + e.toString());
     }
+  }
+}
+
+postdata_1({
+  required email,required password,
+  //required confirmation_password,
+ }) async {
+  try {
+    var response = await http
+        .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
+
+      "email": email,
+      "password": password,
+      //   "confirmation_password": confirmation_password,
+
+    });
+    print(response.body);
+    if(response.statusCode==201){
+      print("test" +response.body);
+    }
+  } catch (e) {
+    print('error ' + e.toString());
   }
 }

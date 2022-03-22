@@ -19,19 +19,18 @@ class SearchFiltter extends StatefulWidget {
 }
 
 class _SearchFiltterState extends State<SearchFiltter> {
-
+  String? _categorie;
+  var _keyVent = GlobalKey<FormState>();
+  String _propritr_filter = 'Vente';
+  var _search=TextEditingController();
+  var _ville_search=TextEditingController();
+  String ? searchvlue ;
+  String? searchVille ;
+  List<Joke> filtrResulta = [];
   @override
   Widget build(BuildContext context) {
 
-     String? _categorie;
-    var _keyVent = GlobalKey<FormState>();
-    var _keylocation = GlobalKey<FormState>();
-    var _keyDemande = GlobalKey<FormState>();
-    String _propritr_filter = 'ventr';
 
-   late  String  searchvlue ;
-   late String? searchVille ;
-   List<Joke> filtrResulta = [];
 
     return Scaffold(
           appBar: AppBar(
@@ -55,109 +54,29 @@ class _SearchFiltterState extends State<SearchFiltter> {
             ],
           ),
           backgroundColor: Color(0xffefefef),
-          body: ScreenUtilInit(
-            designSize: const Size(360, 690),
-            splitScreenMode: true,
-            builder: () {
-              return Container(
-                height: double.infinity,
-                margin: const EdgeInsets.all(25),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          TextFormField(
-                            onChanged: ((value){
-                              setState(() {
-                                searchvlue = value;
-                                print(searchvlue);
-                              });
-
-
-                            }),
-                            decoration: InputDecoration(
-                                isDense: true,
-                                contentPadding: EdgeInsets.only(
-                                    top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
-                                //fillColor: Colors.white,
-                                // labelText: "",
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: 'Que rechercher vous ?',
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(width: 3.w),
-                                    borderRadius: BorderRadius.circular(5))),
-                            keyboardType: TextInputType.text,
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                              alignment: Alignment.topLeft,
-                              child: Text('Catégorie'.tr)),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            height: 35.h,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(5)),
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            child: DropdownButton<String>(
-                              icon: const Icon(Icons.keyboard_arrow_down_sharp),
-                              elevation: 16,
-                              isExpanded: true,
-
-                              // style: const TextStyle(color: Colors.deepPurple),
-                              underline: Container(
-                                height: 2,
-                                // color: Colors.deepPurpleAccent,
-                              ),
-                                hint: Text('Category'),
-                              value: _categorie,
-                             // value: dropdownValue,
-                              items: categorie
-                                  .map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-
-                                  value: value,
-                                  child: Text("  $value"),
-                                );
-                              }).toList(),
-                              onChanged: (newValue) {
-                               setState(() {
-                                 _categorie = newValue ;
-                               });
+          body: Form(
+            key: _keyVent,
+            child: ScreenUtilInit(
+              designSize: const Size(360, 690),
+              splitScreenMode: true,
+              builder: () {
+                return Container(
+                  height: double.infinity,
+                  margin: const EdgeInsets.all(25),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            TextFormField(
+                              controller: _search,
+                              validator: (val){
+                                if(val!.isEmpty){
+                                  return "Que rechercher vous ?";
+                                }
+                                return null;
                               },
-
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                              alignment: Alignment.topLeft,
-                              child: Text('Ville'.tr)),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(5))),
-                            child: TextFormField(
-                              onChanged: ((value){
-                               setState(() {
-                                 searchVille = value;
-                               });
-                              }),
                               decoration: InputDecoration(
                                   isDense: true,
                                   contentPadding: EdgeInsets.only(
@@ -166,277 +85,353 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                   // labelText: "",
                                   fillColor: Colors.white,
                                   filled: true,
-                                  // labelText: "",
-                                  hintText: 'Entrez le nom de la ville ?'.tr,
+                                  hintText: 'Que rechercher vous ?',
                                   border: OutlineInputBorder(
-                                      borderSide: const BorderSide(width: 3),
+                                      borderSide: BorderSide(width: 3.w),
                                       borderRadius: BorderRadius.circular(5))),
                               keyboardType: TextInputType.text,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                              alignment: Alignment.topLeft,
-                              child: Text('Type d\'annonce'.tr)),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Wrap(
-                            //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                             //
-                              Row(
-                                children: [
-                                  Form(
-                                    key:_keyVent ,
-                                    child: Radio(
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                                alignment: Alignment.topLeft,
+                                child: Text('Catégorie'.tr)),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              height: 35.h,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(5)),
+                                border: Border.all(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              child: DropdownButton<String>(
+                                icon: const Icon(Icons.keyboard_arrow_down_sharp),
+                                elevation: 16,
+                                isExpanded: true,
+
+                                // style: const TextStyle(color: Colors.deepPurple),
+                                underline: Container(
+                                  height: 2,
+                                  // color: Colors.deepPurpleAccent,
+                                ),
+                                  hint: Text('Category'),
+                                value: _categorie,
+                               // value: dropdownValue,
+                                items: categorie
+                                    .map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+
+                                    value: value,
+                                    child: Text("  $value"),
+                                  );
+                                }).toList(),
+                                onChanged: (newValue) {
+                                 setState(() {
+                                   _categorie = newValue ;
+                                 });
+                                },
+
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                                alignment: Alignment.topLeft,
+                                child: Text('Ville'.tr)),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                 // color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(5))),
+                              child: TextFormField(
+                                controller: _ville_search,
+                                validator: (val){
+                                  if (val!.isEmpty){
+                                    return 'entre ville';
+                                  }return null;
+                                },
+
+                                decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.only(
+                                        top: 8.h, bottom: 8.h, right: 8.w, left: 8.w),
+                                    //fillColor: Colors.white,
+                                    // labelText: "",
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    // labelText: "",
+                                    hintText: 'Entrez le nom de la ville ?'.tr,
+                                    border: OutlineInputBorder(
+                                        borderSide: const BorderSide(width: 3),
+                                        borderRadius: BorderRadius.circular(5))),
+                                keyboardType: TextInputType.text,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                                alignment: Alignment.topLeft,
+                                child: Text('Type d\'annonce'.tr)),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            Wrap(
+                              //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                               //
+                                Row(
+                                  children: [
+                                    Radio(
                                       value:'Vente',
                                       groupValue: _propritr_filter ,
                                       onChanged: (value) {
                                         setState(() {
                                           _propritr_filter='Vente';
-                                          print(_propritr_filter);
+                                         // print(_propritr_filter);
 
                                         });
                                       },
                                     ),
-                                  ),
-                                  Text('Vente'.tr),
-                                ],
-                              ),
+                                    Text('Vente'.tr),
+                                  ],
+                                ),
 
 
 
-                              Row(
-                                children: [
-                                  Form(
-                                    key: _keylocation,
-                                    child: Radio(
+                                Row(
+                                  children: [
+                                    Radio(
                                       value: 'À location',
                                       groupValue: _propritr_filter,
                                       onChanged: (value) {
                                         setState(() {
                                           _propritr_filter='À location';
-                                           print(_propritr_filter);
+                                         //  print(_propritr_filter);
                                         });
                                       },
                                     ),
-                                  ),
-                                  Text('À location'.tr),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Form(
-                                    key: _keyDemande,
-                                    child: Radio(
+                                    Text('À location'.tr),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Radio(
                                       value: 'Demande',
                                       groupValue: _propritr_filter,
-                                      onChanged: (value) {
+                                      onChanged: (_) {
                                         setState(() {
 
                                           _propritr_filter='Demande';
-                                          print(_propritr_filter);
+                                        //  print(_propritr_filter);
                                         });
                                       },
                                     ),
-                                  ),
-                                  Text('Demande'.tr),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Container(
-                        decoration:  BoxDecoration(
-                            color: Color(0xffb58350),
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        alignment: Alignment.bottomCenter,
-                        child:  TextButton(
-                              onPressed: () {
+                                    Text('Demande'.tr),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration:  BoxDecoration(
+                              color: Color(0xffb58350),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                          alignment: Alignment.bottomCenter,
+                          child:  TextButton(
+                                onPressed: () {
 
+                  if(_keyVent.currentState!.validate() &&_categorie!=null ) {
+                    setState(() {
 
-                                    setState(() {
-
-                                      searchvlue = 'Appartement à louer à Aourir';
-                                      searchVille = 'Agadir';
-                                      _categorie='Apartement';
-                                      _propritr_filter='Vent';
-                                      for(int i=0;i<widget.data.length;i++)
-                                        if((widget.data[i].city.contains(searchVille!) ||
-                                            widget.data[i].propertyType.contains(_categorie!)) ||
-                                            (widget.data[i].propertyType.contains(_propritr_filter) ||
-                                            widget.data[i].title.contains(searchvlue))
-                                        ){
-                                          filtrResulta.add(widget.data[i]);
+                                        searchvlue = _search.text;
+                                        searchVille = _ville_search.text;
+                                       // _propritr_filter='Vent';
+                                        for(int i=0;i<widget.data.length;i++) {
+                                          if((widget.data[i].city.contains(searchVille!) ||
+                                              widget.data[i].propertyType.contains(_categorie!)) ||
+                                              (widget.data[i].propertyType.contains(_propritr_filter) ||
+                                              widget.data[i].title.contains(searchvlue))
+                                          ){
+                                            filtrResulta.add(widget.data[i]);
+                                          }
                                         }
 
-                                      showDialog(
+                                        showDialog(
 
 
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              backgroundColor: Color(0xffefefef),
-                                              title:filtrResulta.length==0?Text(''): Center(child: Text('Résultats de recherche')),
-                                              content: Stack(
-                                                children: [
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                backgroundColor: Color(0xffefefef),
+                                                title:filtrResulta.length==0?Text(''): Center(child: Text('Résultats de recherche')),
+                                                content: Stack(
+                                                  children: [
 
-                                                  Container(
-                                                    color: Color(0xffefefef),
-                                                    height: MediaQuery.of(context).size.height,
-                                                    width: MediaQuery.of(context).size.width,
-                                                    child:
+                                                    Container(
+                                                      color: Color(0xffefefef),
+                                                      height: MediaQuery.of(context).size.height,
+                                                      width: MediaQuery.of(context).size.width,
+                                                      child:
 
-                                                    filtrResulta.length==0?
-                                          //
-                                                    Column(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(left: 8,right: 8),
-                                                          child: SvgPicture.asset(
-                                                            'assets/icon/seaeching_vide.svg',
-                                                            width: 400.h,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          'Search results are empty ',
-                                                          style: TextStyle(
-                                                            fontSize: 20,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    )
-                                                        :
-                                                    ListView.builder(
-                                                        itemCount: filtrResulta.length,
-                                                        itemBuilder: (context , i) {
-                                                        return Card(
-                                                          child: GestureDetector(
-                                                            onTap: (){
-                                                              Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
-                                                            },
-                                                            child: ListTile(
-                                                              leading: Container(
-                                                                width: 40.w,
-                                                                height:60.h ,
-                                                                decoration:  BoxDecoration(
-                                                                    image:  DecorationImage(
-                                                                      image: NetworkImage(
-                                                                        filtrResulta[i].cover,
-                                                                      ),
-                                                                      fit: BoxFit.fill,
-                                                                    ),
-                                                                    color: Colors.white,
-                                                                   ),
-
-                                                              ),
-                                                              title: Text(filtrResulta[i].title),
-                                                              subtitle: Column(
-                                                                children: [
-                                                                  Text(
-                                                                      filtrResulta[i].region +
-                                                                          '-' +
-                                                                          filtrResulta[i].city),
-                                                                  Wrap(
-
-                                                                    children: [
-                                                                      Container(
-                                                                        child: Row(children: [
-                                                                          SvgPicture.asset(
-                                                                            'assets/icon/annonces/bed-sharp.svg',
-                                                                            width: 10.w,
-                                                                            height: 10.h,
-                                                                            matchTextDirection:
-                                                                            true,
-                                                                            color:
-                                                                            Color(0xff8a8a8a),
-                                                                          ),
-                                                                          Text(
-                                                                            "${filtrResulta[i].bedrooms} Beds",
-                                                                            style: TextStyle(
-                                                                                color: Color(
-                                                                                    0xff8a8a8a)),
-                                                                          )
-                                                                        ]),
-                                                                      ),
-                                                                      Container(
-                                                                        child: Row(children: [
-                                                                          SvgPicture.asset(
-                                                                            'assets/icon/annonces/bathroom.svg',
-                                                                            width: 10.w,
-                                                                            height: 10.h,
-                                                                            matchTextDirection:
-                                                                            true,
-                                                                            color:
-                                                                            Color(0xff8a8a8a),
-                                                                          ),
-                                                                          Text(
-                                                                            "${filtrResulta[i].bathrooms} Boths",
-                                                                            style: TextStyle(
-                                                                                color: Color(
-                                                                                    0xff8a8a8a)),
-                                                                          )
-                                                                        ]),
-                                                                      ),
-                                                                      Container(
-                                                                        child: Row(children: [
-                                                                          SvgPicture.asset(
-                                                                            'assets/icon/m.svg',
-                                                                            width: 10.w,
-                                                                            height: 10.h,
-                                                                            matchTextDirection:
-                                                                            true,
-                                                                            color:
-                                                                            Color(0xff8a8a8a),
-                                                                          ),
-                                                                          Text(
-                                                                            "${filtrResulta[i].area} m²",
-                                                                            style: TextStyle(
-                                                                                color: Color(
-                                                                                    0xff8a8a8a)),
-                                                                          )
-                                                                        ]),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                      filtrResulta.length==0?
+                                            //
+                                                      Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(left: 8,right: 8),
+                                                            child: SvgPicture.asset(
+                                                              'assets/icon/seaeching_vide.svg',
+                                                              width: 400.h,
                                                             ),
                                                           ),
-                                                        );
-                                                    }),
-                                                  ),
-                                                  Positioned(
-                                                    top: 2,
-                                                right:2 ,
-                                                    child: IconButton(onPressed: (){Get.back();}, icon: Icon(Icons.clear , color: Colors.red,)),
-                                                  ),
-                                                ],
-                                              )
+                                                          Text(
+                                                            'Search results are empty ',
+                                                            style: TextStyle(
+                                                              fontSize: 20,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      )
+                                                          :
+                                                      ListView.builder(
+                                                          itemCount: filtrResulta.length,
+                                                          itemBuilder: (context , i) {
+                                                          return Card(
+                                                            child: GestureDetector(
+                                                              onTap: (){
+                                                                Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
+                                                              },
+                                                              child: ListTile(
+                                                                leading: Container(
+                                                                  width: 40.w,
+                                                                  height:60.h ,
+                                                                  decoration:  BoxDecoration(
+                                                                      image:  DecorationImage(
+                                                                        image: NetworkImage(
+                                                                          filtrResulta[i].cover,
+                                                                        ),
+                                                                        fit: BoxFit.fill,
+                                                                      ),
+                                                                      color: Colors.white,
+                                                                     ),
 
-                                            );
-                                          });
+                                                                ),
+                                                                title: Text(filtrResulta[i].title),
+                                                                subtitle: Column(
+                                                                  children: [
+                                                                    Text(
+                                                                        filtrResulta[i].region +
+                                                                            '-' +
+                                                                            filtrResulta[i].city),
+                                                                    Wrap(
 
-                                    });
-                                  },
-                              child: Text(
-                                'RECHERCHER (56242)'.tr,
-                                style: TextStyle(color: Colors.white),
+                                                                      children: [
+                                                                        Container(
+                                                                          child: Row(children: [
+                                                                            SvgPicture.asset(
+                                                                              'assets/icon/annonces/bed-sharp.svg',
+                                                                              width: 10.w,
+                                                                              height: 10.h,
+                                                                              matchTextDirection:
+                                                                              true,
+                                                                              color:
+                                                                              Color(0xff8a8a8a),
+                                                                            ),
+                                                                            Text(
+                                                                              "${filtrResulta[i].bedrooms} Beds",
+                                                                              style: TextStyle(
+                                                                                  color: Color(
+                                                                                      0xff8a8a8a)),
+                                                                            )
+                                                                          ]),
+                                                                        ),
+                                                                        Container(
+                                                                          child: Row(children: [
+                                                                            SvgPicture.asset(
+                                                                              'assets/icon/annonces/bathroom.svg',
+                                                                              width: 10.w,
+                                                                              height: 10.h,
+                                                                              matchTextDirection:
+                                                                              true,
+                                                                              color:
+                                                                              Color(0xff8a8a8a),
+                                                                            ),
+                                                                            Text(
+                                                                              "${filtrResulta[i].bathrooms} Boths",
+                                                                              style: TextStyle(
+                                                                                  color: Color(
+                                                                                      0xff8a8a8a)),
+                                                                            )
+                                                                          ]),
+                                                                        ),
+                                                                        Container(
+                                                                          child: Row(children: [
+                                                                            SvgPicture.asset(
+                                                                              'assets/icon/m.svg',
+                                                                              width: 10.w,
+                                                                              height: 10.h,
+                                                                              matchTextDirection:
+                                                                              true,
+                                                                              color:
+                                                                              Color(0xff8a8a8a),
+                                                                            ),
+                                                                            Text(
+                                                                              "${filtrResulta[i].area} m²",
+                                                                              style: TextStyle(
+                                                                                  color: Color(
+                                                                                      0xff8a8a8a)),
+                                                                            )
+                                                                          ]),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                      }),
+                                                    ),
+                                                    Positioned(
+                                                      top: 2,
+                                                  right:2 ,
+                                                      child: IconButton(onPressed: (){Get.back();}, icon: Icon(Icons.clear , color: Colors.red,)),
+                                                    ),
+                                                  ],
+                                                )
+
+                                              );
+                                            });
+
+                                      });
+                  }
+                                    },
+                                child: Text(
+                                  'RECHERCHER (56242)'.tr,
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
-                            ),
 
 
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
 
 

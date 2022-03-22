@@ -63,7 +63,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                       //padding: EdgeInsets.only(bottom: 10,right: 5),
                      // margin: EdgeInsets.only(bottom: 35,left: 15),
                      top: -10,
-                      right: 0,
+                      right: -10,
                       child: GetBuilder<AnnonceController>(
                         init: AnnonceController(),
           builder: (controller) => Align(
@@ -114,6 +114,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           ),
                           Text(
                             widget.data.region,
+                            maxLines: 1,
                             style: TextStyle(fontSize: 11),
                           ),
                           SizedBox(
@@ -125,6 +126,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           ),
                           Text(
                             widget.data.city,
+                            maxLines: 1,
                             style: TextStyle(fontSize: 11),
                           ),
                         ],
