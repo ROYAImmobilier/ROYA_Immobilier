@@ -33,7 +33,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                 width: 150,
                 decoration:  BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
+                    image: NetworkImage(widget.image),
                     fit: BoxFit.fill,
                   ),
                   color: Colors.white,
@@ -63,7 +63,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                       //padding: EdgeInsets.only(bottom: 10,right: 5),
                      // margin: EdgeInsets.only(bottom: 35,left: 15),
                      top: -10,
-                      right: -10,
+                      right: 0,
                       child: GetBuilder<AnnonceController>(
                         init: AnnonceController(),
           builder: (controller) => Align(
@@ -114,7 +114,6 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           ),
                           Text(
                             widget.data.region,
-                            maxLines: 1,
                             style: TextStyle(fontSize: 11),
                           ),
                           SizedBox(
@@ -126,7 +125,6 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                           ),
                           Text(
                             widget.data.city,
-                            maxLines: 1,
                             style: TextStyle(fontSize: 11),
                           ),
                         ],

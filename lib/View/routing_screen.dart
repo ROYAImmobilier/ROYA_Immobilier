@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,12 +64,91 @@ class _RoutingScreenState extends State<RoutingScreen> {
     }
   }
 
+
+
+  postdata() async {
+    try {
+      print("eeeeeeeeeeeeeeeeeeeeeeeeee");
+      var response = await http
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
+        "region_id": "1",//region_id,
+        "city_id":"1",// city_id,
+        "transaction": 'Rent',//transaction,
+        "property_type":'Farms',// property_type,
+        "status": 'Good',//status,
+        "address":"alous", //address,
+        "quartier":'agrmzgid' ,//quartier,
+        "area": "12.54",
+        "price": "245145",
+        "age": "F1T5",
+        "floor_type": "Tiled",
+        "floor": "4",
+        "apartment": "3",
+        "bedrooms": "2",
+        "bathrooms": "1",
+        "kitchens": "3",
+        "title": "tigmmi n lf9ih hhh",
+        "description": "agrmzgid n ait awlous hhhhhh kollot ",
+        "phone1": "0650421408",
+        "phone2": "0650421408",
+        "name": "ouknik",
+        "email": "advertiser@roya.com",
+        "password": "password",
+        "confirmation_password": "password",
+        "abilities": '',
+        "media": '',
+      });
+      print("ggggggggggggggggggggggggggggggggggg");
+      print(response.body);
+      if(response.statusCode==201){
+        print('200120012001');
+        print("test" +response.body);
+      }
+    } catch (e) {
+      print('error ' + e.toString());
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   void initState() {
     super.initState();
 
     pageController = PageController();
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +180,12 @@ class _RoutingScreenState extends State<RoutingScreen> {
               color: Colors.white,
             ),
             onPressed: () {
-              Get.to(ChatPage());
+
+              setState(() {
+                postdata();
+              });
+
+             // Get.to(Add_Annonce());
             },
           ),
           bottomNavigationBar: BottomNavigationBar(

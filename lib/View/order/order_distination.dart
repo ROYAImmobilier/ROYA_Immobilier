@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
-
+import 'package:http/http.dart'as http;
 import '../../Model/city.dart';
 import '../../Model/cityrepo.dart';
 import '../../Model/region.dart';
@@ -445,6 +445,22 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                           child: TextButton(
                             onPressed: () {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                               print(_Property_details);
                               print(_categorie);
                               print(_statut);
@@ -457,14 +473,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   value != null &&
                                   city != null ) {
                                //
-                                Get.to(Add_Annonce_2(
-                                    Property_details: _Property_details,
-                                    categorie: _categorie,
-                                    statut: _statut,
-                                    adress: adresse.text,
-                                    region: value,
-                                    ville: city,
-                                    quartier: quartier_.text));
+                               //  Get.to(Add_Annonce_2(
+                               //      Property_details: _Property_details,
+                               //      categorie: _categorie,
+                               //      statut: _statut,
+                               //      adress: adresse.text,
+                               //      region: value,
+                               //      ville: city,
+                               //      quartier: quartier_.text));
                               }
                             },
                             child: Container(
@@ -491,4 +507,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
           )),
     );
   }
+
+
+
+
 }

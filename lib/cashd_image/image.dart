@@ -32,6 +32,10 @@ class LoadingWidget1 extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Container(
+              height: MediaQuery.of(context)
+                  .size
+                  .width *
+                  0.60,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.black12,

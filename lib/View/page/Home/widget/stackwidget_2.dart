@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_grid.dart';
+import 'package:roya_immobilie/View/page/Home/widget/test.dart';
 import '../../page_details/details.dart';
 import '../../page_details/icon_status.dart';
 import '../../searchfilter.dart';
@@ -142,7 +143,7 @@ height: MediaQuery.of(context).size.height.h,
                                         (MediaQuery.of(context)
                                             .size
                                             .width *
-                                            0.50)
+                                            0.60)
                                             .h,
                                         childAspectRatio: 2,
                                         crossAxisSpacing:5.h,
@@ -152,10 +153,13 @@ height: MediaQuery.of(context).size.height.h,
                                           onTap: () => Get.to(Details(
                                               image: widget.data[index].cover !=
                                                   null
-                                                  ? widget.data[index].cover
-                                                  : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                                  ? 'https://dashboard.royaimmo.ma/images/annonces/${
+                                                          widget
+                                                              .data[index].cover
+                                                        }'
+                                                      : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                               data: widget.data[index])),
-                                          child: Liste_Annonce(
+                                          child: test(
                                             image: widget.data[index].cover !=
                                                 null
                                                 ? widget.data[index].cover
@@ -183,7 +187,7 @@ height: MediaQuery.of(context).size.height.h,
                                                 : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                             data: widget.data[index],
                                           )),
-                                          child: Liste_Annonce_2(
+                                          child: test(
                                               data: widget.data[index],
                                               image: widget.data[index]
                                                   .cover !=
