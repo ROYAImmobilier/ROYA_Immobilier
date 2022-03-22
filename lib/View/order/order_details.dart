@@ -37,8 +37,7 @@ var price=TextEditingController();
 String ? _price_type;
 String ? _age;
 String ? _flooring;
-  var dropdownValue = "dh";
-  var dropdownAge = '29';
+
   var _key_details=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -147,7 +146,7 @@ String ? _flooring;
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide(width: 3.w),
                                       borderRadius: BorderRadius.circular(5))),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                             ),
                           ),
                           SizedBox(
@@ -172,7 +171,7 @@ String ? _flooring;
                                 height: 2.h,
                                 // color: Colors.deepPurpleAccent,
                               ),
-                              value: dropdownValue,
+                              value: _price_type,
                               items: <String>['dh', '\$', 'ouro', 'dinar']
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
@@ -181,7 +180,11 @@ String ? _flooring;
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
-                                _price_type=newValue;
+                                setState(() {
+                                  _price_type=newValue;
+
+                                });
+
                               },
                             ),
                           ),
@@ -217,9 +220,9 @@ String ? _flooring;
                             height: 2,
                             // color: Colors.deepPurpleAccent,
                           ),
-                          value: dropdownAge,
+                          value: _age,
 
-                          items: <String>['29', '28', '19', '14']
+                          items: <String>['Less than 1 year', '28', '19', '14']
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -259,8 +262,8 @@ String ? _flooring;
                             height: 2,
                             // color: Colors.deepPurpleAccent,
                           ),
-                          value: dropdownValue,
-                          items: <String>['dh', '\$', 'ouro', 'dinar']
+                          value: _flooring,
+                          items: <String>['Less than 1 year', '\$', 'ouro', 'dinar']
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -541,7 +544,9 @@ String ? _flooring;
                                 print(_age);
                                 print(_flooring);
     if(_key_details.currentState!.validate()&&_age!=null ) {
-              Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '', bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms, Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville,));
+              Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '',
+                bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms,
+                Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville, age: _age, price: price.text,flooring:_flooring,area:area.text));
           }},
                               child: Container(
                                 width: 120,

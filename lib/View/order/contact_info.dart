@@ -26,6 +26,11 @@ class ContactInfo extends StatefulWidget {
   int kichens;
 
   String? area;
+  String? price;
+
+  String? age;
+  String? flooring;
+
 
   ContactInfo({
     required this.Property_details,
@@ -40,6 +45,8 @@ class ContactInfo extends StatefulWidget {
     required this.kichens,
     required this.value,
     required this.city,
+    required this.age,
+    required this.price, required this.flooring, required this.area,
   });
 
   String? value;
@@ -55,6 +62,7 @@ class _ContactInfoState extends State<ContactInfo> {
   var _phone1 = TextEditingController();
   var _phone2 = TextEditingController();
   var _phone3 = TextEditingController();
+  String ?base64string;
   List<File> _image = [];
   final picker = ImagePicker();
 
@@ -72,7 +80,7 @@ class _ContactInfoState extends State<ContactInfo> {
 
         File imagefile = File(imagepath); //convert Path to File
         Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
-        String base64string =
+         base64string =
             base64.encode(imagebytes); //convert bytes to base64 string
         print("test");
         //a=base64string;
@@ -83,7 +91,7 @@ class _ContactInfoState extends State<ContactInfo> {
               AAAIkAAQAAAABAAAAAAIlAAIAAAAgAAAA/gEoAA ... long string output
               */
 
-        Uint8List decodedbytes = base64.decode(base64string);
+        Uint8List decodedbytes = base64.decode(base64string!);
         //decode base64 stirng to bytes
 
         setState(() {});
@@ -381,11 +389,13 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(widget.region_1);
                             print(widget.ville);
                             print(widget.quartier);
-                            // print(widget.area);
-                            // print(price.text);
-                            // print(_price_type);
-                            // print(_age);
-                            // print(_flooring);
+                             print(widget.area);
+                            print(widget.price);
+                            print(widget.age);
+                            print(widget.flooring);
+                            print(widget.bedroms);
+                            print(widget.bathrooms);
+                            print(widget.kichens);
                             print(_titel.text);
                             print(_description.text);
                             print(_phone1.text);
@@ -395,19 +405,14 @@ class _ContactInfoState extends State<ContactInfo> {
                               // Get.to(LoginScreen());
 
                               setState(() {
-                                postdata(
-                                  widget.Property_details,
-                                  widget.categorie,
-                                  widget.statut,
-                                  widget.adress,
-                                  widget.region_1,
-                                  widget.ville,
-                                  widget.quartier,
-                                  widget.bedroms,
-                                  widget.bathrooms,
-                                  widget.kichens,
-                                  widget.value,
-                                  widget.city,
+                                postdata(address: widget.adress,
+                                    floor_type: "", title: _titel.text, media: base64string, bathrooms: widget.bathrooms.toString(), transaction: "", status: widget.statut,
+                                    confirmation_password: "12345678", kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
+                                    floor: widget.flooring, region_id: "1", city_id: "3", email: "test_1@gmail.com", phone1: _phone1.text,
+                                    bedrooms: widget.bedroms.toString(), apartment: widget.categorie, description: _description.text,
+                                    name: "Abdellah", phone2: _phone2.text, property_type: widget.Property_details,
+                                    age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "1234567"
+
                                 );
                               });
                             }
@@ -433,18 +438,45 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 
-  postdata(Property_details, categorie, statut, adress, region_1, ville,
-      quartier, bedroms, bathrooms, kichens, value, city) async {
+  postdata({required region_id,required city_id,required transaction,required property_type,required status,required address,required quartier,required area,required price,required age,required floor_type,required floor,required apartment,required bedrooms,required bathrooms,required kitchens,required title,required description,required phone1,required phone2,required name,required email,required password,required confirmation_password,required abilities,required media}) async {
     try {
       var response = await http
-          .post(Uri.parse('https://jsonplaceholder.typicode.com/posts'), body: {
-        "userId": '10',
-        "title": "aaaaaaaaaaaaaaaaa",
-        "body": "bbbbbbbbbbbbbbbbbbbbbbbb",
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
+        "region_id": region_id,
+        "city_id": city_id,
+        "transaction": transaction,
+        "property_type": property_type,
+        "transaction": transaction,
+        "property_type": property_type,
+        "status": status,
+        "address": address,
+        "quartier": quartier,
+        "area": area,
+        "price": price,
+        "age": age,
+        "floor_type": floor_type,
+        "floor": floor,
+        "apartment": apartment,
+        "bedrooms": bedrooms,
+        "bathrooms": bathrooms,
+        "kitchens": kitchens,
+        "title": title,
+        "description": description,
+        "phone1": phone1,
+        "phone2": phone2,
+        "name": name,
+        "email": email,
+        "password": password,
+        "confirmation_password": confirmation_password,
+        "abilities[id]": abilities,
+        "media[image base64]": media,
       });
       print(response.body);
+      if(response.statusCode==201){
+        print("test");
+      }
     } catch (e) {
-      print('error' + e.toString());
+      print('error ' + e.toString());
     }
   }
 }
