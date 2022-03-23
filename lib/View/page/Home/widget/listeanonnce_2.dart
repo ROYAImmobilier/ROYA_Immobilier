@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/anonce_model_favote.dart';
+import 'package:roya_immobilie/cashd_image/image.dart';
 
 class Liste_Annonce_2 extends StatefulWidget {
   late String image;
@@ -30,13 +31,14 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
               padding: EdgeInsets.all(5),
               child: Stack(children: [
                 Container(
+                  child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image,),
                   height: 120,
                   width: 150,
                   decoration:  BoxDecoration(
-                    image: DecorationImage(
-                                    image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
-                                    fit: BoxFit.fill,
-                                  ),
+                    // image: DecorationImage(
+                    //                 image:
+                    //                 fit: BoxFit.fill,
+                    //               ),
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),

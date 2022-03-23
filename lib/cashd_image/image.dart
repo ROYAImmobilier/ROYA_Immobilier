@@ -9,11 +9,11 @@ Widget cachedImage(imageUrl) {
     imageUrl: imageUrl,
     imageBuilder: (context, imageProvider) => Container(
       decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: Colors.black12,
           borderRadius: BorderRadius.circular(10),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.grey[400]!, blurRadius: 2, offset: Offset(2, 2))
+                color: Colors.black12, blurRadius: 2, offset: Offset(2, 2))
           ],
           image: DecorationImage(image: imageProvider, fit: BoxFit.cover)),
     ),
@@ -28,14 +28,14 @@ class LoadingWidget1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
         baseColor: Colors.black87,
-        highlightColor: Colors.white54,
+        highlightColor: Colors.white,
         child: Stack(
           children: <Widget>[
             Container(
               height: MediaQuery.of(context)
                   .size
                   .width *
-                  0.60,
+                  0.70,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.black12,
@@ -53,12 +53,7 @@ class LoadingWidget1 extends StatelessWidget {
                               topRight: Radius.circular(10))),
                     ),
                   ),
-                  Flexible(
-                    flex: 2,
-                    child: Container(
-                      margin: EdgeInsets.only(top: 10),
-                    ),
-                  ),
+
                 ],
               ),
             ),
