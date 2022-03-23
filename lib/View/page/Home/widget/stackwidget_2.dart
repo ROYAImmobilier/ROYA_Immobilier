@@ -143,7 +143,7 @@ height: MediaQuery.of(context).size.height.h,
                                         (MediaQuery.of(context)
                                             .size
                                             .width *
-                                            0.60)
+                                            0.70)
                                             .h,
                                         childAspectRatio: 2,
                                         crossAxisSpacing:5.h,
@@ -153,7 +153,7 @@ height: MediaQuery.of(context).size.height.h,
                                           onTap: () => Get.to(Details(
                                               image: widget.data[index].cover !=
                                                   null
-                                                  ? 'https://dashboard.royaimmo.ma/images/annonces/${
+                                                  ? '${
                                                           widget
                                                               .data[index].cover
                                                         }'
@@ -187,7 +187,7 @@ height: MediaQuery.of(context).size.height.h,
                                                 : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                             data: widget.data[index],
                                           )),
-                                          child: test(
+                                          child: Liste_Annonce(
                                               data: widget.data[index],
                                               image: widget.data[index]
                                                   .cover !=

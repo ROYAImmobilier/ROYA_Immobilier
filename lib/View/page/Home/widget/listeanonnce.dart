@@ -33,7 +33,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
                 width: 150,
                 decoration:  BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(widget.image),
+                    image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
                     fit: BoxFit.fill,
                   ),
                   color: Colors.white,
