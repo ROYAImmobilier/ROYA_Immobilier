@@ -153,7 +153,7 @@ height: MediaQuery.of(context).size.height.h,
                                           onTap: () => Get.to(Details(
                                               image: widget.data[index].cover !=
                                                   null
-                                                  ? 'https://dashboard.royaimmo.ma/images/annonces/${
+                                                  ? '${
                                                           widget
                                                               .data[index].cover
                                                         }'
