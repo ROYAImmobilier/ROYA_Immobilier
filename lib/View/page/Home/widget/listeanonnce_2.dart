@@ -123,21 +123,29 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
 
                     Container(
                       margin: EdgeInsets.only(top: 90,left: 10),
-                      child: Row(
+                      child: Wrap(
                         children: [
-                          Icon(
-                            Icons.location_on_rounded,
-                            size: 12,
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_rounded,
+                                size: 14,
+                              ), Text( widget.data.region,style: TextStyle(fontSize: 14),),
+                            ],
                           ),
-                          Text( widget.data.region,style: TextStyle(fontSize: 9),),
+
                           SizedBox(
                             width: 5,
                           ),
-                          Icon(
-                            Icons.home,
-                            size: 11,
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.home,
+                                size: 14,
+                              ), Text(widget.data.city,style: TextStyle(fontSize: 14),),
+                            ],
                           ),
-                          Text(widget.data.city,style: TextStyle(fontSize: 9),),
+
                         ],
                       ),
                     )
