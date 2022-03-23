@@ -473,14 +473,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   value != null &&
                                   city != null ) {
                                //
-                               //  Get.to(Add_Annonce_2(
-                               //      Property_details: _Property_details,
-                               //      categorie: _categorie,
-                               //      statut: _statut,
-                               //      adress: adresse.text,
-                               //      region: value,
-                               //      ville: city,
-                               //      quartier: quartier_.text));
+                                Get.to(Add_Annonce_2(
+                                    Property_details: _Property_details,
+                                    categorie: _categorie,
+                                    statut: _statut,
+                                    adress: adresse.text,
+                                    region: value,
+                                    ville: city,
+                                    quartier: quartier_.text));
                               }
                             },
                             child: Container(

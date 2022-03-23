@@ -10,6 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:path/path.dart' as Path;
 import 'package:image_picker/image_picker.dart';
 
+import '../../Controller/login.dart';
 import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
 
@@ -415,6 +416,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 //     age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "12345678"
                                 //
                                 // );
+                                postdata_2(email: 'abde@gmail.com', password: '12345678');
                               });
                             }
                           },
@@ -439,10 +441,16 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 
-  postdata({required region_id,required city_id,required transaction,required property_type,required status,required address,required quartier,required area,required price,required age,required floor_type,required floor,required apartment,required bedrooms,required bathrooms,required kitchens,required title,required description,required phone1,required phone2,required name,required email,required password,required confirmation_password,required abilities,required media}) async {
+  postdata({required region_id,required city_id,required transaction,required property_type,required status,required address,required quartier,required area,required price,required age,required floor_type,required floor,required apartment,required bedrooms,required bathrooms,required kitchens,required title,required description,required phone1,required phone2,
+  //  required name,
+  //  required email,
+   // required password,
+   // required confirmation_password,
+    required abilities,
+    required media}) async {
     try {
       var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'), body: {
         "region_id": region_id,
         "city_id": city_id,
         "transaction": transaction,
@@ -465,10 +473,10 @@ class _ContactInfoState extends State<ContactInfo> {
         "description": description,
         "phone1": phone1,
         "phone2": phone2,
-        "name": name,
-        "email": email,
-        "password": password,
-        "confirmation_password": confirmation_password,
+      //  "name": name,
+       // "email": email,
+      //  "password": password,
+       //"confirmation_password": confirmation_password,
         "abilities[id]": abilities,
         "media[image base64]": media,
       });
@@ -479,5 +487,72 @@ class _ContactInfoState extends State<ContactInfo> {
     } catch (e) {
       print('error ' + e.toString());
     }
+  } postdata_2({
+    //required region_id,required city_id,required transaction,required property_type,required status,required address,required quartier,required area,required price,required age,required floor_type,required floor,required apartment,required bedrooms,required bathrooms,required kitchens,required title,required description,required phone1,required phone2,required name,
+    required email,required password,
+    //required confirmation_password,required abilities,required media
+  }) async {
+    try {
+      var response = await http
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
+        // "region_id": region_id,
+        // "city_id": city_id,
+        // "transaction": transaction,
+        // "property_type": property_type,
+        // "transaction": transaction,
+        // "property_type": property_type,
+        // "status": status,
+        // "address": address,
+        // "quartier": quartier,
+        // "area": area,
+        // "price": price,
+        // "age": age,
+        // "floor_type": floor_type,
+        // "floor": floor,
+        // "apartment": apartment,
+        // "bedrooms": bedrooms,
+        // "bathrooms": bathrooms,
+        // "kitchens": kitchens,
+        // "title": title,
+        // "description": description,
+        // "phone1": phone1,
+        // "phone2": phone2,
+      //  "name": name,
+       "email": email,
+       "password": password,
+       // "confirmation_password": confirmation_password,
+       //  "abilities[id]": abilities,
+       //  "media[image base64]": media,
+      });
+     // print(response.body);
+
+      var login = <Login>[].obs;
+      var jsoon = response.body;
+      if (response.statusCode == 200) {
+        var b = json.decode(jsoon);
+        var a = b["data"];
+        var c=json.encode(a);
+        print(a[0]['title']);
+        //login=loginFromJson(c) as RxList<Login>;
+
+      }
+
+      if(response.statusCode==200){
+        print("test" +response.body);
+    // postdata(address: widget.adress,
+    //     floor_type: "", title: _titel.text, media: base64string, bathrooms: widget.bathrooms.toString(), transaction: "", status: widget.statut,
+    //      kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
+    //     floor: widget.flooring, region_id: "1", city_id: "3", phone1: _phone1.text,
+    //     bedrooms: widget.bedroms.toString(), apartment: widget.categorie, description: _description.text,
+    //      phone2: _phone2.text, property_type: widget.Property_details,
+    //     age: widget.age, price: widget.price.toString(), quartier: widget.quartier
+    //
+    // );
+      }
+    } catch (e) {
+      print('error ' + e.toString());
+    }
   }
 }
+
+
