@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:roya_immobilie/Model/ability.dart';
+import 'package:http/http.dart' as http;
 import 'contact_info.dart';
 import 'order_distination.dart';
 
@@ -16,19 +17,39 @@ class Add_Annonce_2 extends StatefulWidget {
   String? quartier;
 
   Add_Annonce_2(
-      {required this.Property_details,
-        required this.categorie,
-        required this.statut,
-        required this.adress,
-        required this.region,
-        required this.ville,
-        required this.quartier});
+      { this.Property_details,
+         this.categorie,
+         this.statut,
+         this.adress,
+         this.region,
+         this.ville,
+         this.quartier});
 
   @override
   State<Add_Annonce_2> createState() => _Add_AnnonceState();
 }
 
 class _Add_AnnonceState extends State<Add_Annonce_2> {
+
+
+
+
+List<Ability>allAbility=[];
+  @override
+  void initState() {
+    ServicesAbility.getability().then((regions) {
+      setState(() {
+        allAbility = regions!;
+        print('jjjjjjjjjjj'+allAbility.length.toString());
+      });
+    });
+    super.initState();
+  }
+
+
+
+
+
   int _bedroms = 0;
   int _bathrooms = 0;
   int kichens = 0;
@@ -627,5 +648,25 @@ String ? _flooring;
             ),
           )),
     );
+  }
+}
+
+
+
+class ServicesAbility {
+  //
+
+  static Future<List<Ability>?> getability() async {
+    try {
+      final response = await http.get(Uri.parse('https://dashboard.royaimmo.ma/api/abilities'));
+      if (200 == response.statusCode) {
+        final List<Ability> ability = abilityFromJson(response.body);
+        return ability;
+      } else {
+        return abilityFromJson(response.body);
+      }
+    } catch (e) {
+      // return List<City>();
+    }
   }
 }

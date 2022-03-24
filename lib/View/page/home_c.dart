@@ -123,6 +123,7 @@ class HomeC extends StatelessWidget {
                       padding: EdgeInsets.only(left: 30.w),
                       child: Row(
                         children: [
+
                           Text(
                             'Annonces',
                             style: TextStyle(fontSize: 16.sp),
