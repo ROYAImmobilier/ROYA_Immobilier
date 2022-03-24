@@ -62,46 +62,72 @@ class _ContactInfoState extends State<ContactInfo> {
   var _phone1 = TextEditingController();
   var _phone2 = TextEditingController();
   var _phone3 = TextEditingController();
-  String ?base64string;
+ // String ?base64string;
   List<File> _image = [];
-  final picker = ImagePicker();
+  //final picker = ImagePicker();
 
   final ImagePicker imgpicker = ImagePicker();
   String imagepath = "";
 
-  openImage() async {
-    try {
-      var pickedFile = await picker.getImage(source: ImageSource.gallery);
-      //you can use ImageCourse.camera for Camera capture
-      if (pickedFile != null) {
-        imagepath = pickedFile.path;
-        print(imagepath);
-        //output /data/user/0/com.example.testapp/cache/image_picker7973898508152261600.jpg
+  //late Future<File> file;
+  String status = '';
+  String? base64Image;
+  File? tmpFile;
+  String error = 'Error';
+  File? _file;
 
-        File imagefile = File(imagepath); //convert Path to File
-        Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
-         base64string =
-            base64.encode(imagebytes); //convert bytes to base64 string
-        print("test");
-        //a=base64string;
-        print(base64string);
-        /* Output:
-              /9j/4Q0nRXhpZgAATU0AKgAAAAgAFAIgAAQAAAABAAAAAAEAAAQAAAABAAAJ3
-              wIhAAQAAAABAAAAAAEBAAQAAAABAAAJ5gIiAAQAAAABAAAAAAIjAAQAAAABAAA
-              AAAIkAAQAAAABAAAAAAIlAAIAAAAgAAAA/gEoAA ... long string output
-              */
+  Future chooseImage() async {
 
-        Uint8List decodedbytes = base64.decode(base64string!);
-        //decode base64 stirng to bytes
-
-        setState(() {});
-      } else {
-        print("No image is selected.");
-      }
-    } catch (e) {
-      print("error while picking file.");
-    }
+      final myfile = await ImagePicker().pickImage(source: ImageSource.gallery)   ;
+setState(() {
+  _file=File(myfile!.path) ;
+  upload();
+});
   }
+
+Future upload() async{
+        if(_file==null)
+          return;
+      base64Image=base64Encode(_file!.readAsBytesSync());
+        imagepath=_file!.path.split("/").last;
+
+    //upload(fileName);
+  }
+
+
+  // openImage() async {
+  //   try {
+  //     var pickedFile = await picker.getImage(source: ImageSource.gallery);
+  //     //you can use ImageCourse.camera for Camera capture
+  //     if (pickedFile != null) {
+  //       imagepath = pickedFile.path;
+  //       print(imagepath);
+  //       //output /data/user/0/com.example.testapp/cache/image_picker7973898508152261600.jpg
+  //
+  //       File imagefile = File(imagepath); //convert Path to File
+  //       Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
+  //        base64string =
+  //           base64.encode(imagebytes); //convert bytes to base64 string
+  //       print("test");
+  //       //a=base64string;
+  //       print(base64string);
+  //       /* Output:
+  //             /9j/4Q0nRXhpZgAATU0AKgAAAAgAFAIgAAQAAAABAAAAAAEAAAQAAAABAAAJ3
+  //             wIhAAQAAAABAAAAAAEBAAQAAAABAAAJ5gIiAAQAAAABAAAAAAIjAAQAAAABAAA
+  //             AAAIkAAQAAAABAAAAAAIlAAIAAAAgAAAA/gEoAA ... long string output
+  //             */
+  //
+  //       Uint8List decodedbytes = base64.decode(base64string!);
+  //       //decode base64 stirng to bytes
+  //
+  //       setState(() {});
+  //     } else {
+  //       print("No image is selected.");
+  //     }
+  //   } catch (e) {
+  //     print("error while picking file.");
+  //   }
+  // }
 
   // choseImage() async {
   //   final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -327,7 +353,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               onTap: () {
                                 //selected img
                                 setState(() {
-                                  openImage();
+                                  chooseImage();
                                 });
                               },
                               child: Padding(
@@ -406,15 +432,36 @@ class _ContactInfoState extends State<ContactInfo> {
                               // Get.to(LoginScreen());
 
                               setState(() {
-                                // postdata(address: widget.adress,
-                                //     floor_type: "", title: _titel.text, media: base64string, bathrooms: widget.bathrooms.toString(), transaction: "", status: widget.statut,
-                                //     confirmation_password: "12345678", kitchens: widget.kichens.toString(), area: widget.area, abilities:" 2",
-                                //     floor: widget.flooring, region_id: "1", city_id: "3", email: "abde@gmail.com", phone1: _phone1.text,
-                                //     bedrooms: widget.bedroms.toString(), apartment: widget.categorie, description: _description.text,
-                                //     name: "Abde", phone2: _phone2.text, property_type: widget.Property_details,
-                                //     age: widget.age, price: widget.price.toString(), quartier: widget.quartier, password: "12345678"
-                                //
-                                // );
+                                postdata(
+                                    address: widget.adress,
+                                    floor_type: "wooden",
+                                    title: _titel.text,
+                                    media:base64Image,
+                                    bathrooms: "2",
+                                    transaction: "Rent",
+                                    status: widget.statut,
+                                  // confirmation_password: "12345678",
+                                    kitchens: "4",
+                                    area: "120",
+                                    abilities:'1',
+                                    floor: "3",
+                                    region_id: '1',
+                                    city_id: "3",
+                                    email: "abde3@gmail.com",
+                                    phone1: _phone1.text,
+                                    phone3: _phone3.text,
+                                    bedrooms: '2',
+                                    apartment: "4",
+                                    description: _description.text,
+                                  //  name: "ahmed",
+                                    phone2: _phone2.text,
+                                    property_type: widget.Property_details,
+                                    age: widget.age,
+                                    price:"15000",
+                                    quartier: widget.quartier,
+                                    password: "12345678"
+
+                                );
                               });
                             }
                           },
@@ -439,10 +486,36 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 
-  postdata({required region_id,required city_id,required transaction,required property_type,required status,required address,required quartier,required area,required price,required age,required floor_type,required floor,required apartment,required bedrooms,required bathrooms,required kitchens,required title,required description,required phone1,required phone2,required name,required email,required password,required confirmation_password,required abilities,required media}) async {
+  postdata({required String? region_id,
+    required String? city_id,
+    required String? transaction,
+    required String? property_type,
+    required String? status,
+    required String? address,
+    required String ? quartier,
+    required String? area,
+    required String? price,
+    required String? age,
+    required String? floor_type,
+    required String? floor,
+    required String? apartment,
+    required String? bedrooms,
+    required String? bathrooms,
+    required String? kitchens,
+    required String? title,
+    required String? description,
+    required String? phone1,
+    required String? phone2,
+   // required String? name,
+    required String? email,
+    required String? password,
+   // required String? confirmation_password,
+    required  abilities,
+    required  media, String? phone3
+  }) async {
     try {
       var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'), body: {
         "region_id": region_id,
         "city_id": city_id,
         "transaction": transaction,
@@ -465,15 +538,16 @@ class _ContactInfoState extends State<ContactInfo> {
         "description": description,
         "phone1": phone1,
         "phone2": phone2,
-        "name": name,
-        "email": email,
-        "password": password,
-        "confirmation_password": confirmation_password,
+        "phone3": phone3,
+       // "name": name,
+       "email": email,
+      "password": password,
+      // "confirmation_password": confirmation_password,
         "abilities[id]": abilities,
         "media[image base64]": media,
       });
       print(response.body);
-      if(response.statusCode==201){
+      if(response.statusCode==200){
         print("test" +response.body);
       }
     } catch (e) {

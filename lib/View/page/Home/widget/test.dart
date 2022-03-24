@@ -33,7 +33,7 @@ class test extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 200.h,
+                height: 180.h,
                 width: double.infinity,
                 child: cachedImage(
                   "https://dashboard.royaimmo.ma/images/annonces/"+image,
@@ -54,7 +54,7 @@ class test extends StatelessWidget {
 
               Container(
                // margin: EdgeInsets.only(top: 95),
-                height: 85,
+                height: 95,
                 width: 150,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -72,8 +72,8 @@ class test extends StatelessWidget {
                     Positioned(
                       //padding: EdgeInsets.only(bottom: 10,right: 5),
                       // margin: EdgeInsets.only(bottom: 35,left: 15),
-                     // top: -10,
-                      right: 0,
+                     top: -10,
+                      right:-10,
                       child: GetBuilder<AnnonceController>(
                         init: AnnonceController(),
                         builder: (controller) => Align(

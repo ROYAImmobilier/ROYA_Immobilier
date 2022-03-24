@@ -44,7 +44,7 @@ class _Liste_AnnonceState extends State<Liste_Annonce> {
               ),
               Container(
                 margin: EdgeInsets.only(top: 95),
-                height: 85,
+                height: 100,
                 width: 150,
                 decoration: const BoxDecoration(
                   color: Colors.white,

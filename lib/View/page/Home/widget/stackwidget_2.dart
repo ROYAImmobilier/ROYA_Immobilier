@@ -149,16 +149,20 @@ height: MediaQuery.of(context).size.height.h,
                                         crossAxisSpacing:5.h,
                                         mainAxisSpacing: 5.w),
                                     itemBuilder: (BuildContext ctx, index) {
-                                      return GestureDetector(
+                                      return index == widget.leng
+                                          ? SizedBox(
+                                        height: 25.h,
+                                      )
+                                          : GestureDetector(
                                           onTap: () => Get.to(Details(
-                                              image: widget.data[index].cover !=
-                                                  null
-                                                  ? '${
-                                                          widget
-                                                              .data[index].cover
-                                                        }'
-                                                      : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                              data: widget.data[index])),
+                                            image: widget.data[index]
+                                                .cover !=
+                                                null
+                                                ? widget
+                                                .data[index].cover
+                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                            data: widget.data[index],
+                                          )),
                                           child: test(
                                             image: widget.data[index].cover !=
                                                 null
