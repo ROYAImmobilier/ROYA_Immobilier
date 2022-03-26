@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/order/contact_info.dart';
+import 'package:roya_immobilie/View/order/order_details.dart';
 
 import '../../../../Controller/AnonceController.dart';
 import '../../../../Controller/cityController.dart';
@@ -210,18 +211,23 @@ class _DrawerPageState extends State<DrawerPage> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    'assets/icon/nav_menu/cc-chat.svg',
-                    width: 25,
-                    height: 25,
-                  ),
-                  SizedBox(
-                    width: 24,
-                  ),
-                  Text('Mes favoris'.tr, style: TextStyle(fontSize: 20))
-                ],
+              child: GestureDetector(
+                onTap: (){
+                  Get.to(Add_Annonce_2());
+                },
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icon/nav_menu/cc-chat.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    SizedBox(
+                      width: 24,
+                    ),
+                    Text('Mes favoris'.tr, style: TextStyle(fontSize: 20))
+                  ],
+                ),
               ),
             ),
             SizedBox(

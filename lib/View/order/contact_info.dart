@@ -7,9 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:path/path.dart' as Path;
+
 import 'package:image_picker/image_picker.dart';
 
+import '../../Model/ability.dart';
 import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
 
@@ -21,9 +22,9 @@ class ContactInfo extends StatefulWidget {
   String? region_1;
   String? ville;
   String? quartier;
-  int bedroms;
-  int bathrooms;
-  int kichens;
+  int? bedroms;
+  int? bathrooms;
+  int? kichens;
 
   String? area;
   String? price;
@@ -33,20 +34,20 @@ class ContactInfo extends StatefulWidget {
 
 
   ContactInfo({
-    required this.Property_details,
-    required this.categorie,
-    required this.statut,
-    required this.adress,
-    required this.region_1,
-    required this.ville,
-    required this.quartier,
-    required this.bedroms,
-    required this.bathrooms,
-    required this.kichens,
-    required this.value,
-    required this.city,
-    required this.age,
-    required this.price, required this.flooring, required this.area,
+     this.Property_details,
+     this.categorie,
+     this.statut,
+     this.adress,
+     this.region_1,
+     this.ville,
+     this.quartier,
+     this.bedroms,
+     this.bathrooms,
+     this.kichens,
+     this.value,
+     this.city,
+     this.age,
+     this.price,  this.flooring,  this.area,
   });
 
   String? value;
@@ -56,6 +57,21 @@ class ContactInfo extends StatefulWidget {
 }
 
 class _ContactInfoState extends State<ContactInfo> {
+
+
+
+
+
+
+
+
+
+
+
+
+
+  List<Ability> allAbility = [];
+
   var _key_Contact = GlobalKey<FormState>();
   var _titel = TextEditingController();
   var _description = TextEditingController();
@@ -146,6 +162,7 @@ Future upload() async{
   //       _image.add(File(response.file!.path));
   //     });
   //   } else {
+  //     print(response.file);
   //     print(response.file);
   //   }
   // }
@@ -555,3 +572,4 @@ Future upload() async{
     }
   }
 }
+
