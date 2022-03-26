@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
+import '../../../../../Controller/login.dart';
 import '../../../../../varia_ble/variable.dart';
+import '../../../home_c.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
-
+import 'package:http/http.dart' as http;
 class Body extends StatefulWidget {
   const Body({
      Key? key,
@@ -20,9 +22,11 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
  // var pass=TextEditingController();
  // var emaill=TextEditingController();
+  bool isLogin=false;
   late String email ='' ;
   late String password ='';
   var _key_validation=GlobalKey<FormState>();
+  Login? _user;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -69,9 +73,22 @@ class _BodyState extends State<Body> {
                     'Login',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: (){
+                  onPressed: () async{
+
                     if(_key_validation.currentState!.validate())
                     print(email +' '+password);
+                    final Login? user = await  _Login(email: email, password: password);
+                    setState(() {
+                      _user = user;
+                     //isLogin= user!.success;
+                    });
+
+
+
+
+
+
+
                   },
                   style: ElevatedButton.styleFrom(
                       primary: kPrimaryColor,
@@ -109,4 +126,37 @@ class _BodyState extends State<Body> {
       ),
     );
   }
+  _Login({
+    required String? email,
+    required String? password,
+  }) async {
+    try {
+      var response = await http
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
+        "email": email,
+        "password": password,
+
+      });
+      print(response.body);
+      if(response.statusCode==200){
+        Get.to(const HomeC());
+                }
+      else {
+        final snackBar = SnackBar(
+          content: Row(children: const [
+            Icon(
+              Icons.error,
+              color: Colors.white,
+            ),
+            Text('n\'pas regester  ')
+          ]),
+        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(snackBar);
+      }
+    } catch (e) {
+      print('error ' + e.toString());
+    }
+  }
+
 }

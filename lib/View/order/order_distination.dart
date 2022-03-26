@@ -50,6 +50,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     ServicesRgion.getUsers().then((regions) {
       setState(() {
         _region = regions!;
+
       });
     });
   }
@@ -68,6 +69,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   getCity() {
     Services.getCity().then((city) {
       setState(() {
+        //city=null;
+        listCity = [];
         _city = city!;
         for (int i = 0; i < _city!.length; i++) {
           if (id_region == _city![i].regionId) {
@@ -83,6 +86,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   Widget build(BuildContext context) {
+
     return ScreenUtilInit(
       builder: () => Scaffold(
           appBar: AppBar(
@@ -190,7 +194,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               underline: Container(
                                 height: 2.h,
                               ),
-                              hint: Text('select property'.tr),
+                              hint: Text('  Select property'.tr),
                               value: _categorie,
                               items: categorie
                                   .map<DropdownMenuItem<String>>((String value) {
@@ -236,7 +240,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               ),
                               elevation: 16,
                               isExpanded: true,
-                              hint: Text('Select State'),
+                              hint: Text('  Select State'),
                               underline: Container(
                                 height: 2.h,
                                 // color: Colors.deepPurpleAccent,
@@ -289,7 +293,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               contentPadding: EdgeInsets.all(8),
                               //fillColor: Colors.white,
                               // labelText: "",
-                              hintText: 'Adresse'.tr,
+                              hintText: ' Adresse'.tr,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(width: 3.w),
                                   borderRadius: BorderRadius.circular(5))),
@@ -323,14 +327,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               // Region user = _region![index];
                               return Container(
                                 height: 35.h,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(5)),
-                                  border: Border.all(
-                                    color: Colors.grey,
-                                  ),
-                                ),
+                                // decoration: BoxDecoration(
+                                //   color: Colors.white,
+                                //   // borderRadius:
+                                //   // const BorderRadius.all(Radius.circular(5)),
+                                //   // border: Border.all(
+                                //   //   color: Colors.grey,
+                                //   // ),
+                                // ),
                                 child: DropdownButton<String>(
                                   icon: const Icon(Icons.keyboard_arrow_down_sharp),
                                   elevation: 16,
@@ -339,7 +343,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                     height: 2,
                                     // color: Colors.deepPurpleAccent,
                                   ),
-                                  hint: Text("test"),
+                                  hint: Text(" Region"),
                                   value: value,
                                   items: _region
                                       ?.map<DropdownMenuItem<String>>((value) {
@@ -350,6 +354,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   }).toList(),
                                   onChanged: (value_2) {
                                     setState(() {
+                                      city=null;
+                                      listCity=[];
                                       value = value_2;
                                       test(value_2);
                                     });

@@ -13,7 +13,7 @@ class jokeRepository {
       var b = json.decode(jsoon);
       var a = b["data"];
       var c=json.encode(a);
-      print(a[0]['title']);
+     // print(a[0]['title']);
       return jokeFromJson(c);
     } else {
       return null;

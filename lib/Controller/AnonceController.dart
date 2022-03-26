@@ -29,7 +29,7 @@ class AnnonceController extends GetxController {
 
       if (jokes != null) {
         allJokes.value = jokes;
-        print(allJokes);
+      //  print(allJokes);
       }
     } catch (e) {
     } finally {}

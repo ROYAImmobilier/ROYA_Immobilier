@@ -124,7 +124,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                         ),),
 
                     Container(
-                      margin: EdgeInsets.only(top: 90,left: 10),
+                      margin: EdgeInsets.only(top: 85,left: 10),
                       child: Wrap(
                         children: [
                           Row(
