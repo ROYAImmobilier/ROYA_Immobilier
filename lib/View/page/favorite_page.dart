@@ -65,9 +65,11 @@ class FavoritePage extends StatelessWidget {
                         color: Colors.white,
                         child: ListTile(
                           leading: Image.network(
-                            "https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg",
-                            width: 50,
-                            height: 50,
+
+                              "https://dashboard.royaimmo.ma/images/annonces/${controller.cartProductsModel[i].cover}",
+
+                            width: 60,
+                            height: 80,
                           ),
                           title: Text(controller.cartProductsModel[i].title),
                           subtitle: Text(

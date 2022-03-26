@@ -12,6 +12,7 @@ import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/testciyt.dart';
 
 import 'Controller/AnonceController.dart';
+import 'Model/ability.dart';
 import 'Model/anonce_model.dart';
 import 'Model/joke.dart';
 import 'Model/repositery.dart';
@@ -39,10 +40,11 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
-
+List<Ability> ability = [];
 class _MyAppState extends State<MyApp> {
 
   List<Joke> Listannonce = [];
+
   Future<Null> getUserDetails() async {
     final response = await http.get(Uri.parse(url));
     final responseJsoon = json.decode(response.body);
@@ -53,11 +55,50 @@ class _MyAppState extends State<MyApp> {
         print(allAnnonce.length);
       }});}
 
+
+
+
+  getability() async {
+    print("e.");
+    try {
+      final response = await http
+          .get(Uri.parse('https://dashboard.royaimmo.ma/public/api/abilities'));
+      if (200 == response.statusCode) {
+        var a = response.body;
+        var b = json.decode(a);
+        print('zzzz :  ');
+        print('zzzz :  ' + b[0]["name"]);
+
+        setState(() {
+          for (int i = 0; i < b.length; i++) {
+            ability.add(
+              Ability(
+                id: b[i]['id'],
+                name: b[i]["name"],
+                icon: b[i]["icon"].toString(),
+                type: b[i]["type"].toString(),
+                createdAt: b[i]["created_at"].toString(),
+                updatedAt: b[i]["updated_at"].toString(),
+                deletedAt: b[i]["deleted_at"].toString(),
+              ),
+            );
+            print('zzzz :  ' + ability.length.toString());
+          }
+        });
+      }
+    } catch (e) {}
+  }
+
+
+
+
+
+
   @override
   void initState() {
     super.initState();
     getUserDetails();
-
+    getability();
   }
   @override
   Widget build(BuildContext context) {

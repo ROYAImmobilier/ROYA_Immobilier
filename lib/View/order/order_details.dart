@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:roya_immobilie/Model/ability.dart';
+import 'package:http/http.dart' as http;
+import 'package:roya_immobilie/main.dart';
 import 'contact_info.dart';
 import 'order_distination.dart';
 
@@ -16,19 +20,49 @@ class Add_Annonce_2 extends StatefulWidget {
   String? quartier;
 
   Add_Annonce_2(
-      {required this.Property_details,
-        required this.categorie,
-        required this.statut,
-        required this.adress,
-        required this.region,
-        required this.ville,
-        required this.quartier});
+      { this.Property_details,
+         this.categorie,
+         this.statut,
+         this.adress,
+         this.region,
+         this.ville,
+         this.quartier});
 
   @override
   State<Add_Annonce_2> createState() => _Add_AnnonceState();
 }
 
 class _Add_AnnonceState extends State<Add_Annonce_2> {
+
+
+
+  List<Ability> lmain = [];
+  List<Ability> linner = [];
+  List<Ability> ladditional = [];
+  List<int>idability=[];
+
+bool showmain=false;
+bool showinner = false;
+bool showaddtional = false;
+
+
+
+  @override
+  void initState() {
+
+    setState(() {
+      for(int i = 0;i<ability.length;i++){
+        if(ability[i].type=="main"){
+          lmain.add(ability[i]);
+        }else if(ability[i].type=="inner"){
+          linner.add(ability[i]);
+        }else{
+          ladditional.add(ability[i]);
+        }
+      }
+    });
+    super.initState();
+  }
   int _bedroms = 0;
   int _bathrooms = 0;
   int kichens = 0;
@@ -152,9 +186,28 @@ String ? _flooring;
                           SizedBox(
                             width: 2.w,
                           ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           Container(
                           //  height: 35.h,
-                            width: (MediaQuery.of(context).size.width * 0.23).w,
+                            width: (MediaQuery.of(context).size.width * 0.10).w,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.all(Radius.circular(5.r)),
@@ -431,6 +484,11 @@ String ? _flooring;
                           )
                         ],
                       ),
+
+
+
+
+
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
@@ -443,13 +501,21 @@ String ? _flooring;
                           padding: EdgeInsets.only(
                               left: 8.0.w, top: 8.h, right: 8.w, bottom: 8.h),
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                           setState(() {
+                             showmain=!showmain;
+                           });
+                            },
                             color: Color.fromARGB(255, 175, 178, 206),
                             child: Text('Main Abilites',
                                 style: TextStyle(fontSize: 14.sp)),
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      !showmain?Container():appability(lmain),
                       const SizedBox(
                         height: 20,
                       ),
@@ -466,16 +532,27 @@ String ? _flooring;
                           padding: EdgeInsets.only(
                               left: 8.0.w, top: 8.h, right: 8.w, bottom: 8.h),
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                showinner = !showinner;
+                              });
+                            },
                             color: Color.fromARGB(255, 175, 178, 206),
-                            child: Text('Main Abilites',
+                            child: Text('Innir Abilites',
                                 style: TextStyle(fontSize: 14.sp)),
                           ),
                         ),
                       ),
+
                       const SizedBox(
                         height: 20,
                       ),
+                      !showinner?Container():appability(linner),
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
@@ -488,13 +565,39 @@ String ? _flooring;
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                showaddtional=!showaddtional;
+                              });
+                            },
                             color: Color.fromARGB(255, 175, 178, 206),
-                            child: Text('Main Abilites',
+                            child: Text('Addition Abilites',
                                 style: TextStyle(fontSize: 14.sp)),
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+                     !showaddtional?Container():appability(ladditional),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                       SizedBox(
                         height: 10.h,
                       ),
@@ -628,4 +731,64 @@ String ? _flooring;
           )),
     );
   }
+
+
+  Widget appability(data)=>Container(
+    width: MediaQuery.of(context).size.width*.7 ,
+    height: MediaQuery.of(context).size.height *.15,
+    child: Card(
+      child: GridView.builder(
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 30,
+              childAspectRatio: 3 / 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          itemCount: data.length,
+          itemBuilder: (BuildContext ctx, index) {
+            return  GestureDetector(
+                onTap: (){
+                  setState(() {
+                    colorAbility(data[index].id);
+                    for(int i=0;i<idability.length;i++){
+                      if(data[index].id==idability[i]) {
+                        setState(() {
+                          idability.remove(idability[i]);
+                        });
+                        return;
+                      }
+                    }
+                    idability.add(data[index].id);
+                    print(colorAbility(data[index].id));
+
+
+                  });
+                },
+                child:colorAbility(data[index].id)? Icon(Icons.circle_notifications ,
+
+                  color : Colors.blue,
+
+                ):Icon(Icons.circle_notifications ,
+
+                  color : Colors.black,
+
+                ));// Icon(Icons.circle_notifications , size: 25,);
+          }),
+    ),
+  );
+
+
+  bool colorAbility(int id){
+    for(int i=0 ; i<idability.length;i++){
+      if(id == idability[i]){
+        return true ;
+      }
+    }
+    return false ;
+  }
+
+
 }
+
+
+
