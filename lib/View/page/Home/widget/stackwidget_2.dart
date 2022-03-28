@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:responsive_framework/responsive_grid.dart';
-import 'package:roya_immobilie/View/page/Home/widget/test.dart';
+import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
+import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
 import '../../page_details/details.dart';
 import '../../page_details/icon_status.dart';
 import '../../searchfilter.dart';
-import 'drawerpage.dart';
-import 'listeanonnce.dart';
 import 'listeanonnce_2.dart';
+import 'mobilestackwidget.dart';
 
 final colors = Color(0xefefef);
 
@@ -24,9 +23,12 @@ class StackWidget_2 extends StatefulWidget {
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
+
+
   bool grid = true;
   @override
   Widget build(BuildContext context) {
+    var ScreenSized=MediaQuery.of(context).size.width;
     return ScreenUtilInit(
       builder: () => SingleChildScrollView(
         child: Container(
@@ -132,56 +134,15 @@ height: MediaQuery.of(context).size.height.h,
                               margin: EdgeInsets.all(15),
                               child: ListView(
                                 children:[ grid
-                                    ? GridView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: widget.leng,
-                                    gridDelegate:
-                                    SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 205.h,
-                                        mainAxisExtent:
-                                        (MediaQuery.of(context)
-                                            .size
-                                            .width *
-                                            0.70)
-                                            .h,
-                                        childAspectRatio: 2,
-                                        crossAxisSpacing:5.h,
-                                        mainAxisSpacing: 5.w),
-                                    itemBuilder: (BuildContext ctx, index) {
-                                      return index == widget.leng
-                                          ? SizedBox(
-                                        height: 25.h,
-                                      )
-                                          : GestureDetector(
-                                          onTap: () => Get.to(Details(
-                                            image: widget.data[index]
-                                                .cover !=
-                                                null
-                                                ? widget
-                                                .data[index].cover
-                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                            data: widget.data[index],
-                                          )),
-                                          child: test(
-                                            image: widget.data[index].cover !=
-                                                null
-                                                ? widget.data[index].cover
-                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                            data: widget.data[index],
-                                          ));
-                                    })
+                                    ? ResponsiveLayout_(desktopBody: TbletGridView(leng: widget.leng, data: widget.data,),
+                                 mobileBody: MobileGridView(leng: widget.leng, data: widget.data,),)
                                     : ListView.builder(
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: widget.leng,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      return index == widget.leng
-                                          ? SizedBox(
-                                        height: 25.h,
-                                      )
-                                          : GestureDetector(
+                                      return GestureDetector(
                                           onTap: () => Get.to(Details(
                                             image: widget.data[index]
                                                 .cover !=
@@ -199,7 +160,7 @@ height: MediaQuery.of(context).size.height.h,
                                                   ? widget.data[index].cover
                                                   : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
                                         }),
-                                  SizedBox(height: 150,)
+                                 SizedBox(height:ScreenSized>800? 1400:550,)
                               ])),
                          //
                         ]),

@@ -13,12 +13,10 @@ class test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ScreenUtilInit(
-      builder: () => GestureDetector(
-        onTap: () {
-
-        },
-        child: Card(
+    return ScreenUtilInit(
+      builder: () => Directionality(
+        textDirection: TextDirection.ltr,
+        child:Card(
           color: Colors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -30,32 +28,31 @@ class test extends StatelessWidget {
                 topRight: Radius.circular(10.r),
               ),
               side: BorderSide(color: Colors.white)),
-          child: Column(
+          child: Stack(
             children: [
               Container(
                 height: 180.h,
                 width: double.infinity,
                 child: cachedImage(
                   "https://dashboard.royaimmo.ma/images/annonces/"+image,
-                // decoration: BoxDecoration(
-                //   image: DecorationImage(
-                //     image: NetworkImage(controller
-                //         .AllBooks[i].img),
-                //     fit: BoxFit.fill,
-                //   ),
-                //   borderRadius: BorderRadius.only(
-                //       topLeft:
-                //           Radius.circular(10),
-                //       topRight:
-                //           Radius.circular(10)),
-                //   color: Colors.white,
-                // ),
-              ),),
-
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //     image: NetworkImage(controller
+                  //         .AllBooks[i].img),
+                  //     fit: BoxFit.fill,
+                  //   ),
+                  //   borderRadius: BorderRadius.only(
+                  //       topLeft:
+                  //           Radius.circular(10),
+                  //       topRight:
+                  //           Radius.circular(10)),
+                  //   color: Colors.white,
+                  // ),
+                ),),
               Container(
-               // margin: EdgeInsets.only(top: 95),
-                height: 95,
-                width: 150,
+                margin: EdgeInsets.only(top: 180.h),
+                height: 100.h,
+                width: 180.w,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -65,15 +62,23 @@ class test extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                      padding: EdgeInsets.only(top: 5,left: 5),
-                      child: Text(data.price.toString()),
+                      padding: EdgeInsets.only(top: 5.h,left: 5.w),
+                      child: Text(
+                        data.price.toString() + ' dh',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          color: Color(
+                            0xffb58350,
+                          ),
+                        ),
+                      ),
                     ),
 
                     Positioned(
                       //padding: EdgeInsets.only(bottom: 10,right: 5),
                       // margin: EdgeInsets.only(bottom: 35,left: 15),
-                     top: -10,
-                      right:-10,
+                      top: -10.h,
+                      right: -10.w,
                       child: GetBuilder<AnnonceController>(
                         init: AnnonceController(),
                         builder: (controller) => Align(
@@ -81,21 +86,21 @@ class test extends StatelessWidget {
                           child: IconButton(
                             onPressed: () {
                               controller.addProducts(FavCategoryItem(
-                                id: data.id,
-                                region: data.region,
-                                city: data.city,
-                                title: data.title,
-                                cover: data.cover,
-                                apartment: data.apartment,
-                                bedrooms: data.bedrooms,
-                                bathrooms: data.bathrooms,
-                                kitchens: data.kitchens,
+                                id:data.id,
+                                region:data.region,
+                                city:data.city,
+                                title:data.title,
+                                cover:data.cover,
+                                apartment:data.apartment,
+                                bedrooms:data.bedrooms,
+                                bathrooms:data.bathrooms,
+                                kitchens:data.kitchens,
                                 address:data.address,
-                                description: data.description,
-                                phone1: data.phone1,
-                                advertiser: data.advertiser,
-                                area: data.area.toString(),
-                                quartier: data.quartier,
+                                description:data.description,
+                                phone1:data.phone1,
+                                advertiser:data.advertiser,
+                                area:data.area.toString(),
+                                quartier:data.quartier,
                               ));
                               controller.getAllProducts();
                             },
@@ -111,11 +116,11 @@ class test extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 35,left: 5),
+                      padding: EdgeInsets.only(top: 22.h,left: 5.w),
                       child: Text( data.title,maxLines: 1,),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 65,left: 5),
+                      padding: EdgeInsets.only(top: 40.h,left: 5.w),
                       child: Wrap(
                         children: [
                           Row(
@@ -158,14 +163,10 @@ class test extends StatelessWidget {
                 ),
               ),
 
-
-
             ],
           ),
-        ),
+        ) ,
       ),
     );
-
-
   }
 }

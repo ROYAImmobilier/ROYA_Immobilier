@@ -32,8 +32,8 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
               child: Stack(children: [
                 Container(
                   child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image,),
-                  height: 120,
-                  width: 150,
+                  height: 120.h,
+                  width: 150.w,
                   decoration:  BoxDecoration(
                     // image: DecorationImage(
                     //                 image:
@@ -46,8 +46,8 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 150),
-                  height: 120,
+                  margin: EdgeInsets.only(left: 150.w),
+                  height: 120.h,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -58,7 +58,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                   ),
                   child: Stack(children: [
                     Container(
-                      padding: EdgeInsets.only(top: 10,left: 10),
+                      padding: EdgeInsets.only(top: 10.h,left: 10.w),
                       child:Text(
                                           widget.data.price.toString() + ' dh',
                                           style: TextStyle(
@@ -69,7 +69,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                           ),
                                         )
                     ),Container(
-                      padding: EdgeInsets.only(top: 35,left: 10),
+                      padding: EdgeInsets.only(top: 35.h,left: 10.w),
                       child: Text(
                                         widget.data.title,
                                         maxLines: 1,
@@ -80,13 +80,13 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                       ),
                     ),
                     Positioned(
-                        top: -10,
+                        top: -5.h,
                         right: 0,
                         child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
                             icon: Icon( Icons.more_vert)))),
                     Positioned(
+                      bottom: 0,
                         right: 0,
-                        bottom: 0,
                         child: GetBuilder<AnnonceController>(
                           init: AnnonceController(),
                           builder: (controller) => Align(
@@ -124,7 +124,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                         ),),
 
                     Container(
-                      margin: EdgeInsets.only(top: 85,left: 10),
+                      margin: EdgeInsets.only(top: 85.h,left: 10.w),
                       child: Wrap(
                         children: [
                           Row(
