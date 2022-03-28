@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
+import '../../../../Controller/AnonceController.dart';
+import '../../../../data.dart';
+import '../../../routing_screen.dart';
 import '../../page_details/details.dart';
 import '../../page_details/icon_status.dart';
 import '../../searchfilter.dart';
@@ -24,7 +29,7 @@ class StackWidget_2 extends StatefulWidget {
 
 class _StackWidget_2State extends State<StackWidget_2> {
 
-
+  List<Joke> select=[] ;
   bool grid = true;
   @override
   Widget build(BuildContext context) {
@@ -118,19 +123,66 @@ class _StackWidget_2State extends State<StackWidget_2> {
                             child: SizedBox(
                               height: 85.h,
                               child: ListView.builder(
-                                  itemCount: 6,
+                                  itemCount: dataCategory.length,
                                   scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, i) {
-                                    return const Icon_Status();
+                                  itemBuilder: (context,i) {
+                                    return   GestureDetector(
+                                        onTap: () {
+                                          select = [];
+                                          for(int k=0 ;k<allAnnonce.length;k++){
+                                            if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
+                                              select.add(allAnnonce[k]);
+                                            }
+                                          }
+                                          Get.to(CategoryItems(
+                                              icon : dataCategory[i].icon,
+                                              title: dataCategory[i].name,
+                                              data:select, leng: select.length));
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  child: CircleAvatar(
+                                                    backgroundColor: Colors.white,
+                                                    radius: 30,
+                                                    child: SvgPicture.asset(
+                                                        dataCategory[i].icon,
+                                                        width: 20.w,
+                                                        height: 20.h,
+                                                        color: Color(0xffC0A280)),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 10.w,
+                                                ),
+                                                Text(
+                                                  dataCategory[i].name,
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: Color(0xff8a8a8a),
+                                                  ),
+                                                ),
 
+                                              ],
 
+                                            ),
+                                            SizedBox(
+                                              width: 10.w,
+                                            ),
+                                          ],
+                                        ),
+                                      );
                                   }),
                             ),
                           ),
                           Container(
                               color: const Color(0xffefefef),
-height: MediaQuery.of(context).size.height.h,
-                              // height: double.infinity,
+height: MediaQuery.of(context).size.height,
+                              //height: double.infinity,
                               margin: EdgeInsets.all(15),
                               child: ListView(
                                 children:[ grid

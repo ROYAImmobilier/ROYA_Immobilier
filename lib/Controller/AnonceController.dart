@@ -5,9 +5,12 @@ import 'package:get/state_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/anonce_model.dart';
+import 'package:roya_immobilie/Model/category.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
+import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import '../Model/anonce_model_favote.dart';
 import '../Model/joke.dart';
+import '../View/routing_screen.dart';
 import '../service/database/favorite_database_local.dart';
 
 class AnnonceController extends GetxController {
@@ -16,12 +19,10 @@ class AnnonceController extends GetxController {
   AnnonceController() {
     getJokeys();
     getAllProducts();
-
   }
+
   List<Annonce> ListAnnonce = [];
   var allJokes = <Joke>[].obs;
-
-
 
   getJokeys() async {
     try {
@@ -98,8 +99,20 @@ class AnnonceController extends GetxController {
   }
 
 
+//********************************
+ late  List<Joke> _select;
+    List<Joke>get  select =>_select;
 
+  selectCtegory(Category select)
+  {
+    for(int i=0 ;i<allAnnonce.length;i++){
+      if(allAnnonce[i].propertyType.contains(select.name)){
+        _select.add(allAnnonce[i]);
+      }
+    }
 
+    update();
+  }
 
 
 }

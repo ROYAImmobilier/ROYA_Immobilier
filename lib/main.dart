@@ -19,6 +19,7 @@ import 'Model/repositery.dart';
 import 'View/page/Home/home.dart';
 
 import 'View/order/order_distination.dart';
+import 'View/page/Profile/profile.dart';
 import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
 import 'helpear/binding.dart';
@@ -103,7 +104,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
-    return GetMaterialApp(
+    return
+
+
+      GetMaterialApp(
         builder: (context, widget) => ResponsiveWrapper.builder(
       ClampingScrollWrapper.builder(context, widget!),
       breakpoints: const [
@@ -116,7 +120,7 @@ class _MyAppState extends State<MyApp> {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home: RoutingScreen(),
+      home:RoutingScreen(),
     );
   }
 }

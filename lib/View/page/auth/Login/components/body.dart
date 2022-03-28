@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -148,9 +149,9 @@ class _BodyState extends State<Body> {
      print(token_1);
       if(response.statusCode==200){
         var response_1 = await http
-            .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
-          'Authorization':token_1.toString(),
-
+            .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
+        //HttpHeaders.authorizationHeader:token_1.toString(),
+          'Authorization': 'Bearer $token_1'
 
         }
         );
