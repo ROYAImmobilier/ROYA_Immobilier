@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -136,10 +138,28 @@ class _BodyState extends State<Body> {
         "email": email,
         "password": password,
 
-      });
+      }
+      );
       print(response.body);
+
+
+     var token=json.decode(response.body);
+      var token_1=token['data']['token'];
+     print(token_1);
       if(response.statusCode==200){
-        Get.to(const HomeC());
+        var response_1 = await http
+            .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
+          'Authorization':token_1.toString(),
+
+
+        }
+        );
+        print(response_1.body);
+        if(response_1.statusCode==200){
+            print("test");
+        }
+        // print(response_1.body);
+      //  Get.to(const HomeC());
                 }
       else {
         final snackBar = SnackBar(

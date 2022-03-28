@@ -160,7 +160,7 @@ height: MediaQuery.of(context).size.height.h,
                                                   ? widget.data[index].cover
                                                   : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
                                         }),
-                                 SizedBox(height:ScreenSized>800? 1400:550,)
+                               //  SizedBox(height:ScreenSized>800? 1400:550,)
                               ])),
                          //
                         ]),

@@ -16,7 +16,7 @@ class MobileGridView extends StatelessWidget {
       children:[ GridView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: leng,
+          itemCount: leng+1,
           gridDelegate:
           SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 205,
@@ -30,7 +30,9 @@ class MobileGridView extends StatelessWidget {
               crossAxisSpacing: 5,
               mainAxisSpacing: 5),
           itemBuilder: (BuildContext ctx, index) {
-            return GestureDetector(
+            return index==leng?
+            SizedBox(height: 200,):
+              GestureDetector(
                 onTap: () =>
                     Get.to(Details(
                       image: data[index]
