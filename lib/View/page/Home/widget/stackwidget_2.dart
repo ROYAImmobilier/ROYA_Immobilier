@@ -129,8 +129,8 @@ class _StackWidget_2State extends State<StackWidget_2> {
                           ),
                           Container(
                               color: const Color(0xffefefef),
-height: MediaQuery.of(context).size.height.h,
-                              // height: double.infinity,
+height: MediaQuery.of(context).size.height,
+                              //height: double.infinity,
                               margin: EdgeInsets.all(15),
                               child: ListView(
                                 children:[ grid
