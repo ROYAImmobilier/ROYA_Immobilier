@@ -69,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 10.0,
                       ),
                       Text(
-                        "Dadda Dadda",
+                        username,
                         style: TextStyle(
                           fontSize: 22.0,
                           color: Colors.white,

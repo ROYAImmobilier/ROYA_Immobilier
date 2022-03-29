@@ -17,6 +17,7 @@ import '../../Signup/signup_screen.dart';
 import 'package:http/http.dart' as http;
 
 List<Joke>allAnnonceLogin =[];
+String username = "";
 class Body extends StatefulWidget {
   const Body({
      Key? key,
@@ -150,7 +151,12 @@ class _BodyState extends State<Body> {
 
      var token=json.decode(response.body);
       var token_1=token['data']['token'];
-     print(token_1);
+      setState(() {
+        username =token['data']['name'];
+
+      });
+
+          print(token_1);
       if(response.statusCode==200){
         var response_1 = await http
             .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
@@ -160,6 +166,9 @@ class _BodyState extends State<Body> {
         }
         );
         print(response_1.body);
+
+
+
         if(response_1.statusCode==200){
 
 
