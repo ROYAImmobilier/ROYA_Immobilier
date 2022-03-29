@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
 import '../../../../../Controller/login.dart';
@@ -13,6 +15,8 @@ import '../../../home_c.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 import 'package:http/http.dart' as http;
+
+List<Joke>allAnnonceLogin =[];
 class Body extends StatefulWidget {
   const Body({
      Key? key,
@@ -157,7 +161,15 @@ class _BodyState extends State<Body> {
         );
         print(response_1.body);
         if(response_1.statusCode==200){
-            print("test");
+
+
+          final responseJsoon = json.decode(response_1.body);
+          final responseJson = responseJsoon["data"];
+          setState(() {
+            for (Map annoncelogin in responseJson) {
+              allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
+            }});
+          Get.offAll(ProfilePage());
         }
         // print(response_1.body);
       //  Get.to(const HomeC());

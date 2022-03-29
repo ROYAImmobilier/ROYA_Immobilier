@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       for (Map user in responseJson) {
         allAnnonce.add(Joke.fromJson(user.cast()));
-        print(allAnnonce.length);
+
       }});}
 
 

@@ -7,9 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import 'package:image_picker/image_picker.dart';
-
 import '../../Model/ability.dart';
 import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
@@ -57,21 +55,7 @@ class ContactInfo extends StatefulWidget {
 }
 
 class _ContactInfoState extends State<ContactInfo> {
-
-
-
-
-
-
-
-
-
-
-
-
-
   List<Ability> allAbility = [];
-
   var _key_Contact = GlobalKey<FormState>();
   var _titel = TextEditingController();
   var _description = TextEditingController();

@@ -1,6 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../../../Model/joke.dart';
+import '../../../cashd_image/image.dart';
+import '../auth/Login/components/body.dart';
+
+class ProfilePage extends StatefulWidget {
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+
+  List <Joke> Poste = [];
+  List <Joke> PosteValide = [];
+  List <Joke> PosteNonValide = [];
+
+  Color colorPost = Colors.black ;
+  Color colorPosteValide = Colors.black ;
+  Color colorPosteNonValide = Colors.black ;
+
+
+  @override
+  void initState() {
+   setState(() {
+     Poste = allAnnonceLogin ;
+     for(int i =0 ; i<allAnnonceLogin.length ; i++){
+       if(allAnnonceLogin[i].validated==1){
+         PosteValide.add(allAnnonceLogin[i]);
+       }else{
+         PosteNonValide.add(allAnnonceLogin[i]);
+       }
+     }
+   });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,84 +86,116 @@ class ProfilePage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 22.0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Expanded(
-                                child: Column(
+                              GestureDetector(
+                                onTap: ()=>setState(() {
+                                  Poste=allAnnonceLogin;
+                                  colorPost = Colors.blue;
+                                  colorPosteValide = Colors.black;
+                                  colorPosteNonValide = Colors.black;
+;                                }),
+                                child: Container(
 
-                                  children: <Widget>[
-                                    Text(
-                                      "Posts",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text(
+                                        "Posts",
+                                        style: TextStyle(
+                                          color:colorPost,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "52",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pinkAccent,
+                                      SizedBox(
+                                        height: 5.0,
                                       ),
-                                    )
-                                  ],
+                                      Text(
+                                        allAnnonceLogin.length.toString(),
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.pinkAccent,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              Expanded(
-                                child: Column(
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    Poste=[];
+                                    Poste=PosteValide;
+                                    colorPost = Colors.black;
+                                    colorPosteValide = Colors.blue;
+                                    colorPosteNonValide = Colors.black;
+                                  });
+                                },
+                                child: Expanded(
+                                  child: Column(
 
-                                  children: <Widget>[
-                                    Text(
-                                      "Post Valide",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
+                                    children: <Widget>[
+                                      Text(
+                                        "Post Valide",
+                                        style: TextStyle(
+                                          color: colorPosteValide,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "28",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pinkAccent,
+                                      SizedBox(
+                                        height: 5.0,
                                       ),
-                                    )
-                                  ],
+                                      Text(
+                                        PosteValide.length.toString(),
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.pinkAccent,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              Expanded(
-                                child: Column(
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    Poste=[];
+                                    Poste=PosteNonValide;
+                                    colorPost = Colors.black;
+                                    colorPosteValide = Colors.black;
+                                    colorPosteNonValide = Colors.blue;
 
-                                  children: <Widget>[
-                                    Text(
-                                      "Post nvalide",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18.0,
+                                  });
+                                },
+                                child: Expanded(
+                                  child: Column(
 
-                                        fontWeight: FontWeight.bold,
+                                    children: <Widget>[
+                                      Text(
+                                        "Post nvalide",
+                                        style: TextStyle(
+                                          color: colorPosteNonValide,
+                                          fontSize: 18.0,
+
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "13",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.pinkAccent,
+                                      SizedBox(
+                                        height: 5.0,
                                       ),
-                                    ),
+                                      Text(
+                                        PosteNonValide.length.toString(),
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.pinkAccent,
+                                        ),
+                                      ),
 
 
 
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
 
@@ -150,14 +217,126 @@ class ProfilePage extends StatelessWidget {
                   ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount  : 10,
+                      itemCount  : Poste.length,
                       itemBuilder: (context , index)=>
-                        Column(
-                          children: [
-                            Container(width: double.infinity, height: 90, color: Colors.red,),
-                            SizedBox(height: 20,)
-                          ],
-                        )),
+                          ScreenUtilInit(
+                              splitScreenMode: true,
+                              builder: () {
+                                return Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: Stack(children: [
+                                      Container(
+                                        child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+Poste[index].cover,),
+                                        height: 120.h,
+                                        width: 150.w,
+                                        decoration:  BoxDecoration(
+                                          // image: DecorationImage(
+                                          //                 image:
+                                          //                 fit: BoxFit.fill,
+                                          //               ),
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              bottomLeft: Radius.circular(10)),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 150.w),
+                                        height: 120.h,
+                                        width: MediaQuery.of(context).size.width,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
+
+                                        ),
+                                        child: Stack(children: [
+                                          Container(
+                                              padding: EdgeInsets.only(top: 10.h,left: 10.w),
+                                              child:Text(
+                                                Poste[index].price.toString() + ' dh',
+                                                style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  color: Color(
+                                                    0xffb58350,
+                                                  ),
+                                                ),
+                                              )
+                                          ),Container(
+                                            padding: EdgeInsets.only(top: 35.h,left: 10.w),
+                                            child: Text(
+                                              Poste[index].title,
+                                              maxLines: 1,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: 14.sp,
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              top: -5.h,
+                                              right: 0,
+                                              child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
+                                                  icon: Icon( Icons.more_vert)))),
+                                          Positioned(
+                                            bottom: -10,
+                                            right: -2,
+                                            child: Align(
+                                              alignment: Alignment.topRight,
+                                              child: IconButton(
+                                                onPressed: () {
+
+                                                },
+                                                icon: Icon(Icons.delete,
+                                                    color: Colors.black54),
+                                              ),
+                                            ),),
+
+                                          Container(
+                                            margin: EdgeInsets.only(top: 85.h,left: 10.w),
+                                            child: Wrap(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.location_on_rounded,
+                                                      size: 14,
+                                                    ), Text( Poste[index].region,style: TextStyle(fontSize: 14),),
+                                                  ],
+                                                ),
+
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.home,
+                                                      size: 14,
+                                                    ), Text(Poste[index].city,style: TextStyle(fontSize: 14),),
+                                                  ],
+                                                ),
+
+                                              ],
+                                            ),
+                                          )
+                                        ],),
+                                      ),
+
+                                    ],
+
+                                    ),
+                                  ) ,
+
+
+                                );
+                              }),
+
+
+                  ),
                 ],
               ),
             ),
