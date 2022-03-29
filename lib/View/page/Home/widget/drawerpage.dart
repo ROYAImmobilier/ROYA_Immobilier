@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/order/contact_info.dart';
 import 'package:roya_immobilie/View/order/order_details.dart';
+import 'package:roya_immobilie/View/page/Profile/profile.dart';
+import 'package:roya_immobilie/View/page/auth/Login/components/body.dart';
+import 'package:roya_immobilie/View/page/favorite_page.dart';
 
 import '../../../../Controller/AnonceController.dart';
 import '../../../../Controller/cityController.dart';
@@ -168,11 +171,32 @@ class _DrawerPageState extends State<DrawerPage> {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
-              child: GestureDetector(
-                onTap: (){
-                  Get.to(LoginScreen());
-                },
-                child: Row(
+              child:
+                username.length!=0?
+                GestureDetector(
+                    onTap: (){
+                      Get.to(ProfilePage());
+                    },
+                    child:
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icon/nav_menu/person.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    SizedBox(
+                      width: 24,
+                    ),
+                    Text('My Compte'.tr, style: TextStyle(fontSize: 20))
+                  ],
+                )):
+                GestureDetector(
+                  onTap: (){
+                    Get.to(LoginScreen());
+                  },
+                  child:
+                Row(
                   children: [
                     SvgPicture.asset(
                       'assets/icon/nav_menu/person.svg',
@@ -213,12 +237,12 @@ class _DrawerPageState extends State<DrawerPage> {
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: GestureDetector(
                 onTap: (){
-                  Get.to(Add_Annonce_2());
+                  Get.to(FavoritePage());
                 },
                 child: Row(
                   children: [
                     SvgPicture.asset(
-                      'assets/icon/nav_menu/cc-chat.svg',
+                      'assets/icon/annonces/favor.svg',
                       width: 25,
                       height: 25,
                     ),

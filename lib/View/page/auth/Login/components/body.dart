@@ -9,6 +9,7 @@ import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
+import 'package:roya_immobilie/View/routing_screen.dart';
 import '../../../../../Controller/login.dart';
 import '../../../../../varia_ble/variable.dart';
 import '../../../home_c.dart';
@@ -178,7 +179,7 @@ class _BodyState extends State<Body> {
             for (Map annoncelogin in responseJson) {
               allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
             }});
-          Get.offAll(ProfilePage());
+          Get.offAll(RoutingScreen());
         }
         // print(response_1.body);
       //  Get.to(const HomeC());

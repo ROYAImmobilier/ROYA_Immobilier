@@ -66,47 +66,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
 
 
-  postdata() async {
-    try {
-      print("eeeeeeeeeeeeeeeeeeeeeeeeee");
-      var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
-        "region_id":"1",
-        "city_id":"1",
-        "transaction":'',
-        "property_type":'',
-        "status":'',
-        "address":'',
-        "quartier":'',
-        "area":"",
-        "price":"",
-        "age":'',
-        "floor_type":'',
-        "floor":"",
-        "apartment":"",
-        "bedrooms":"",
-        "bathrooms":"",
-        "kitchens":"",
-        "title":'',
-        "description":"",
-        "phone1":'',
-        "phone2":'',
-        "phone2":'',
-        "abilities":"",
-        "media":"",
-        "email":'advertiser@roya.com',
-        "password":'password'
-      });
-      print("ggggggggggggggggggggggggggggggggggg");
-      print(response.body);
-      if(response.statusCode==201){
-        print('200120012001');
-        print("test" +response.body);
-      }
-    } catch (e) {
-      print('error ' + e.toString());
-    }
-  }
+
 
 
 
@@ -180,11 +140,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
             ),
             onPressed: () {
 
-              setState(() {
-                postdata();
-              });
-
-             // Get.to(Add_Annonce());
+               Get.to(Add_Annonce());
             },
           ),
           bottomNavigationBar: BottomNavigationBar(
