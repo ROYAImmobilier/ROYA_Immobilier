@@ -94,6 +94,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                               borderRadius: BorderRadius.circular(10)),
                           color: const Color(0xff5d5386),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                              Icon(Icons.update),
                               SizedBox(

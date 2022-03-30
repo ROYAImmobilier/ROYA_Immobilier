@@ -12,6 +12,7 @@ import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.
 import 'package:roya_immobilie/View/routing_screen.dart';
 import '../../../../../Controller/login.dart';
 import '../../../../../varia_ble/variable.dart';
+import '../../../../routing_login.dart';
 import '../../../home_c.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
@@ -172,7 +173,7 @@ class _BodyState extends State<Body> {
             for (Map annoncelogin in responseJson) {
               allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
             }});
-          Get.offAll(HomeC());
+          Get.offAll(RoutingLogin());
         }
         // print(response_1.body);
       //  Get.to(const HomeC());

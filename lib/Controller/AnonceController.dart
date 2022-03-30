@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:get/get.dart';
-import 'package:roya_immobilie/Model/anonce_model.dart';
+
 import 'package:roya_immobilie/Model/category.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
-import 'package:roya_immobilie/View/page/Home/category_items.dart';
+
 import '../Model/anonce_model_favote.dart';
 import '../Model/joke.dart';
 import '../View/routing_screen.dart';
@@ -20,8 +20,6 @@ class AnnonceController extends GetxController {
     getJokeys();
     getAllProducts();
   }
-
-  List<Annonce> ListAnnonce = [];
   var allJokes = <Joke>[].obs;
 
   getJokeys() async {
