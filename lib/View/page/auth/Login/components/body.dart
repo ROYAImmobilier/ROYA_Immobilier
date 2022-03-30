@@ -90,15 +90,9 @@ class _BodyState extends State<Body> {
                     setState(() {
                       _user = user;
                      //isLogin= user!.success;
-                    });
-
-
-
-
-
-
-
-                  },
+                    },
+               );
+            },
                   style: ElevatedButton.styleFrom(
                       primary: kPrimaryColor,
                       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
@@ -152,18 +146,17 @@ class _BodyState extends State<Body> {
 
      var token=json.decode(response.body);
       var token_1=token['data']['token'];
+
       setState(() {
         username =token['data']['name'];
-
       });
 
           print(token_1);
       if(response.statusCode==200){
         var response_1 = await http
             .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
-        //HttpHeaders.authorizationHeader:token_1.toString(),
-          'Authorization': 'Bearer $token_1'
-
+             //HttpHeaders.authorizationHeader:token_1.toString(),
+            'Authorization': 'Bearer $token_1'
         }
         );
         print(response_1.body);
@@ -179,7 +172,7 @@ class _BodyState extends State<Body> {
             for (Map annoncelogin in responseJson) {
               allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
             }});
-          Get.offAll(RoutingScreen());
+          Get.offAll(HomeC());
         }
         // print(response_1.body);
       //  Get.to(const HomeC());
