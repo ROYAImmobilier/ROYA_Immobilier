@@ -6,15 +6,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
-import 'package:roya_immobilie/View/page/page_details/icon_status.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-
 import '../../Controller/AnonceController.dart';
 import '../../Model/anonce_model_favote.dart';
 import '../../Model/joke.dart';
 import '../../data.dart';
 import 'Home/category_items.dart';
-
 
 class HomeC extends StatelessWidget {
   List<Joke> select=[] ;

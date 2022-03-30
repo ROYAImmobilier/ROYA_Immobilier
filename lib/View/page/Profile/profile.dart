@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:roya_immobilie/View/page/Profile/detaille_profile.dart';
 
 import '../../../Model/joke.dart';
 import '../../../cashd_image/image.dart';
@@ -16,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   List <Joke> PosteValide = [];
   List <Joke> PosteNonValide = [];
 
-  Color colorPost = Colors.black ;
+  Color colorPost = Colors.blue ;
   Color colorPosteValide = Colors.black ;
   Color colorPosteNonValide = Colors.black ;
 
@@ -219,121 +221,125 @@ class _ProfilePageState extends State<ProfilePage> {
                       shrinkWrap: true,
                       itemCount  : Poste.length,
                       itemBuilder: (context , index)=>
-                          ScreenUtilInit(
-                              splitScreenMode: true,
-                              builder: () {
-                                return Directionality(
-                                  textDirection: TextDirection.ltr,
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: Stack(children: [
-                                      Container(
-                                        child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+Poste[index].cover,),
-                                        height: 120.h,
-                                        width: 150.w,
-                                        decoration:  BoxDecoration(
-                                          // image: DecorationImage(
-                                          //                 image:
-                                          //                 fit: BoxFit.fill,
-                                          //               ),
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              bottomLeft: Radius.circular(10)),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 150.w),
-                                        height: 120.h,
-                                        width: MediaQuery.of(context).size.width,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(10),
-                                              bottomRight: Radius.circular(10)),
 
-                                        ),
-                                        child: Stack(children: [
-                                          Container(
-                                              padding: EdgeInsets.only(top: 10.h,left: 10.w),
-                                              child:Text(
-                                                Poste[index].price.toString() + ' dh',
-                                                style: TextStyle(
-                                                  fontSize: 18.sp,
-                                                  color: Color(
-                                                    0xffb58350,
-                                                  ),
-                                                ),
-                                              )
-                                          ),Container(
-                                            padding: EdgeInsets.only(top: 35.h,left: 10.w),
-                                            child: Text(
-                                              Poste[index].title,
-                                              maxLines: 1,
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                fontSize: 14.sp,
-                                              ),
-                                            ),
+                          GestureDetector(
+                            onTap:()=>Get.to( DetailleProfile(image: allAnnonceLogin[index].cover, data: allAnnonceLogin[index])),
+                            child: ScreenUtilInit(
+                                splitScreenMode: true,
+                                builder: () {
+                                  return Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: Container(
+                                      padding: EdgeInsets.all(5),
+                                      child: Stack(children: [
+                                        Container(
+                                          child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+Poste[index].cover,),
+                                          height: 120.h,
+                                          width: 150.w,
+                                          decoration:  BoxDecoration(
+                                            // image: DecorationImage(
+                                            //                 image:
+                                            //                 fit: BoxFit.fill,
+                                            //               ),
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                bottomLeft: Radius.circular(10)),
                                           ),
-                                          Positioned(
-                                              top: -5.h,
-                                              right: 0,
-                                              child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
-                                                  icon: Icon( Icons.more_vert)))),
-                                          Positioned(
-                                            bottom: -10,
-                                            right: -2,
-                                            child: Align(
-                                              alignment: Alignment.topRight,
-                                              child: IconButton(
-                                                onPressed: () {
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 150.w),
+                                          height: 120.h,
+                                          width: MediaQuery.of(context).size.width,
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomRight: Radius.circular(10)),
 
-                                                },
-                                                icon: Icon(Icons.delete,
-                                                    color: Colors.black54),
+                                          ),
+                                          child: Stack(children: [
+                                            Container(
+                                                padding: EdgeInsets.only(top: 10.h,left: 10.w),
+                                                child:Text(
+                                                  Poste[index].price.toString() + ' dh',
+                                                  style: TextStyle(
+                                                    fontSize: 18.sp,
+                                                    color: Color(
+                                                      0xffb58350,
+                                                    ),
+                                                  ),
+                                                )
+                                            ),Container(
+                                              padding: EdgeInsets.only(top: 35.h,left: 10.w),
+                                              child: Text(
+                                                Poste[index].title,
+                                                maxLines: 1,
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                  fontSize: 14.sp,
+                                                ),
                                               ),
-                                            ),),
-
-                                          Container(
-                                            margin: EdgeInsets.only(top: 85.h,left: 10.w),
-                                            child: Wrap(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.location_on_rounded,
-                                                      size: 14,
-                                                    ), Text( Poste[index].region,style: TextStyle(fontSize: 14),),
-                                                  ],
-                                                ),
-
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.home,
-                                                      size: 14,
-                                                    ), Text(Poste[index].city,style: TextStyle(fontSize: 14),),
-                                                  ],
-                                                ),
-
-                                              ],
                                             ),
-                                          )
-                                        ],),
+                                            Positioned(
+                                                top: -5.h,
+                                                right: 0,
+                                                child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
+                                                    icon: Icon( Icons.more_vert)))),
+                                            Positioned(
+                                              bottom: -10,
+                                              right: -2,
+                                              child: Align(
+                                                alignment: Alignment.topRight,
+                                                child: IconButton(
+                                                  onPressed: () {
+
+                                                  },
+                                                  icon: Icon(Icons.delete,
+                                                      color: Colors.black54),
+                                                ),
+                                              ),),
+
+                                            Container(
+                                              margin: EdgeInsets.only(top: 85.h,left: 10.w),
+                                              child: Wrap(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.location_on_rounded,
+                                                        size: 14,
+                                                      ), Text( Poste[index].region,style: TextStyle(fontSize: 14),),
+                                                    ],
+                                                  ),
+
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.home,
+                                                        size: 14,
+                                                      ), Text(Poste[index].city,style: TextStyle(fontSize: 14),),
+                                                    ],
+                                                  ),
+
+                                                ],
+                                              ),
+                                            )
+                                          ],),
+                                        ),
+
+                                      ],
+
                                       ),
-
-                                    ],
-
-                                    ),
-                                  ) ,
+                                    ) ,
 
 
-                                );
-                              }),
+                                  );
+                                }),
+                          ),
 
 
                   ),

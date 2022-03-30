@@ -97,6 +97,10 @@ class _DetailsState extends State<DetailSerche> {
                                   return Icon_Status();
                                 })),
                       ),
+
+
+
+
                       Container(
                         margin:
                             EdgeInsets.only(top: 20.h, right: 20.w, left: 20.w),
@@ -370,6 +374,8 @@ class _DetailsState extends State<DetailSerche> {
                         alignment: Alignment.topLeft,
                         child: Text(widget.data.description),
                       ),
+
+
                       const SizedBox(
                         height: 10,
                       ),
