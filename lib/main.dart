@@ -13,7 +13,7 @@ import 'package:roya_immobilie/testciyt.dart';
 
 import 'Controller/AnonceController.dart';
 import 'Model/ability.dart';
-import 'Model/anonce_model.dart';
+
 import 'Model/joke.dart';
 import 'Model/repositery.dart';
 import 'View/page/Home/home.dart';
@@ -24,7 +24,7 @@ import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
 import 'helpear/binding.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/Model/anonce_model.dart';
+
 void main() {
 
   WidgetsFlutterBinding.ensureInitialized();

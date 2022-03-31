@@ -13,6 +13,7 @@ import 'package:roya_immobilie/View/routing_screen.dart';
 import '../../../../../Controller/login.dart';
 import '../../../../../Model/data_list.dart';
 import '../../../../../varia_ble/variable.dart';
+import '../../../../routing_login.dart';
 import '../../../home_c.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
@@ -175,7 +176,7 @@ class _BodyState extends State<Body> {
               allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
             }
           });
-          Get.offAll(HomeC());
+          Get.offAll(RoutingLogin());
         }
         // print(response_1.body);
         //  Get.to(const HomeC());

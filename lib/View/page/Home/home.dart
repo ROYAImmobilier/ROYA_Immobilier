@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
+
   final controller = Get.put(AnnonceController());
   @override
   Widget build(BuildContext context) {

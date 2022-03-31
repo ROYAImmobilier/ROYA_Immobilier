@@ -37,33 +37,33 @@ class DataList {
     this.cover,
   });
 
-  int id;
-  int userId;
-  String advertiser;
-  String region;
-  String city;
-  String transaction;
-  String propertyType;
-  String status;
-  String address;
-  String quartier;
-  int area;
-  int price;
-  String age;
-  String floorType;
-  int floor;
-  dynamic apartment;
-  dynamic bedrooms;
-  dynamic bathrooms;
-  dynamic kitchens;
-  String title;
-  String description;
-  String phone1;
-  dynamic phone2;
-  dynamic phone3;
-  int validated;
-  String createdAt;
-  dynamic cover;
+  var id;
+  var userId;
+  var advertiser;
+  var region;
+  var city;
+  var transaction;
+  var propertyType;
+  var status;
+  var address;
+  var quartier;
+  var area;
+  var price;
+  var age;
+  var floorType;
+  var floor;
+  var apartment;
+  var bedrooms;
+  var bathrooms;
+  var kitchens;
+  var title;
+  var description;
+  var phone1;
+  var phone2;
+  var phone3;
+  var validated;
+  var createdAt;
+  var cover;
 
   factory DataList.fromJson(Map<String, dynamic> json) => DataList(
     id: json["id"],

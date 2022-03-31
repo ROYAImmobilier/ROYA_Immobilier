@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:roya_immobilie/Model/anonce_model.dart';
+
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/page/searchfilter.dart';

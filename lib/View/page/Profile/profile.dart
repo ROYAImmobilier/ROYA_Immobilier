@@ -13,7 +13,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
+ late int v =0 ;
   List <DataList> Poste = [];
   List <DataList> PosteValide = [];
   List <DataList> PosteNonValide = [];
@@ -92,6 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: <Widget>[
                               GestureDetector(
                                 onTap: ()=>setState(() {
+                                  v=0;
                                   Poste=allAnnonceLogin;
                                   colorPost = Colors.blue;
                                   colorPosteValide = Colors.black;
@@ -131,6 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     colorPost = Colors.black;
                                     colorPosteValide = Colors.blue;
                                     colorPosteNonValide = Colors.black;
+                                    v=1;
                                   });
                                 },
                                 child: Expanded(
@@ -167,6 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     colorPost = Colors.black;
                                     colorPosteValide = Colors.black;
                                     colorPosteNonValide = Colors.blue;
+                                    v=2;
 
                                   });
                                 },
@@ -294,7 +297,24 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   print(Poste[index].id.toString());
                                                 await  jokeRepository.deleteitem(id: Poste[index].id.toString());
                                                 setState(() {
-                                                  allAnnonceLogin.remove( Poste[index]);
+                              allAnnonceLogin.remove( Poste[index]);
+                            if(v==0){
+                              if(Poste[index].validated==1){
+                              Poste.remove( Poste[index]);
+                              PosteValide.remove( Poste[index]);
+                              }else{
+                              Poste.remove( Poste[index]);
+                              PosteNonValide.remove( Poste[index]);
+                              }
+                              }else if(v==1){
+                                                     Poste.remove( Poste[index]);
+                                                     PosteValide.remove( Poste[index]);
+                                                   }else{
+                                                     Poste.remove( Poste[index]);
+                                                     PosteNonValide.remove( Poste[index]);
+                                                   }
+
+
                                                  // initState();
                                                 });
 
