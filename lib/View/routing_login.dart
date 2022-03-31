@@ -6,35 +6,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
+import 'package:roya_immobilie/View/page/Profile/profile.dart';
+import 'package:roya_immobilie/View/page/home_c.dart';
 import '../Model/joke.dart';
 import 'order/order_distination.dart';
 import 'page/searchfilter.dart';
 import 'page/chat_page.dart';
 import 'page/favorite_page.dart';
-
-
 List<Joke>allAnnonce = [];
-class RoutingScreen extends StatefulWidget {
+class RoutingLogin extends StatefulWidget {
   static final id = "RoutingScreen";
 
   @override
-  _RoutingScreenState createState() => _RoutingScreenState();
+  _RoutingLoginState createState() => _RoutingLoginState();
 
-  const RoutingScreen();
+  const RoutingLogin();
 }
 
-class _RoutingScreenState extends State<RoutingScreen> {
+class _RoutingLoginState extends State<RoutingLogin> {
 
-
-      // for(int i = 0 ;i<allAnnonce.length ; i++){
-      //   for(int j=0; j <Listannonce.length ;j++){
-      //     if(allAnnonce[i]==Listannonce[j]){
-      //       return ;
-      //     }
-      //     allAnnonce.add(Listannonce[j]);
-      //   }
-      //
-      // }
 
 
 
@@ -58,24 +48,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @override
   void initState() {
     super.initState();
@@ -83,35 +55,16 @@ class _RoutingScreenState extends State<RoutingScreen> {
     pageController = PageController();
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     final pageView = PageView(
         controller: pageController,
         children: [
-          HomePage(),
+          HomeC(),
           FavoritePage(),
           ChatPage(),
           ChatPage(),
+          ProfilePage(),
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
@@ -175,12 +128,12 @@ class _RoutingScreenState extends State<RoutingScreen> {
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: SvgPicture.asset(
-                  'assets/icon/notification.svg',
+                  'assets/icon/nav_menu/person.svg',
                   color: Colors.black54,
                   width: 25.w,
                   height: 25.h,
                 ),
-                label: 'Notification',
+                label: 'Profile',
               ),
             ],
             onTap: OnbottomTapped,
