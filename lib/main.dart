@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
 
   List<Joke> Listannonce = [];
 
-  Future<Null> getUserDetails() async {
+  Future<void> getUserDetails() async {
     final response = await http.get(Uri.parse(url));
     final responseJsoon = json.decode(response.body);
     final responseJson = responseJsoon["data"];

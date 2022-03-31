@@ -16,7 +16,7 @@ class MobileGridView extends StatelessWidget {
       children:[ GridView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: leng+1,
+          itemCount: leng,
           gridDelegate:
           SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 205,

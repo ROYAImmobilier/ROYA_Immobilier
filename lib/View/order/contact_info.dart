@@ -433,6 +433,10 @@ Future upload() async{
                               // Get.to(LoginScreen());
 
                               setState(() {
+
+
+
+
                                 postdata(
                                     address: widget.adress,
                                     floor_type: "wooden",
@@ -441,20 +445,20 @@ Future upload() async{
                                     bathrooms: "2",
                                     transaction: "Rent",
                                     status: widget.statut,
-                                  // confirmation_password: "12345678",
+                                   confirmation_password: "12345678",
                                     kitchens: "4",
                                     area: "120",
                                     abilities:'1',
                                     floor: "3",
                                     region_id: '1',
                                     city_id: "3",
-                                    email: "abde3@gmail.com",
+                                    email: "abde4@gmail.com",
                                     phone1: _phone1.text,
                                     phone3: _phone3.text,
                                     bedrooms: '2',
                                     apartment: "4",
                                     description: _description.text,
-                                  //  name: "ahmed",
+                                   name: "ahmed",
                                     phone2: _phone2.text,
                                     property_type: widget.Property_details,
                                     age: widget.age,
@@ -507,16 +511,16 @@ Future upload() async{
     required String? description,
     required String? phone1,
     required String? phone2,
-   // required String? name,
+   required String? name,
     required String? email,
     required String? password,
-   // required String? confirmation_password,
+   required String? confirmation_password,
     required  abilities,
     required  media, String? phone3
   }) async {
     try {
       var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'), body: {
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
         "region_id": region_id,
         "city_id": city_id,
         "transaction": transaction,
@@ -540,10 +544,10 @@ Future upload() async{
         "phone1": phone1,
         "phone2": phone2,
         "phone3": phone3,
-       // "name": name,
+       "name": name,
        "email": email,
       "password": password,
-      // "confirmation_password": confirmation_password,
+       "confirmation_password": confirmation_password,
         "abilities[id]": abilities,
         "media[image base64]": media,
       });

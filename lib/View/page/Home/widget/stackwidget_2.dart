@@ -179,41 +179,43 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                   }),
                             ),
                           ),
-                          Container(
-                              color: const Color(0xffefefef),
-height: MediaQuery.of(context).size.height,
-                              //height: double.infinity,
-                              margin: EdgeInsets.all(15),
-                              child: ListView(
-                                children:[ grid
-                                    ? ResponsiveLayout_(desktopBody: TbletGridView(leng: widget.leng, data: widget.data,),
-                                 mobileBody: MobileGridView(leng: widget.leng, data: widget.data,),)
-                                    : ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: widget.leng,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return GestureDetector(
-                                          onTap: () => Get.to(Details(
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                           // width: double.infinity,
+                            child: ListView(
+                              children:[ grid
+                                  ? ResponsiveLayout_(desktopBody: TbletGridView(leng: widget.leng, data: widget.data,),
+                               mobileBody: MobileGridView(leng: widget.leng, data: widget.data,),)
+                                  : ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: widget.leng,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                        onTap: () => Get.to(Details(
+                                          image: widget.data[index]
+                                              .cover !=
+                                              null
+                                              ? widget
+                                              .data[index].cover
+                                              : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                          data: widget.data[index],
+                                        )),
+                                        child: Liste_Annonce_2(
+                                            data: widget.data[index],
                                             image: widget.data[index]
                                                 .cover !=
                                                 null
-                                                ? widget
-                                                .data[index].cover
-                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                            data: widget.data[index],
-                                          )),
-                                          child: Liste_Annonce_2(
-                                              data: widget.data[index],
-                                              image: widget.data[index]
-                                                  .cover !=
-                                                  null
-                                                  ? widget.data[index].cover
-                                                  : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
-                                        }),
-                               //  SizedBox(height:ScreenSized>800? 1400:550,)
-                              ])),
+                                                ? widget.data[index].cover
+                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
+                                      }),
+                             // SizedBox(height:ScreenSized>800? 1400:550,)
+                            ]),
+                          ),
                          //
                         ]),
                       ),

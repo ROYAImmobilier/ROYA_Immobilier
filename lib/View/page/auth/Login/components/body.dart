@@ -11,17 +11,18 @@ import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dar
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import '../../../../../Controller/login.dart';
+import '../../../../../Model/data_list.dart';
 import '../../../../../varia_ble/variable.dart';
 import '../../../home_c.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 import 'package:http/http.dart' as http;
 
-List<Joke>allAnnonceLogin =[];
+List<DataList>allAnnonceLogin =[];
 String username = "";
 class Body extends StatefulWidget {
   const Body({
-     Key? key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -29,8 +30,8 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
- // var pass=TextEditingController();
- // var emaill=TextEditingController();
+  // var pass=TextEditingController();
+  // var emaill=TextEditingController();
   bool isLogin=false;
   late String email ='' ;
   late String password ='';
@@ -78,51 +79,51 @@ class _BodyState extends State<Body> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(29),
                   child: ElevatedButton(
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () async{
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async{
 
-                    if(_key_validation.currentState!.validate())
-                    print(email +' '+password);
-                    final Login? user = await  _Login(email: email, password: password);
-                    setState(() {
-                      _user = user;
-                     //isLogin= user!.success;
+                      if(_key_validation.currentState!.validate())
+                        print(email +' '+password);
+                      final Login? user = await  _Login(email: email, password: password);
+                      setState(() {
+                        _user = user;
+                        //isLogin= user!.success;
+                      },
+                      );
                     },
-               );
-            },
-                  style: ElevatedButton.styleFrom(
-                      primary: kPrimaryColor,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                      textStyle: const TextStyle(
-                          color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
-                ),
-              ),
-            ),
-              SizedBox(height: size.height * 0.03),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                 "Don’t have an Account ",
-                style: TextStyle(color: kPrimaryColor),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Get.to(SignUpScreen());
-                },
-                child: const Text(
-                   "Sign In",
-                  style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.bold,
+                    style: ElevatedButton.styleFrom(
+                        primary: kPrimaryColor,
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        textStyle: const TextStyle(
+                            color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
                   ),
                 ),
+              ),
+              SizedBox(height: size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    "Don’t have an Account ",
+                    style: TextStyle(color: kPrimaryColor),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(SignUpScreen());
+                    },
+                    child: const Text(
+                      "Sign In",
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
               )
-            ],
-          )
             ],
           ),
         ),
@@ -144,19 +145,20 @@ class _BodyState extends State<Body> {
       print(response.body);
 
 
-     var token=json.decode(response.body);
+      var token=json.decode(response.body);
       var token_1=token['data']['token'];
 
       setState(() {
         username =token['data']['name'];
+        token_global=token_1;
       });
 
-          print(token_1);
+      print(token_1);
       if(response.statusCode==200){
         var response_1 = await http
             .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
-             //HttpHeaders.authorizationHeader:token_1.toString(),
-            'Authorization': 'Bearer $token_1'
+          //HttpHeaders.authorizationHeader:token_1.toString(),
+          'Authorization': 'Bearer $token_1'
         }
         );
         print(response_1.body);
@@ -170,13 +172,14 @@ class _BodyState extends State<Body> {
           final responseJson = responseJsoon["data"];
           setState(() {
             for (Map annoncelogin in responseJson) {
-              allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
-            }});
+              allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
+            }
+          });
           Get.offAll(HomeC());
         }
         // print(response_1.body);
-      //  Get.to(const HomeC());
-                }
+        //  Get.to(const HomeC());
+      }
       else {
         final snackBar = SnackBar(
           content: Row(children: const [

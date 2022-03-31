@@ -14,6 +14,8 @@ String jokeToJson(List<Joke> data) =>
 
 
 class Joke {
+
+
   Joke({
     required this.id,
     required this.advertiser,
@@ -38,6 +40,7 @@ class Joke {
     required this.phone1,
     required this.phone2,
     required this.phone3,
+    required this.slug,
     required this.validated,
     required this.createdAt,
     required this.cover,
@@ -45,6 +48,7 @@ class Joke {
 
   int id;
   String advertiser;
+  String slug;
   String region;
   String city;
   String transaction;
@@ -86,6 +90,7 @@ class Joke {
         age: json["age"],
         floorType: json["floor_type"],
         floor: json["floor"],
+        slug: json["slug"],
         apartment: json["apartment"],
         bedrooms: json["bedrooms"],
         bathrooms: json["bathrooms"],
@@ -110,6 +115,7 @@ class Joke {
         "property_type": propertyType,
         "status": status,
         "address": address,
+        "slug": slug,
         "quartier": quartier,
         "area": area,
         "price": price,

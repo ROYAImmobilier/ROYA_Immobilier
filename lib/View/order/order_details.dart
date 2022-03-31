@@ -188,26 +188,9 @@ String ? _flooring;
                           ),
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                           Container(
                           //  height: 35.h,
-                            width: (MediaQuery.of(context).size.width * 0.10).w,
+                            width: (MediaQuery.of(context).size.width * 0.21).w,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.all(Radius.circular(5.r)),
@@ -283,7 +266,10 @@ String ? _flooring;
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
-                            _age=newValue;
+                            setState(() {
+                              _age=newValue;
+                            });
+
                           },
                         ),
                       ),
@@ -324,7 +310,10 @@ String ? _flooring;
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
-                            _flooring=newValue;
+                            setState(() {
+                              _flooring=newValue;
+                            });
+
                           },
                         ),
                       ),

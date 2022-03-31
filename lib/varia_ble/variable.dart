@@ -56,3 +56,7 @@ final String columncover = 'cover';
 
 const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
+
+//login
+var isLogin=false;
+String ?token_global;
