@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:roya_immobilie/Add_Anonnce/cilent_login.dart';
 import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import '../../../../../Add_Anonnce/annonce_as_login.dart';
 import '../../../../../Controller/login.dart';
 import '../../../../../Model/data_list.dart';
 import '../../../../../varia_ble/variable.dart';
@@ -22,9 +24,60 @@ import 'package:http/http.dart' as http;
 List<DataList>allAnnonceLogin =[];
 String username = "";
 class Body extends StatefulWidget {
-  const Body({
-    Key? key,
-  }) : super(key: key);
+
+  var property_type;
+  var categorie;
+  var status;
+  var adress;
+  var region_id;
+  var city_id;
+  var ville;
+  var quartier;
+  var bedrooms;
+  var bathrooms;
+  var kitchens;
+  var apartment;
+  var area;
+  var price;
+  var age;
+  var floor;
+  var floor_type;
+  var title ;
+  var description ;
+  var phone1;
+  var phone2;
+  var media;
+  var abilities;
+  var transaction;
+
+
+
+  Body({
+      this.property_type,
+      this.categorie,
+      this.status,
+      this.adress,
+      this.region_id,
+      this.city_id,
+      this.ville,
+      this.quartier,
+      this.bedrooms,
+      this.apartment,
+      this.bathrooms,
+      this.kitchens,
+      this.area,
+      this.price,
+      this.age,
+      this.floor,
+      this.floor_type,
+      this.title,
+      this.description,
+      this.phone1,
+      this.phone2,
+      this.media,
+      this.abilities,
+      this.transaction,
+      });
 
   @override
   State<Body> createState() => _BodyState();
@@ -88,9 +141,11 @@ class _BodyState extends State<Body> {
 
                       if(_key_validation.currentState!.validate())
                         print(email +' '+password);
-                      final Login? user = await  _Login(email: email, password: password);
+                     // final Login? user =
+                      await  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
+
                       setState(() {
-                        _user = user;
+                      //  _user = user;
                         //isLogin= user!.success;
                       },
                       );
@@ -131,72 +186,72 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-  _Login({
-    required String? email,
-    required String? password,
-  }) async {
-    try {
-      var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
-        "email": email,
-        "password": password,
-
-      }
-      );
-      print(response.body);
-
-
-      var token=json.decode(response.body);
-      var token_1=token['data']['token'];
-
-      setState(() {
-        username =token['data']['name'];
-        token_global=token_1;
-      });
-
-      print(token_1);
-      if(response.statusCode==200){
-        var response_1 = await http
-            .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
-          //HttpHeaders.authorizationHeader:token_1.toString(),
-          'Authorization': 'Bearer $token_1'
-        }
-        );
-        print(response_1.body);
-
-
-
-        if(response_1.statusCode==200){
-
-
-          final responseJsoon = json.decode(response_1.body);
-          final responseJson = responseJsoon["data"];
-          setState(() {
-            for (Map annoncelogin in responseJson) {
-              allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
-            }
-          });
-          Get.offAll(RoutingLogin());
-        }
-        // print(response_1.body);
-        //  Get.to(const HomeC());
-      }
-      else {
-        final snackBar = SnackBar(
-          content: Row(children: const [
-            Icon(
-              Icons.error,
-              color: Colors.white,
-            ),
-            Text('n\'pas regester  ')
-          ]),
-        );
-        ScaffoldMessenger.of(context)
-            .showSnackBar(snackBar);
-      }
-    } catch (e) {
-      print('error ' + e.toString());
-    }
-  }
+  // _Login({
+  //   required var email,
+  //   required var password,
+  // }) async {
+  //   try {
+  //     var response = await http
+  //         .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
+  //       "email": email,
+  //       "password": password,
+  //
+  //     }
+  //     );
+  //     print(response.body);
+  //
+  //
+  //     var token=json.decode(response.body);
+  //     var token_1=token['data']['token'];
+  //
+  //     setState(() {
+  //       username =token['data']['name'];
+  //       token_global=token_1;
+  //     });
+  //
+  //     print(token_1);
+  //     if(response.statusCode==200){
+  //       var response_1 = await http
+  //           .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
+  //         //HttpHeaders.authorizationHeader:token_1.toString(),
+  //         'Authorization': 'Bearer $token_1'
+  //       }
+  //       );
+  //       print(response_1.body);
+  //
+  //
+  //
+  //       if(response_1.statusCode==200){
+  //
+  //
+  //         final responseJsoon = json.decode(response_1.body);
+  //         final responseJson = responseJsoon["data"];
+  //         setState(() {
+  //           for (Map annoncelogin in responseJson) {
+  //             allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
+  //           }
+  //         });
+  //         Get.offAll(RoutingLogin());
+  //       }
+  //       // print(response_1.body);
+  //       //  Get.to(const HomeC());
+  //     }
+  //     else {
+  //       final snackBar = SnackBar(
+  //         content: Row(children: const [
+  //           Icon(
+  //             Icons.error,
+  //             color: Colors.white,
+  //           ),
+  //           Text('n\'pas regester  ')
+  //         ]),
+  //       );
+  //       ScaffoldMessenger.of(context)
+  //           .showSnackBar(snackBar);
+  //     }
+  //   } catch (e) {
+  //     print('error ' + e.toString());
+  //   }
+  // }
 
 }
