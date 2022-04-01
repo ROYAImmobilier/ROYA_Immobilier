@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roya_immobilie/View/order/contact_info.dart';
 
 import '../../../Model/data_list.dart';
 import '../../../Model/joke.dart';
@@ -42,179 +43,255 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffB6B2C8),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(30),
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xff5E5486), Color(0xff5E5480)]
-                  )
+
+
+
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Card(
+              elevation: 1,
+              shape:  OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.white, width: 1)
               ),
-              child: Container(
-                width: double.infinity,
-                height: 300.0,
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
-                        ),
-                        radius: 50.0,
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        username,
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Card(
-                        margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 5.0),
-                        clipBehavior: Clip.antiAlias,
-                        color:  Color(0xffB6B2C8),
-                        elevation: 5.0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 22.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: ()=>setState(() {
-                                  v=0;
-                                  Poste=allAnnonceLogin;
-                                  colorPost = Colors.blue;
-                                  colorPosteValide = Colors.black;
-                                  colorPosteNonValide = Colors.black;
-                                  ;                                }),
-                                child: Container(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0,right: 10,top: 10),
+                        child: Container(
+                          height: 120,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadiusDirectional.circular(30),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
 
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        "Posts",
-                                        style: TextStyle(
-                                          color:colorPost,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5.0,
-                                      ),
-                                      Text(
-                                        allAnnonceLogin.length.toString(),
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.pinkAccent,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    Poste=[];
-                                    Poste=PosteValide;
-                                    colorPost = Colors.black;
-                                    colorPosteValide = Colors.blue;
-                                    colorPosteNonValide = Colors.black;
-                                    v=1;
-                                  });
-                                },
-                                child: Expanded(
-                                  child: Column(
-
-                                    children: <Widget>[
-                                      Text(
-                                        "Post Valide",
-                                        style: TextStyle(
-                                          color: colorPosteValide,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5.0,
-                                      ),
-                                      Text(
-                                        PosteValide.length.toString(),
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.pinkAccent,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: (){
-                                  setState(() {
-                                    Poste=[];
-                                    Poste=PosteNonValide;
-                                    colorPost = Colors.black;
-                                    colorPosteValide = Colors.black;
-                                    colorPosteNonValide = Colors.blue;
-                                    v=2;
-
-                                  });
-                                },
-                                child: Expanded(
-                                  child: Column(
-
-                                    children: <Widget>[
-                                      Text(
-                                        "Post nvalide",
-                                        style: TextStyle(
-                                          color: colorPosteNonValide,
-                                          fontSize: 18.0,
-
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5.0,
-                                      ),
-                                      Text(
-                                        PosteNonValide.length.toString(),
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.pinkAccent,
-                                        ),
-                                      ),
-
-
-
-                                    ],
-                                  ),
-                                ),
-                              ),
-
-
-                            ],
+                                  colors: [Color(0xff5E5480),Color(0xff5E5480)]
+                              )
                           ),
+
+
                         ),
-                      )
+                      ),
+
+                       Padding(
+                        padding: const EdgeInsets.only(top: 70),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 55.0,
+                              child: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                  "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
+                                ),
+                                radius: 50.0,
+                              ),
+                            ),
+
+
+
+
+                          ],
+                        ),
+                      ),
+
+
                     ],
                   ),
-                ),
-              )
+                  SizedBox(height: 5,),
+                  Text(
+                    username ,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontStyle: FontStyle.italic,
+
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 5,),
+                  Text(
+                    username+"@gmail.com" ,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black45,
+                    ),
+                  ),
+               SizedBox(height: 15,),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 22.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: ()=>setState(() {
+                            v=0;
+                            Poste=allAnnonceLogin;
+                            colorPost = Colors.blue;
+                            colorPosteValide = Colors.black;
+                            colorPosteNonValide = Colors.black;
+                            ;                                }),
+                          child: Container(
+
+                            child: Column(
+                              children: <Widget>[
+
+
+                                Text(
+                                  allAnnonceLogin.length.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pinkAccent,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Posts",
+                                  style: TextStyle(
+                                    color:colorPost,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+
+
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              Poste=[];
+                              Poste=PosteValide;
+                              colorPost = Colors.black;
+                              colorPosteValide = Colors.blue;
+                              colorPosteNonValide = Colors.black;
+                              v=1;
+                            });
+                          },
+                          child: Expanded(
+                            child: Column(
+
+                              children: <Widget>[
+
+
+                                Text(
+                                  PosteValide.length.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pinkAccent,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Valide",
+                                  style: TextStyle(
+                                    color: colorPosteValide,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              Poste=[];
+                              Poste=PosteNonValide;
+                              colorPost = Colors.black;
+                              colorPosteValide = Colors.black;
+                              colorPosteNonValide = Colors.blue;
+                              v=2;
+
+                            });
+                          },
+                          child: Expanded(
+                            child: Column(
+
+                              children: <Widget>[
+
+
+                                Text(
+                                  PosteNonValide.length.toString(),
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pinkAccent,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Non valide",
+                                  style: TextStyle(
+                                    color: colorPosteNonValide,
+                                    fontSize: 18.0,
+
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+
+
+                              ],
+                            ),
+                          ),
+                        ),
+
+
+                      ],
+                    ),
+                  ),
+
+
+
+
+                ],
+              ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ),
           ),
-          Padding(
+
+           Padding(
             padding:  EdgeInsets.only(top: 300),
             child: SingleChildScrollView(
               child: Column(

@@ -440,17 +440,17 @@ Future upload() async{
                               setState(() {
 
                             //  Get.to(LoginScreen());
-                                isLogin==false?   Annonce_As_Login.Add_Annonce_As_Login(region_id: "1",
+                                isLogin==false?  Get.to(Body(region_id: "1",
                                     city_id: "8", transaction: "Rent",
                                     property_type: widget.Property_details, status: status,
-                                    address: widget.adress, quartier: widget.quartier,
+                                    adress: widget.adress, quartier: widget.quartier,
                                     area: widget.area, price: widget.price, age: widget.age,
                                     floor_type: "appartoment", floor: "4",
                                     apartment: "1", bedrooms: '2',
                                     bathrooms: '5', kitchens: '6',
                                     title: _titel.text, description: _description.text,
-                                    phone1: _phone1.text, email: "abde5@gmail.com", password: "12345678",
-                                    abilities: "2", media: base64Image):
+                                    phone1: _phone1.text,
+                                    abilities: "2", media: base64Image)):
                                 Annonce_As_Login.Add_Annonce_As_Aredy_Login(region_id: "1",
                                     city_id: "8", transaction: "Rent",
                                     property_type: widget.Property_details, status: status,
@@ -462,7 +462,6 @@ Future upload() async{
                                     title: _titel.text, description: _description.text,
                                     phone1: _phone1.text,
                                     abilities: "2", media: base64Image);
-
                                 // postdata(
                                 //     address: widget.adress,
                                 //     floor_type: "appartoment",
