@@ -8,9 +8,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../Add_Anonnce/annonce_as_login.dart';
 import '../../Model/ability.dart';
+import '../../varia_ble/variable.dart';
 import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
+import 'order_distination.dart';
+import 'order_distination.dart';
+import 'order_distination.dart';
 
 class ContactInfo extends StatefulWidget {
   String? Property_details;
@@ -434,39 +439,60 @@ Future upload() async{
 
                               setState(() {
 
-
-
-
-                                postdata(
-                                    address: widget.adress,
-                                    floor_type: "appartoment",
-                                    title: _titel.text,
-                                    media:base64Image,
-                                    bathrooms: "2",
-                                    transaction: "Rent",
-                                    status: widget.statut,
-                                    confirmation_password: "12345678",
-                                    kitchens: "4",
-                                    area: "120",
-                                    abilities:'1',
-                                    floor: "3",
-                                    region_id: '1',
-                                    city_id: "3",
-                                    email: "abde5@gmail.com",
+                            //  Get.to(LoginScreen());
+                                isLogin==false?   Annonce_As_Login.Add_Annonce_As_Login(region_id: "1",
+                                    city_id: "8", transaction: "Rent",
+                                    property_type: widget.Property_details, status: status,
+                                    address: widget.adress, quartier: widget.quartier,
+                                    area: widget.area, price: widget.price, age: widget.age,
+                                    floor_type: "appartoment", floor: "4",
+                                    apartment: "1", bedrooms: '2',
+                                    bathrooms: '5', kitchens: '6',
+                                    title: _titel.text, description: _description.text,
+                                    phone1: _phone1.text, email: "abde5@gmail.com", password: "12345678",
+                                    abilities: "2", media: base64Image):
+                                Annonce_As_Login.Add_Annonce_As_Aredy_Login(region_id: "1",
+                                    city_id: "8", transaction: "Rent",
+                                    property_type: widget.Property_details, status: status,
+                                    address: widget.adress, quartier: widget.quartier,
+                                    area: widget.area, price: widget.price, age: widget.age,
+                                    floor_type: "appartoment", floor: "4",
+                                    apartment: "1", bedrooms: '2',
+                                    bathrooms: '5', kitchens: '6',
+                                    title: _titel.text, description: _description.text,
                                     phone1: _phone1.text,
-                                    phone3: _phone3.text,
-                                    bedrooms: '2',
-                                    apartment: "4",
-                                    description: _description.text,
-                                    name: "ahmed",
-                                    phone2: _phone2.text,
-                                    property_type: widget.Property_details,
-                                    age: widget.age,
-                                    price:"15000",
-                                    quartier: widget.quartier,
-                                    password: "12345678"
+                                    abilities: "2", media: base64Image);
 
-                                );
+                                // postdata(
+                                //     address: widget.adress,
+                                //     floor_type: "appartoment",
+                                //     title: _titel.text,
+                                //     media:base64Image,
+                                //     bathrooms: "2",
+                                //     transaction: "Rent",
+                                //     status: widget.statut,
+                                //     confirmation_password: "12345678",
+                                //     kitchens: "4",
+                                //     area: "120",
+                                //     abilities:'1',
+                                //     floor: "3",
+                                //     region_id: '1',
+                                //     city_id: "3",
+                                //     email: "abde5@gmail.com",
+                                //     phone1: _phone1.text,
+                                //     phone3: _phone3.text,
+                                //     bedrooms: '2',
+                                //     apartment: "4",
+                                //     description: _description.text,
+                                //     name: "ahmed",
+                                //     phone2: _phone2.text,
+                                //     property_type: widget.Property_details,
+                                //     age: widget.age,
+                                //     price:"15000",
+                                //     quartier: widget.quartier,
+                                //     password: "12345678"
+                                //
+                                // );
                               });
                             }
                           },

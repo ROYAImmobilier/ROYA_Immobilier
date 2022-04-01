@@ -11,8 +11,7 @@ import '../../varia_ble/variable.dart';
 import '../page/Home/widget/drawerpage.dart';
 import 'order_details.dart';
 
-late final int id_city;
-late final int id_region_;
+
 class Add_Annonce extends StatefulWidget {
   @override
   State<Add_Annonce> createState() => _Add_AnnonceState();
@@ -74,7 +73,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
         _city = city!;
         for (int i = 0; i < _city!.length; i++) {
           if (id_region == _city![i].regionId) {
-            //id_city=_city![i].id;
+           // id_city=_city![i].id;
            // print("id region"+ id_city.toString());
             listCity.add(_city![i]);
           }

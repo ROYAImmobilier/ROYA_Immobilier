@@ -60,3 +60,7 @@ const kPrimaryLightColor = Color(0xFFF1E6FF);
 //login
 var isLogin=false;
 String ?token_global;
+
+//
+late final int id_city;
+late final int id_region_;
