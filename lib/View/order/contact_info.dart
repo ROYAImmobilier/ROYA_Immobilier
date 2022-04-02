@@ -80,24 +80,53 @@ class _ContactInfoState extends State<ContactInfo> {
   File? tmpFile;
   String error = 'Error';
   File? _file;
+  List<File> _listimage = [];
+  List<String>_listimagebase64 = [];
+//   Future chooseImage() async {
+//
+//       final myfile = await ImagePicker().pickImage(source: ImageSource.gallery)   ;
+// setState(() {
+//   _file=File(myfile!.path) ;
+//   upload();
+// });
+//   }
 
-  Future chooseImage() async {
 
-      final myfile = await ImagePicker().pickImage(source: ImageSource.gallery)   ;
-setState(() {
-  _file=File(myfile!.path) ;
-  upload();
-});
+  choseImage() async {
+    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
+    setState(() {
+      // _image.add(File(pickedFile?.path));
+      _listimage.add(File(pickedFile!.path));
+    });
+    if (pickedFile!.path == null) retrieveLostData();
   }
 
-Future upload() async{
-        if(_file==null)
-          return;
-      base64Image=base64Encode(_file!.readAsBytesSync());
-        imagepath=_file!.path.split("/").last;
-
-    //upload(fileName);
+  Future<void> retrieveLostData() async {
+    final LostData response = await ImagePicker().getLostData();
+    if (response.isEmpty) {}
+    if (response.exception != null) {
+      setState(() {
+        _listimage.add(File(response.file!.path));
+      });
+    } else {
+      print(response.file);
+    }
   }
+
+
+
+
+
+
+
+// Future upload() async{
+//         if(_file==null)
+//           return;
+//       base64Image=base64Encode(_file!.readAsBytesSync());
+//         imagepath=_file!.path.split("/").last;
+//
+//     //upload(fileName);
+//   }
 
 
   // openImage() async {
@@ -355,31 +384,70 @@ Future upload() async{
                             SizedBox(
                               height: 10.h,
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                //selected img
-                                setState(() {
-                                  chooseImage();
-                                });
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 40),
-                                child: _image.length == 0
-                                    ? Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Image.asset(
-                                          'assets/images/select.png',
-                                          height: 50.h,
-                                          width: 50.w,
-                                        ),
-                                      )
-                                    : Container(
-                                        height: 60.h,
-                                        // width: 60,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: FileImage(_image[0]))),
-                                      ),
+                            Container(
+                              height: 100,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: _listimage.length+1,
+                                  scrollDirection: Axis.horizontal,
+                                itemBuilder: (context , i) {
+                                  return i == 0
+                                      ? Center(
+                                    child: Card(
+                                        color: Colors.cyan,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                             choseImage();
+                                              });
+                                            },
+                                            icon: Icon(
+                                              Icons.add_photo_alternate_rounded,
+                                              color: Colors.black,
+                                            ))),
+                                  )
+                                      : Container(
+                                      margin: EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: FileImage(
+                                                  _listimage[i - 1]))
+                                      ));
+
+
+                                  /*  GestureDetector(
+                                    onTap: () {
+                                      //selected img
+                                      setState(() {
+                                       choseImage();
+                                      });
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 40),
+                                      child: _listimage.length == 0
+                                          ? Container(
+                                              alignment: Alignment.topLeft,
+                                              child: Image.asset(
+                                                'assets/images/select.png',
+                                                height: 50.h,
+                                                width: 50.w,
+                                              ),
+                                            )
+                                          : Container(
+                                              height: 60.h,
+                                              // width: 60,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: FileImage(_listimage[i]))),
+                                            ),
+                                    ),
+                                  ) : Container(
+                                    margin: EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: FileImage(_listimage[i - 1]))),
+                                  );*/
+                                }
                               ),
                             ),
                           ],

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/ability.dart';
 import 'package:http/http.dart' as http;
@@ -190,7 +191,7 @@ String ? _flooring;
 
                           Container(
                           //  height: 35.h,
-                            width: (MediaQuery.of(context).size.width * 0.21).w,
+                            width: (MediaQuery.of(context).size.width * 0.18).w,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.all(Radius.circular(5.r)),
@@ -208,7 +209,7 @@ String ? _flooring;
                                 // color: Colors.deepPurpleAccent,
                               ),
                               value: _price_type,
-                              items: <String>['dh', '\$', 'ouro', 'dinar']
+                              items: <String>['DH', 'EURO', 'USD']
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
@@ -571,22 +572,6 @@ String ? _flooring;
 
                      !showaddtional?Container():appability(ladditional),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       SizedBox(
                         height: 10.h,
                       ),
@@ -753,15 +738,19 @@ String ? _flooring;
 
                   });
                 },
-                child:colorAbility(data[index].id)? Icon(Icons.circle_notifications ,
-
+                child:colorAbility(data[index].id)? SvgPicture.asset(data[index].icon ,
+                  width: 30,
+                  height: 30,
                   color : Colors.blue,
 
-                ):Icon(Icons.circle_notifications ,
-
+                ):SvgPicture.asset(data[index].icon,
+                  width: 30,
+                  height: 30,
                   color : Colors.black,
 
-                ));// Icon(Icons.circle_notifications , size: 25,);
+                )
+
+            );// Icon(Icons.circle_notifications , size: 25,);
           }),
     ),
   );

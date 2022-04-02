@@ -10,14 +10,11 @@ import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/testciyt.dart';
-
 import 'Controller/AnonceController.dart';
 import 'Model/ability.dart';
-
 import 'Model/joke.dart';
 import 'Model/repositery.dart';
 import 'View/page/Home/home.dart';
-
 import 'View/order/order_distination.dart';
 import 'View/page/Profile/profile.dart';
 import 'View/page/serche_page.dart';
@@ -76,7 +73,7 @@ class _MyAppState extends State<MyApp> {
               Ability(
                 id: b[i]['id'],
                 name: b[i]["name"],
-                icon: b[i]["icon"].toString(),
+                icon: "lib/abilities/${b[i]["icon"].toString()}.svg",
                 type: b[i]["type"].toString(),
                 createdAt: b[i]["created_at"].toString(),
                 updatedAt: b[i]["updated_at"].toString(),

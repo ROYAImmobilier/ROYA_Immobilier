@@ -257,7 +257,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               ),
                               //  value: dropdownValue,
                               value: _statut,
-                              items: <String>['new', 'Two', 'Free', 'Four']
+                              items: <String>['Neuf', 'Bon état', 'A besoin de réparation']
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,

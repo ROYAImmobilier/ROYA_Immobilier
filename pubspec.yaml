@@ -76,6 +76,7 @@ flutter:
     - assets/icon/nav_menu/
     - assets/icon/
     - assets/icons/
+    - lib/abilities/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
