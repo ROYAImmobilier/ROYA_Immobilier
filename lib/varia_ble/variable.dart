@@ -7,12 +7,15 @@ import '../Model/city.dart';
 var region_1;
 
 final categorie = [
-  "Apartement",
+  "Appartements",
+  "Chambre",
   "Maison",
-  "Terrain",
-  "Bureau",
-  "Plateau",
   "Villa",
+  "Riad",
+  "Commercial",
+  "Bureau",
+  "Terre",
+  "Fermes",
 ];
 
 class Region_1 {

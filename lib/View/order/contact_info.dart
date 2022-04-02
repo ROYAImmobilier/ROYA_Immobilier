@@ -97,6 +97,7 @@ class _ContactInfoState extends State<ContactInfo> {
     setState(() {
       // _image.add(File(pickedFile?.path));
       _listimage.add(File(pickedFile!.path));
+      _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
     });
     if (pickedFile!.path == null) retrieveLostData();
   }
@@ -107,6 +108,7 @@ class _ContactInfoState extends State<ContactInfo> {
     if (response.exception != null) {
       setState(() {
         _listimage.add(File(response.file!.path));
+        _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
       });
     } else {
       print(response.file);
@@ -399,6 +401,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                             onPressed: () {
                                               setState(() {
                                              choseImage();
+                                             print("adzgdsjhfgshdfvbsd,gfbdgng");
+
                                               });
                                             },
                                             icon: Icon(
@@ -412,9 +416,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                           image: DecorationImage(
                                               image: FileImage(
                                                   _listimage[i - 1]))
-                                      ));
-
-
+                                      )
+                                  );
                                   /*  GestureDetector(
                                     onTap: () {
                                       //selected img
