@@ -83,6 +83,17 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     });
   }
 
+  getidCity(String name_City){
+    for (int i = 0; i < _city!.length; i++) {
+      if (name_City == _city![i].cityName) {
+         id_city=_city![i].id;
+         print(id_city.toString());
+        // print("id region"+ id_city.toString());
+      }
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -405,6 +416,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             onChanged: (String? Value) {
                               setState(() {
                                 city = Value;
+                                getidCity(city!);
                               });
                             },
                           ),

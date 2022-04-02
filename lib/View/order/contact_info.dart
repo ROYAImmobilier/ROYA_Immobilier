@@ -438,9 +438,9 @@ Future upload() async{
                               // Get.to(LoginScreen());
 
                               setState(() {
-
+                                isCamindingfrom=true;
                             //  Get.to(LoginScreen());
-                                isLogin==false?  Get.to(Body(region_id: "1",
+                                isLogin==false?  Get.to(LoginScreen(region_id: "1",
                                     city_id: "8", transaction: "Rent",
                                     property_type: widget.Property_details, status: status,
                                     adress: widget.adress, quartier: widget.quartier,

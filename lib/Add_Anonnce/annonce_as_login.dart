@@ -7,6 +7,14 @@ import 'package:roya_immobilie/View/page/home_c.dart';
 import 'package:roya_immobilie/varia_ble/variable.dart';
 class Annonce_As_Login{
 
+
+
+
+
+
+
+
+
  static Future Add_Annonce_As_Login({required String? region_id,
     required String? city_id,
     required String? transaction,

@@ -62,5 +62,8 @@ var isLogin=false;
 String ?token_global;
 
 //
-late final int id_city;
+  var id_city;
 late final int id_region_;
+
+//Verified
+var isCamindingfrom=false;

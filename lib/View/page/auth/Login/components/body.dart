@@ -86,7 +86,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   // var pass=TextEditingController();
   // var emaill=TextEditingController();
-  bool isLogin=false;
+  //bool isLogin=false;
   late String email ='' ;
   late String password ='';
   var _key_validation=GlobalKey<FormState>();
@@ -141,9 +141,28 @@ class _BodyState extends State<Body> {
 
                       if(_key_validation.currentState!.validate())
                         print(email +' '+password);
-                     // final Login? user =
-                      await  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
+                     //
 
+                                        if(isCamindingfrom){
+                                          isCamindingfrom=false;
+                                          isLogin=true;
+                                          //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
+                                            await  Annonce_As_Login.Add_Annonce_As_Login(region_id: "1",
+                                              city_id: "8", transaction: "Rent",
+                                              property_type: widget.property_type, status: widget.status,
+                                              address: widget.adress, quartier: widget.quartier,
+                                              area: widget.area, price: widget.price, age: widget.age,
+                                              floor_type: "appartoment", floor: "4",
+                                              apartment: "1", bedrooms: '2',
+                                              bathrooms: '5', kitchens: '6',
+                                              title: widget.title, description: widget.description,
+                                              phone1: widget.phone1, email: email, password: password,
+                                              abilities: "2", media: widget.media);
+
+                                                           Get.offAll(RoutingLogin());
+                                        }else if(!isCamindingfrom){
+                                          final Login? user =await _Login(email: email, password: password);
+                                        }
                       setState(() {
                       //  _user = user;
                         //isLogin= user!.success;
@@ -186,72 +205,73 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-  // _Login({
-  //   required var email,
-  //   required var password,
-  // }) async {
-  //   try {
-  //     var response = await http
-  //         .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
-  //       "email": email,
-  //       "password": password,
-  //
-  //     }
-  //     );
-  //     print(response.body);
-  //
-  //
-  //     var token=json.decode(response.body);
-  //     var token_1=token['data']['token'];
-  //
-  //     setState(() {
-  //       username =token['data']['name'];
-  //       token_global=token_1;
-  //     });
-  //
-  //     print(token_1);
-  //     if(response.statusCode==200){
-  //       var response_1 = await http
-  //           .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
-  //         //HttpHeaders.authorizationHeader:token_1.toString(),
-  //         'Authorization': 'Bearer $token_1'
-  //       }
-  //       );
-  //       print(response_1.body);
-  //
-  //
-  //
-  //       if(response_1.statusCode==200){
-  //
-  //
-  //         final responseJsoon = json.decode(response_1.body);
-  //         final responseJson = responseJsoon["data"];
-  //         setState(() {
-  //           for (Map annoncelogin in responseJson) {
-  //             allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
-  //           }
-  //         });
-  //         Get.offAll(RoutingLogin());
-  //       }
-  //       // print(response_1.body);
-  //       //  Get.to(const HomeC());
-  //     }
-  //     else {
-  //       final snackBar = SnackBar(
-  //         content: Row(children: const [
-  //           Icon(
-  //             Icons.error,
-  //             color: Colors.white,
-  //           ),
-  //           Text('n\'pas regester  ')
-  //         ]),
-  //       );
-  //       ScaffoldMessenger.of(context)
-  //           .showSnackBar(snackBar);
-  //     }
-  //   } catch (e) {
-  //     print('error ' + e.toString());
-  //   }
-  // }
+  _Login({
+    required var email,
+    required var password,
+  }) async {
+    try {
+      var response = await http
+          .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
+        "email": email,
+        "password": password,
+
+      }
+      );
+      print(response.body);
+
+
+      var token=json.decode(response.body);
+      var token_1=token['data']['token'];
+
+      setState(() {
+        username =token['data']['name'];
+        token_global=token_1;
+      });
+
+      print(token_1);
+      if(response.statusCode==200){
+        var response_1 = await http
+            .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
+          //HttpHeaders.authorizationHeader:token_1.toString(),
+          'Authorization': 'Bearer $token_global'
+        }
+        );
+        print(response_1.body);
+
+
+
+        if(response_1.statusCode==200){
+
+          isLogin=true;
+          print(isLogin);
+          final responseJsoon = json.decode(response_1.body);
+          final responseJson = responseJsoon["data"];
+          setState(() {
+            for (Map annoncelogin in responseJson) {
+              allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
+            }
+          });
+          Get.offAll(RoutingLogin());
+        }
+        // print(response_1.body);
+        //  Get.to(const HomeC());
+      }
+      else {
+        final snackBar = SnackBar(
+          content: Row(children: const [
+            Icon(
+              Icons.error,
+              color: Colors.white,
+            ),
+            Text('n\'pas regester  ')
+          ]),
+        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(snackBar);
+      }
+    } catch (e) {
+      print('error ' + e.toString());
+    }
+  }
 
 }
