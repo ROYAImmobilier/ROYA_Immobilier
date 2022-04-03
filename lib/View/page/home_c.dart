@@ -13,8 +13,14 @@ import '../../Model/joke.dart';
 import '../../data.dart';
 import 'Home/category_items.dart';
 
-class HomeC extends StatelessWidget {
+class HomeC extends StatefulWidget {
+  @override
+  State<HomeC> createState() => _HomeCState();
+}
+
+class _HomeCState extends State<HomeC> {
   List<Joke> select=[] ;
+
   @override
   Widget build(BuildContext context) {
     int r = Random().nextInt(allAnnonce.length) ;
@@ -127,15 +133,20 @@ class HomeC extends StatelessWidget {
                                     return   GestureDetector(
                                       onTap: () {
                                         select = [];
-                                        for(int k=0 ;k<allAnnonce.length;k++){
-                                          if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
-                                            select.add(allAnnonce[k]);
-                                          }
-                                        }
-                                        Get.to(CategoryItems(
-                                            icon : dataCategory[i].icon,
-                                            title: dataCategory[i].name,
-                                            data:select, leng: select.length));
+
+                                       setState(() {
+                                         for(int k=0 ;k<allAnnonce.length;k++){
+
+                                           if(dataCategory[i].name=="All"){
+                                             select.add(allAnnonce[k]);
+                                           }
+                                           else if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
+                                             select.add(allAnnonce[k]);
+                                           }
+                                         }
+                                       });
+
+
                                       },
                                       child: Row(
                                         children: [
@@ -185,7 +196,7 @@ class HomeC extends StatelessWidget {
                       child: Container(
                         child: Column(children: [
                           GestureDetector(
-                            onTap: ()=>Get.to(Details(image: allAnnonce[r].cover, data:  allAnnonce[r])),
+                            onTap: ()=>Get.to(Details(image: select[r].cover, data:  select[r])),
                             child: Column(children: [
                               Container(
                                 margin:
@@ -194,7 +205,7 @@ class HomeC extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: NetworkImage(
-                                          "https://dashboard.royaimmo.ma/images/annonces/"+allAnnonce[r].cover
+                                          "https://dashboard.royaimmo.ma/images/annonces/"+select[r].cover
                                       ),
                                       fit: BoxFit.fill,
                                     ),
@@ -221,12 +232,12 @@ class HomeC extends StatelessWidget {
 
                                       children: [
                                         Text(
-                                          allAnnonce[r].title,
+                                          select[r].title,
                                           style: TextStyle(fontSize: 14.sp),
                                         ),
                                         SizedBox(width: 20,),
                                         Text(
-                                          '${allAnnonce[r].price} Dhs',
+                                          '${select[r].price} Dhs',
                                           style: TextStyle(
                                               fontSize: 14.sp, color: Color(0xffC0A280)),
                                         ),
@@ -246,7 +257,7 @@ class HomeC extends StatelessWidget {
                                           size: 12.sp,
                                         ),
                                         Text(
-                                          allAnnonce[r].address,
+                                          select[r].address,
                                           style: TextStyle(
                                               color: Colors.grey, fontSize: 12.sp),
                                         )
@@ -273,7 +284,7 @@ class HomeC extends StatelessWidget {
                                             width: 5.w,
                                           ),
                                           Text(
-                                            "${allAnnonce[r].bedrooms} Beds",
+                                            "${select[r].bedrooms} Beds",
                                             style: TextStyle(color: Color(0xff8a8a8a)),
                                           )
                                         ]),
@@ -292,7 +303,7 @@ class HomeC extends StatelessWidget {
                                             width: 5.w,
                                           ),
                                           Text(
-                                            "${allAnnonce[r].bathrooms} Boths",
+                                            "${select[r].bathrooms} Boths",
                                             style: TextStyle(color: Color(0xff8a8a8a)),
                                           )
                                         ]),
@@ -311,7 +322,7 @@ class HomeC extends StatelessWidget {
                                             width: 5.w,
                                           ),
                                           Text(
-                                            "${allAnnonce[r].area} m²",
+                                            "${select[r].area} m²",
                                             style: TextStyle(color: Color(0xff8a8a8a)),
                                           )
                                         ]),
@@ -347,12 +358,12 @@ class HomeC extends StatelessWidget {
                             child: ListView.builder(
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
-                              itemCount: allAnnonce.length,
+                              itemCount: select.length,
                               itemBuilder: (context, i) {
                                 return Column(
                                   children: [
                                     GestureDetector(
-                                      onTap: ()=>Get.to(Details(image: allAnnonce[i].cover, data: allAnnonce[i])),
+                                      onTap: ()=>Get.to(Details(image: select[i].cover, data: select[i])),
                                       child: Padding(
                                         padding: EdgeInsets.only(left: 12.w, right: 12.w),
                                         child: Container(
@@ -372,7 +383,7 @@ class HomeC extends StatelessWidget {
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                       image: DecorationImage(
-                                                          image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+allAnnonce[i].cover),
+                                                          image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+select[i].cover),
                                                           fit: BoxFit.fill),
                                                       borderRadius: BorderRadius.only(
                                                           topLeft: Radius.circular(8.r),
@@ -399,7 +410,7 @@ class HomeC extends StatelessWidget {
 
                                                         children: [
                                                           Text(
-                                                            allAnnonce[i].title,
+                                                            select[i].title,
                                                             maxLines: 1,
 
                                                             style:
@@ -407,7 +418,7 @@ class HomeC extends StatelessWidget {
                                                           ),
                                                           SizedBox(width: 15,),
                                                           Text(
-                                                            "${allAnnonce[i].price} dhs",
+                                                            "${select[i].price} dhs",
                                                             style: TextStyle(
                                                                 color: Color(0xffC0A280),
                                                                 fontSize: 12.sp),
@@ -430,7 +441,7 @@ class HomeC extends StatelessWidget {
                                                           size: 12.sp,
                                                         ),
                                                         Text(
-                                                          allAnnonce[i].address,
+                                                          select[i].address,
                                                           style: TextStyle(
                                                               color: Colors.grey,
                                                               fontSize: 12.sp),
@@ -442,25 +453,25 @@ class HomeC extends StatelessWidget {
                                                               builder: (controller) => IconButton(
                                                                 onPressed: () {
                                                                   controller.addProducts(FavCategoryItem(
-                                                                    id: allAnnonce[i].id,
-                                                                    region: allAnnonce[i].region,
-                                                                    city: allAnnonce[i].city,
-                                                                    title: allAnnonce[i].title,
-                                                                    cover: allAnnonce[i].cover,
-                                                                    apartment: allAnnonce[i].apartment,
-                                                                    bedrooms:allAnnonce[i].bedrooms,
-                                                                    bathrooms: allAnnonce[i].bathrooms,
-                                                                    kitchens: allAnnonce[i].kitchens,
-                                                                    address: allAnnonce[i].address,
-                                                                    description: allAnnonce[i].description,
-                                                                    phone1: allAnnonce[i].phone1,
-                                                                    advertiser: allAnnonce[i].advertiser,
-                                                                    area: allAnnonce[i].area.toString(),
-                                                                    quartier: allAnnonce[i].quartier,
+                                                                    id: select[i].id,
+                                                                    region: select[i].region,
+                                                                    city: select[i].city,
+                                                                    title: select[i].title,
+                                                                    cover: select[i].cover,
+                                                                    apartment: select[i].apartment,
+                                                                    bedrooms:select[i].bedrooms,
+                                                                    bathrooms: select[i].bathrooms,
+                                                                    kitchens: select[i].kitchens,
+                                                                    address: select[i].address,
+                                                                    description: select[i].description,
+                                                                    phone1: select[i].phone1,
+                                                                    advertiser: select[i].advertiser,
+                                                                    area: select[i].area.toString(),
+                                                                    quartier: select[i].quartier,
                                                                   ));
                                                                   controller.getAllProducts();
                                                                 },
-                                                                icon: controller.FavIcon(allAnnonce[i]) == true
+                                                                icon: controller.FavIcon(select[i]) == true
                                                                     ? Icon(
                                                                   Icons.favorite,
                                                                   color: Colors.red,
@@ -502,7 +513,7 @@ class HomeC extends StatelessWidget {
                                                               width: 2.w,
                                                             ),
                                                             Text(
-                                                              "${allAnnonce[i].bedrooms} Beds",
+                                                              "${select[i].bedrooms} Beds",
                                                               style: TextStyle(
                                                                   fontSize: 11.sp,
                                                                   color: Color(0xff8a8a8a)),
@@ -523,7 +534,7 @@ class HomeC extends StatelessWidget {
                                                               width: 2.w,
                                                             ),
                                                             Text(
-                                                              "${allAnnonce[i].bathrooms} Boths",
+                                                              "${select[i].bathrooms} Boths",
                                                               style: TextStyle(
                                                                   fontSize: 11.sp,
                                                                   color: Color(0xff8a8a8a)),
@@ -544,7 +555,7 @@ class HomeC extends StatelessWidget {
                                                               width: 2.w,
                                                             ),
                                                             Text(
-                                                              "${allAnnonce[i].area} m²",
+                                                              "${select[i].area} m²",
                                                               style: TextStyle(
                                                                   fontSize: 11.sp,
                                                                   color: Color(0xff8a8a8a)),

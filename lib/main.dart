@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
 import 'View/page/serche_page.dart';
@@ -12,7 +13,6 @@ import 'View/routing_screen.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -23,15 +23,12 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 List<Ability> ability = [];
 class _MyAppState extends State<MyApp> {
-
   List<Joke> Listannonce = [];
-
   Future<void> getUserDetails() async {
     final response = await http.get(Uri.parse(url));
     final responseJsoon = json.decode(response.body);
@@ -39,11 +36,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       for (Map user in responseJson) {
         allAnnonce.add(Joke.fromJson(user.cast()));
-
       }});}
-
-
-
 
   getability() async {
     print("e.");
@@ -76,11 +69,6 @@ class _MyAppState extends State<MyApp> {
     } catch (e) {}
   }
 
-
-
-
-
-
   @override
   void initState() {
     super.initState();
@@ -89,10 +77,7 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-
     return
-
-
       GetMaterialApp(
       debugShowCheckedModeBanner: false,
     //  initialBinding: Binding(),

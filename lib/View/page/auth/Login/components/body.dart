@@ -20,7 +20,7 @@ import '../../../home_c.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:shared_preferences/shared_preferences.dart';
 List<DataList>allAnnonceLogin =[];
 String username = "";
 class Body extends StatefulWidget {
@@ -87,6 +87,7 @@ class _BodyState extends State<Body> {
   // var pass=TextEditingController();
   // var emaill=TextEditingController();
   //bool isLogin=false;
+  bool progress=false ;
   late String email ='' ;
   late String password ='';
   var _key_validation=GlobalKey<FormState>();
@@ -127,6 +128,7 @@ class _BodyState extends State<Body> {
 
                 },
               ),
+              progress==true ?CircularProgressIndicator():Container(),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 width: size.width * 0.8,
@@ -209,6 +211,9 @@ class _BodyState extends State<Body> {
     required var email,
     required var password,
   }) async {
+    setState(() {
+      progress=true;
+    });
     try {
       var response = await http
           .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
@@ -226,6 +231,7 @@ class _BodyState extends State<Body> {
       setState(() {
         username =token['data']['name'];
         token_global=token_1;
+
       });
 
       print(token_1);
@@ -241,7 +247,9 @@ class _BodyState extends State<Body> {
 
 
         if(response_1.statusCode==200){
-
+          setState(() {
+            progress=false;
+          });
           isLogin=true;
           print(isLogin);
           final responseJsoon = json.decode(response_1.body);
@@ -273,5 +281,7 @@ class _BodyState extends State<Body> {
       print('error ' + e.toString());
     }
   }
+
+
 
 }
