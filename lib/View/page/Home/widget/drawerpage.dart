@@ -7,10 +7,12 @@ import 'package:roya_immobilie/View/order/order_details.dart';
 import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/auth/Login/components/body.dart';
 import 'package:roya_immobilie/View/page/favorite_page.dart';
+import 'package:roya_immobilie/View/routing_screen.dart';
 
 import '../../../../Controller/AnonceController.dart';
 import '../../../../Controller/cityController.dart';
 import '../../../../Model/repositery.dart';
+import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
 
@@ -166,36 +168,38 @@ class _DrawerPageState extends State<DrawerPage> {
                 ),
               ),
             ),
+
+
             SizedBox(
               height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
               child:
-                username.length!=0?
-                GestureDetector(
-                    onTap: (){
-                      Get.to(ProfilePage());
-                    },
-                    child:
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icon/nav_menu/person.svg',
-                      width: 25,
-                      height: 25,
-                    ),
-                    SizedBox(
-                      width: 24,
-                    ),
-                    Text('My Compte'.tr, style: TextStyle(fontSize: 20))
-                  ],
-                )):
-                GestureDetector(
+              isLogin==true?
+              GestureDetector(
                   onTap: (){
-                    Get.to(LoginScreen());
+                    Get.to(ProfilePage());
                   },
                   child:
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icon/nav_menu/person.svg',
+                        width: 25,
+                        height: 25,
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Text('My Compte'.tr, style: TextStyle(fontSize: 20))
+                    ],
+                  )):
+              GestureDetector(
+                onTap: (){
+                  Get.to(LoginScreen());
+                },
+                child:
                 Row(
                   children: [
                     SvgPicture.asset(
@@ -210,6 +214,32 @@ class _DrawerPageState extends State<DrawerPage> {
                   ],
                 ),
               ),
+            ),
+            isLogin==true?SizedBox(
+              width: 24,
+            ):SizedBox(),
+            Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12,top: 18,bottom: 4),
+              child: isLogin==true?  GestureDetector(
+                  onTap: (){
+                    isLogin=false;
+                    token_global="";
+                    Get.offAll(const RoutingScreen());
+                  },
+                  child:
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icon/logout.svg',
+                        width: 25,
+                        height: 25,
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Text('Log Out'.tr, style: TextStyle(fontSize: 20))
+                    ],
+                  )):Container(),
             ),
             SizedBox(
               height: 15,
@@ -269,18 +299,19 @@ class _DrawerPageState extends State<DrawerPage> {
                   SizedBox(
                     width: 24,
                   ),
-                  TextButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       buildLanguageDialog(context);
                       // setState(() {
                       //   var locale = Locale('ar', 'MA');
                       //   Get.updateLocale(locale);
                       // });
                     },
-                    child: Text(
+                    child:Text(
                       'Langues'.tr,
                       style: TextStyle(
                         fontSize: 20,
+
                       ),
                     ),
                   )
@@ -321,8 +352,8 @@ class _DrawerPageState extends State<DrawerPage> {
                   SizedBox(
                     width: 24,
                   ),
-                  TextButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(builder: (context) => Add_Annonce()),

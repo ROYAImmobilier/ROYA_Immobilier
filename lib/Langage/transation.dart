@@ -39,7 +39,7 @@ class Transation extends Translations {
           'Maison': 'منزل',
           'Villa': 'فيلا',
           'Riad': 'رياض',
-          'Commercial':" محل تجاري",
+          'Commercial':"محل تجاري",
           'Bureau': 'مكتب',
           'Terre': 'أرض',
           'Fermes': 'مزارع',

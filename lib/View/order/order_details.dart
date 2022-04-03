@@ -71,7 +71,9 @@ var area=TextEditingController();
 var price=TextEditingController();
 String ? _price_type;
 String ? _age;
+String ?  _age_select;
 String ? _flooring;
+String ? _floor_select;
 
   var _key_details=GlobalKey<FormState>();
   @override
@@ -264,7 +266,7 @@ String ? _flooring;
                               ),
                               value: _age,
 
-                              items: <String>['Moins de 1 an', '1 à 5 ans', '5 à 10 ans', '10 à 20 ans','20 à 30 ans','30 à 50 ans','50 à 70 ans','70 à 100 ans','Plus de 100 ans',]
+                              items: <String>['Moins de 1 an'.tr, '1 à 5 ans'.tr, '5 à 10 ans'.tr, '10 à 20 ans'.tr,'20 à 30 ans'.tr,'30 à 50 ans'.tr,'50 à 70 ans'.tr,'70 à 100 ans'.tr,'Plus de 100 ans'.tr,]
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
@@ -273,7 +275,35 @@ String ? _flooring;
                               }).toList(),
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  _age=newValue;
+
+                                  if(newValue=="Moins de 1 an"||newValue=="Less than 1 year"||newValue== 'أقل من 1 سنة') {
+                                    _age = newValue;
+                                    _age_select="L1";
+                                  }else if(newValue=="1 à 5 ans"||newValue=="1 to 5 years old"||newValue== 'من 1 إلى 5 سنوات'){
+                                    _age = newValue;
+                                    _age_select="F1T5";
+                                  }else if(newValue=="5 à 10 ans"||newValue=="5 to 10 years old"||newValue== 'من 5 إلى 10 سنوات'){
+                                    _age = newValue;
+                                    _age_select="F5T10";
+                                  }else if(newValue=="10 à 20 ans"||newValue=="10 to 20 years old"||newValue== 'من 10 إلى 20 سنة'){
+                                    _age = newValue;
+                                    _age_select="F10T20";
+                                  }else if(newValue=="20 à 30 ans"||newValue=="20 to 30 years old"||newValue=='من 20 إلى 30 سنة'){
+                                    _age = newValue;
+                                    _age_select="T20F30";
+                                  }else if(newValue=="30 à 50 ans"||newValue=="30 to 50 years old"||newValue=='من 30 إلى 50 سنة'){
+                                    _age = newValue;
+                                    _age_select="T30F50";
+                                  }else if(newValue=="50 à 70 ans"||newValue=="50 to 70 years old"||newValue=='من 50 إلى 70 سنة'){
+                                    _age = newValue;
+                                    _age_select="T50F70";
+                                  }else if(newValue=="70 à 100 ans"||newValue=="70 to 100 years old"||newValue=='من 70 إلى 100 سنة'){
+                                    _age = newValue;
+                                    _age_select="F70T70";
+                                  }else if(newValue=="Plus de 100 ans"||newValue=="Over 100 years old"||newValue=='أكثر من 100 عام'){
+                                    _age = newValue;
+                                    _age_select="G100";
+                                  }
                                 });
 
                               },
@@ -308,7 +338,7 @@ String ? _flooring;
                                 // color: Colors.deepPurpleAccent,
                               ),
                               value: _flooring,
-                              items: <String>['Moins de 1 an', '1 à 5 ans', '5 à 10 ans', '10 à 20 ans','20 à 30 ans','30 à 50 ans','50 à 70 ans','70 à 100 ans','Plus de 100 ans']
+                              items: <String>["Wooden".tr,'Marble'.tr,"Tiled".tr,"Others".tr]
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
@@ -317,7 +347,8 @@ String ? _flooring;
                               }).toList(),
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  _flooring=newValue;
+
+                                 // _flooring=newValue;
                                 });
 
                               },
@@ -330,7 +361,7 @@ String ? _flooring;
                             children: [
                               Column(
                                 children: [
-                                  Text("Bedroms:", style: TextStyle(fontSize: 14.sp)),
+                                  Text("Bedroms".tr+":", style: TextStyle(fontSize: 14.sp)),
                                   Container(
                                     width: 140,
                                     alignment: Alignment.center,
@@ -378,7 +409,7 @@ String ? _flooring;
                               ),
                               Column(
                                 children: [
-                                  Text("Bathrooms:", style: TextStyle(fontSize: 14.sp)),
+                                  Text("Bathrooms".tr +":", style: TextStyle(fontSize: 14.sp)),
                                   Container(
                                     width: 140,
                                     alignment: Alignment.center,
@@ -429,7 +460,7 @@ String ? _flooring;
                               ),
                               Column(
                                 children: [
-                                  Text("Kitchens:", style: TextStyle(fontSize: 14.sp)),
+                                  Text("Kitchens".tr+":", style: TextStyle(fontSize: 14.sp)),
                                   Container(
                                     width: 140,
                                     alignment: Alignment.center,
@@ -501,7 +532,7 @@ String ? _flooring;
                                  showmain=!showmain;
                                });
                                 },
-                                color: Color.fromARGB(255, 175, 178, 206),
+                                color: const Color.fromARGB(255, 175, 178, 206),
                                 child: Text('Main Abilites',
                                     style: TextStyle(fontSize: 14.sp)),
                               ),
@@ -515,7 +546,7 @@ String ? _flooring;
                             height: 20,
                           ),
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
@@ -619,13 +650,13 @@ String ? _flooring;
                                     print(area.text);
                                     print(price.text);
                                     print(_price_type);
-                                    print(_age);
+                                    print(_age_select);
                                     print(_flooring);
       if(_key_details.currentState!.validate()&&_age!=null ) {
-                  Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '',
-                    bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms,
-                    Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville, age: _age, price: price.text,flooring:_flooring,area:area.text));
-              }},
+        Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '',
+            bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms,
+            Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville, age: _age_select, price: price.text,flooring:_flooring,area:area.text));
+      }},
                                   child: Container(
                                     width: 120,
                                     decoration: const BoxDecoration(
@@ -656,7 +687,7 @@ String ? _flooring;
                               //   child: TextButton(
                               //     onPressed: () {
                               //       if(_key_details.currentState!.validate()&&_age!=null ) {
-                              //         Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '', bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms, Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville,));
+                              //         Get.to( ContactInfo(city: widget.ville, _age: widget._age, quartier: widget.quartier, value: '', bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms, Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville,));
                               //       }},
                               //     child:  Text("Suivant",
                               //         style: TextStyle(
@@ -687,7 +718,7 @@ String ? _flooring;
                               //       child: TextButton(
                               //         onPressed: () {
                               //           if(_key_details.currentState!.validate()&&_age!=null ) {
-                              //             Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '', bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms, Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville,));
+                              //             Get.to( ContactInfo(city: widget.ville, _age: widget._age, quartier: widget.quartier, value: '', bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms, Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville,));
                               //           }},
                               //             child:  Text("Suivant",
                               //       style: TextStyle(

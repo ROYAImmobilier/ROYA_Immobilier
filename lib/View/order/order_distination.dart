@@ -23,6 +23,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   String? _Property_details = "Vente";
   String? _categorie;
+  String ? _categorie_select;
   String? _statut;
   String? _adress;
   String? _region_1;
@@ -221,8 +222,35 @@ print(locale[1]["locale"]);
                                 }).toList(),
                                 onChanged: (newValue) {
                                   setState(() {
-                                    // print(newValue);
-                                    _categorie = newValue;
+                                    if(newValue=="Appartements"||newValue=="Apartments"||newValue=="شقق") {
+                                      _categorie = newValue;
+                                      _categorie_select="apartments";
+                                    }else if(newValue=="Chambre"||newValue=="Rooms"||newValue=="غرفة"){
+                                      _categorie = newValue;
+                                      _categorie_select="rooms";
+                                    }else if(newValue=="Maison"||newValue=="House"||newValue=="منزل"){
+                                      _categorie = newValue;
+                                      _categorie_select="house";
+                                    }else if(newValue=="Villa"||newValue=="Villa"||newValue=="فيلا"){
+                                      _categorie = newValue;
+                                      _categorie_select="villa";
+                                    }else if(newValue=="Riad"||newValue=="Riad"||newValue=="رياض"){
+                                      _categorie = newValue;
+                                      _categorie_select="riad";
+                                    }else if(newValue=="Commercial"||newValue=="Commercial"||newValue=="محل تجاري"){
+                                      _categorie = newValue;
+                                      _categorie_select="commercialSpace";
+                                    }else if(newValue=="Bureau"||newValue=="Office"||newValue=="مكتب"){
+                                      _categorie = newValue;
+                                      _categorie_select="office";
+                                    }else if(newValue=="Terre"||newValue=="Land"||newValue=="أرض"){
+                                      _categorie = newValue;
+                                      _categorie_select="land";
+                                    }else if(newValue=="fermes"||newValue=="Farms"||newValue=="مزارع"){
+                                      _categorie = newValue;
+                                      _categorie_select="farm";
+                                    }
+                                    print(_categorie);
                                   });
                                 },
                               )),
@@ -272,7 +300,7 @@ print(locale[1]["locale"]);
                                 onChanged: (String? newValue) {
                                   setState(() {
                                     if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
-                                      _statut="New";
+                                      _statut="new";
                                       statut=newValue;
                                     }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
                                       _statut="good";
@@ -489,8 +517,8 @@ print(locale[1]["locale"]);
                                  //
                                   Get.to(Add_Annonce_2(
                                       Property_details: _Property_details,
-                                      categorie: _categorie,
-                                      statut: _statut,
+                                      categorie:  _categorie_select,
+                                      statut: statut,
                                       adress: adresse.text,
                                       region: value,
                                       ville: city,

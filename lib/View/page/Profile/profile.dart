@@ -14,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
- late int v =0 ;
+ //late int v =0 ;
   List <DataList> Poste = [];
   List <DataList> PosteValide = [];
   List <DataList> PosteNonValide = [];
@@ -131,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: <Widget>[
                           GestureDetector(
                             onTap: ()=>setState(() {
-                              v=0;
+                              //v=0;
                               Poste=allAnnonceLogin;
                               colorPost = Colors.blue;
                               colorPosteValide = Colors.black;
@@ -176,7 +176,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 colorPost = Colors.black;
                                 colorPosteValide = Colors.blue;
                                 colorPosteNonValide = Colors.black;
-                                v=1;
+                              //  v=1;
                               });
                             },
                             child: Expanded(
@@ -187,12 +187,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
                                   Text(
                                     PosteValide.length.toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.pinkAccent,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
@@ -215,7 +215,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 colorPost = Colors.black;
                                 colorPosteValide = Colors.black;
                                 colorPosteNonValide = Colors.blue;
-                                v=2;
+                              //  v=2;
 
                               });
                             },
@@ -227,12 +227,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
                                   Text(
                                     PosteNonValide.length.toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.pinkAccent,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(

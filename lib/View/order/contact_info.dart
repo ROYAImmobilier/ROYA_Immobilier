@@ -513,7 +513,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             //  Get.to(LoginScreen());
                                 isLogin==false?  Get.to(LoginScreen(region_id: "1",
                                     city_id: "8", transaction: "Rent",
-                                    property_type: widget.Property_details, status: status,
+                                    property_type: widget.Property_details, status: "new",
                                     adress: widget.adress, quartier: widget.quartier,
                                     area: widget.area, price: widget.price, age: widget.age,
                                     floor_type: "appartoment", floor: "4",
@@ -521,7 +521,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                     bathrooms: '5', kitchens: '6',
                                     title: _titel.text, description: _description.text,
                                     phone1: _phone1.text,
-                                    abilities: "2", media: base64Image)):
+                                    abilities: "2", media: '')):
                                 Annonce_As_Login.Add_Annonce_As_Aredy_Login(region_id: "1",
                                     city_id: "8", transaction: "Rent",
                                     property_type: widget.Property_details, status: status,
