@@ -260,11 +260,18 @@ class _BodyState extends State<Body> {
             }
           });
           Get.offAll(RoutingLogin());
+        }else{
+          setState(() {
+            progress=false;
+          });
         }
         // print(response_1.body);
         //  Get.to(const HomeC());
       }
       else {
+        setState(() {
+          progress=false;
+        });
         final snackBar = SnackBar(
           content: Row(children: const [
             Icon(
