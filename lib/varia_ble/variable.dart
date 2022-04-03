@@ -1,21 +1,22 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../Model/city.dart';
 
 var region_1;
 
-final categorie = [
-  "Appartements",
-  "Chambre",
-  "Maison",
-  "Villa",
-  "Riad",
-  "Commercial",
-  "Bureau",
-  "Terre",
-  "Fermes",
+var categorie = [
+  "Appartements".tr,
+  "Chambre".tr,
+  "Maison".tr,
+  "Villa".tr,
+  "Riad".tr,
+  "Commercial".tr,
+  "Bureau".tr,
+  "Terre".tr,
+  "Fermes".tr,
 ];
 
 class Region_1 {

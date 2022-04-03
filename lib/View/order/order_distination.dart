@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,7 +28,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   String? _region_1;
   String? _ville;
   String? _quartier;
-
+  var statut;
   String? value;
   String? city;
   // String? _categorie;
@@ -96,6 +95,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   Widget build(BuildContext context) {
+print(locale[1]["locale"]);
 
     return GestureDetector(
         onTap: ()=>FocusManager.instance.primaryFocus?.unfocus(),
@@ -129,15 +129,10 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            child: Directionality(
-                              textDirection: locale == 'fr'
-                                  ? TextDirection.ltr
-                                  : TextDirection.rtl,
-                              child: Text(
-                                "Property details".tr,
-                                style: TextStyle(
-                                    fontSize: 14.sp, color: Color(0xffbfa280)),
-                              ),
+                            child: Text(
+                              "Property details".tr,
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Color(0xffbfa280)),
                             ),
                           ),
                           Row(
@@ -177,7 +172,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             height: 15.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
                               child: Text('Catégorie'.tr,
                                   style: TextStyle(
                                     fontSize: 14.sp,
@@ -206,9 +200,19 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 underline: Container(
                                   height: 2.h,
                                 ),
-                                hint: Text('  Select property'.tr),
+                                hint: Text(" "+'select property'.tr),
                                 value: _categorie,
-                                items: categorie
+                                items: [
+                                  "Appartements".tr,
+                                  "Chambre".tr,
+                                  "Maison".tr,
+                                  "Villa".tr,
+                                  "Riad".tr,
+                                  "Commercial".tr,
+                                  "Bureau".tr,
+                                  "Terre".tr,
+                                  "Fermes".tr,
+                                ]
                                     .map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -226,7 +230,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             height: 15.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
                               child: Text('Statut'.tr,
                                   style: TextStyle(
                                     fontSize: 14.sp,
@@ -252,13 +255,13 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 ),
                                 elevation: 16,
                                 isExpanded: true,
-                                hint: Text('  Select State'),
+                                hint: Text('  '+'Select State'.tr),
                                 underline: Container(
                                   height: 2.h,
                                   // color: Colors.deepPurpleAccent,
                                 ),
                                 //  value: dropdownValue,
-                                value: _statut,
+                                value: statut,
                                 items: <String>['Neuf'.tr, 'Bon état'.tr, 'A besoin de réparation'.tr]
                                     .map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
@@ -267,20 +270,26 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
-                                  if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
-                                    _statut="New";
-                                  }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
-                                    _statut="good";
-                                  }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
-                                    _statut="needRepair";
-                                  }
+                                  setState(() {
+                                    if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
+                                      _statut="New";
+                                      statut=newValue;
+                                    }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
+                                      _statut="good";
+                                     statut=newValue;
+                                    }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
+                                      _statut="needRepair";
+                                      statut=newValue;
+                                    }
+                                  });
+
                                 }
                               )),
                           SizedBox(
                             height: 25.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
+
                               child: Text('Location'.tr,
                                   style: TextStyle(
                                       color: Color(0xffbfa280), fontSize: 14.sp))),
@@ -288,7 +297,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             height: 25,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
                               child: Text('Adresse'.tr,
                                   style: TextStyle(
                                     fontSize: 14.sp,
@@ -311,7 +319,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 contentPadding: EdgeInsets.all(8),
                                 //fillColor: Colors.white,
                                 // labelText: "",
-                                hintText: ' Adresse'.tr,
+                                hintText: ' '+'Adresse'.tr,
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(width: 3.w),
                                     borderRadius: BorderRadius.circular(5))),
@@ -321,7 +329,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             height: 15.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
+
                               child: Text('Region'.tr,
                                   style: TextStyle(
                                     fontSize: 14.sp,
@@ -361,7 +369,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                       height: 2,
                                       // color: Colors.deepPurpleAccent,
                                     ),
-                                    hint: Text(" Region"),
+                                    hint: Text(" "+"Region".tr),
                                     value: value,
                                     items: _region
                                         ?.map<DropdownMenuItem<String>>((value) {
@@ -387,7 +395,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             height: 15.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
                               child: Text('Ville'.tr,
                                   style: TextStyle(
                                     fontSize: 14.sp,
@@ -408,7 +415,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               icon: const Icon(Icons.keyboard_arrow_down_sharp),
                               elevation: 16,
                               isExpanded: true,
-                              hint: Text("  Ville"),
+                              hint: Text(" "+"Ville".tr),
                               // style: const TextStyle(color: Colors.deepPurple),
                               underline: Container(
                                 height: 2,
@@ -433,7 +440,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             height: 15.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
                               child: Text('Quartier'.tr,
                                   style: TextStyle(
                                     fontSize: 14.sp,
@@ -469,23 +475,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             alignment: Alignment.topRight,
                             child: TextButton(
                               onPressed: () {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 print(_Property_details);
                                 print(_categorie);
                                 print(_statut);

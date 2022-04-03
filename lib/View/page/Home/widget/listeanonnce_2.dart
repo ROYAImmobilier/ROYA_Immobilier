@@ -34,7 +34,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                   child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image,),
                   height: 120.h,
                   width: 150.w,
-                  decoration:  BoxDecoration(
+                  decoration:  const BoxDecoration(
                     // image: DecorationImage(
                     //                 image:
                     //                 fit: BoxFit.fill,

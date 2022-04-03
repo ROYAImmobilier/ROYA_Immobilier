@@ -1,25 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:responsive_framework/utils/scroll_behavior.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-import 'package:roya_immobilie/testciyt.dart';
-import 'Controller/AnonceController.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
-import 'Model/repositery.dart';
-import 'View/page/Home/home.dart';
-import 'View/order/order_distination.dart';
-import 'View/page/Profile/profile.dart';
 import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
-import 'helpear/binding.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -105,13 +94,6 @@ class _MyAppState extends State<MyApp> {
 
 
       GetMaterialApp(
-        builder: (context, widget) => ResponsiveWrapper.builder(
-      ClampingScrollWrapper.builder(context, widget!),
-      breakpoints: const [
-        ResponsiveBreakpoint.resize(350, name: MOBILE),
-        ResponsiveBreakpoint.autoScale(600, name: TABLET),
-        ResponsiveBreakpoint.resize(800, name: DESKTOP),
-      ],),
       debugShowCheckedModeBanner: false,
     //  initialBinding: Binding(),
       translations: Transation(),
