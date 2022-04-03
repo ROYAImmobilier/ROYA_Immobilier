@@ -19,7 +19,7 @@ import 'mobilestackwidget.dart';
 final colors = Color(0xefefef);
 
 class StackWidget_2 extends StatefulWidget {
-  var data;
+  List<Joke> data;
   int leng;
   StackWidget_2({required this.data, required this.leng});
 
@@ -129,16 +129,27 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                     return   GestureDetector(
                                         onTap: () {
                                           select = [];
+
                                           for(int k=0 ;k<allAnnonce.length;k++){
-                                            if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
+
+                                           if(dataCategory[i].name=="All"){
+                                             select.add(allAnnonce[k]);
+                                           }
+                                           else if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
                                               select.add(allAnnonce[k]);
                                             }
                                           }
-                                          Get.to(CategoryItems(
-                                              icon : dataCategory[i].icon,
-                                              title: dataCategory[i].name,
-                                              data:select, leng: select.length));
-                                        },
+                                          setState(() {
+                                            widget.data=select;
+                                            widget.leng=select.length;
+                                          });
+
+                                          },
+
+
+
+
+
                                         child: Row(
                                           children: [
                                             Column(
