@@ -259,7 +259,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 ),
                                 //  value: dropdownValue,
                                 value: _statut,
-                                items: <String>['Neuf', 'Bon état', 'A besoin de réparation']
+                                items: <String>['Neuf'.tr, 'Bon état'.tr, 'A besoin de réparation'.tr]
                                     .map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -267,8 +267,14 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
-                                  _statut=newValue;
-                                },
+                                  if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
+                                    _statut="New";
+                                  }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
+                                    _statut="good";
+                                  }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
+                                    _statut="needRepair";
+                                  }
+                                }
                               )),
                           SizedBox(
                             height: 25.h,

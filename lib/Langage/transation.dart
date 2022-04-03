@@ -31,8 +31,14 @@ class Transation extends Translations {
           "Bienvenue ,": 'مرحبا ،',
           'pour une experience optimisee , ': 'لتجربة محسّنة ،',
           'veuillez vous connecter': 'الرجاء تسجيل الدخول',
+          "Neuf": 'جديد',
+          "Bon état": 'بحالة جيدة',
+          "A besoin de réparation": 'يتطلب الصيانة'
         },
         'fr_FR': {
+  "Neuf": "Neuf",
+  "Bon état":  "Bon état",
+  "A besoin de réparation":  "A besoin de réparation",
           'Suivant': 'Suivant',
           'Property details': 'Property details',
           'Vente': 'Vente',
@@ -60,6 +66,9 @@ class Transation extends Translations {
           'DEPOSER UNE ANNONCE': 'DEPOSER UNE ANNONCE',
         },
         'en_US': {
+          "Neuf": "New",
+          "Bon état":  "good",
+          "A besoin de réparation":  "needRepair",
           'Suivant': 'Next',
           'Property details': 'Property details',
           'Vente': 'Sale',
