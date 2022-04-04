@@ -21,66 +21,60 @@ class Add_Annonce_2 extends StatefulWidget {
   String? quartier;
 
   Add_Annonce_2(
-      { this.Property_details,
-         this.categorie,
-         this.statut,
-         this.adress,
-         this.region,
-         this.ville,
-         this.quartier});
+      {this.Property_details,
+      this.categorie,
+      this.statut,
+      this.adress,
+      this.region,
+      this.ville,
+      this.quartier});
 
   @override
   State<Add_Annonce_2> createState() => _Add_AnnonceState();
 }
 
 class _Add_AnnonceState extends State<Add_Annonce_2> {
-
-
-
   List<Ability> lmain = [];
   List<Ability> linner = [];
   List<Ability> ladditional = [];
-  List<int>idability=[];
+  List<int> idability = [];
 
-bool showmain=false;
-bool showinner = false;
-bool showaddtional = false;
-
-
+  bool showmain = false;
+  bool showinner = false;
+  bool showaddtional = false;
 
   @override
   void initState() {
-
     setState(() {
-      for(int i = 0;i<ability.length;i++){
-        if(ability[i].type=="main"){
+      for (int i = 0; i < ability.length; i++) {
+        if (ability[i].type == "main") {
           lmain.add(ability[i]);
-        }else if(ability[i].type=="inner"){
+        } else if (ability[i].type == "inner") {
           linner.add(ability[i]);
-        }else{
+        } else {
           ladditional.add(ability[i]);
         }
       }
     });
     super.initState();
   }
+
   int _bedroms = 0;
   int _bathrooms = 0;
   int kichens = 0;
-var area=TextEditingController();
-var price=TextEditingController();
-String ? _price_type;
-String ? _age;
-String ?  _age_select;
-String ? _flooring;
-String ? _floor_select;
+  var area = TextEditingController();
+  var price = TextEditingController();
+  String? _price_type;
+  String? _age;
+  String? _age_select;
+  String? _flooring;
+  String? _floor_select;
 
-  var _key_details=GlobalKey<FormState>();
+  var _key_details = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
-        onTap: ()=>FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: ScreenUtilInit(
         builder: () => Scaffold(
             appBar: AppBar(
@@ -93,8 +87,7 @@ String ? _floor_select;
               centerTitle: true,
             ),
             body: GestureDetector(
-              onTap: ()=>FocusManager.instance.primaryFocus?.unfocus()
-              ,
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: Form(
                 key: _key_details,
                 child: SingleChildScrollView(
@@ -117,7 +110,8 @@ String ? _floor_select;
                                   TextSpan(
                                       text: "Area ",
                                       style: TextStyle(
-                                          fontSize: 13.sp, color: Colors.black)),
+                                          fontSize: 13.sp,
+                                          color: Colors.black)),
                                   TextSpan(
                                       text: "(m²)",
                                       style: TextStyle(
@@ -130,22 +124,24 @@ String ? _floor_select;
                             height: 15.h,
                           ),
                           TextFormField(
-                            validator: (val){
+                            validator: (val) {
                               if (val!.isEmpty) {
                                 return "Entre L \' Area";
                               } else {
                                 return null;
                               }
-
                             },
-                            controller:area ,
+                            controller: area,
                             cursorColor: Colors.white,
                             decoration: InputDecoration(
-                              //fillColor: Colors.white,
-                              // labelText: "",
+                                //fillColor: Colors.white,
+                                // labelText: "",
                                 isDense: true, // Added this
                                 contentPadding: EdgeInsets.only(
-                                    left: 8.w, right: 8.w, bottom: 8.h, top: 8.h),
+                                    left: 8.w,
+                                    right: 8.w,
+                                    bottom: 8.h,
+                                    top: 8.h),
                                 hintText: '120',
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide(width: 3.w),
@@ -155,59 +151,68 @@ String ? _floor_select;
                           SizedBox(
                             height: 15.h,
                           ),
-                          Container(alignment: Alignment.topLeft, child: Text('Price')),
+                          Container(
+                              alignment: Alignment.topLeft,
+                              child: Text('Price')),
                           SizedBox(
                             height: 15.h,
                           ),
                           Row(
                             children: [
                               Container(
-                               // height: 35.h,
-                                width: (MediaQuery.of(context).size.width * 0.6).w,
+                                // height: 35.h,
+                                width:
+                                    (MediaQuery.of(context).size.width * 0.6).w,
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(5.r))),
+                                        BorderRadius.all(Radius.circular(5.r))),
                                 child: TextFormField(
-                                  validator: (val){
-                                    if (val!.isEmpty){
+                                  validator: (val) {
+                                    if (val!.isEmpty) {
                                       return "Entre L \' price";
                                     } else {
                                       return null;
                                     }
                                   },
-                                  controller:price,
+                                  controller: price,
                                   cursorColor: Colors.white,
                                   decoration: InputDecoration(
-                                    //    isDense: true, // Added this
+                                      //    isDense: true, // Added this
                                       contentPadding: EdgeInsets.only(
-                                          left: 8.w, right: 8.w, bottom: 8.h, top: 8.h),
+                                          left: 8.w,
+                                          right: 8.w,
+                                          bottom: 8.h,
+                                          top: 8.h),
                                       //fillColor: Colors.white,
                                       // labelText: "",
                                       hintText: '25000',
                                       border: OutlineInputBorder(
                                           borderSide: BorderSide(width: 3.w),
-                                          borderRadius: BorderRadius.circular(5))),
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
                               SizedBox(
                                 width: 2.w,
                               ),
-
-
                               Container(
-                              //  height: 35.h,
-                                width: (MediaQuery.of(context).size.width * 0.18).w,
+                                //  height: 35.h,
+                                width:
+                                    (MediaQuery.of(context).size.width * 0.18)
+                                        .w,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.r)),
                                   border: Border.all(
                                     color: Colors.grey,
                                   ),
                                 ),
                                 child: DropdownButton<String>(
-                                  icon: const Icon(Icons.keyboard_arrow_down_sharp),
+                                  icon: const Icon(
+                                      Icons.keyboard_arrow_down_sharp),
                                   elevation: 16,
                                   isExpanded: true,
                                   // style: const TextStyle(color: Colors.deepPurple),
@@ -217,7 +222,8 @@ String ? _floor_select;
                                   ),
                                   value: _price_type,
                                   items: <String>['DH', 'EURO', 'USD']
-                                      .map<DropdownMenuItem<String>>((String value) {
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text("  $value"),
@@ -225,10 +231,8 @@ String ? _floor_select;
                                   }).toList(),
                                   onChanged: (String? newValue) {
                                     setState(() {
-                                      _price_type=newValue;
-
+                                      _price_type = newValue;
                                     });
-
                                   },
                                 ),
                               ),
@@ -250,7 +254,8 @@ String ? _floor_select;
                             height: 35.h,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.r)),
                               border: Border.all(
                                 color: Colors.grey,
                               ),
@@ -266,8 +271,17 @@ String ? _floor_select;
                               ),
                               value: _age,
 
-                              items: <String>['Moins de 1 an'.tr, '1 à 5 ans'.tr, '5 à 10 ans'.tr, '10 à 20 ans'.tr,'20 à 30 ans'.tr,'30 à 50 ans'.tr,'50 à 70 ans'.tr,'70 à 100 ans'.tr,'Plus de 100 ans'.tr,]
-                                  .map<DropdownMenuItem<String>>((String value) {
+                              items: <String>[
+                                'Moins de 1 an'.tr,
+                                '1 à 5 ans'.tr,
+                                '5 à 10 ans'.tr,
+                                '10 à 20 ans'.tr,
+                                '20 à 30 ans'.tr,
+                                '30 à 50 ans'.tr,
+                                '50 à 70 ans'.tr,
+                                '70 à 100 ans'.tr,
+                                'Plus de 100 ans'.tr,
+                              ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text("  $value"),
@@ -275,37 +289,53 @@ String ? _floor_select;
                               }).toList(),
                               onChanged: (String? newValue) {
                                 setState(() {
-
-                                  if(newValue=="Moins de 1 an"||newValue=="Less than 1 year"||newValue== 'أقل من 1 سنة') {
+                                  if (newValue == "Moins de 1 an" ||
+                                      newValue == "Less than 1 year" ||
+                                      newValue == 'أقل من 1 سنة') {
                                     _age = newValue;
-                                    _age_select="L1";
-                                  }else if(newValue=="1 à 5 ans"||newValue=="1 to 5 years old"||newValue== 'من 1 إلى 5 سنوات'){
+                                    _age_select = "L1";
+                                  } else if (newValue == "1 à 5 ans" ||
+                                      newValue == "1 to 5 years old" ||
+                                      newValue == 'من 1 إلى 5 سنوات') {
                                     _age = newValue;
-                                    _age_select="F1T5";
-                                  }else if(newValue=="5 à 10 ans"||newValue=="5 to 10 years old"||newValue== 'من 5 إلى 10 سنوات'){
+                                    _age_select = "F1T5";
+                                  } else if (newValue == "5 à 10 ans" ||
+                                      newValue == "5 to 10 years old" ||
+                                      newValue == 'من 5 إلى 10 سنوات') {
                                     _age = newValue;
-                                    _age_select="F5T10";
-                                  }else if(newValue=="10 à 20 ans"||newValue=="10 to 20 years old"||newValue== 'من 10 إلى 20 سنة'){
+                                    _age_select = "F5T10";
+                                  } else if (newValue == "10 à 20 ans" ||
+                                      newValue == "10 to 20 years old" ||
+                                      newValue == 'من 10 إلى 20 سنة') {
                                     _age = newValue;
-                                    _age_select="F10T20";
-                                  }else if(newValue=="20 à 30 ans"||newValue=="20 to 30 years old"||newValue=='من 20 إلى 30 سنة'){
+                                    _age_select = "F10T20";
+                                  } else if (newValue == "20 à 30 ans" ||
+                                      newValue == "20 to 30 years old" ||
+                                      newValue == 'من 20 إلى 30 سنة') {
                                     _age = newValue;
-                                    _age_select="T20F30";
-                                  }else if(newValue=="30 à 50 ans"||newValue=="30 to 50 years old"||newValue=='من 30 إلى 50 سنة'){
+                                    _age_select = "T20F30";
+                                  } else if (newValue == "30 à 50 ans" ||
+                                      newValue == "30 to 50 years old" ||
+                                      newValue == 'من 30 إلى 50 سنة') {
                                     _age = newValue;
-                                    _age_select="T30F50";
-                                  }else if(newValue=="50 à 70 ans"||newValue=="50 to 70 years old"||newValue=='من 50 إلى 70 سنة'){
+                                    _age_select = "T30F50";
+                                  } else if (newValue == "50 à 70 ans" ||
+                                      newValue == "50 to 70 years old" ||
+                                      newValue == 'من 50 إلى 70 سنة') {
                                     _age = newValue;
-                                    _age_select="T50F70";
-                                  }else if(newValue=="70 à 100 ans"||newValue=="70 to 100 years old"||newValue=='من 70 إلى 100 سنة'){
+                                    _age_select = "T50F70";
+                                  } else if (newValue == "70 à 100 ans" ||
+                                      newValue == "70 to 100 years old" ||
+                                      newValue == 'من 70 إلى 100 سنة') {
                                     _age = newValue;
-                                    _age_select="F70T70";
-                                  }else if(newValue=="Plus de 100 ans"||newValue=="Over 100 years old"||newValue=='أكثر من 100 عام'){
+                                    _age_select = "F70T70";
+                                  } else if (newValue == "Plus de 100 ans" ||
+                                      newValue == "Over 100 years old" ||
+                                      newValue == 'أكثر من 100 عام') {
                                     _age = newValue;
-                                    _age_select="G100";
+                                    _age_select = "G100";
                                   }
                                 });
-
                               },
                             ),
                           ),
@@ -314,8 +344,8 @@ String ? _floor_select;
                           ),
                           Container(
                               alignment: Alignment.topLeft,
-                              child:
-                              Text('Flooring', style: TextStyle(fontSize: 14.sp))),
+                              child: Text('Flooring',
+                                  style: TextStyle(fontSize: 14.sp))),
                           const SizedBox(
                             height: 15,
                           ),
@@ -323,7 +353,8 @@ String ? _floor_select;
                             height: 35,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5.r)),
                               border: Border.all(
                                 color: Colors.grey,
                               ),
@@ -338,8 +369,12 @@ String ? _floor_select;
                                 // color: Colors.deepPurpleAccent,
                               ),
                               value: _flooring,
-                              items: <String>["Wooden".tr,'Marble'.tr,"Tiled".tr,"Others".tr]
-                                  .map<DropdownMenuItem<String>>((String value) {
+                              items: <String>[
+                                "Wooden".tr,
+                                'Marble'.tr,
+                                "Tiled".tr,
+                                "Others".tr
+                              ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text("  $value"),
@@ -347,10 +382,8 @@ String ? _floor_select;
                               }).toList(),
                               onChanged: (String? newValue) {
                                 setState(() {
-
-                                 // _flooring=newValue;
+                                  _flooring = newValue;
                                 });
-
                               },
                             ),
                           ),
@@ -361,20 +394,22 @@ String ? _floor_select;
                             children: [
                               Column(
                                 children: [
-                                  Text("Bedroms".tr+":", style: TextStyle(fontSize: 14.sp)),
+                                  Text("Bedroms".tr + ":",
+                                      style: TextStyle(fontSize: 14.sp)),
                                   Container(
                                     width: 140,
                                     alignment: Alignment.center,
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         GestureDetector(
                                           child: Container(
                                               child: Icon(
-                                                Icons.data_saver_on,
-                                                size: 20.sp,
-                                                color: Color(0xffbfa280),
-                                              )),
+                                            Icons.data_saver_on,
+                                            size: 20.sp,
+                                            color: Color(0xffbfa280),
+                                          )),
                                           onTap: () {
                                             setState(() {
                                               _bathrooms++;
@@ -409,25 +444,27 @@ String ? _floor_select;
                               ),
                               Column(
                                 children: [
-                                  Text("Bathrooms".tr +":", style: TextStyle(fontSize: 14.sp)),
+                                  Text("Bathrooms".tr + ":",
+                                      style: TextStyle(fontSize: 14.sp)),
                                   Container(
                                     width: 140,
                                     alignment: Alignment.center,
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         GestureDetector(
                                           child: Container(
                                               child: Icon(
-                                                Icons.data_saver_on,
-                                                size: 20.sp,
-                                                color: Color(0xffbfa280),
-                                              )),
+                                            Icons.data_saver_on,
+                                            size: 20.sp,
+                                            color: Color(0xffbfa280),
+                                          )),
                                           onTap: () {
                                             setState(() {
                                               _bedroms++;
-                                              if(_bedroms>=10){
-                                                _bedroms=0;
+                                              if (_bedroms >= 10) {
+                                                _bedroms = 0;
                                               }
                                             });
                                           },
@@ -460,25 +497,27 @@ String ? _floor_select;
                               ),
                               Column(
                                 children: [
-                                  Text("Kitchens".tr+":", style: TextStyle(fontSize: 14.sp)),
+                                  Text("Kitchens".tr + ":",
+                                      style: TextStyle(fontSize: 14.sp)),
                                   Container(
                                     width: 140,
                                     alignment: Alignment.center,
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         GestureDetector(
                                           child: Container(
                                               child: Icon(
-                                                Icons.data_saver_on,
-                                                size: 20.sp,
-                                                color: Color(0xffbfa280),
-                                              )),
+                                            Icons.data_saver_on,
+                                            size: 20.sp,
+                                            color: Color(0xffbfa280),
+                                          )),
                                           onTap: () {
                                             setState(() {
                                               kichens++;
-                                              if(kichens>=10){
-                                                kichens=0;
+                                              if (kichens >= 10) {
+                                                kichens = 0;
                                               }
                                             });
                                           },
@@ -510,11 +549,6 @@ String ? _floor_select;
                               )
                             ],
                           ),
-
-
-
-
-
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(
@@ -525,12 +559,15 @@ String ? _floor_select;
                             width: double.infinity,
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: 8.0.w, top: 8.h, right: 8.w, bottom: 8.h),
+                                  left: 8.0.w,
+                                  top: 8.h,
+                                  right: 8.w,
+                                  bottom: 8.h),
                               child: MaterialButton(
                                 onPressed: () {
-                               setState(() {
-                                 showmain=!showmain;
-                               });
+                                  setState(() {
+                                    showmain = !showmain;
+                                  });
                                 },
                                 color: const Color.fromARGB(255, 175, 178, 206),
                                 child: Text('Main Abilites',
@@ -541,7 +578,7 @@ String ? _floor_select;
                           const SizedBox(
                             height: 20,
                           ),
-                          !showmain?Container():appability(lmain),
+                          !showmain ? Container() : appability(lmain),
                           const SizedBox(
                             height: 20,
                           ),
@@ -556,7 +593,10 @@ String ? _floor_select;
                             // color: Color.fromARGB(255, 213, 215, 219),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: 8.0.w, top: 8.h, right: 8.w, bottom: 8.h),
+                                  left: 8.0.w,
+                                  top: 8.h,
+                                  right: 8.w,
+                                  bottom: 8.h),
                               child: MaterialButton(
                                 onPressed: () {
                                   setState(() {
@@ -569,11 +609,10 @@ String ? _floor_select;
                               ),
                             ),
                           ),
-
                           const SizedBox(
                             height: 20,
                           ),
-                          !showinner?Container():appability(linner),
+                          !showinner ? Container() : appability(linner),
                           const SizedBox(
                             height: 20,
                           ),
@@ -591,7 +630,7 @@ String ? _floor_select;
                               child: MaterialButton(
                                 onPressed: () {
                                   setState(() {
-                                    showaddtional=!showaddtional;
+                                    showaddtional = !showaddtional;
                                   });
                                 },
                                 color: Color.fromARGB(255, 175, 178, 206),
@@ -603,7 +642,9 @@ String ? _floor_select;
                           const SizedBox(
                             height: 20,
                           ),
-                          !showaddtional?Container():appability(ladditional),
+                          !showaddtional
+                              ? Container()
+                              : appability(ladditional),
                           SizedBox(
                             height: 10.h,
                           ),
@@ -611,7 +652,7 @@ String ? _floor_select;
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                               // width: 150,
+                                // width: 150,
                                 alignment: Alignment.topRight,
                                 child: TextButton(
                                   onPressed: () {
@@ -621,24 +662,28 @@ String ? _floor_select;
                                     width: 120,
                                     decoration: const BoxDecoration(
                                         color: Color(0xffbfa280),
-                                        borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
                                     padding: EdgeInsets.only(
-                                        top: 10, left: 25, bottom: 10, right: 25),
+                                        top: 10,
+                                        left: 25,
+                                        bottom: 10,
+                                        right: 25),
                                     child: Center(
                                       child: Text(
                                         "Précédent",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 12.sp),
+                                            color: Colors.white,
+                                            fontSize: 12.sp),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ), Container(
-                               // width: 150,
+                              ),
+                              Container(
+                                // width: 150,
                                 alignment: Alignment.topLeft,
                                 child: TextButton(
-
                                   onPressed: () {
                                     print(widget.Property_details);
                                     print(widget.categorie);
@@ -652,24 +697,46 @@ String ? _floor_select;
                                     print(_price_type);
                                     print(_age_select);
                                     print(_flooring);
-      if(_key_details.currentState!.validate()&&_age!=null ) {
-        Get.to( ContactInfo(city: widget.ville, categorie: widget.categorie, quartier: widget.quartier, value: '',
-            bedroms: _bedroms, region_1:widget.region, statut: widget.statut, bathrooms: _bathrooms,
-            Property_details: widget.Property_details, kichens: kichens, adress:widget.adress, ville: widget.ville, age: _age_select, price: price.text,flooring:_flooring,area:area.text));
-      }},
+                                    print(idability);
+                                    if (_key_details.currentState!.validate() &&
+                                        _age != null) {
+                                      Get.to(ContactInfo(
+                                          city: widget.ville,
+                                          categorie: widget.categorie,
+                                          quartier: widget.quartier,
+                                          ablity: const {"1",'2',"15"},
+                                          bedroms: _bedroms,
+                                          region_1: widget.region,
+                                          statut: widget.statut,
+                                          bathrooms: _bathrooms,
+                                          Property_details:
+                                              widget.Property_details,
+                                          kichens: kichens,
+                                          adress: widget.adress,
+                                          //ville: widget.ville,
+                                          age: _age_select,
+                                          price: price.text,
+                                          flooring: _flooring,
+                                          area: area.text));
+                                    }
+                                  },
                                   child: Container(
                                     width: 120,
                                     decoration: const BoxDecoration(
                                         color: Color(0xffbfa280),
-                                        borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
                                     padding: EdgeInsets.only(
-                                        top: 10, left: 25, bottom: 10, right: 25),
+                                        top: 10,
+                                        left: 25,
+                                        bottom: 10,
+                                        right: 25),
                                     child: Center(
                                       child: Text(
                                         "Suivant",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 12.sp),
+                                            color: Colors.white,
+                                            fontSize: 12.sp),
                                       ),
                                     ),
                                   ),
@@ -740,67 +807,58 @@ String ? _floor_select;
     );
   }
 
+  Widget appability(data) => Container(
+        width: MediaQuery.of(context).size.width * .7,
+        height: MediaQuery.of(context).size.height * .15,
+        child: Card(
+          child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 30,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20),
+              itemCount: data.length,
+              itemBuilder: (BuildContext ctx, index) {
+                return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        colorAbility(data[index].id);
+                        for (int i = 0; i < idability.length; i++) {
+                          if (data[index].id == idability[i]) {
+                            setState(() {
+                              idability.remove(idability[i]);
+                            });
+                            return;
+                          }
+                        }
+                        idability.add(data[index].id);
+                        print(colorAbility(data[index].id));
+                      });
+                    },
+                    child: colorAbility(data[index].id)
+                        ? SvgPicture.asset(
+                            data[index].icon,
+                            width: 30,
+                            height: 30,
+                            color: Colors.blue,
+                          )
+                        : SvgPicture.asset(
+                            data[index].icon,
+                            width: 30,
+                            height: 30,
+                            color: Colors.black,
+                          )); // Icon(Icons.circle_notifications , size: 25,);
+              }),
+        ),
+      );
 
-  Widget appability(data)=>Container(
-    width: MediaQuery.of(context).size.width*.7 ,
-    height: MediaQuery.of(context).size.height *.15,
-    child: Card(
-      child: GridView.builder(
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 30,
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20),
-          itemCount: data.length,
-          itemBuilder: (BuildContext ctx, index) {
-            return  GestureDetector(
-                onTap: (){
-                  setState(() {
-                    colorAbility(data[index].id);
-                    for(int i=0;i<idability.length;i++){
-                      if(data[index].id==idability[i]) {
-                        setState(() {
-                          idability.remove(idability[i]);
-                        });
-                        return;
-                      }
-                    }
-                    idability.add(data[index].id);
-                    print(colorAbility(data[index].id));
-
-
-                  });
-                },
-                child:colorAbility(data[index].id)? SvgPicture.asset(data[index].icon ,
-                  width: 30,
-                  height: 30,
-                  color : Colors.blue,
-
-                ):SvgPicture.asset(data[index].icon,
-                  width: 30,
-                  height: 30,
-                  color : Colors.black,
-
-                )
-
-            );// Icon(Icons.circle_notifications , size: 25,);
-          }),
-    ),
-  );
-
-
-  bool colorAbility(int id){
-    for(int i=0 ; i<idability.length;i++){
-      if(id == idability[i]){
-        return true ;
+  bool colorAbility(int id) {
+    for (int i = 0; i < idability.length; i++) {
+      if (id == idability[i]) {
+        return true;
       }
     }
-    return false ;
+    return false;
   }
-
-
 }
-
-
-

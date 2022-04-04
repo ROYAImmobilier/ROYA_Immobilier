@@ -47,9 +47,21 @@ class _SearchFiltterState extends State<SearchFiltter> {
               Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(right: 10),
-                child: const Text(
-                  'EFFACER',
-                  style: TextStyle(color: Colors.black),
+                child: GestureDetector(
+                  onTap: (){
+                    _search.clear();
+
+                    _ville_search.clear();
+                    setState(() {
+                      _propritr_filter='Vente';
+                      _categorie=null;
+                    });
+
+                  },
+                  child: const Text(
+                    'EFFACER',
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
               ),
             ],
@@ -245,7 +257,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                           ],
                         ) :Container(),
                         Container(
-                          decoration:  BoxDecoration(
+                          decoration:  const BoxDecoration(
                               color: Color(0xffb58350),
                               borderRadius: BorderRadius.all(Radius.circular(5))),
                           alignment: Alignment.bottomCenter,
@@ -278,9 +290,13 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                           });
                   }
                                         },
-                                    child: Text(
-                                      'RECHERCHER (56242)'.tr,
-                                      style: TextStyle(color: Colors.white),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'RECHERCHER (56242)'.tr,
+                                        style: TextStyle(color: Colors.white),
+
+                                      ),
                                     ),
                                   ),
                               show == true? IconButton(onPressed: (){

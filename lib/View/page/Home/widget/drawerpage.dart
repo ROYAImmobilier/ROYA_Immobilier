@@ -77,12 +77,12 @@ class _DrawerPageState extends State<DrawerPage> {
             Container(
               height: 200,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xffB6B2C8), // HexColor.fromHex("B6B2C8"),
               ),
               child: Stack(
                 children: [
-                  Positioned(
+                  const Positioned(
                       top: 10,
                       left: 110,
                       child: CircleAvatar(
@@ -207,7 +207,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       width: 25,
                       height: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 24,
                     ),
                     Text('Se connecter'.tr, style: TextStyle(fontSize: 20))
@@ -215,9 +215,6 @@ class _DrawerPageState extends State<DrawerPage> {
                 ),
               ),
             ),
-            isLogin==true?SizedBox(
-              width: 24,
-            ):SizedBox(),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12,top: 18,bottom: 4),
               child: isLogin==true?  GestureDetector(
@@ -241,9 +238,10 @@ class _DrawerPageState extends State<DrawerPage> {
                     ],
                   )):Container(),
             ),
-            SizedBox(
+
+            isLogin==true?SizedBox(
               height: 15,
-            ),
+            ):SizedBox(),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: Row(

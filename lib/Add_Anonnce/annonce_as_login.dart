@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/View/page/home_c.dart';
+import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/varia_ble/variable.dart';
 class Annonce_As_Login{
 
@@ -96,25 +97,28 @@ class Annonce_As_Login{
     } catch (e) {
       print('error ' + e.toString());
     }
-  }static Future Add_Annonce_As_Aredy_Login({required String? region_id,
-    required String? city_id,
-    required String? transaction,
-    required String? property_type,
-    required String? status,
-    required String? address,
-    required String ? quartier,
-    required String? area,
-    required String? price,
-    required String? age,
-    required String? floor_type,
-    required String? floor,
-    required String? apartment,
-    required String? bedrooms,
-    required String? bathrooms,
-    required String? kitchens,
-    required String? title,
-    required String? description,
-    required String? phone1,
+  }
+
+  static Future Add_Annonce_As_Aredy_Login({
+   required var region_id,
+    required var city_id,
+    required var transaction,
+    required var property_type,
+    required var status,
+    required var adress,
+    required var quartier,
+    required var area,
+    required var price,
+    required var age,
+    required var floor_type,
+    required var floor,
+    required var apartment,
+    required var bedrooms,
+    required var bathrooms,
+    required var kitchens,
+    required var title,
+    required var description,
+    required var phone1,
     required  abilities,
     required  media,
 
@@ -129,7 +133,7 @@ class Annonce_As_Login{
           "transaction": transaction,
           "property_type": property_type,
           "status": status,
-          "address": address,
+          "address": adress,
           "quartier": quartier,
           "area": area,
           "price": price,
@@ -153,7 +157,7 @@ class Annonce_As_Login{
         print(response_1.body);
         print(response_1.statusCode);
         if(response_1.statusCode==500){
-          Get.to(HomeC());
+          Get.to(const RoutingScreen());
         }
       }
      catch (e) {

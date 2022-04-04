@@ -26,7 +26,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
+
     setState(() {
+
       Poste = allAnnonceLogin ;
       for(int i =0 ; i<Poste.length ; i++){
         if(Poste[i].validated==1){
@@ -42,92 +44,85 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffB6B2C8),
+      backgroundColor: const Color(0xffB6B2C8),
       body: Stack(
-        children: <Widget>[
-
+        children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 350.h,
+            child: SizedBox(
+              height: 300.h,
               child: Card(
                 elevation: 1,
                 shape:  OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Colors.white, width: 1)
                 ),
-                child: Column(
+                child: Stack(
                   children: [
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0,right: 10,top: 10),
-                          child: Container(
-                            height: 120.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadiusDirectional.circular(30),
-                                gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0,right: 10,top: 10),
+                      child: Container(
+                        height: 120.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadiusDirectional.circular(30),
+                            gradient: const LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
 
-                                    colors: [Color(0xff5E5480),Color(0xff5E5480)]
-                                )
-                            ),
-
-
-                          ),
+                                colors: [Color(0xff5E5480),Color(0xff5E5480)]
+                            )
                         ),
 
-                         Padding(
-                          padding:  EdgeInsets.only(top: 70.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 55.0,
-                                child: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                    "https://i.pravatar.cc/",
-                                  ),
-                                  radius: 50.0,
-                                ),
+
+                      ),
+                    ),
+
+                     Padding(
+                      padding:  EdgeInsets.only(top: 70.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 55.0,
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                "https://i.pravatar.cc/",
                               ),
-
-
-
-
-                            ],
+                              radius: 50.0,
+                            ),
                           ),
-                        ),
 
 
-                      ],
-                    ),
-                    SizedBox(height: 5,),
-                    Text(
-                      username ,
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontStyle: FontStyle.italic,
 
-                        color: Colors.black,
+
+                        ],
                       ),
                     ),
-                    SizedBox(height: 5,),
-                    Text(
-                      username+"@gmail.com" ,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.black45,
-                      ),
-                    ),
-                 SizedBox(height: 15,),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 22.0),
+                      padding: const EdgeInsets.only(top: 80.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          username ,
+                          style: const TextStyle(
+                            fontSize: 30.0,
+                            fontStyle: FontStyle.italic,
+
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 5,),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top:250.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           GestureDetector(
                             onTap: ()=>setState(() {
@@ -136,33 +131,28 @@ class _ProfilePageState extends State<ProfilePage> {
                               colorPost = Colors.blue;
                               colorPosteValide = Colors.black;
                               colorPosteNonValide = Colors.black;
-                              ;                                }),
-                            child: Container(
-
-                              child: Column(
-                                children: <Widget>[
-
-
-                                  Text(
-                                    allAnnonceLogin.length.toString(),
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: Colors.pinkAccent,
-                                    ),
+                                                          }),
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  allAnnonceLogin.length.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pinkAccent,
                                   ),
-                                  SizedBox(
-                                    height: 5.0,
+                                ),
+                                const SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Posts",
+                                  style: TextStyle(
+                                    color:colorPost,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  Text(
-                                    "Posts",
-                                    style: TextStyle(
-                                      color:colorPost,
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
 
@@ -179,32 +169,30 @@ class _ProfilePageState extends State<ProfilePage> {
                                 v=1;
                               });
                             },
-                            child: Expanded(
-                              child: Column(
+                            child: Column(
 
-                                children: <Widget>[
+                              children: <Widget>[
 
 
-                                  Text(
-                                    PosteValide.length.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 20.0,
-                                      color: Colors.pinkAccent,
-                                    ),
+                                Text(
+                                  PosteValide.length.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pinkAccent,
                                   ),
-                                  const SizedBox(
-                                    height: 5.0,
+                                ),
+                                const SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Valide",
+                                  style: TextStyle(
+                                    color: colorPosteValide,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  Text(
-                                    "Valide",
-                                    style: TextStyle(
-                                      color: colorPosteValide,
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                           GestureDetector(
@@ -219,35 +207,33 @@ class _ProfilePageState extends State<ProfilePage> {
 
                               });
                             },
-                            child: Expanded(
-                              child: Column(
+                            child: Column(
 
-                                children: <Widget>[
+                              children: <Widget>[
 
 
-                                  Text(
-                                    PosteNonValide.length.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 20.0,
-                                      color: Colors.pinkAccent,
-                                    ),
+                                Text(
+                                  PosteNonValide.length.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.pinkAccent,
                                   ),
-                                  const SizedBox(
-                                    height: 5.0,
+                                ),
+                                const SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  "Non valide",
+                                  style: TextStyle(
+                                    color: colorPosteNonValide,
+                                    fontSize: 18.0,
+
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  Text(
-                                    "Non valide",
-                                    style: TextStyle(
-                                      color: colorPosteNonValide,
-                                      fontSize: 18.0,
-
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                ),
 
 
-                                ],
-                              ),
+                              ],
                             ),
                           ),
 
@@ -268,7 +254,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
 
            Padding(
-            padding:  EdgeInsets.only(top: 350.h),
+            padding:  EdgeInsets.only(top: 300.h),
             child: SingleChildScrollView(
               child: Column(
                 children: [

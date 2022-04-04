@@ -23,11 +23,12 @@ class ContactInfo extends StatefulWidget {
   String? statut;
   String? adress;
   String? region_1;
-  String? ville;
+  // String? ville;
   String? quartier;
   int? bedroms;
   int? bathrooms;
   int? kichens;
+  var ablity;
 
   String? area;
   String? price;
@@ -35,22 +36,23 @@ class ContactInfo extends StatefulWidget {
   String? age;
   String? flooring;
 
-
   ContactInfo({
-     this.Property_details,
-     this.categorie,
-     this.statut,
-     this.adress,
-     this.region_1,
-     this.ville,
-     this.quartier,
-     this.bedroms,
-     this.bathrooms,
-     this.kichens,
-     this.value,
-     this.city,
-     this.age,
-     this.price,  this.flooring,  this.area,
+    this.Property_details,
+    this.categorie,
+    this.statut,
+    this.adress,
+    this.region_1,
+    //this.ville,
+    this.quartier,
+    this.bedroms,
+    this.bathrooms,
+    this.kichens,
+    this.ablity,
+    this.city,
+    this.age,
+    this.price,
+    this.flooring,
+    this.area,
   });
 
   String? value;
@@ -67,7 +69,7 @@ class _ContactInfoState extends State<ContactInfo> {
   var _phone1 = TextEditingController();
   var _phone2 = TextEditingController();
   var _phone3 = TextEditingController();
- // String ?base64string;
+  // String ?base64string;
   List<File> _image = [];
   //final picker = ImagePicker();
 
@@ -81,7 +83,7 @@ class _ContactInfoState extends State<ContactInfo> {
   String error = 'Error';
   File? _file;
   List<File> _listimage = [];
-  List<String>_listimagebase64 = [];
+  List<String> _listimagebase64 = [];
 //   Future chooseImage() async {
 //
 //       final myfile = await ImagePicker().pickImage(source: ImageSource.gallery)   ;
@@ -91,9 +93,9 @@ class _ContactInfoState extends State<ContactInfo> {
 // });
 //   }
 
-
   choseImage() async {
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
     setState(() {
       // _image.add(File(pickedFile?.path));
       _listimage.add(File(pickedFile!.path));
@@ -115,12 +117,6 @@ class _ContactInfoState extends State<ContactInfo> {
     }
   }
 
-
-
-
-
-
-
 // Future upload() async{
 //         if(_file==null)
 //           return;
@@ -129,7 +125,6 @@ class _ContactInfoState extends State<ContactInfo> {
 //
 //     //upload(fileName);
 //   }
-
 
   // openImage() async {
   //   try {
@@ -189,6 +184,7 @@ class _ContactInfoState extends State<ContactInfo> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.ablity.toString());
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
@@ -221,8 +217,8 @@ class _ContactInfoState extends State<ContactInfo> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             color: Colors.white,
-            child: ListView(
-              children: [Column(
+            child: ListView(children: [
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -389,36 +385,35 @@ class _ContactInfoState extends State<ContactInfo> {
                             Container(
                               height: 100,
                               child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: _listimage.length+1,
+                                  shrinkWrap: true,
+                                  itemCount: _listimage.length + 1,
                                   scrollDirection: Axis.horizontal,
-                                itemBuilder: (context , i) {
-                                  return i == 0
-                                      ? Center(
-                                    child: Card(
-                                        color: Colors.cyan,
-                                        child: IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                             choseImage();
-                                             print("adzgdsjhfgshdfvbsd,gfbdgng");
-
-                                              });
-                                            },
-                                            icon: Icon(
-                                              Icons.add_photo_alternate_rounded,
-                                              color: Colors.black,
-                                            ))),
-                                  )
-                                      : Container(
-                                      margin: EdgeInsets.all(2),
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: FileImage(
-                                                  _listimage[i - 1]))
-                                      )
-                                  );
-                                  /*  GestureDetector(
+                                  itemBuilder: (context, i) {
+                                    return i == 0
+                                        ? Center(
+                                            child: Card(
+                                                color: Colors.cyan,
+                                                child: IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        choseImage();
+                                                        print(
+                                                            "adzgdsjhfgshdfvbsd,gfbdgng");
+                                                      });
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .add_photo_alternate_rounded,
+                                                      color: Colors.black,
+                                                    ))),
+                                          )
+                                        : Container(
+                                            margin: EdgeInsets.all(2),
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: FileImage(
+                                                        _listimage[i - 1]))));
+                                    /*  GestureDetector(
                                     onTap: () {
                                       //selected img
                                       setState(() {
@@ -450,8 +445,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                         image: DecorationImage(
                                             image: FileImage(_listimage[i - 1]))),
                                   );*/
-                                }
-                              ),
+                                  }),
                             ),
                           ],
                         ),
@@ -491,9 +485,9 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(widget.statut);
                             print(widget.adress);
                             print(widget.region_1);
-                            print(widget.ville);
+                            print(widget.city);
                             print(widget.quartier);
-                             print(widget.area);
+                            print(widget.area);
                             print(widget.price);
                             print(widget.age);
                             print(widget.flooring);
@@ -509,30 +503,55 @@ class _ContactInfoState extends State<ContactInfo> {
                               // Get.to(LoginScreen());
 
                               setState(() {
-                                isCamindingfrom=true;
-                            //  Get.to(LoginScreen());
-                                isLogin==false?  Get.to(LoginScreen(region_id: "1",
-                                    city_id: "8", transaction: "Rent",
-                                    property_type: widget.Property_details, status: "new",
-                                    adress: widget.adress, quartier: widget.quartier,
-                                    area: widget.area, price: widget.price, age: widget.age,
-                                    floor_type: "appartoment", floor: "4",
-                                    apartment: "1", bedrooms: '2',
-                                    bathrooms: '5', kitchens: '6',
-                                    title: _titel.text, description: _description.text,
-                                    phone1: _phone1.text,
-                                    abilities: "2", media: '')):
-                                Annonce_As_Login.Add_Annonce_As_Aredy_Login(region_id: "1",
-                                    city_id: "8", transaction: "Rent",
-                                    property_type: widget.Property_details, status: status,
-                                    address: widget.adress, quartier: widget.quartier,
-                                    area: widget.area, price: widget.price, age: widget.age,
-                                    floor_type: "appartoment", floor: "4",
-                                    apartment: "1", bedrooms: '2',
-                                    bathrooms: '5', kitchens: '6',
-                                    title: _titel.text, description: _description.text,
-                                    phone1: _phone1.text,
-                                    abilities: "2", media: base64Image);
+                                isCamindingfrom = true;
+                                //  Get.to(LoginScreen());
+                                isLogin == false
+                                    ? Get.to(LoginScreen(
+                                        region_id: widget.region_1,
+                                        city_id: widget.city,
+                                        transaction: "Rent",
+                                        property_type: widget.Property_details,
+                                        status: widget.statut,
+                                        adress: widget.adress,
+                                        quartier: widget.quartier,
+                                        area: widget.area,
+                                        price: widget.price,
+                                        age: widget.age,
+                                        floor_type: "appartoment",
+                                        floor: "4",
+                                        apartment: "1",
+                                        bedrooms: widget.bedroms,
+                                        bathrooms: widget.bathrooms,
+                                        kitchens: widget.kichens,
+                                        title: _titel.text,
+                                        description: _description.text,
+                                        phone1: _phone1.text,
+                                        abilities: widget.ablity,
+                                        media: ''))
+                                    : Annonce_As_Login
+                                        .Add_Annonce_As_Aredy_Login(
+                                        region_id: widget.region_1,
+                                        city_id:widget.city,
+                                        transaction: "Rent",
+                                        property_type: widget.Property_details,
+                                        status: widget.statut,
+                                        adress: widget.adress,
+                                        quartier: widget.quartier,
+                                        area: widget.area,
+                                        price: widget.price,
+                                        age: widget.age,
+                                        apartment: "1",
+                                        bedrooms: widget.bedroms.toString(),
+                                        bathrooms: widget.bathrooms.toString(),
+                                        kitchens: widget.kichens.toString(),
+                                        title: _titel.text,
+                                        description: _description.text,
+                                        phone1: _phone1.text,
+                                        abilities: "1,2,4",
+                                        media: '',
+                                        floor_type: "appartoment",
+                                        floor: "4",
+                                      );
                                 // postdata(
                                 //     address: widget.adress,
                                 //     floor_type: "appartoment",
@@ -587,73 +606,75 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 
-  postdata({required String? region_id,
-    required String? city_id,
-    required String? transaction,
-    required String? property_type,
-    required String? status,
-    required String? address,
-    required String ? quartier,
-    required String? area,
-    required String? price,
-    required String? age,
-    required String? floor_type,
-    required String? floor,
-    required String? apartment,
-    required String? bedrooms,
-    required String? bathrooms,
-    required String? kitchens,
-    required String? title,
-    required String? description,
-    required String? phone1,
-    required String? phone2,
-   required String? name,
-    required String? email,
-    required String? password,
-   required String? confirmation_password,
-    required  abilities,
-    required  media, String? phone3
-  }) async {
+  postdata(
+      {required String? region_id,
+      required String? city_id,
+      required String? transaction,
+      required String? property_type,
+      required String? status,
+      required String? address,
+      required String? quartier,
+      required String? area,
+      required String? price,
+      required String? age,
+      required String? floor_type,
+      required String? floor,
+      required String? apartment,
+      required String? bedrooms,
+      required String? bathrooms,
+      required String? kitchens,
+      required String? title,
+      required String? description,
+      required String? phone1,
+      required String? phone2,
+      required String? name,
+      required String? email,
+      required String? password,
+      required String? confirmation_password,
+      required abilities,
+      required media,
+      String? phone3}) async {
     try {
-      var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'), body: {
-        "region_id": region_id,
-        "city_id": city_id,
-        "transaction": transaction,
-        "property_type": property_type,
-        "transaction": transaction,
-        "property_type": property_type,
-        "status": status,
-        "address": address,
-        "quartier": quartier,
-        "area": area,
-        "price": price,
-        "age": age,
-        "floor_type": floor_type,
-        "floor": floor,
-        "apartment": apartment,
-        "bedrooms": bedrooms,
-        "bathrooms": bathrooms,
-        "kitchens": kitchens,
-        "title": title,
-        "description": description,
-        "phone1": phone1,
-        "phone2": phone2,
-        "phone3": phone3,
-       "name": name,
-       "email": email,
-      "password": password,
-       "confirmation_password": confirmation_password,
-        "abilities[id]": abilities,
-        "media[image base64]": media,
-      });
+      var response = await http.post(
+          Uri.parse(
+              'https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'),
+          body: {
+            "region_id": region_id,
+            "city_id": city_id,
+            "transaction": transaction,
+            "property_type": property_type,
+            "transaction": transaction,
+            "property_type": property_type,
+            "status": status,
+            "address": address,
+            "quartier": quartier,
+            "area": area,
+            "price": price,
+            "age": age,
+            "floor_type": floor_type,
+            "floor": floor,
+            "apartment": apartment,
+            "bedrooms": bedrooms,
+            "bathrooms": bathrooms,
+            "kitchens": kitchens,
+            "title": title,
+            "description": description,
+            "phone1": phone1,
+            "phone2": phone2,
+            "phone3": phone3,
+            "name": name,
+            "email": email,
+            "password": password,
+            "confirmation_password": confirmation_password,
+            "abilities[id]": abilities,
+            "media[image base64]": media,
+          });
       print(response.body);
-      if(response.statusCode==200){
-        print("test" +response.body);
+      if (response.statusCode == 200) {
+        print("test" + response.body);
       }
     } catch (e) {
       print('error ' + e.toString());
     }
   }
 }
-

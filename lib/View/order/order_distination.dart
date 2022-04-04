@@ -520,8 +520,8 @@ print(locale[1]["locale"]);
                                       categorie:  _categorie_select,
                                       statut: statut,
                                       adress: adresse.text,
-                                      region: value,
-                                      ville: city,
+                                      region: id_region.toString(),
+                                      ville: id_city.toString(),
                                       quartier: quartier_.text));
                                 }
                               },

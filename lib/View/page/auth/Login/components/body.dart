@@ -21,10 +21,11 @@ import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-List<DataList>allAnnonceLogin =[];
-String username = "";
-class Body extends StatefulWidget {
 
+List<DataList> allAnnonceLogin = [];
+String username = "";
+
+class Body extends StatefulWidget {
   var property_type;
   var categorie;
   var status;
@@ -42,42 +43,40 @@ class Body extends StatefulWidget {
   var age;
   var floor;
   var floor_type;
-  var title ;
-  var description ;
+  var title;
+  var description;
   var phone1;
   var phone2;
   var media;
   var abilities;
   var transaction;
 
-
-
   Body({
-      this.property_type,
-      this.categorie,
-      this.status,
-      this.adress,
-      this.region_id,
-      this.city_id,
-      this.ville,
-      this.quartier,
-      this.bedrooms,
-      this.apartment,
-      this.bathrooms,
-      this.kitchens,
-      this.area,
-      this.price,
-      this.age,
-      this.floor,
-      this.floor_type,
-      this.title,
-      this.description,
-      this.phone1,
-      this.phone2,
-      this.media,
-      this.abilities,
-      this.transaction,
-      });
+    this.property_type,
+    this.categorie,
+    this.status,
+    this.adress,
+    this.region_id,
+    this.city_id,
+    this.ville,
+    this.quartier,
+    this.bedrooms,
+    this.apartment,
+    this.bathrooms,
+    this.kitchens,
+    this.area,
+    this.price,
+    this.age,
+    this.floor,
+    this.floor_type,
+    this.title,
+    this.description,
+    this.phone1,
+    this.phone2,
+    this.media,
+    this.abilities,
+    this.transaction,
+  });
 
   @override
   State<Body> createState() => _BodyState();
@@ -87,10 +86,10 @@ class _BodyState extends State<Body> {
   // var pass=TextEditingController();
   // var emaill=TextEditingController();
   //bool isLogin=false;
-  bool progress=false ;
-  late String email ='' ;
-  late String password ='';
-  var _key_validation=GlobalKey<FormState>();
+
+  late String email = '';
+  late String password = '';
+  var _key_validation = GlobalKey<FormState>();
   Login? _user;
   @override
   Widget build(BuildContext context) {
@@ -116,19 +115,18 @@ class _BodyState extends State<Body> {
                 hintText: "Your Email",
                 onChanged: (value) {
                   setState(() {
-                    email = value ;
+                    email = value;
                   });
                 },
               ),
               RoundedPasswordField(
                 onChanged: (value) {
                   setState(() {
-                    password = value ;
+                    password = value;
                   });
-
                 },
               ),
-              progress==true ?CircularProgressIndicator():Container(),
+              progress == true ? CircularProgressIndicator() : Container(),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 width: size.width * 0.8,
@@ -139,43 +137,59 @@ class _BodyState extends State<Body> {
                       'Login',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () async{
+                    onPressed: () async {
+                      if (_key_validation.currentState!.validate())
+                        print(email + ' ' + password);
+                      //
 
-                      if(_key_validation.currentState!.validate())
-                        print(email +' '+password);
-                     //
+                      if (isCamindingfrom) {
+                        isCamindingfrom = false;
+                        isLogin = true;
+                        //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
+                        await Annonce_As_Login.Add_Annonce_As_Login(
+                            region_id: "1",
+                            city_id: "8",
+                            transaction: "Rent",
+                            property_type: widget.property_type,
+                            status: widget.status,
+                            address: widget.adress,
+                            quartier: widget.quartier,
+                            area: widget.area,
+                            price: widget.price,
+                            age: widget.age,
+                            floor_type: "appartoment",
+                            floor: "4",
+                            apartment: "1",
+                            bedrooms: '2',
+                            bathrooms: '5',
+                            kitchens: '6',
+                            title: widget.title,
+                            description: widget.description,
+                            phone1: widget.phone1,
+                            email: email,
+                            password: password,
+                            abilities: "2",
+                            media: widget.media);
 
-                                        if(isCamindingfrom){
-                                          isCamindingfrom=false;
-                                          isLogin=true;
-                                          //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
-                                            await  Annonce_As_Login.Add_Annonce_As_Login(region_id: "1",
-                                              city_id: "8", transaction: "Rent",
-                                              property_type: widget.property_type, status: widget.status,
-                                              address: widget.adress, quartier: widget.quartier,
-                                              area: widget.area, price: widget.price, age: widget.age,
-                                              floor_type: "appartoment", floor: "4",
-                                              apartment: "1", bedrooms: '2',
-                                              bathrooms: '5', kitchens: '6',
-                                              title: widget.title, description: widget.description,
-                                              phone1: widget.phone1, email: email, password: password,
-                                              abilities: "2", media: widget.media);
-
-                                                           Get.offAll(RoutingLogin());
-                                        }else if(!isCamindingfrom){
-                                          final Login? user =await _Login(email: email, password: password);
-                                        }
-                      setState(() {
-                      //  _user = user;
-                        //isLogin= user!.success;
-                      },
+                        Get.offAll(RoutingScreen());
+                      } else if (!isCamindingfrom) {
+                        await _Login(email: email, password: password);
+                      }
+                      setState(
+                        () {
+                          //  _user = user;
+                          //isLogin= user!.success;
+                        },
                       );
                     },
                     style: ElevatedButton.styleFrom(
                         primary: kPrimaryColor,
-                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 20),
                         textStyle: const TextStyle(
-                            color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500)),
                   ),
                 ),
               ),
@@ -188,7 +202,7 @@ class _BodyState extends State<Body> {
                     style: TextStyle(color: kPrimaryColor),
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Get.to(SignUpScreen());
                     },
                     child: const Text(
@@ -207,50 +221,46 @@ class _BodyState extends State<Body> {
       ),
     );
   }
+
   _Login({
     required var email,
     required var password,
   }) async {
     setState(() {
-      progress=true;
+      progress = true;
     });
     try {
-      var response = await http
-          .post(Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'), body: {
-        "email": email,
-        "password": password,
-
-      }
-      );
+      var response = await http.post(
+          Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'),
+          body: {
+            "email": email,
+            "password": password,
+          });
       print(response.body);
 
-
-      var token=json.decode(response.body);
-      var token_1=token['data']['token'];
+      var token = json.decode(response.body);
+      var token_1 = token['data']['token'];
 
       setState(() {
-        username =token['data']['name'];
-        token_global=token_1;
-
+        username = token['data']['name'];
+        token_global = token_1;
       });
 
       print(token_1);
-      if(response.statusCode==200){
-        var response_1 = await http
-            .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
-          //HttpHeaders.authorizationHeader:token_1.toString(),
-          'Authorization': 'Bearer $token_global'
-        }
-        );
+      if (response.statusCode == 200) {
+        var response_1 = await http.get(
+            Uri.parse('https://dashboard.royaimmo.ma/api/annonces'),
+            headers: {
+              //HttpHeaders.authorizationHeader:token_1.toString(),
+              'Authorization': 'Bearer $token_global'
+            });
         print(response_1.body);
 
-
-
-        if(response_1.statusCode==200){
+        if (response_1.statusCode == 200) {
           setState(() {
-            progress=false;
+            progress = false;
           });
-          isLogin=true;
+          isLogin = true;
           print(isLogin);
           final responseJsoon = json.decode(response_1.body);
           final responseJson = responseJsoon["data"];
@@ -259,18 +269,17 @@ class _BodyState extends State<Body> {
               allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
             }
           });
-          Get.offAll(RoutingLogin());
-        }else{
+          Get.offAll(const RoutingScreen());
+        } else {
           setState(() {
-            progress=false;
+            progress = false;
           });
         }
         // print(response_1.body);
         //  Get.to(const HomeC());
-      }
-      else {
+      } else {
         setState(() {
-          progress=false;
+          progress = false;
         });
         final snackBar = SnackBar(
           content: Row(children: const [
@@ -281,14 +290,10 @@ class _BodyState extends State<Body> {
             Text('n\'pas regester  ')
           ]),
         );
-        ScaffoldMessenger.of(context)
-            .showSnackBar(snackBar);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     } catch (e) {
       print('error ' + e.toString());
     }
   }
-
-
-
 }
