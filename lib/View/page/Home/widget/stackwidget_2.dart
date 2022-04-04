@@ -5,10 +5,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Home/category_items.dart';
+import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
 import '../../../../Controller/AnonceController.dart';
 import '../../../../data.dart';
+import '../../../../screenSize/screenSized.dart';
 import '../../../routing_screen.dart';
 import '../../page_details/details.dart';
 import '../../page_details/icon_status.dart';
@@ -33,7 +35,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
   bool grid = true;
   @override
   Widget build(BuildContext context) {
-    var ScreenSized=MediaQuery.of(context).size.width;
+    //var ScreenSized=MediaQuery.of(context).size.width;
     return ScreenUtilInit(
       builder: () => SingleChildScrollView(
         child: Container(
@@ -57,7 +59,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       Row(
                         children: [
                           SvgPicture.asset('assets/icon/annonces/hand.svg',
-                              width: 25, height: 25, matchTextDirection: true),
+                              width: 25.w, height: 25.h, matchTextDirection: true),
                           Text(
                             " Immobulier Neuf",
                             style: TextStyle(fontSize: 14.sp),
@@ -66,31 +68,34 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       ),
                       Row(
                         children: [
-                          IconButton(
-                              onPressed: () => Get.to(SearchFiltter(data: widget.data,)),
-                              icon: SvgPicture.asset(
+                          GestureDetector(
+                              onTap: () => Get.to(SearchFiltter(data: widget.data,)),
+                              child: SvgPicture.asset(
                                 'assets/icon/filter.svg',
-                                width: 20,
-                                height: 20,
+                                width:ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).w,
+                                height: ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).h,
                               )),
-                          IconButton(
-                            onPressed: () {
+                          SizedBox(width: 5.w,),
+                          GestureDetector(
+                            onTap: () {
                               setState(() {
                                 grid = !grid;
                               });
                             },
-                            icon: grid
+                            child: grid
                                 ? SvgPicture.asset(
                                     'assets/icon/content vertical.svg',
-                                    width: 20,
+                              width:ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).w,
+                              height: ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).h,
                                     color: Colors.black54,
-                                    height: 20,
+
                                   )
                                 : SvgPicture.asset(
                                     'assets/icon/content_horizontal.svg',
-                                    width: 20,
+                              width:ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).w,
+                              height: ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).h,
                                     color: Colors.black54,
-                                    height: 20,
+
                                   ),
                           ),
                         ],
@@ -106,7 +111,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 50.0.h),
+                    padding: EdgeInsets.only(top: 50.h),
                     child: Container(
                       height: MediaQuery.of(context).size.height.toDouble(),
                       decoration: BoxDecoration(
@@ -198,8 +203,8 @@ class _StackWidget_2State extends State<StackWidget_2> {
                            // width: double.infinity,
                             child: ListView(
                               children:[ grid
-                                  ? ResponsiveLayout_(desktopBody: TbletGridView(leng: widget.leng, data: widget.data,),
-                               mobileBody: MobileGridView(leng: widget.leng, data: widget.data,),)
+                                  ? ResponsiveLayout_(tabliteBody: TbletGridView(leng: widget.leng, data: widget.data,),
+                               mobileBody: MobileGridView(leng: widget.leng, data: widget.data,), smallBody: SmallScreen(leng: widget.leng, data: widget.data,))
                                   : ListView.builder(
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),

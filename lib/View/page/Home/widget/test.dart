@@ -66,7 +66,7 @@ class test extends StatelessWidget {
                       child: Text(
                         data.price.toString() + ' dh',
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 15.sp,
                           color: Color(
                             0xffb58350,
                           ),
@@ -77,8 +77,8 @@ class test extends StatelessWidget {
                     Positioned(
                       //padding: EdgeInsets.only(bottom: 10,right: 5),
                       // margin: EdgeInsets.only(bottom: 35,left: 15),
-                      top: -10.h,
-                      right: -10.w,
+                      top: -5.h,
+                      right: -5.w,
                       child: GetBuilder<AnnonceController>(
                         init: AnnonceController(),
                         builder: (controller) => Align(
@@ -116,8 +116,8 @@ class test extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 22.h,left: 5.w),
-                      child: Text( data.title,maxLines: 1,),
+                      padding: EdgeInsets.only(top: 25.h,left: 5.w),
+                      child: Text( data.title,maxLines: 1,style: TextStyle(fontSize: 11.sp),),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 40.h,left: 5.w),
@@ -127,13 +127,13 @@ class test extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.location_on_rounded,
-                                size: 12,
+                                size: 12.sp,
                               ),
                               Expanded(
                                 child: Text(
                                   data.region,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 10.sp),
                                 ),
                               ),
                             ],
@@ -144,13 +144,13 @@ class test extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.home,
-                                size: 11,
+                                size: 11.sp,
                               ),
                               Expanded(
                                 child: Text(
                                   data.city,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 10.sp),
                                 ),
                               ),
                             ],

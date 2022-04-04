@@ -25,6 +25,7 @@ class _DetailsState extends State<Details> {
   bool grid = true;
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size);
     return ScreenUtilInit(
         builder: () => Scaffold(
               appBar: AppBar(
@@ -284,7 +285,7 @@ class _DetailsState extends State<Details> {
                           child: Text(
                             widget.data.title,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 24),
+                            style: TextStyle(fontSize: 24.sp),
                           ),
                         ),
                         Row(
@@ -388,34 +389,34 @@ class _DetailsState extends State<Details> {
                                     width: 2.w, color: Color(0xff8a8a8a)),
                               ),
                             )),
-                        const SizedBox(
-                          height: 10,
+                         SizedBox(
+                          height: 10.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
-                          child: const Text(
+                          child:  Text(
                             'Description',
-                            style: TextStyle(fontSize: 25),
+                            style: TextStyle(fontSize: 25.sp),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                         SizedBox(
+                          height: 10.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
                           child: Text(widget.data.description),
                         ),
-                        const SizedBox(
-                          height: 10,
+                         SizedBox(
+                          height: 10.h,
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
-                          child: const Text(
+                          child:  Text(
                             'Autre Annonces',
-                            style: TextStyle(fontSize: 25),
+                            style: TextStyle(fontSize: 25.sp),
                           ),
                         ),
                         SizedBox(
@@ -428,8 +429,8 @@ class _DetailsState extends State<Details> {
                                 return ListView_in_Detalis(data:allAnnonce[index]);
                               }),
                         ),
-                        const SizedBox(
-                          height: 20,
+                         SizedBox(
+                          height: 20.h,
                         ),
                       ],
                     ),
