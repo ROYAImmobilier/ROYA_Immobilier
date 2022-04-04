@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roya_immobilie/View/order/contact_info.dart';
+import 'package:roya_immobilie/screenSize/screenSized.dart';
 
 import '../../../Model/data_list.dart';
 import '../../../Model/joke.dart';
@@ -43,6 +44,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    var Screenwidth = MediaQuery.of(context).size.width;
+    var Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color(0xffB6B2C8),
       body: Stack(
@@ -101,13 +104,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(top: 80.0),
+                      padding:  EdgeInsets.only(top: ScreenSized.PaddingUserName(Screenwidth, Screenheight).h),
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
                           username ,
                           style: const TextStyle(
-                            fontSize: 30.0,
+                            fontSize: 25.0,
                             fontStyle: FontStyle.italic,
 
                             color: Colors.black,
@@ -119,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(height: 5,),
 
                     Padding(
-                      padding: const EdgeInsets.only(top:250.0),
+                      padding:  EdgeInsets.only(top:ScreenSized.PaddingPost(Screenwidth, Screenheight).h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.center,

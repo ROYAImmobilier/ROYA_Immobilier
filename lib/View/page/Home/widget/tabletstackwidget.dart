@@ -23,7 +23,7 @@ class TbletGridView extends StatelessWidget {
                 .of(context)
                 .size
                 .width *
-                0.5)
+                0.52)
             ,
             childAspectRatio: 2,
             crossAxisSpacing: 5,

@@ -30,11 +30,12 @@ class StackWidget_2 extends StatefulWidget {
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
-
-  List<Joke> select=[] ;
+  List<Joke> select = [];
   bool grid = true;
   @override
   Widget build(BuildContext context) {
+    var Screenwidth = MediaQuery.of(context).size.width;
+    var Screenheight = MediaQuery.of(context).size.height;
     //var ScreenSized=MediaQuery.of(context).size.width;
     return ScreenUtilInit(
       builder: () => SingleChildScrollView(
@@ -59,7 +60,9 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       Row(
                         children: [
                           SvgPicture.asset('assets/icon/annonces/hand.svg',
-                              width: 25.w, height: 25.h, matchTextDirection: true),
+                              width: 25.w,
+                              height: 25.h,
+                              matchTextDirection: true),
                           Text(
                             " Immobulier Neuf",
                             style: TextStyle(fontSize: 14.sp),
@@ -69,13 +72,21 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       Row(
                         children: [
                           GestureDetector(
-                              onTap: () => Get.to(SearchFiltter(data: widget.data,)),
+                              onTap: () => Get.to(SearchFiltter(
+                                    data: widget.data,
+                                  )),
                               child: SvgPicture.asset(
                                 'assets/icon/filter.svg',
-                                width:ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).w,
-                                height: ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).h,
+                                width: ScreenSized.IconFiltter(
+                                        Screenwidth, Screenheight)
+                                    .w,
+                                height: ScreenSized.IconFiltter(
+                                        Screenwidth, Screenheight)
+                                    .h,
                               )),
-                          SizedBox(width: 5.w,),
+                          SizedBox(
+                            width: 5.w,
+                          ),
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -85,17 +96,23 @@ class _StackWidget_2State extends State<StackWidget_2> {
                             child: grid
                                 ? SvgPicture.asset(
                                     'assets/icon/content vertical.svg',
-                              width:ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).w,
-                              height: ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).h,
+                                    width: ScreenSized.IconFiltter(
+                                            Screenwidth, Screenheight)
+                                        .w,
+                                    height: ScreenSized.IconFiltter(
+                                            Screenwidth, Screenheight)
+                                        .h,
                                     color: Colors.black54,
-
                                   )
                                 : SvgPicture.asset(
                                     'assets/icon/content_horizontal.svg',
-                              width:ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).w,
-                              height: ScreenSized.IconFiltter(MediaQuery.of(context).size.width,MediaQuery.of(context).size.height).h,
+                                    width: ScreenSized.IconFiltter(
+                                            Screenwidth, Screenheight)
+                                        .w,
+                                    height: ScreenSized.IconFiltter(
+                                            Screenwidth, Screenheight)
+                                        .h,
                                     color: Colors.black54,
-
                                   ),
                           ),
                         ],
@@ -123,75 +140,73 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       child: SingleChildScrollView(
                         child: Column(children: [
                           Padding(
-                            padding:
-                                EdgeInsets.only(top: 5.h, left: 5.w, right: 5.w),
+                            padding: EdgeInsets.only(
+                                top: 5.h, left: 5.w, right: 5.w),
                             child: SizedBox(
                               height: 85.h,
                               child: ListView.builder(
                                   itemCount: dataCategory.length,
                                   scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context,i) {
-                                    return   GestureDetector(
-                                        onTap: () {
-                                          select = [];
+                                  itemBuilder: (context, i) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        select = [];
 
-                                          for(int k=0 ;k<allAnnonce.length;k++){
-
-                                           if(dataCategory[i].name=="All"){
-                                             select.add(allAnnonce[k]);
-                                           }
-                                           else if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
-                                              select.add(allAnnonce[k]);
-                                            }
+                                        for (int k = 0;
+                                            k < allAnnonce.length;
+                                            k++) {
+                                          if (dataCategory[i].name == "All") {
+                                            select.add(allAnnonce[k]);
+                                          } else if (allAnnonce[k]
+                                              .propertyType
+                                              .contains(dataCategory[i].name)) {
+                                            select.add(allAnnonce[k]);
                                           }
-                                          setState(() {
-                                            widget.data=select;
-                                            widget.leng=select.length;
-                                          });
-
-                                          },
-
-
-
-
-
-                                        child: Row(
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  child: CircleAvatar(
-                                                    backgroundColor: Colors.white,
-                                                    radius: 30,
-                                                    child: SvgPicture.asset(
-                                                        dataCategory[i].icon,
-                                                        width: 20.w,
-                                                        height: 20.h,
-                                                        color: Color(0xffC0A280)),
-                                                  ),
+                                        }
+                                        setState(() {
+                                          widget.data = select;
+                                          widget.leng = select.length;
+                                        });
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  radius: ScreenSized.Avatar(
+                                                      Screenwidth, Screenheight)
+                                                      ,
+                                                  child: SvgPicture.asset(
+                                                      dataCategory[i].icon,
+                                                      width: 20.w,
+                                                      height: 20.h,
+                                                      color: Color(0xffC0A280)),
                                                 ),
-                                                SizedBox(
-                                                  height: 10.w,
+                                              ),
+                                              SizedBox(
+                                                height: 10.w,
+                                              ),
+                                              Text(
+                                                dataCategory[i].name,
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                  color: Color(0xff8a8a8a),
                                                 ),
-                                                Text(
-                                                  dataCategory[i].name,
-                                                  style: TextStyle(
-                                                    fontSize: 12.sp,
-                                                    color: Color(0xff8a8a8a),
-                                                  ),
-                                                ),
-
-                                              ],
-
-                                            ),
-                                            SizedBox(
-                                              width: 10.w,
-                                            ),
-                                          ],
-                                        ),
-                                      );
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   }),
                             ),
                           ),
@@ -200,39 +215,49 @@ class _StackWidget_2State extends State<StackWidget_2> {
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).size.height,
-                           // width: double.infinity,
-                            child: ListView(
-                              children:[ grid
-                                  ? ResponsiveLayout_(tabliteBody: TbletGridView(leng: widget.leng, data: widget.data,),
-                               mobileBody: MobileGridView(leng: widget.leng, data: widget.data,), smallBody: SmallScreen(leng: widget.leng, data: widget.data,))
+                            // width: double.infinity,
+                            child: ListView(children: [
+                              grid
+                                  ? ResponsiveLayout_(
+                                      tabliteBody: TbletGridView(
+                                        leng: widget.leng,
+                                        data: widget.data,
+                                      ),
+                                      mobileBody: MobileGridView(
+                                        leng: widget.leng,
+                                        data: widget.data,
+                                      ),
+                                      smallBody: SmallScreen(
+                                        leng: widget.leng,
+                                        data: widget.data,
+                                      ))
                                   : ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: widget.leng,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return GestureDetector(
-                                        onTap: () => Get.to(Details(
-                                          image: widget.data[index]
-                                              .cover !=
-                                              null
-                                              ? widget
-                                              .data[index].cover
-                                              : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                          data: widget.data[index],
-                                        )),
-                                        child: Liste_Annonce_2(
-                                            data: widget.data[index],
-                                            image: widget.data[index]
-                                                .cover !=
-                                                null
-                                                ? widget.data[index].cover
-                                                : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: widget.leng,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return GestureDetector(
+                                            onTap: () => Get.to(Details(
+                                                  image: widget.data[index]
+                                                              .cover !=
+                                                          null
+                                                      ? widget.data[index].cover
+                                                      : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                                  data: widget.data[index],
+                                                )),
+                                            child: Liste_Annonce_2(
+                                                data: widget.data[index],
+                                                image: widget.data[index]
+                                                            .cover !=
+                                                        null
+                                                    ? widget.data[index].cover
+                                                    : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
                                       }),
-                             // SizedBox(height:ScreenSized>800? 1400:550,)
+                              // SizedBox(height:ScreenSized>800? 1400:550,)
                             ]),
                           ),
-                         //
+                          //
                         ]),
                       ),
                     ),

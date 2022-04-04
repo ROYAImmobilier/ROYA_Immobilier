@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/page/searchfilter.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:roya_immobilie/screenSize/screenSized.dart';
 import 'icon_status.dart';
 
 class Details extends StatefulWidget {
@@ -25,6 +26,8 @@ class _DetailsState extends State<Details> {
   bool grid = true;
   @override
   Widget build(BuildContext context) {
+    var Screenwidth = MediaQuery.of(context).size.width;
+    var Screenheight = MediaQuery.of(context).size.height;
     print(MediaQuery.of(context).size);
     return ScreenUtilInit(
         builder: () => Scaffold(
@@ -152,7 +155,7 @@ class _DetailsState extends State<Details> {
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          height: 95.h,
+                          height: ScreenSized.Detalisheight(Screenwidth, Screenheight).h,
                           decoration: BoxDecoration(
                               color: Color(0xffc7c2d8),
                               borderRadius: BorderRadius.only(
@@ -192,8 +195,8 @@ class _DetailsState extends State<Details> {
                                 )
                               ],
                             ),
-                            const SizedBox(
-                              height: 5,
+                             SizedBox(
+                              height: 5.h,
                             ),
                             Row(
                               //crossAxisAlignment: CrossAxisAlignment.center,
@@ -267,7 +270,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          height: 50.h,
+                         // height: 50.h,
                           decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -285,7 +288,7 @@ class _DetailsState extends State<Details> {
                           child: Text(
                             widget.data.title,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 24.sp),
+                            style: TextStyle(fontSize: 20.sp),
                           ),
                         ),
                         Row(

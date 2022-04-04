@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/anonce_model_favote.dart';
+import 'package:roya_immobilie/screenSize/screenSized.dart';
 
 import '../../../../cashd_image/image.dart';
 
@@ -13,6 +14,8 @@ class test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var Screenwidth=MediaQuery.of(context).size.width;
+    var Screenheight=MediaQuery.of(context).size.height;
     return ScreenUtilInit(
       builder: () => Directionality(
         textDirection: TextDirection.ltr,
@@ -77,8 +80,8 @@ class test extends StatelessWidget {
                     Positioned(
                       //padding: EdgeInsets.only(bottom: 10,right: 5),
                       // margin: EdgeInsets.only(bottom: 35,left: 15),
-                      top: -5.h,
-                      right: -5.w,
+                      top: -ScreenSized.PaddingFavoris(Screenwidth, Screenheight).h,
+                      right: -ScreenSized.PaddingFavoris(Screenwidth, Screenheight).w,
                       child: GetBuilder<AnnonceController>(
                         init: AnnonceController(),
                         builder: (controller) => Align(
@@ -105,11 +108,11 @@ class test extends StatelessWidget {
                               controller.getAllProducts();
                             },
                             icon: controller.FavIcon(data) == true
-                                ? Icon(
+                                ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
                             )
-                                : Icon(Icons.favorite_border,
+                                : const Icon(Icons.favorite_border,
                                 color: Colors.red),
                           ),
                         ),
@@ -133,7 +136,7 @@ class test extends StatelessWidget {
                                 child: Text(
                                   data.region,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 10.sp),
+                                  style: TextStyle(fontSize: 11.sp),
                                 ),
                               ),
                             ],
@@ -150,7 +153,7 @@ class test extends StatelessWidget {
                                 child: Text(
                                   data.city,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 10.sp),
+                                  style: TextStyle(fontSize: 11.sp),
                                 ),
                               ),
                             ],
