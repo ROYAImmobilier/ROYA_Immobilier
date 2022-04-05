@@ -77,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
           description: description,
           phone1: phone1,
           abilities: abilities,
-          media: ''),
+          media: media),
     );
   }
 }

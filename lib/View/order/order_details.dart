@@ -704,7 +704,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                           city: widget.ville,
                                           categorie: widget.categorie,
                                           quartier: widget.quartier,
-                                          ablity: const {"1",'2',"15"},
+                                          ablity:idability,
                                           bedroms: _bedroms,
                                           region_1: widget.region,
                                           statut: widget.statut,

@@ -28,7 +28,7 @@ class ContactInfo extends StatefulWidget {
   int? bedroms;
   int? bathrooms;
   int? kichens;
-  var ablity;
+  List<int>? ablity;
 
   String? area;
   String? price;
@@ -487,6 +487,9 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(widget.kichens);
                             print(_titel.text);
                             print(_description.text);
+                            print(widget.ablity.toString());
+                            print(_listimagebase64.toString());
+
                             print(_phone1.text);
                             print(_phone2.text);
                             print(_phone3.text);
@@ -517,8 +520,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                         title: _titel.text,
                                         description: _description.text,
                                         phone1: _phone1.text,
-                                        abilities: widget.ablity,
-                                        media: _listimagebase64))
+                                        abilities: widget.ablity.toString(),
+                                        media: _listimagebase64.toString()))
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
                                         region_id: widget.region_1,
@@ -538,8 +541,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                         title: _titel.text,
                                         description: _description.text,
                                         phone1: _phone1.text,
-                                        abilities: "1,2,4",
-                                        media: '',
+                                        abilities: widget.ablity.toString(),
+                                        media: _listimagebase64.toString(),
                                         floor_type: "appartoment",
                                         floor: "4",
                                       );
