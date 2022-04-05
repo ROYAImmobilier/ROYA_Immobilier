@@ -32,7 +32,7 @@ class Body extends StatefulWidget {
   var adress;
   var region_id;
   var city_id;
-  var ville;
+ // var ville;
   var quartier;
   var bedrooms;
   var bathrooms;
@@ -58,7 +58,7 @@ class Body extends StatefulWidget {
     this.adress,
     this.region_id,
     this.city_id,
-    this.ville,
+  //  this.ville,
     this.quartier,
     this.bedrooms,
     this.apartment,
@@ -96,6 +96,7 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Form(
           key: _key_validation,
           child: Column(
@@ -138,49 +139,51 @@ class _BodyState extends State<Body> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      if (_key_validation.currentState!.validate())
+                      if (_key_validation.currentState!.validate()) {
                         print(email + ' ' + password);
-                      //
 
-                      if (isCamindingfrom) {
-                        isCamindingfrom = false;
-                        isLogin = true;
-                        //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
-                        await Annonce_As_Login.Add_Annonce_As_Login(
-                            region_id: "1",
-                            city_id: "8",
-                            transaction: "Rent",
-                            property_type: widget.property_type,
-                            status: widget.status,
-                            address: widget.adress,
-                            quartier: widget.quartier,
-                            area: widget.area,
-                            price: widget.price,
-                            age: widget.age,
-                            floor_type: "appartoment",
-                            floor: "4",
-                            apartment: "1",
-                            bedrooms: '2',
-                            bathrooms: '5',
-                            kitchens: '6',
-                            title: widget.title,
-                            description: widget.description,
-                            phone1: widget.phone1,
-                            email: email,
-                            password: password,
-                            abilities: "2",
-                            media: widget.media);
+                        //
+                          progress = true;
+                        if (isCamindingfrom) {
+                          isCamindingfrom = false;
+                          isLogin = true;
+                          //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
+                          await Annonce_As_Login.Add_Annonce_As_Login(
+                              region_id: "1",
+                              city_id: "8",
+                              transaction: "Rent",
+                              property_type: widget.property_type,
+                              status: widget.status,
+                              address: widget.adress,
+                              quartier: widget.quartier,
+                              area: widget.area,
+                              price: widget.price,
+                              age: widget.age,
+                              floor_type: "appartoment",
+                              floor: "4",
+                              apartment: "1",
+                              bedrooms: '2',
+                              bathrooms: '5',
+                              kitchens: '6',
+                              title: widget.title,
+                              description: widget.description,
+                              phone1: widget.phone1,
+                              email: email,
+                              password: password,
+                              abilities: "2",
+                              media: widget.media);
 
-                        Get.offAll(RoutingScreen());
-                      } else if (!isCamindingfrom) {
-                        await _Login(email: email, password: password);
+                          Get.offAll(RoutingScreen());
+                        } else if (!isCamindingfrom) {
+                          await _Login(email: email, password: password);
+                        }
+                        setState(
+                              () {
+                            //  _user = user;
+                            //isLogin= user!.success;
+                          },
+                        );
                       }
-                      setState(
-                        () {
-                          //  _user = user;
-                          //isLogin= user!.success;
-                        },
-                      );
                     },
                     style: ElevatedButton.styleFrom(
                         primary: kPrimaryColor,
@@ -203,10 +206,32 @@ class _BodyState extends State<Body> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(SignUpScreen());
+                      Get.to(SignUpScreen(
+                          region_id: "1",
+                          city_id: "8",
+                          transaction: "Rent",
+                          property_type: widget.property_type,
+                          status: widget.status,
+                          adress: widget.adress,
+                          quartier: widget.quartier,
+                          area: widget.area,
+                          price: widget.price,
+                          age: widget.age,
+                          floor_type: "appartoment",
+                          floor: "4",
+                          apartment: "1",
+                          bedrooms: '2',
+                          bathrooms: '5',
+                          kitchens: '6',
+                          title: widget.title,
+                          description: widget.description,
+                          phone1: widget.phone1,
+                          abilities: "2",
+                          media: widget.media
+                      ));
                     },
                     child: const Text(
-                      "Sign In",
+                      "Sign Up",
                       style: TextStyle(
                         color: kPrimaryColor,
                         fontWeight: FontWeight.bold,
@@ -226,9 +251,7 @@ class _BodyState extends State<Body> {
     required var email,
     required var password,
   }) async {
-    setState(() {
-      progress = true;
-    });
+
     try {
       var response = await http.post(
           Uri.parse('https://dashboard.royaimmo.ma/api/auth/login'),

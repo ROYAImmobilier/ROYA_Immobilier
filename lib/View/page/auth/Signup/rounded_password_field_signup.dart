@@ -7,9 +7,10 @@ import '../../../../varia_ble/variable.dart';
 class RoundedPasswordFieldSignup extends StatelessWidget {
  var password=TextEditingController();
  var password_2=TextEditingController();
-   RoundedPasswordFieldSignup({
-    Key? key,
-  }) : super(key: key);
+
+ RoundedPasswordFieldSignup(this.password, this.password_2);
+
+
 
   @override
   Widget build(BuildContext context) {

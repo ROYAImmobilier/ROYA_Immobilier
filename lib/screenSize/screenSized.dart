@@ -55,20 +55,41 @@ class ScreenSized {
       //print("ttt"+ screenWidth.toString());
       return 230;
     }else if( screenWidth>800){
-      return 150;
+      return 200;
     }
     else {
-      return 250;
+      return 240;
     }
   } static double PaddingUserName(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
       return 125;
     }else if( screenWidth>800){
-      return 85;
+      return 70;
     }
     else {
       return 65;
+    }
+  }
+  static double CardSized(double screenWidth,double screenheight ){
+    if( screenWidth < 385 && screenheight<600){
+      //print("ttt"+ screenWidth.toString());
+      return 300;
+    }else if( screenWidth>800){
+      return 250;
+    }
+    else {
+      return 300;
+    }
+  }  static double ProfileImage(double screenWidth,double screenheight ){
+    if( screenWidth < 385 && screenheight<600){
+      //print("ttt"+ screenWidth.toString());
+      return 300;
+    }else if( screenWidth>800){
+      return 90;
+    }
+    else {
+      return 70;
     }
   }
 

@@ -4,16 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/joke.dart';
-import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
-import '../../../../Controller/AnonceController.dart';
 import '../../../../data.dart';
 import '../../../../screenSize/screenSized.dart';
 import '../../../routing_screen.dart';
 import '../../page_details/details.dart';
-import '../../page_details/icon_status.dart';
 import '../../searchfilter.dart';
 import 'listeanonnce_2.dart';
 import 'mobilestackwidget.dart';
@@ -180,8 +177,8 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                                 child: CircleAvatar(
                                                   backgroundColor: Colors.white,
                                                   radius: ScreenSized.Avatar(
-                                                      Screenwidth, Screenheight)
-                                                      ,
+                                                      Screenwidth,
+                                                      Screenheight),
                                                   child: SvgPicture.asset(
                                                       dataCategory[i].icon,
                                                       width: 20.w,
@@ -254,7 +251,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                                     ? widget.data[index].cover
                                                     : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
                                       }),
-                              // SizedBox(height:ScreenSized>800? 1400:550,)
+                              // SizedBox(height: 65,) // SizedBox(height:ScreenSized>800? 1400:550,)
                             ]),
                           ),
                           //

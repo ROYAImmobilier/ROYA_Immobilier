@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
-              height: 300.h,
+              height: ScreenSized.CardSized(Screenwidth, Screenheight).h,
               child: Card(
                 elevation: 1,
                 shape:  OutlineInputBorder(
@@ -81,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
 
                      Padding(
-                      padding:  EdgeInsets.only(top: 70.h),
+                      padding:  EdgeInsets.only(top: ScreenSized.ProfileImage(Screenwidth, Screenheight).h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [

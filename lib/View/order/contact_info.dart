@@ -332,7 +332,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 // labelText: "",
                                 border: OutlineInputBorder(),
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.phone,
                             ),
                             const SizedBox(
                               height: 15,
@@ -357,7 +357,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 // labelText: "",
                                 border: OutlineInputBorder(),
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.phone,
                             ),
                             const SizedBox(
                               height: 15,
@@ -381,7 +381,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 // labelText: "",
                                 border: OutlineInputBorder(),
                               ),
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.phone,
                             ),
                             const SizedBox(
                               height: 15,
@@ -518,7 +518,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                         description: _description.text,
                                         phone1: _phone1.text,
                                         abilities: widget.ablity,
-                                        media: ''))
+                                        media: _listimagebase64))
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
                                         region_id: widget.region_1,

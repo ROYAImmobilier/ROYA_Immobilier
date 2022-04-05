@@ -13,7 +13,7 @@ class RoundedInputField extends StatelessWidget {
    RoundedInputField({
     Key? key,
     required this.hintText,
-    this.icon = Icons.person,
+    this.icon = Icons.email,
     required this.onChanged,
   }) : super(key: key);
 
@@ -40,7 +40,9 @@ class RoundedInputField extends StatelessWidget {
           ),
           hintText: hintText,
           border: InputBorder.none,
+
         ),
+        keyboardType: TextInputType.emailAddress,
       ),
     );
   }
