@@ -149,8 +149,8 @@ class _BodyState extends State<Body> {
                           isLogin = true;
                           //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
                           await Annonce_As_Login.Add_Annonce_As_Login(
-                              region_id: "1",
-                              city_id: "8",
+                              region_id: widget.region_id,
+                              city_id: widget.city_id,
                               transaction: "Rent",
                               property_type: widget.property_type,
                               status: widget.status,
@@ -162,15 +162,15 @@ class _BodyState extends State<Body> {
                               floor_type: "appartoment",
                               floor: "4",
                               apartment: "1",
-                              bedrooms: '2',
-                              bathrooms: '5',
-                              kitchens: '6',
+                              bedrooms: widget.bedrooms,
+                              bathrooms:widget.bathrooms,
+                              kitchens: widget.kitchens,
                               title: widget.title,
                               description: widget.description,
                               phone1: widget.phone1,
                               email: email,
                               password: password,
-                              abilities: "2",
+                              abilities:widget.abilities,
                               media: widget.media);
 
                           Get.offAll(RoutingScreen());
