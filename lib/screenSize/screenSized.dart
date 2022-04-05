@@ -55,10 +55,10 @@ class ScreenSized {
       //print("ttt"+ screenWidth.toString());
       return 230;
     }else if( screenWidth>800){
-      return 85;
+      return 150;
     }
     else {
-      return 95;
+      return 250;
     }
   } static double PaddingUserName(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
@@ -68,7 +68,7 @@ class ScreenSized {
       return 85;
     }
     else {
-      return 95;
+      return 65;
     }
   }
 

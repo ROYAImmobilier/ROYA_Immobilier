@@ -275,14 +275,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                   padding: EdgeInsets.all(5),
                                   child: Stack(children: [
                                     Container(
-                                      child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/"+"Poste[index].cover",),
+                                      child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",),
                                       height: 120.h,
                                       width: 150.w,
                                       decoration:  const BoxDecoration(
-                                        // image: DecorationImage(
-                                        //                 image:
-                                        //                 fit: BoxFit.fill,
-                                        //               ),
+
                                         color: Colors.white,
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(10),

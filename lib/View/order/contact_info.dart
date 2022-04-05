@@ -94,14 +94,25 @@ class _ContactInfoState extends State<ContactInfo> {
 //   }
 
   choseImage() async {
-    final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
-    setState(() {
-      // _image.add(File(pickedFile?.path));
-      _listimage.add(File(pickedFile!.path));
-      _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
-    });
-    if (pickedFile!.path == null) retrieveLostData();
+    try {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedFile == null) return;
+      final imageTemporary = File(pickedFile.path);
+      setState(() {
+        _file = imageTemporary;
+        _listimage.add(_file!);
+        _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
+      });
+    } catch (e) {
+      print(e);
+    }
+
+    // _image.add(File(pickedFile?.path));
+    // _listimage.add(File(pickedFile!.path));
+    // _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
+
+    //if (pickedFile!.path == null) retrieveLostData();
   }
 
   Future<void> retrieveLostData() async {
@@ -184,7 +195,9 @@ class _ContactInfoState extends State<ContactInfo> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.ablity.toString());
+    print("base64");
+    print(_listimagebase64);
+    // print(widget.ablity.toString());
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
@@ -382,70 +395,48 @@ class _ContactInfoState extends State<ContactInfo> {
                             SizedBox(
                               height: 10.h,
                             ),
-                            Container(
-                              height: 100,
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: _listimage.length + 1,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, i) {
-                                    return i == 0
-                                        ? Center(
-                                            child: Card(
-                                                color: Colors.cyan,
-                                                child: IconButton(
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        choseImage();
-                                                        print(
-                                                            "adzgdsjhfgshdfvbsd,gfbdgng");
-                                                      });
-                                                    },
-                                                    icon: Icon(
-                                                      Icons
-                                                          .add_photo_alternate_rounded,
-                                                      color: Colors.black,
-                                                    ))),
-                                          )
-                                        : Container(
-                                            margin: EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: FileImage(
-                                                        _listimage[i - 1]))));
-                                    /*  GestureDetector(
-                                    onTap: () {
-                                      //selected img
-                                      setState(() {
-                                       choseImage();
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 40),
-                                      child: _listimage.length == 0
-                                          ? Container(
-                                              alignment: Alignment.topLeft,
-                                              child: Image.asset(
-                                                'assets/images/select.png',
-                                                height: 50.h,
-                                                width: 50.w,
-                                              ),
-                                            )
-                                          : Container(
-                                              height: 60.h,
-                                              // width: 60,
-                                              decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: FileImage(_listimage[i]))),
+                            SizedBox(
+                              height: 100.h,
+                              child: SingleChildScrollView(
+                                scrollDirection:  Axis.horizontal,
+                                child: Row(children: [
+                                  Card(
+                                      color: Colors.cyan,
+                                      child: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              choseImage();
+                                              print(
+                                                  "adzgdsjhfgshdfvbsd,gfbdgng");
+                                            });
+                                          },
+                                          icon: const Icon(
+                                            Icons.add_photo_alternate_rounded,
+                                            color: Colors.black,
+                                          ))),
+                                  ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: _listimage.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, i) {
+                                        return SizedBox(
+                                          height: 75,
+                                          child: Row(children: [
+                                            Image.file(
+                                              _listimage[i],
+                                              width: 70,
+                                              height: 70,
+                                              fit: BoxFit.cover,
                                             ),
-                                    ),
-                                  ) : Container(
-                                    margin: EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: FileImage(_listimage[i - 1]))),
-                                  );*/
-                                  }),
+                                            const SizedBox(
+                                              width: 5,
+                                            )
+                                          ]),
+                                        );
+                                      }),
+                                ]),
+                              ),
                             ),
                           ],
                         ),
@@ -531,7 +522,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
                                         region_id: widget.region_1,
-                                        city_id:widget.city,
+                                        city_id: widget.city,
                                         transaction: "Rent",
                                         property_type: widget.Property_details,
                                         status: widget.statut,
