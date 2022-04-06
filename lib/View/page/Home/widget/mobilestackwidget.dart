@@ -29,7 +29,7 @@ class MobileGridView extends StatelessWidget {
           gridDelegate:
           SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 205,
-              mainAxisExtent:270.h
+              mainAxisExtent:275.h
               ,
               childAspectRatio: 2,
               crossAxisSpacing: 5,

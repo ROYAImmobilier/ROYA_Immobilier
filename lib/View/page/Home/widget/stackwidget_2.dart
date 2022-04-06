@@ -220,7 +220,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                               MainAxisAlignment.center,
                               children: [
                                 CircleAvatar(
-                                 backgroundColor:i==j? Color.fromARGB(255, 130, 108, 219) : Colors.white,
+                                 backgroundColor:i==j? const Color.fromARGB(255, 130, 108, 219) : Colors.white,
                                   radius: ScreenSized.Avatar(
                                       Screenwidth,
                                       Screenheight),
@@ -228,7 +228,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                       dataCategory[i].icon,
                                       width: 20.w,
                                       height: 20.h,
-                                      color: Color(0xffC0A280)),
+                                      color: const Color(0xffC0A280)),
                                 ),
                                 SizedBox(
                                   height: 10.h,
@@ -237,7 +237,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                   dataCategory[i].name.tr,
                                   style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: Color(0xff8a8a8a),
+                                    color: const Color(0xff8a8a8a),
                                   ),
                                 ),
                               ],

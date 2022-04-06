@@ -58,7 +58,7 @@ class test extends StatelessWidget {
                       child: Text(
                         data.price.toString() + ' dh',
                         style: TextStyle(
-                          fontSize: 15.sp,
+                          fontSize: 15.sm,
                           color: Color(
                             0xffb58350,
                           ),
@@ -109,7 +109,7 @@ class test extends StatelessWidget {
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 30.h,left: 5.w),
-                      child: Text( data.title,maxLines: 1,style: TextStyle(fontSize: 11.sp),),
+                      child: Text( data.title,maxLines: 1,style: TextStyle(fontSize: 14.sm),),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 55.h,left: 5.w),
@@ -119,13 +119,13 @@ class test extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.location_on_rounded,
-                                size: 12.sp,
+                                size: 14.h,
                               ),
                               Expanded(
                                 child: Text(
                                   data.region,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 11.sp),
+                                  style: TextStyle(fontSize: 14.sm),
                                 ),
                               ),
                             ],
@@ -136,13 +136,13 @@ class test extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.home,
-                                size: 11.sp,
+                                size: 14.h,
                               ),
                               Expanded(
                                 child: Text(
                                   data.city,
                                   maxLines: 1,
-                                  style: TextStyle(fontSize: 11.sp),
+                                  style: TextStyle(fontSize: 14.sm),
                                 ),
                               ),
                             ],

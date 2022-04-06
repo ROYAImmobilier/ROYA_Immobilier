@@ -19,12 +19,7 @@ class TbletGridView extends StatelessWidget {
         gridDelegate:
         SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 305,
-            mainAxisExtent:
-            (MediaQuery
-                .of(context)
-                .size
-                .width *
-                0.55).h
+            mainAxisExtent:280.h
             ,
             childAspectRatio: 2,
             crossAxisSpacing: 5,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
@@ -20,11 +21,7 @@ class SmallScreen extends StatelessWidget {
         SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent:305,
             mainAxisExtent:
-            (MediaQuery
-                .of(context)
-                .size
-                .height *
-                0.4)
+            285.h
             ,
             childAspectRatio: 2,
             crossAxisSpacing: 5,

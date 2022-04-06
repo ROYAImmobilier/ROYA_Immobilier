@@ -9,7 +9,7 @@ import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/auth/Login/components/body.dart';
 import 'package:roya_immobilie/View/page/favorite_page.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import '../../../../Controller/AnonceController.dart';
 import '../../../../Controller/cityController.dart';
 import '../../../../Model/repositery.dart';
@@ -59,7 +59,7 @@ class _DrawerPageState extends State<DrawerPage> {
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return Divider(
+                    return const Divider(
                       color: Colors.blue,
                     );
                   },
@@ -104,7 +104,7 @@ class _DrawerPageState extends State<DrawerPage> {
                                   Text(
                                     "Bienvenue ,".tr,
                                     style:  TextStyle(
-                                      fontSize: 22.r,
+                                      fontSize: 22,
                                     ),
                                   ),
                                 ],
@@ -113,9 +113,9 @@ class _DrawerPageState extends State<DrawerPage> {
                                 children: [
                                   Text(
                                     'pour une experience optimisee , '.tr,
-                                    style:  TextStyle(
-                                      fontSize: 16.r,
-                                    ),
+                                    style:   TextStyle(fontSize: 18.sm),
+
+                                 //  stepGranularity: 5.0,
                                   ),
                                 ],
                               ),
@@ -123,8 +123,8 @@ class _DrawerPageState extends State<DrawerPage> {
                                 children: [
                                   Text(
                                     'veuillez vous connecter'.tr,
-                                    style: TextStyle(
-                                      fontSize: 16.r,
+                                    style:  TextStyle(
+                                      fontSize: 18.sm,
                                     ),
                                   ),
                                 ],
@@ -160,9 +160,9 @@ class _DrawerPageState extends State<DrawerPage> {
                       SizedBox(
                         width: 15.w,
                       ),
-                      Text(
+                      AutoSizeText(
                         'DEPOSER UNE ANNONCE'.tr,
-                        style: TextStyle(color: Colors.white, fontSize: 14.r),
+                        style: TextStyle(color: Colors.white, fontSize: 14.sm),
                       )
                     ],
                   ),
@@ -194,7 +194,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       SizedBox(
                         width: 15.w,
                       ),
-                      Text('Tableau De Bord'.tr, style: TextStyle(fontSize: 20.r))
+                      Text('Tableau De Bord'.tr, style: TextStyle(fontSize: 20.sm))
                     ],
                   )):
               GestureDetector(
@@ -212,7 +212,7 @@ class _DrawerPageState extends State<DrawerPage> {
                      SizedBox(
                       width: 15.h,
                     ),
-                    Text('Se connecter'.tr, style: TextStyle(fontSize: 20.r))
+                    Text('Se connecter'.tr, style: TextStyle(fontSize: 20.sm))
                   ],
                 ),
               ),
@@ -240,7 +240,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       SizedBox(
                         width: 15.h,
                       ),
-                      Text('Se Déconnecter'.tr, style: TextStyle(fontSize: 20.r))
+                      Text('Se Déconnecter'.tr, style: TextStyle(fontSize: 20.sm))
                     ],
                   )),
             ):Container(),
@@ -260,7 +260,7 @@ class _DrawerPageState extends State<DrawerPage> {
                   SizedBox(
                     width: 15.w,
                   ),
-                  Text('Chat'.tr, style: TextStyle(fontSize: 20.r))
+                  Text('Chat'.tr, style: TextStyle(fontSize: 20.sm))
                 ],
               ),
             ),
@@ -283,7 +283,7 @@ class _DrawerPageState extends State<DrawerPage> {
                     SizedBox(
                       width: 15.h,
                     ),
-                    Text('Mes favoris'.tr, style: TextStyle(fontSize: 20.r))
+                    Text('Mes favoris'.tr, style: TextStyle(fontSize: 20.sm))
                   ],
                 ),
               ),
@@ -314,7 +314,7 @@ class _DrawerPageState extends State<DrawerPage> {
                     child:Text(
                       'Langues'.tr,
                       style: TextStyle(
-                        fontSize: 20.r,
+                        fontSize: 20.sm,
 
                       ),
                     ),
@@ -337,7 +337,7 @@ class _DrawerPageState extends State<DrawerPage> {
                   SizedBox(
                     width:15.h,
                   ),
-                  Text('Contactez nous'.tr, style: TextStyle(fontSize: 20.r))
+                  Text('Contactez nous'.tr, style: TextStyle(fontSize: 20.sm))
                 ],
               ),
             ),
@@ -363,7 +363,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       //   MaterialPageRoute(builder: (context) => Add_Annonce()),
                       // );
                     },
-                    child: Text('Informations'.tr, style: TextStyle(fontSize: 20.r)),
+                    child: Text('Informations'.tr, style: TextStyle(fontSize: 20.sm)),
                   )
                 ],
               ),
