@@ -7,6 +7,9 @@ import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/anonce_model_favote.dart';
 import 'package:roya_immobilie/cashd_image/image.dart';
 
+import '../../../../Model/category.dart';
+
+
 class Liste_Annonce_2 extends StatefulWidget {
   late String image;
   late var data;
@@ -114,10 +117,10 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                               },
                               icon: controller.FavIcon(widget.data) == true
                                   ? Icon(
-                                Icons.favorite,
+                                Icons.star,
                                 color: Colors.red,
                               )
-                                  : Icon(Icons.favorite_border,
+                                  : Icon(Icons.star_border,
                                   color: Colors.red),
                             ),
                           ),

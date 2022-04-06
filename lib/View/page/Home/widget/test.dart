@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -109,10 +110,10 @@ class test extends StatelessWidget {
                             },
                             icon: controller.FavIcon(data) == true
                                 ? const Icon(
-                              Icons.favorite,
+                              Icons.star,
                               color: Colors.red,
                             )
-                                : const Icon(Icons.favorite_border,
+                                : const Icon(Icons.star_border,
                                 color: Colors.red),
                           ),
                         ),

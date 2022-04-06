@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Controller/AnonceController.dart';
+import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
 
@@ -12,6 +13,7 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(AnnonceController());
     return Scaffold(
+      drawer: DrawerPage(),
         backgroundColor: Color(0xffefefef),
         appBar: AppBar(
           title: const Center(
@@ -68,8 +70,8 @@ class FavoritePage extends StatelessWidget {
 
                               "https://dashboard.royaimmo.ma/images/annonces/${controller.cartProductsModel[i].cover}",
 
-                            width: 60,
-                            height: 80,
+                            width: 100,
+                            height: 100,
                           ),
                           title: Text(controller.cartProductsModel[i].title),
                           subtitle: Text(
@@ -77,8 +79,8 @@ class FavoritePage extends StatelessWidget {
                                   '-' +
                                   controller.cartProductsModel[i].city),
                           trailing: IconButton(
-                            icon: Icon(
-                              Icons.favorite,
+                            icon: const Icon(
+                              Icons.star,
                               color: Colors.red,
                             ),
                             onPressed: () {

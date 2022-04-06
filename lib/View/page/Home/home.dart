@@ -6,6 +6,7 @@ import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/Home/widget/stackwidget_2.dart';
 
+import '../../../screenSize/screenSized.dart';
 import '../../routing_screen.dart';
 import '../serche_page.dart';
 
@@ -19,6 +20,8 @@ class _HomePageState extends State<HomePage> {
   final controller = Get.put(AnnonceController());
   @override
   Widget build(BuildContext context) {
+    var Screenwidth = MediaQuery.of(context).size.width;
+    var Screenheight = MediaQuery.of(context).size.height;
     return GetBuilder<AnnonceController>(
       // init: AnnonceController(),
       builder: (controller) => ScreenUtilInit(
@@ -38,8 +41,12 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: SvgPicture.asset(
                     'assets/icon/search.svg',
-                    width: 20,
-                    height: 20,
+                    width: ScreenSized.IconFiltter(
+                        Screenwidth, Screenheight)
+                        .w,
+                    height: ScreenSized.IconFiltter(
+                        Screenwidth, Screenheight)
+                        .h,
                     color: Colors.black,
                   ),
                 ),
@@ -50,7 +57,12 @@ class _HomePageState extends State<HomePage> {
                 return IconButton(
                   //menu.svg
                   icon: SvgPicture.asset('assets/icon/menu.svg',
-                      width: 25, height: 25, matchTextDirection: true),
+                      width: ScreenSized.IconFiltter(
+                          Screenwidth, Screenheight)
+                          .w,
+                      height: ScreenSized.IconFiltter(
+                          Screenwidth, Screenheight)
+                          .h, matchTextDirection: true),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },

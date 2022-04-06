@@ -12,6 +12,7 @@ import '../../Model/anonce_model_favote.dart';
 import '../../Model/joke.dart';
 import '../../data.dart';
 import 'Home/category_items.dart';
+import 'Home/widget/stackwidget_2.dart';
 
 class HomeC extends StatefulWidget {
   @override
