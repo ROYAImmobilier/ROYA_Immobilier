@@ -19,6 +19,7 @@ import 'mobilestackwidget.dart';
 final colors = Color(0xefefef);
 class StackWidget_2 extends StatefulWidget {
   List<Joke> data;
+
   int leng;
   StackWidget_2({required this.data, required this.leng});
 
@@ -28,6 +29,7 @@ class StackWidget_2 extends StatefulWidget {
 
 class _StackWidget_2State extends State<StackWidget_2> {
   List<Joke> select = [];
+  int j = 0 ;
   bool grid = true;
   @override
   Widget build(BuildContext context) {
@@ -169,8 +171,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                         )),
                                     child: Liste_Annonce_2(
                                         data: widget.data[index],
-                                        image: widget.data[index].cover ?? 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg'));
-                              }),
+                                        image: widget.data[index].cover ));}),
                       SizedBox(height: 20.h,)]
                     ),
                   ),
@@ -187,13 +188,18 @@ class _StackWidget_2State extends State<StackWidget_2> {
                     itemBuilder: (context, i) {
                       return GestureDetector(
                         onTap: () {
+                          setState(() {
+                            j=i;
+                          });
                           select = [];
-
                           for (int k = 0;
                           k < allAnnonce.length;
                           k++) {
-                            if (dataCategory[i].name == "Tout") {
-                              select.add(allAnnonce[k]);
+                            if (dataCategory[i].name == "All") {
+                              setState(() {
+                                select.add(allAnnonce[k]);
+                              });
+
                             } else if (allAnnonce[k]
                                 .propertyType
                                 .contains(dataCategory[i].name)) {
@@ -214,7 +220,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                               MainAxisAlignment.center,
                               children: [
                                 CircleAvatar(
-                                  backgroundColor: Colors.white,
+                                 backgroundColor:i==j? Color.fromARGB(255, 130, 108, 219) : Colors.white,
                                   radius: ScreenSized.Avatar(
                                       Screenwidth,
                                       Screenheight),

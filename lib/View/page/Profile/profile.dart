@@ -1,12 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roya_immobilie/View/order/contact_info.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
-
+import 'package:http/http.dart'as http;
 import '../../../Model/data_list.dart';
 import '../../../Model/joke.dart';
 import '../../../Model/repositery.dart';
 import '../../../cashd_image/image.dart';
+import '../../../varia_ble/variable.dart';
 import '../auth/Login/components/body.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -23,6 +26,54 @@ class _ProfilePageState extends State<ProfilePage> {
   Color colorPost = Colors.black ;
   Color colorPosteValide = Colors.black ;
   Color colorPosteNonValide = Colors.black ;
+
+
+
+  reloud() async{
+    allAnnonceLogin = [];
+    PosteNonValide =[];
+    Poste = [];
+    PosteValide=[];
+    var response_1 = await http.get(
+        Uri.parse('https://dashboard.royaimmo.ma/api/annonces'),
+        headers: {
+          //HttpHeaders.authorizationHeader:token_1.toString(),
+          'Authorization': 'Bearer $token_global'
+        });
+    print(response_1.body);
+
+    if (response_1.statusCode == 200) {
+
+      final responseJsoon = json.decode(response_1.body);
+      final responseJson = responseJsoon["data"];
+      setState(() {
+        for (Map annoncelogin in responseJson) {
+          allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
+
+        }
+
+        setState(() {
+
+          Poste = allAnnonceLogin ;
+          for(int i =0 ; i<Poste.length ; i++){
+            if(Poste[i].validated==1){
+              PosteValide.add(Poste[i]);
+            }else{
+              PosteNonValide.add(Poste[i]);
+            }
+          }
+        });
+
+      });
+
+    }
+  }
+
+
+
+
+
+
 
 
   @override
@@ -260,7 +311,12 @@ class _ProfilePageState extends State<ProfilePage> {
             padding:  EdgeInsets.only(top: 300.h),
             child: SingleChildScrollView(
               child: Column(
+
                 children: [
+                  IconButton(onPressed: (){
+                    reloud();
+                  }, icon:  Icon(Icons.refresh),),
+
                   ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

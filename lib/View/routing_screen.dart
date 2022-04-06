@@ -52,7 +52,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
   void OnbottomTapped(int index) {
     if ((bottomSelectedIndex - index.abs() == 1)) {
       pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 400), curve: Curves.ease);
+          duration: const Duration(milliseconds: 400), curve: Curves.easeOutSine);
     } else {
       pageController.jumpToPage(index);
     }
@@ -119,11 +119,11 @@ class _RoutingScreenState extends State<RoutingScreen> {
     return  ScreenUtilInit(
         builder: () => Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
           floatingActionButton: FloatingActionButton(
             elevation: 1,
             // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(0)),
-            isExtended: true,
+            isExtended: false,
             backgroundColor: Color.fromARGB(255, 130, 108, 219),
             // mini: true,
             child: SvgPicture.asset(
@@ -138,8 +138,10 @@ class _RoutingScreenState extends State<RoutingScreen> {
             },
           ),
           bottomNavigationBar: BottomNavigationBar(
-            elevation: 0,
-            type: BottomNavigationBarType.shifting,
+            elevation: 2,
+            iconSize: 20,
+
+            type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(
                   backgroundColor: Colors.white,
@@ -184,7 +186,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
               ),
             ],
             onTap: OnbottomTapped,
-            selectedItemColor: Colors.black,
+            selectedItemColor: Color.fromARGB(255, 130, 108, 219),
             unselectedItemColor: Colors.black54,
             currentIndex: bottomSelectedIndex,
           ),
