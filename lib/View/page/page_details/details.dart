@@ -6,10 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/page/searchfilter.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:roya_immobilie/controller.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
+import '../../../Model/joke.dart';
+import '../../../data.dart';
 import 'icon_status.dart';
 
 class Details extends StatefulWidget {
@@ -23,6 +27,7 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
+  List<Joke>select = [];
   bool grid = true;
   @override
   Widget build(BuildContext context) {
@@ -55,17 +60,7 @@ class _DetailsState extends State<Details> {
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          // IconButton(
-                          //     onPressed: () => Get.to(SearchFiltter()),
-                          //     icon: SvgPicture.asset(
-                          //       'assets/icon/filter.svg',
-                          //       width: 20.w,
-                          //       height: 20.h,
-                          //     )),
-                        ],
-                      )
+
                     ],
                   ),
                 ),
@@ -133,11 +128,70 @@ class _DetailsState extends State<Details> {
                               padding: EdgeInsets.only(
                                   top: 15.h, left: 2.w, right: 2.w),
                               child: ListView.builder(
-                                  itemCount: 6,
+                                  itemCount: dataCategory.length,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, i) {
-                                    return Icon_Status();
-                                  })),
+                                    return
+                                       GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            select=[];
+                                            for(int k=0 ;k<allAnnonce.length;k++){
+                                              if(dataCategory[i].name==("All")){
+                                                select.add(allAnnonce[k]);
+                                              }
+                                             else if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
+                                                select.add(allAnnonce[k]);
+                                              }
+                                            }
+                                            Get.to(CategoryItems(icon: dataCategory[i].icon, title: dataCategory[i].name, data: select, leng: select.length));
+
+
+                                          });
+
+
+                                        },
+
+
+                                        child: Row(
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  radius: ScreenSized.Avatar(
+                                                      Screenwidth,
+                                                      Screenheight),
+                                                  child: SvgPicture.asset(
+                                                      dataCategory[i].icon,
+                                                      width: 20.w,
+                                                      height: 20.h,
+                                                      color: Color(0xffC0A280)),
+                                                ),
+                                                SizedBox(
+                                                  height: 10.h,
+                                                ),
+                                                Text(
+                                                  dataCategory[i].name.tr,
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: Color(0xff8a8a8a),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: 10.w,
+                                            ),
+                                          ],
+
+                                      ),
+                                    );
+                                  }),),
                         ),
                         Container(
                           margin: EdgeInsets.only(
