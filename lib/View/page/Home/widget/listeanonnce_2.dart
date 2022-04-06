@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Colors/colors.dart';
 import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/anonce_model_favote.dart';
 import 'package:roya_immobilie/cashd_image/image.dart';
@@ -66,19 +67,19 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                           widget.data.price.toString() + ' dh',
                                           style: TextStyle(
                                             fontSize: 18.sp,
-                                            color: Color(
+                                            color: const Color(
                                               0xffb58350,
                                             ),
                                           ),
                                         )
-                    ),Container(
-                      padding: EdgeInsets.only(top: 35.h,left: 10.w),
+                    ),Padding(
+                      padding: EdgeInsets.only(top: 40.h,left: 10.w),
                       child: Text(
                                         widget.data.title,
                                         maxLines: 1,
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
-                                          fontSize: 14.sp,
+                                          fontSize: 14.r,
                                         ),
                                       ),
                     ),
@@ -86,7 +87,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                         top: -5.h,
                         right: 0,
                         child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
-                            icon: Icon( Icons.more_vert)))),
+                            icon: const Icon( Icons.more_vert)))),
                     Positioned(
                       bottom: 0,
                         right: 0,
@@ -116,38 +117,38 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                 controller.getAllProducts();
                               },
                               icon: controller.FavIcon(widget.data) == true
-                                  ? Icon(
+                                  ?  Icon(
                                 Icons.star,
-                                color: Colors.red,
+                                color: goldColor,
                               )
-                                  : Icon(Icons.star_border,
-                                  color: Colors.red),
+                                  :  Icon(Icons.star_border,
+                                  color: goldColor),
                             ),
                           ),
                         ),),
 
                     Container(
-                      margin: EdgeInsets.only(top: 85.h,left: 10.w),
+                      margin: EdgeInsets.only(top: 75.h,left: 10.w),
                       child: Wrap(
                         children: [
                           Row(
                             children: [
-                              Icon(
+                               Icon(
                                 Icons.location_on_rounded,
-                                size: 14,
-                              ), Text( widget.data.region,style: TextStyle(fontSize: 14),),
+                                size: 14.r,
+                              ), Text( widget.data.region,style: TextStyle(fontSize: 12.r),),
                             ],
                           ),
 
-                          SizedBox(
-                            width: 5,
+                           SizedBox(
+                            height: 20.h,
                           ),
                           Row(
                             children: [
                               Icon(
                                 Icons.home,
-                                size: 14,
-                              ), Text(widget.data.city,style: TextStyle(fontSize: 14),),
+                                size: 14.r,
+                              ), Text(widget.data.city,style: TextStyle(fontSize: 14.r),),
                             ],
                           ),
 

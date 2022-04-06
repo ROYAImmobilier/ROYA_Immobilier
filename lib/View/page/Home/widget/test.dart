@@ -6,6 +6,7 @@ import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/anonce_model_favote.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 
+import '../../../../Colors/colors.dart';
 import '../../../../cashd_image/image.dart';
 
 class test extends StatelessWidget {
@@ -39,19 +40,6 @@ class test extends StatelessWidget {
                 width: double.infinity,
                 child: cachedImage(
                   "https://dashboard.royaimmo.ma/images/annonces/"+image,
-                  // decoration: BoxDecoration(
-                  //   image: DecorationImage(
-                  //     image: NetworkImage(controller
-                  //         .AllBooks[i].img),
-                  //     fit: BoxFit.fill,
-                  //   ),
-                  //   borderRadius: BorderRadius.only(
-                  //       topLeft:
-                  //           Radius.circular(10),
-                  //       topRight:
-                  //           Radius.circular(10)),
-                  //   color: Colors.white,
-                  // ),
                 ),),
               Container(
                 margin: EdgeInsets.only(top: 180.h),
@@ -109,22 +97,22 @@ class test extends StatelessWidget {
                               controller.getAllProducts();
                             },
                             icon: controller.FavIcon(data) == true
-                                ? const Icon(
+                                ?  Icon(
                               Icons.star,
-                              color: Colors.red,
+                              color: goldColor,
                             )
-                                : const Icon(Icons.star_border,
-                                color: Colors.red),
+                                :  Icon(Icons.star_border,
+                                color: goldColor),
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 25.h,left: 5.w),
+                      padding: EdgeInsets.only(top: 30.h,left: 5.w),
                       child: Text( data.title,maxLines: 1,style: TextStyle(fontSize: 11.sp),),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 40.h,left: 5.w),
+                      padding: EdgeInsets.only(top: 55.h,left: 5.w),
                       child: Wrap(
                         children: [
                           Row(

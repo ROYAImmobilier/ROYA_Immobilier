@@ -139,6 +139,7 @@ class _BodyState extends State<Body> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       if (_key_validation.currentState!.validate()) {
                         print(email + ' ' + password);
 

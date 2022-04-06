@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
@@ -23,7 +24,7 @@ class TbletGridView extends StatelessWidget {
                 .of(context)
                 .size
                 .width *
-                0.52)
+                0.55).h
             ,
             childAspectRatio: 2,
             crossAxisSpacing: 5,

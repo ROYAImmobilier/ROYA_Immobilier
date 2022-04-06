@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Colors/colors.dart';
 import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
@@ -79,9 +80,9 @@ class FavoritePage extends StatelessWidget {
                                   '-' +
                                   controller.cartProductsModel[i].city),
                           trailing: IconButton(
-                            icon: const Icon(
+                            icon:  Icon(
                               Icons.star,
-                              color: Colors.red,
+                              color: goldColor,
                             ),
                             onPressed: () {
                               controller

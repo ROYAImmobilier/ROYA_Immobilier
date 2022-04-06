@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
@@ -12,6 +13,14 @@ class MobileGridView extends StatelessWidget {
   int leng;
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
+    final double itemWidth = size.width / 2;
+    print(MediaQuery
+        .of(context)
+        .size
+        .height *
+        0.35);
     return Stack(
       children:[ GridView.builder(
           shrinkWrap: true,
@@ -20,11 +29,7 @@ class MobileGridView extends StatelessWidget {
           gridDelegate:
           SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 205,
-              mainAxisExtent:(MediaQuery
-                  .of(context)
-                  .size
-                  .width *
-                  0.8)
+              mainAxisExtent:270.h
               ,
               childAspectRatio: 2,
               crossAxisSpacing: 5,
