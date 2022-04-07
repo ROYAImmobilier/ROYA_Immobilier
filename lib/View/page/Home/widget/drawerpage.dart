@@ -3,16 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:roya_immobilie/View/order/contact_info.dart';
-import 'package:roya_immobilie/View/order/order_details.dart';
 import 'package:roya_immobilie/View/page/Profile/profile.dart';
-import 'package:roya_immobilie/View/page/auth/Login/components/body.dart';
 import 'package:roya_immobilie/View/page/favorite_page.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import '../../../../Controller/AnonceController.dart';
-import '../../../../Controller/cityController.dart';
-import '../../../../Model/repositery.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
@@ -30,7 +24,7 @@ class DrawerPage extends StatefulWidget {
 }
 
 class _DrawerPageState extends State<DrawerPage> {
-  final CityController annonceController = Get.put(CityController());
+ // final CityController annonceController = Get.put(CityController());
   updateLanguage(Locale locale) {
     Get.back();
     Get.updateLocale(locale);
@@ -103,7 +97,7 @@ class _DrawerPageState extends State<DrawerPage> {
                                 children: [
                                   Text(
                                     "Bienvenue ,".tr,
-                                    style:  TextStyle(
+                                    style:  const TextStyle(
                                       fontSize: 22,
                                     ),
                                   ),
@@ -113,7 +107,7 @@ class _DrawerPageState extends State<DrawerPage> {
                                 children: [
                                   Text(
                                     'pour une experience optimisee , '.tr,
-                                    style:   TextStyle(fontSize: 18.sm),
+                                    style:   const TextStyle(fontSize: 18),
 
                                  //  stepGranularity: 5.0,
                                   ),
@@ -124,7 +118,7 @@ class _DrawerPageState extends State<DrawerPage> {
                                   Text(
                                     'veuillez vous connecter'.tr,
                                     style:  TextStyle(
-                                      fontSize: 18.sm,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ],
@@ -139,9 +133,9 @@ class _DrawerPageState extends State<DrawerPage> {
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
               child: MaterialButton(
-                color: Color(0xffB68451),
+                color: const Color(0xffB68451),
                 shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(8.0),
+                  borderRadius:  BorderRadius.circular(8.0),
                 ),
                 onPressed: () {
                   Get.to(Add_Annonce());
@@ -153,16 +147,16 @@ class _DrawerPageState extends State<DrawerPage> {
                     children: [
                       SvgPicture.asset(
                         'assets/icon/nav_menu/camera_add.svg',
-                        width: 30,
-                        height: 30,
+                        width: 25,
+                        height: 25,
                         color: Colors.white,
                       ),
                       SizedBox(
-                        width: 15.w,
+                        width: 15,
                       ),
                       AutoSizeText(
                         'DEPOSER UNE ANNONCE'.tr,
-                        style: TextStyle(color: Colors.white, fontSize: 14.sm),
+                        style: TextStyle(color: Colors.white, fontSize: 14),
                       )
                     ],
                   ),
@@ -172,7 +166,7 @@ class _DrawerPageState extends State<DrawerPage> {
 
 
             SizedBox(
-              height: 15.h,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
@@ -187,14 +181,14 @@ class _DrawerPageState extends State<DrawerPage> {
                     children: [
                       SvgPicture.asset(
                         'assets/icon/nav_menu/person.svg',
-                        width: 25.w,
-                        height: 25.h,
+                        width: 25,
+                        height: 25,
 
                       ),
                       SizedBox(
-                        width: 15.w,
+                        width: 15,
                       ),
-                      Text('Tableau De Bord'.tr, style: TextStyle(fontSize: 20.sm))
+                      Text('Tableau De Bord'.tr, style: TextStyle(fontSize: 20))
                     ],
                   )):
               GestureDetector(
@@ -206,19 +200,19 @@ class _DrawerPageState extends State<DrawerPage> {
                   children: [
                     SvgPicture.asset(
                       'assets/icon/nav_menu/person.svg',
-                      width: 25.w,
-                      height: 25.h,
+                      width: 25,
+                      height: 25,
                     ),
                      SizedBox(
-                      width: 15.h,
+                      width: 15,
                     ),
-                    Text('Se connecter'.tr, style: TextStyle(fontSize: 20.sm))
+                    Text('Se connecter'.tr, style: TextStyle(fontSize: 20))
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: 15,
             ),
             isLogin==true?  Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
@@ -233,14 +227,14 @@ class _DrawerPageState extends State<DrawerPage> {
                     children: [
                       SvgPicture.asset(
                         'assets/icon/logout.svg',
-                        width: 25.w,
-                        height: 25.h,
+                        width: 25,
+                        height: 25,
                           matchTextDirection: true
                       ),
                       SizedBox(
-                        width: 15.h,
+                        width: 15,
                       ),
-                      Text('Se Déconnecter'.tr, style: TextStyle(fontSize: 20.sm))
+                      Text('Se Déconnecter'.tr, style: TextStyle(fontSize: 20))
                     ],
                   )),
             ):Container(),
@@ -254,18 +248,18 @@ class _DrawerPageState extends State<DrawerPage> {
                 children: [
                   SvgPicture.asset(
                     'assets/icon/nav_menu/cc-chat.svg',
-                    width: 25.w,
-                    height: 25.h,
+                    width: 25,
+                    height: 25,
                   ),
                   SizedBox(
-                    width: 15.w,
+                    width: 15,
                   ),
-                  Text('Chat'.tr, style: TextStyle(fontSize: 20.sm))
+                  Text('Chat'.tr, style: TextStyle(fontSize: 20))
                 ],
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
@@ -277,19 +271,19 @@ class _DrawerPageState extends State<DrawerPage> {
                   children: [
                     SvgPicture.asset(
                       'assets/icon/annonces/favor.svg',
-                      width: 25.w,
-                      height: 25.h,
+                      width: 25,
+                      height: 25,
                     ),
                     SizedBox(
-                      width: 15.h,
+                      width: 15,
                     ),
-                    Text('Mes favoris'.tr, style: TextStyle(fontSize: 20.sm))
+                    Text('Mes favoris'.tr, style: TextStyle(fontSize: 20))
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
@@ -297,11 +291,11 @@ class _DrawerPageState extends State<DrawerPage> {
                 children: [
                   SvgPicture.asset(
                     'assets/icon/nav_menu/language-sharp.svg',
-                    width: 25.w,
-                    height: 25.h,
+                    width: 25,
+                    height: 25,
                   ),
                   SizedBox(
-                    width: 15.h,
+                    width: 15,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -314,7 +308,7 @@ class _DrawerPageState extends State<DrawerPage> {
                     child:Text(
                       'Langues'.tr,
                       style: TextStyle(
-                        fontSize: 20.sm,
+                        fontSize: 20,
 
                       ),
                     ),
@@ -323,7 +317,7 @@ class _DrawerPageState extends State<DrawerPage> {
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 12, right: 12),
@@ -331,18 +325,18 @@ class _DrawerPageState extends State<DrawerPage> {
                 children: [
                   SvgPicture.asset(
                     'assets/icon/nav_menu/telephone.svg',
-                    width: 25.w,
-                    height: 25.h,
+                    width: 25,
+                    height: 25,
                   ),
                   SizedBox(
-                    width:15.h,
+                    width:15,
                   ),
-                  Text('Contactez nous'.tr, style: TextStyle(fontSize: 20.sm))
+                  Text('Contactez nous'.tr, style: TextStyle(fontSize: 20))
                 ],
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
@@ -350,11 +344,11 @@ class _DrawerPageState extends State<DrawerPage> {
                 children: [
                   SvgPicture.asset(
                     'assets/icon/nav_menu/info.svg',
-                    width: 25.w,
-                    height: 25.h,
+                    width: 25,
+                    height: 25,
                   ),
                   SizedBox(
-                    width: 15.h,
+                    width: 15,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -363,7 +357,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       //   MaterialPageRoute(builder: (context) => Add_Annonce()),
                       // );
                     },
-                    child: Text('Informations'.tr, style: TextStyle(fontSize: 20.sm)),
+                    child: Text('Informations'.tr, style: const TextStyle(fontSize: 20)),
                   )
                 ],
               ),

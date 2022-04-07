@@ -14,8 +14,6 @@ class MobileGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
-    final double itemWidth = size.width / 2;
     print(MediaQuery
         .of(context)
         .size
@@ -36,7 +34,7 @@ class MobileGridView extends StatelessWidget {
               mainAxisSpacing: 5),
           itemBuilder: (BuildContext ctx, index) {
             return index==leng?
-            SizedBox(height: 200,):
+            const SizedBox(height: 200,):
               GestureDetector(
                 onTap: () =>
                     Get.to(Details(

@@ -79,10 +79,10 @@ class _StackWidget_2State extends State<StackWidget_2> {
                               'assets/icon/filter.svg',
                               width: ScreenSized.IconFiltter(
                                       Screenwidth, Screenheight)
-                                  .w,
+                                  ,
                               height: ScreenSized.IconFiltter(
                                       Screenwidth, Screenheight)
-                                  .h,
+                                  ,
                             )),
                         SizedBox(
                           width: 5.w,
@@ -226,24 +226,24 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                       Screenheight),
                                   child: SvgPicture.asset(
                                       dataCategory[i].icon,
-                                      width: 20.w,
-                                      height: 20.h,
+                                      width: 20,
+                                      height: 20,
                                       color: const Color(0xffC0A280)),
                                 ),
                                 SizedBox(
-                                  height: 10.h,
+                                  height: 10,
                                 ),
                                 Text(
                                   dataCategory[i].name.tr,
                                   style: TextStyle(
-                                    fontSize: 12.sp,
+                                    fontSize: 12,
                                     color: const Color(0xff8a8a8a),
                                   ),
                                 ),
                               ],
                             ),
                             SizedBox(
-                              width: 10.w,
+                              width: 10,
                             ),
                           ],
                         ),

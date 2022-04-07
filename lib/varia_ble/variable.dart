@@ -1,6 +1,8 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../Model/city.dart';
@@ -54,9 +56,9 @@ final String columndescription = 'description';
 final String columnphone1 = 'phone1';
 final String columnphone2 = 'phone2';
 final String columnphone3 = 'phone3';
-final String columnvalidated = 'validated';
+const String columnvalidated = 'validated';
 final String columnvcreated_at = 'created_at';
-final String columncover = 'cover';
+const String columncover = 'cover';
 
 const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
@@ -73,3 +75,7 @@ late final int id_region_;
 var isCamindingfrom=false;
 
 bool progress=false ;
+//\\
+ var icon_apps=SvgPicture.asset('assets/icon/logo-roya.svg',
+width: 40,
+height: 40,) ;

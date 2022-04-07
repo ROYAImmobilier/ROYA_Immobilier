@@ -9,6 +9,7 @@ import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
 
 import '../../cashd_image/image.dart';
+import '../../varia_ble/variable.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -20,11 +21,8 @@ class FavoritePage extends StatelessWidget {
       drawer: DrawerPage(),
         backgroundColor: Color(0xffefefef),
         appBar: AppBar(
-          title: const Center(
-              child: Icon(
-            Icons.star,
-            color: Colors.black,
-          )),
+         title:  Center(
+          child: icon_apps,),
           actions: [
             GestureDetector(
               onTap: (() => Get.to(Sercher())),
@@ -205,23 +203,25 @@ class FavoritePage extends StatelessWidget {
                     );
                   },
                 )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(
-                        'assets/icon/favorite2.svg',
+              : SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          'assets/icon/favorite2.svg',
+                        ),
                       ),
-                    ),
-                    Text(
-                      'favorite is Empty',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    )
-                  ],
-                ),
+                      Text(
+                        'favorite is Empty',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      )
+                    ],
+                  ),
+              ),
         ));
   }
 }

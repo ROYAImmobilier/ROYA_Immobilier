@@ -127,7 +127,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
             backgroundColor: Color.fromARGB(255, 130, 108, 219),
             // mini: true,
             child: SvgPicture.asset(
-              'assets/icon/camera_light.svg',
+              'assets/icon/math-plus.svg',
               width: 30.w,
               height: 30.h,
               color: Colors.white,
@@ -143,7 +143,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
             type: BottomNavigationBarType.fixed,
             items: [
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                   backgroundColor: Colors.white,
                   icon: Icon(Icons.home_filled, color: Colors.black54, size: 25),
                   label: 'Annonces'),
@@ -159,7 +159,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
                 label: 'Favoris',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Icon(Icons.camera, color: Colors.white, size: 20),
                 label: 'Annoncer',

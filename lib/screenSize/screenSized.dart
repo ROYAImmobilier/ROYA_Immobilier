@@ -1,12 +1,13 @@
 
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScreenSized {
 
   static double IconFiltter(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
-      print("ttt"+ screenWidth.toString());
-      return 50;
+     // print("ttt"+ screenWidth.toString());
+      return 30;
     }else if( screenWidth>800){
       return 30;
     }
@@ -17,7 +18,7 @@ class ScreenSized {
 
   static double PaddingFavoris(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
-      print("ttt"+ screenWidth.toString());
+      //print("ttt"+ screenWidth.toString());
       return 10;
     }else if( screenWidth>800){
       return 5;
@@ -38,10 +39,10 @@ class ScreenSized {
       return 30;
     }
   }
-  static double Detalisheight(double screenWidth,double screenheight ){
+  static double Detalistheight(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 125;
+      return 135;
     }else if( screenWidth>800){
       return 85;
     }
@@ -53,7 +54,7 @@ class ScreenSized {
   static double PaddingPost(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 230;
+      return 350.h;
     }else if( screenWidth>800){
       return 200;
     }
@@ -63,8 +64,12 @@ class ScreenSized {
   } static double PaddingUserName(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 125;
-    }else if( screenWidth>800){
+      return 160;
+    }else if( screenWidth < 305 && screenheight<400){
+      //print("ttt"+ screenWidth.toString());
+      return 130.h;
+    }
+    else if( screenWidth>800){
       return 70;
     }
     else {
@@ -75,16 +80,17 @@ class ScreenSized {
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
       return 300;
-    }else if( screenWidth>800){
+    }
+    else if( screenWidth>800){
       return 250;
     }
     else {
-      return 300;
+      return 350;
     }
   }  static double ProfileImage(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 300;
+      return 100;
     }else if( screenWidth>800){
       return 90;
     }

@@ -9,6 +9,7 @@ import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/controller.dart';
 
 import '../../varia_ble/variable.dart';
+import 'Home/home.dart';
 
 class SearchFiltter extends StatefulWidget {
   var data ;
@@ -37,12 +38,12 @@ class _SearchFiltterState extends State<SearchFiltter> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
-            leading: Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  'Filtrer',
-                  style: TextStyle(color: Colors.black),
-                )),
+            leading:Center(
+              child: const Text(
+                'Filtrer',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
             actions: [
               Container(
                 alignment: Alignment.center,
@@ -269,7 +270,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                  setState(() {
                                    show=!show;
                                  });
-                                    if(_keyVent.currentState!.validate() &&_categorie!=null ) {
+                                    if(_keyVent.currentState!.validate() &&_categorie!.isNotEmpty) {
                                       setState(() {
 
                                             searchvlue = _search.text;
@@ -332,7 +333,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                       width: 400.h,
                                     ),
                                   ),
-                                  Text(
+                                  const Text(
                                     'Search results are empty ',
                                     style: TextStyle(
                                       fontSize: 20,
@@ -387,50 +388,46 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                                       ),
                                                       Text(
                                                         "${filtrResulta[i].bedrooms} Beds",
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color: Color(
                                                                 0xff8a8a8a)),
                                                       )
                                                     ]),
                                                   ),
-                                                  Container(
-                                                    child: Row(children: [
-                                                      SvgPicture.asset(
-                                                        'assets/icon/annonces/bathroom.svg',
-                                                        width: 10.w,
-                                                        height: 10.h,
-                                                        matchTextDirection:
-                                                        true,
-                                                        color:
-                                                        Color(0xff8a8a8a),
-                                                      ),
-                                                      Text(
-                                                        "${filtrResulta[i].bathrooms} Boths",
-                                                        style: TextStyle(
-                                                            color: Color(
-                                                                0xff8a8a8a)),
-                                                      )
-                                                    ]),
-                                                  ),
-                                                  Container(
-                                                    child: Row(children: [
-                                                      SvgPicture.asset(
-                                                        'assets/icon/m.svg',
-                                                        width: 10.w,
-                                                        height: 10.h,
-                                                        matchTextDirection:
-                                                        true,
-                                                        color:
-                                                        Color(0xff8a8a8a),
-                                                      ),
-                                                      Text(
-                                                        "${filtrResulta[i].area} m²",
-                                                        style: TextStyle(
-                                                            color: Color(
-                                                                0xff8a8a8a)),
-                                                      )
-                                                    ]),
-                                                  ),
+                                                  Row(children: [
+                                                    SvgPicture.asset(
+                                                      'assets/icon/annonces/bathroom.svg',
+                                                      width: 10.w,
+                                                      height: 10.h,
+                                                      matchTextDirection:
+                                                      true,
+                                                      color:
+                                                      const Color(0xff8a8a8a),
+                                                    ),
+                                                    Text(
+                                                      "${filtrResulta[i].bathrooms} Boths",
+                                                      style: const TextStyle(
+                                                          color: Color(
+                                                              0xff8a8a8a)),
+                                                    )
+                                                  ]),
+                                                  Row(children: [
+                                                    SvgPicture.asset(
+                                                      'assets/icon/m.svg',
+                                                      width: 10.w,
+                                                      height: 10.h,
+                                                      matchTextDirection:
+                                                      true,
+                                                      color:
+                                                      Color(0xff8a8a8a),
+                                                    ),
+                                                    Text(
+                                                      "${filtrResulta[i].area} m²",
+                                                      style: const TextStyle(
+                                                          color: Color(
+                                                              0xff8a8a8a)),
+                                                    )
+                                                  ]),
                                                 ],
                                               ),
                                             ],

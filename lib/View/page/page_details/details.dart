@@ -51,7 +51,7 @@ class _DetailsState extends State<Details> {
                               width: 25.w,
                               height: 25.h,
                               matchTextDirection: true),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
@@ -209,7 +209,7 @@ class _DetailsState extends State<Details> {
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          height: ScreenSized.Detalisheight(Screenwidth, Screenheight).h,
+                          height: ScreenSized.Detalistheight(Screenwidth, Screenheight).h,
                           decoration: BoxDecoration(
                               color: Color(0xffc7c2d8),
                               borderRadius: BorderRadius.only(
@@ -256,63 +256,55 @@ class _DetailsState extends State<Details> {
                               //crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  //  alignment: Alignment.center,
-                                  // width: 150,
-                                  child: MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    color: const Color(0xff5d5386),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icon/cc-chat.svg',
-                                          width: 20.w,
-                                          height: 20.h,
-                                          matchTextDirection: true,
-                                          color: Color(0xffbfa280),
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        const Text(
-                                          "SEND MESSAGE",
-                                        ),
-                                      ],
-                                    ),
-                                    onPressed: () {},
+                                MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)),
+                                  color: const Color(0xff5d5386),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icon/cc-chat.svg',
+                                        width: 20.w,
+                                        height: 20.h,
+                                        matchTextDirection: true,
+                                        color: const Color(0xffbfa280),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                       Text(
+                                        "SEND MESSAGE",
+                                         style: TextStyle(fontSize: 13.sm),
+                                      ),
+                                    ],
                                   ),
+                                  onPressed: () {},
                                 ),
                                 SizedBox(
                                   width: 5.w,
                                 ),
-                                Container(
-                                  //  margin: EdgeInsets.only(right: 55.w),
-                                  // width: 150,
-                                  // alignment: Alignment.center,
-                                  child: MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    color: Color(0xff5d5386),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                            'assets/icon/phone-fill.svg',
-                                            width: 20.w,
-                                            height: 20.h,
-                                            matchTextDirection: true),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        const Text(
-                                          "SHOW NUMBER",
-                                        ),
-                                      ],
-                                    ),
-                                    onPressed: () {},
+                                MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)),
+                                  color: const Color(0xff5d5386),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/icon/phone-fill.svg',
+                                          width: 20.w,
+                                          height: 20.h,
+                                          matchTextDirection: true),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                       Text(
+                                        "SHOW NUMBER",style: TextStyle(fontSize: 13.sm),
+                                      ),
+                                    ],
                                   ),
+                                  onPressed: () {},
                                 )
                               ],
                             )
@@ -342,64 +334,66 @@ class _DetailsState extends State<Details> {
                           child: Text(
                             widget.data.title,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 20.sp),
+                            style: TextStyle(fontSize: 20.sm),
+                            maxLines: 2,
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(25),
-                              child: Row(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(25.0),
+                          child: Row(
+
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Row(children: [
                                 SvgPicture.asset(
                                   'assets/icon/annonces/bed-sharp.svg',
                                   width: 20.w,
                                   height: 20.h,
-                                  matchTextDirection: true,
-                                  color: Color(0xff8a8a8a),
-                                ),
-                                Text(
-                                  "${widget.data.bedrooms} Beds",
-                                  style: TextStyle(color: Color(0xff8a8a8a)),
-                                )
-                              ]),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(25),
-                              child: Row(children: [
-                                SvgPicture.asset(
-                                  'assets/icon/annonces/bathroom.svg',
-                                  width: 20.w,
-                                  height: 20.h,
-                                  matchTextDirection: true,
-                                  color: Color(0xff8a8a8a),
-                                ),
-                                Text(
-                                  "${widget.data.bathrooms} Boths",
-                                  style: TextStyle(color: Color(0xff8a8a8a)),
-                                )
-                              ]),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(25),
-                              child: Row(children: [
-                                SvgPicture.asset(
-                                  'assets/icon/m.svg',
-                                  width: 20.w,
-                                  height: 20.h,
-                                  matchTextDirection: true,
+                               //   matchTextDirection: true,
                                   color: Color(0xff8a8a8a),
                                 ),
                                 SizedBox(
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.area} m²",
+                                  "${widget.data.bedrooms} Beds",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
-                            ),
-                          ],
+                              Row(children: [
+                                SvgPicture.asset(
+                                  'assets/icon/annonces/bathroom.svg',
+                                  width: 20.w,
+                                  height: 20.h,
+                                 // matchTextDirection: true,
+                                  color: Color(0xff8a8a8a),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  "${widget.data.bathrooms} Boths",
+                                  style: TextStyle(color: Color(0xff8a8a8a)),
+                                )
+                              ]),
+                              Row(children: [
+                                SvgPicture.asset(
+                                  'assets/icon/m.svg',
+                                  width: 20.w,
+                                  height: 20.h,
+                                //  matchTextDirection: true,
+                                  color: const Color(0xff8a8a8a),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  "${widget.data.area} m²",
+                                  style: const TextStyle(color: Color(0xff8a8a8a)),
+                                )
+                              ]),
+                            ],
+                          ),
                         ),
                         Container(
                             //height: ,

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
+import 'package:roya_immobilie/RouteScreen/routeScreen.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
@@ -84,7 +85,9 @@ class _MyAppState extends State<MyApp> {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home:RoutingScreen(),
+    home: const RoutingScreen(),
+    // initialRoute: RouteScreen.getHomepage(),
+    //     getPages: RouteScreen.route,
     );
   }
 }

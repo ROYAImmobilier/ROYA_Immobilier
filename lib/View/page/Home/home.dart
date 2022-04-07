@@ -7,6 +7,7 @@ import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/Home/widget/stackwidget_2.dart';
 
 import '../../../screenSize/screenSized.dart';
+import '../../../varia_ble/variable.dart';
 import '../../routing_screen.dart';
 import '../serche_page.dart';
 
@@ -29,11 +30,8 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           drawer: DrawerPage(),
           appBar: AppBar(
-            title: const Center(
-                child: Icon(
-              Icons.star,
-              color: Colors.black,
-            )),
+            title:  Center(
+                child: icon_apps,),
             actions: [
               GestureDetector(
                 onTap: (() => Get.to(Sercher())),
@@ -43,10 +41,10 @@ class _HomePageState extends State<HomePage> {
                     'assets/icon/search.svg',
                     width: ScreenSized.IconFiltter(
                         Screenwidth, Screenheight)
-                        .w,
+                        ,
                     height: ScreenSized.IconFiltter(
                         Screenwidth, Screenheight)
-                        .h,
+                        ,
                     color: Colors.black,
                   ),
                 ),
@@ -59,10 +57,10 @@ class _HomePageState extends State<HomePage> {
                   icon: SvgPicture.asset('assets/icon/menu.svg',
                       width: ScreenSized.IconFiltter(
                           Screenwidth, Screenheight)
-                          .w,
+                          ,
                       height: ScreenSized.IconFiltter(
                           Screenwidth, Screenheight)
-                          .h, matchTextDirection: true),
+                          , matchTextDirection: true),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
