@@ -54,7 +54,7 @@ class ScreenSized {
   static double PaddingPost(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 350.h;
+      return 270;
     }else if( screenWidth>800){
       return 200;
     }
@@ -64,12 +64,8 @@ class ScreenSized {
   } static double PaddingUserName(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 160;
-    }else if( screenWidth < 305 && screenheight<400){
-      //print("ttt"+ screenWidth.toString());
-      return 130.h;
-    }
-    else if( screenWidth>800){
+      return 130;
+    }else if( screenWidth>800){
       return 70;
     }
     else {
@@ -79,9 +75,8 @@ class ScreenSized {
   static double CardSized(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 300;
-    }
-    else if( screenWidth>800){
+      return 350;
+    }else if( screenWidth>800){
       return 250;
     }
     else {
