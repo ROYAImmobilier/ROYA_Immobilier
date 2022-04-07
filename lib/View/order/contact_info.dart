@@ -121,7 +121,7 @@ class _ContactInfoState extends State<ContactInfo> {
     if (response.exception != null) {
       setState(() {
         _listimage.add(File(response.file!.path));
-        _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
+        _listimagebase64.add ("data:image/jpeg;base64,"+base64Encode(_file!.readAsBytesSync()));
       });
     } else {
       print(response.file);

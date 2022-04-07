@@ -128,8 +128,8 @@ class _RoutingScreenState extends State<RoutingScreen> {
             // mini: true,
             child: SvgPicture.asset(
               'assets/icon/math-plus.svg',
-              width: 30.w,
-              height: 30.h,
+              width: 20.w,
+              height: 20.h,
               color: Colors.white,
             ),
             onPressed: () {

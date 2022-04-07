@@ -139,6 +139,11 @@ class _BodyState extends State<Body> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
+
+                      setState(() {
+                        allAnnonceLogin=[];
+                      });
+
                       FocusManager.instance.primaryFocus?.unfocus();
                       if (_key_validation.currentState!.validate()) {
                         print(email + ' ' + password);
@@ -207,9 +212,10 @@ class _BodyState extends State<Body> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       Get.to(SignUpScreen(
-                          region_id: "1",
-                          city_id: "8",
+                          region_id: widget.city_id,
+                          city_id: widget.city_id,
                           transaction: "Rent",
                           property_type: widget.property_type,
                           status: widget.status,
@@ -221,13 +227,13 @@ class _BodyState extends State<Body> {
                           floor_type: "appartoment",
                           floor: "4",
                           apartment: "1",
-                          bedrooms: '2',
-                          bathrooms: '5',
-                          kitchens: '6',
+                          bedrooms: widget.bedrooms,
+                          bathrooms: widget.bathrooms,
+                          kitchens: widget.kitchens,
                           title: widget.title,
                           description: widget.description,
                           phone1: widget.phone1,
-                          abilities: "2",
+                          abilities:widget.abilities,
                           media: widget.media
                       ));
                     },

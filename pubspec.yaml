@@ -43,6 +43,7 @@ dependencies:
   shimmer: ^2.0.0
   shared_preferences: ^2.0.13
   auto_size_text: ^3.0.0
+  flutter_slidable: ^1.2.0
 
 
 
