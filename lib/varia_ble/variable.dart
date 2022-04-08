@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../Model/city.dart';
+import '../Model/data_list.dart';
 
 var region_1;
 
@@ -79,3 +80,5 @@ bool progress=false ;
  var icon_apps=SvgPicture.asset('assets/icon/logo-roya.svg',
 width: 40,
 height: 40,) ;
+
+ //data for modification
