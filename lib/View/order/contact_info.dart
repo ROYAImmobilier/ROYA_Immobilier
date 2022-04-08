@@ -102,7 +102,7 @@ class _ContactInfoState extends State<ContactInfo> {
       setState(() {
         _file = imageTemporary;
         _listimage.add(_file!);
-        _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
+        _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
       });
     } catch (e) {
       print(e);

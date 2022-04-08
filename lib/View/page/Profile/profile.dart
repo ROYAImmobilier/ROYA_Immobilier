@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roya_immobilie/View/order/contact_info.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import '../../../Model/data_list.dart';
+import '../../../Model/getdata_annonce.dart';
 import '../../../Model/joke.dart';
 import '../../../Model/repositery.dart';
 import '../../../cashd_image/image.dart';
@@ -18,77 +19,63 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late int v =0 ;
-  List <DataList> Poste = [];
-  List <DataList> PosteValide = [];
-  List <DataList> PosteNonValide = [];
+  late int v = 0;
+  List<DataList> Poste = [];
+  List<DataList> PosteValide = [];
+  List<DataList> PosteNonValide = [];
 
-  Color colorPost = Colors.black ;
-  Color colorPosteValide = Colors.black ;
-  Color colorPosteNonValide = Colors.black ;
+  Color colorPost = Colors.black;
+  Color colorPosteValide = Colors.black;
+  Color colorPosteNonValide = Colors.black;
 
-
-
-  reloud() async{
+  reloud() async {
     allAnnonceLogin = [];
-    PosteNonValide =[];
+    PosteNonValide = [];
     Poste = [];
-    PosteValide=[];
+    PosteValide = [];
 
-
-    var response_1 = await http.get(
-        Uri.parse('https://dashboard.royaimmo.ma/api/annonces'),
-        headers: {
-          //HttpHeaders.authorizationHeader:token_1.toString(),
-          'Authorization': 'Bearer $token_global'
-        });
+    var response_1 = await http
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
+      //HttpHeaders.authorizationHeader:token_1.toString(),
+      'Authorization': 'Bearer $token_global'
+    });
     print(response_1.body);
 
     if (response_1.statusCode == 200) {
-
       final responseJsoon = json.decode(response_1.body);
       final responseJson = responseJsoon["data"];
       setState(() {
         for (Map annoncelogin in responseJson) {
           allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
-
         }
 
         setState(() {
-          Poste = allAnnonceLogin ;
-          for(int i =0 ; i<Poste.length ; i++){
-            if(Poste[i].validated==1){
+          Poste = allAnnonceLogin;
+          for (int i = 0; i < Poste.length; i++) {
+            if (Poste[i].validated == 1) {
               PosteValide.add(Poste[i]);
-            }else{
+            } else {
               PosteNonValide.add(Poste[i]);
             }
           }
         });
-
       });
-
     }
   }
 
-
-
-
-
-
-
+  GetData? dataList;
 
   @override
   void initState() {
-
     setState(() {
-      Poste=[];
-      PosteNonValide=[];
-      PosteValide=[];
-      Poste = allAnnonceLogin ;
-      for(int i =0 ; i<Poste.length ; i++){
-        if(Poste[i].validated==1){
+      Poste = [];
+      PosteNonValide = [];
+      PosteValide = [];
+      Poste = allAnnonceLogin;
+      for (int i = 0; i < Poste.length; i++) {
+        if (Poste[i].validated == 1) {
           PosteValide.add(Poste[i]);
-        }else{
+        } else {
           PosteNonValide.add(Poste[i]);
         }
       }
@@ -98,6 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(token_global);
     initState;
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
@@ -117,42 +105,44 @@ class _ProfilePageState extends State<ProfilePage> {
       // ),),
 
       body: ScreenUtilInit(
-          builder: () =>
-              SafeArea(
+          builder: () => SafeArea(
                 child: Stack(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SizedBox(
-                        height: ScreenSized.CardSized(Screenwidth, Screenheight).h,
+                        height:
+                            ScreenSized.CardSized(Screenwidth, Screenheight).h,
                         child: Card(
                           elevation: 1,
-                          shape:  OutlineInputBorder(
+                          shape: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.white, width: 1)
-                          ),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 1)),
                           child: Stack(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 10.0,right: 10,top: 10),
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, right: 10, top: 10),
                                 child: Container(
                                   height: 120.h,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadiusDirectional.circular(30),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(30),
                                       gradient: const LinearGradient(
                                           begin: Alignment.topCenter,
                                           end: Alignment.bottomCenter,
-
-                                          colors: [Color(0xff5E5480),Color(0xff5E5480)]
-                                      )
-                                  ),
-
-
+                                          colors: [
+                                            Color(0xff5E5480),
+                                            Color(0xff5E5480)
+                                          ])),
                                 ),
                               ),
-
                               Padding(
-                                padding:  EdgeInsets.only(top: ScreenSized.ProfileImage(Screenwidth, Screenheight).h),
+                                padding: EdgeInsets.only(
+                                    top: ScreenSized.ProfileImage(
+                                            Screenwidth, Screenheight)
+                                        .h),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: const [
@@ -169,37 +159,42 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ],
                                 ),
                               ),
-
                               Padding(
-                                padding:  EdgeInsets.only(top: ScreenSized.PaddingUserName(Screenwidth, Screenheight).h),
+                                padding: EdgeInsets.only(
+                                    top: ScreenSized.PaddingUserName(
+                                            Screenwidth, Screenheight)
+                                        .h),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    username ,
+                                    username,
                                     style: const TextStyle(
                                       fontSize: 25.0,
                                       fontStyle: FontStyle.italic,
-
                                       color: Colors.black,
                                     ),
                                   ),
                                 ),
                               ),
-
-                              const SizedBox(height: 5,),
-
+                              const SizedBox(
+                                height: 5,
+                              ),
                               Padding(
-                                padding:  EdgeInsets.only(top:ScreenSized.PaddingPost(Screenwidth, Screenheight).h),
+                                padding: EdgeInsets.only(
+                                    top: ScreenSized.PaddingPost(
+                                            Screenwidth, Screenheight)
+                                        .h),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     GestureDetector(
-                                      onTap: ()=>setState(() {
-                                        v=0;
-                                        Poste=[];
+                                      onTap: () => setState(() {
+                                        v = 0;
+                                        Poste = [];
 
-                                        Poste=allAnnonceLogin;
+                                        Poste = allAnnonceLogin;
                                         colorPost = Colors.blue;
                                         colorPosteValide = Colors.black;
                                         colorPosteNonValide = Colors.black;
@@ -219,7 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Text(
                                             "Posts",
                                             style: TextStyle(
-                                              color:colorPost,
+                                              color: colorPost,
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -227,25 +222,19 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ],
                                       ),
                                     ),
-
-
-
                                     GestureDetector(
-                                      onTap: (){
+                                      onTap: () {
                                         setState(() {
-                                          Poste=[];
-                                          Poste=PosteValide;
+                                          Poste = [];
+                                          Poste = PosteValide;
                                           colorPost = Colors.black;
                                           colorPosteValide = Colors.blue;
                                           colorPosteNonValide = Colors.black;
-                                          v=1;
+                                          v = 1;
                                         });
                                       },
                                       child: Column(
-
                                         children: <Widget>[
-
-
                                           Text(
                                             PosteValide.length.toString(),
                                             style: const TextStyle(
@@ -268,22 +257,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: (){
+                                      onTap: () {
                                         setState(() {
-                                          Poste=[];
-                                          Poste=PosteNonValide;
+                                          Poste = [];
+                                          Poste = PosteNonValide;
                                           colorPost = Colors.black;
                                           colorPosteValide = Colors.black;
                                           colorPosteNonValide = Colors.blue;
-                                          v=2;
-
+                                          v = 2;
                                         });
                                       },
                                       child: Column(
-
                                         children: <Widget>[
-
-
                                           Text(
                                             PosteNonValide.length.toString(),
                                             style: const TextStyle(
@@ -299,58 +284,44 @@ class _ProfilePageState extends State<ProfilePage> {
                                             style: TextStyle(
                                               color: colorPosteNonValide,
                                               fontSize: 18.0,
-
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-
-
                                         ],
                                       ),
                                     ),
-
-
                                   ],
                                 ),
                               ),
-
-
-
-
                             ],
                           ),
-
-
                         ),
                       ),
                     ),
-
                     Padding(
-                      padding:  EdgeInsets.only(top: 360.h),
+                      padding: EdgeInsets.only(top: 360.h),
                       child: SingleChildScrollView(
                         child: Column(
-
                           children: [
-                            IconButton(onPressed: (){
-                              reloud();
-                            }, icon:  Icon(Icons.refresh),),
-
+                            IconButton(
+                              onPressed: () {
+                                reloud();
+                              },
+                              icon: Icon(Icons.refresh),
+                            ),
                             ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount  : Poste.length,
-                                itemBuilder: (context , index)=>
-
-
-                                    Slidable(
+                                itemCount: Poste.length,
+                                itemBuilder: (context, index) => Slidable(
                                       key: UniqueKey(),
                                       startActionPane: ActionPane(
-                                          motion: ScrollMotion(),
-                                          dismissible: DismissiblePane(onDismissed: () {
+                                          motion: const ScrollMotion(),
+                                          dismissible:
+                                              DismissiblePane(onDismissed: () {
                                             // controller.deleteItem(index);
                                           }),
                                           children: [
-
                                             SlidableAction(
                                               flex: 2,
                                               autoClose: true,
@@ -358,7 +329,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                               onPressed: (context) async {
                                                 print("is ok ");
                                                 //amar
-                                                await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                                await AnnonceRepository
+                                                    .deleteitem(
+                                                        id: Poste[index]
+                                                            .id
+                                                            .toString());
                                                 setState(() {
                                                   reloud();
                                                   // if(v==0) {
@@ -386,21 +361,43 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 });
                                                 //delete
                                               },
-                                              backgroundColor:Color(0xff5E5480),
+                                              backgroundColor:
+                                                  const Color(0xff5E5480),
                                               foregroundColor: Colors.white,
                                               icon: Icons.delete,
                                             ),
-
-
-
                                           ]),
                                       endActionPane: ActionPane(
                                         motion: const ScrollMotion(),
-                                        dismissible: DismissiblePane(onDismissed: () async {
-                                          await  jokeRepository.deleteitem(id: Poste[index].id.toString());
-                                          setState(() {
+                                        dismissible: DismissiblePane(
+                                            onDismissed: () async {
+                                          var _dataList =
+                                              await AnnonceRepository.getdata(
+                                                  id: Poste[index]
+                                                      .id
+                                                      .toString());
 
+                                          setState(() {
                                             reloud();
+                                            print(_dataList["id"]);
+                                            print(_dataList["region_id"]);
+                                            print(_dataList["city_id"]);
+                                            print(_dataList["transaction"]);
+                                            print(_dataList["property_type"]);
+                                            print(_dataList["Vente"]);
+                                            print(_dataList["status"]);
+                                            print(_dataList["address"]);
+                                            print(_dataList["quartier"]);
+                                            print(_dataList["price"]);
+                                            print(_dataList["age"]);
+                                            print(_dataList["floor_type"]);
+                                            print(_dataList["floor"]);
+                                            print(_dataList["apartment"]);
+                                            print(_dataList["kitchens"]);
+                                            print(_dataList["title"]);
+                                            print(_dataList["description"]);
+                                            print(_dataList["abilities"]);
+                                            print(_dataList["media"]);
                                             // if(v==0) {
                                             //   allAnnonceLogin.remove(
                                             //       Poste[index]);
@@ -428,7 +425,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                         children: [
                                           SlidableAction(
                                             onPressed: (context) async {
-                                              await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                              await AnnonceRepository
+                                                  .deleteitem(
+                                                      id: Poste[index]
+                                                          .id
+                                                          .toString());
                                               setState(() {
                                                 reloud();
                                                 // if(v==0) {
@@ -465,152 +466,192 @@ class _ProfilePageState extends State<ProfilePage> {
                                         textDirection: TextDirection.ltr,
                                         child: Container(
                                           padding: EdgeInsets.all(5),
-                                          child: Stack(children: [
-                                            Container(
-                                              child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",),
-                                              height: 130.h,
-                                              width: 150.w,
-                                              decoration:  const BoxDecoration(
-
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(10),
-                                                    bottomLeft: Radius.circular(10)),
+                                          child: Stack(
+                                            children: [
+                                              Container(
+                                                child: cachedImage(
+                                                  "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",
+                                                ),
+                                                height: 130.h,
+                                                width: 150.w,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  10)),
+                                                ),
                                               ),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(left: 150.w),
-                                              height: 130.h,
-                                              width: MediaQuery.of(context).size.width,
-                                              decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topRight: Radius.circular(10),
-                                                    bottomRight: Radius.circular(10)),
-                                              ),
-                                              child: Stack(children: [
-                                                Container(
-                                                    padding: EdgeInsets.only(top: 10.h,left: 10.w),
-                                                    child:Text(
-                                                      Poste[index].price.toString() + ' dh',
-                                                      style: TextStyle(
-                                                        fontSize: 18.sp,
-                                                        color: Color(
-                                                          0xffb58350,
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 150.w),
+                                                height: 130.h,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  10)),
+                                                ),
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 10.h,
+                                                                left: 10.w),
+                                                        child: Text(
+                                                          Poste[index]
+                                                                  .price
+                                                                  .toString() +
+                                                              ' dh',
+                                                          style: TextStyle(
+                                                            fontSize: 18.sp,
+                                                            color: Color(
+                                                              0xffb58350,
+                                                            ),
+                                                          ),
+                                                        )),
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                          top: 35.h,
+                                                          left: 10.w),
+                                                      child: Text(
+                                                        Poste[index].title,
+                                                        maxLines: 1,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                          fontSize: 14.sp,
                                                         ),
                                                       ),
-                                                    )
-                                                ),Container(
-                                                  padding: EdgeInsets.only(top: 35.h,left: 10.w),
-                                                  child: Text(
-                                                    Poste[index].title,
-                                                    maxLines: 1,
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                      fontSize: 14.sp,
                                                     ),
-                                                  ),
+                                                    Positioned(
+                                                        top: -5.h,
+                                                        right: 0,
+                                                        child: Align(
+                                                            alignment: Alignment
+                                                                .topRight,
+                                                            child: IconButton(
+                                                                onPressed:
+                                                                    () {},
+                                                                icon: const Icon(
+                                                                    Icons
+                                                                        .more_vert)))),
+                                                    const Positioned(
+                                                      bottom: -10,
+                                                      right: -2,
+                                                      child: Align(
+                                                        alignment:
+                                                            Alignment.topRight,
+                                                        // child: IconButton(
+                                                        //   onPressed: ()async {
+                                                        //
+                                                        //
+                                                        //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                                        //     setState(() {
+                                                        //       if(v==0) {
+                                                        //         allAnnonceLogin.remove(
+                                                        //             Poste[index]);
+                                                        //       }
+                                                        //       else if (v==1) {
+                                                        //         allAnnonceLogin.remove(
+                                                        //             PosteValide[index]);
+                                                        //       }else{
+                                                        //         allAnnonceLogin.remove(
+                                                        //             PosteNonValide[index]);
+                                                        //       }
+                                                        //       PosteNonValide=[];
+                                                        //       Poste = [];
+                                                        //       PosteValide = [];
+                                                        //       Poste = allAnnonceLogin ;
+                                                        //       for(int i =0 ; i<Poste.length ; i++){
+                                                        //         if(Poste[i].validated==1){
+                                                        //           PosteValide.add(Poste[i]);
+                                                        //         }else{
+                                                        //           PosteNonValide.add(Poste[i]);
+                                                        //         }
+                                                        //       }
+                                                        //     });
+                                                        //
+                                                        //
+                                                        //   },
+                                                        //   icon: Icon(Icons.delete,
+                                                        //       color: Colors.black54),
+                                                        // ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          top: 85.h,
+                                                          left: 10.w),
+                                                      child: Wrap(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .location_on_rounded,
+                                                                size: 14,
+                                                              ),
+                                                              Text(
+                                                                Poste[index]
+                                                                    .region,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons.home,
+                                                                size: 14,
+                                                              ),
+                                                              Text(
+                                                                Poste[index]
+                                                                    .city,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
-                                                Positioned(
-                                                    top: -5.h,
-                                                    right: 0,
-                                                    child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
-                                                        icon: const Icon( Icons.more_vert)))),
-                                                Positioned(
-                                                  bottom: -10,
-                                                  right: -2,
-                                                  child: Align(
-                                                    alignment: Alignment.topRight,
-                                                    // child: IconButton(
-                                                    //   onPressed: ()async {
-                                                    //
-                                                    //
-                                                    //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
-                                                    //     setState(() {
-                                                    //       if(v==0) {
-                                                    //         allAnnonceLogin.remove(
-                                                    //             Poste[index]);
-                                                    //       }
-                                                    //       else if (v==1) {
-                                                    //         allAnnonceLogin.remove(
-                                                    //             PosteValide[index]);
-                                                    //       }else{
-                                                    //         allAnnonceLogin.remove(
-                                                    //             PosteNonValide[index]);
-                                                    //       }
-                                                    //       PosteNonValide=[];
-                                                    //       Poste = [];
-                                                    //       PosteValide = [];
-                                                    //       Poste = allAnnonceLogin ;
-                                                    //       for(int i =0 ; i<Poste.length ; i++){
-                                                    //         if(Poste[i].validated==1){
-                                                    //           PosteValide.add(Poste[i]);
-                                                    //         }else{
-                                                    //           PosteNonValide.add(Poste[i]);
-                                                    //         }
-                                                    //       }
-                                                    //     });
-                                                    //
-                                                    //
-                                                    //   },
-                                                    //   icon: Icon(Icons.delete,
-                                                    //       color: Colors.black54),
-                                                    // ),
-                                                  ),),
-
-                                                Container(
-                                                  margin: EdgeInsets.only(top: 85.h,left: 10.w),
-                                                  child: Wrap(
-                                                    children: [
-                                                      Row(
-                                                        children:  [
-                                                          Icon(
-                                                            Icons.location_on_rounded,
-                                                            size: 14,
-                                                          ), Text( Poste[index].region,style: TextStyle(fontSize: 14),),
-                                                        ],
-                                                      ),
-
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      Row(
-                                                        children:  [
-                                                          Icon(
-                                                            Icons.home,
-                                                            size: 14,
-                                                          ), Text(Poste[index].city,style: TextStyle(fontSize: 14),),
-                                                        ],
-                                                      ),
-
-                                                    ],
-                                                  ),
-                                                )
-                                              ],),
-                                            ),
-
-                                          ],
-
+                                              ),
+                                            ],
                                           ),
-                                        ) ,
-                                      ),)
-
-
-
-
-
-
-
-                            ),
+                                        ),
+                                      ),
+                                    )),
                           ],
                         ),
                       ),
                     )
                   ],
                 ),
-              )
-
-      ),
+              )),
     );
   }
+
+
 }

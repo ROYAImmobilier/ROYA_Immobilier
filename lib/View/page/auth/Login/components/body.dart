@@ -90,7 +90,7 @@ class _BodyState extends State<Body> {
   late String email = '';
   late String password = '';
   var _key_validation = GlobalKey<FormState>();
-  Login? _user;
+ // Login? _user;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -168,15 +168,15 @@ class _BodyState extends State<Body> {
                               floor_type: "appartoment",
                               floor: "4",
                               apartment: "1",
-                              bedrooms: widget.bedrooms,
-                              bathrooms:widget.bathrooms,
-                              kitchens: widget.kitchens,
+                              bedrooms: widget.bedrooms.toString(),
+                              bathrooms:widget.bathrooms.toString(),
+                              kitchens: widget.kitchens.toString(),
                               title: widget.title,
                               description: widget.description,
                               phone1: widget.phone1,
                               email: email,
                               password: password,
-                              abilities:widget.abilities,
+                              abilities:widget.abilities.toString(),
                               media: widget.media);
 
                           Get.offAll(RoutingScreen());
