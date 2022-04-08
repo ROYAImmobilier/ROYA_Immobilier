@@ -195,10 +195,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     GestureDetector(
-                                      onTap: ()=>setState(() {
+                                      onTap: ()=>
+                                          setState(() {
                                         v=0;
                                         Poste=[];
-
                                         Poste=allAnnonceLogin;
                                         colorPost = Colors.blue;
                                         colorPosteValide = Colors.black;

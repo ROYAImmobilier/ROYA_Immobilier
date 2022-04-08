@@ -10,6 +10,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
+import '../../auth/Login/profile.dart';
 
 
 final List locale = [
@@ -174,7 +175,7 @@ class _DrawerPageState extends State<DrawerPage> {
                   isLogin==true?
                   GestureDetector(
                       onTap: (){
-                        Get.to(ProfilePage());
+                        Get.to(Profile());
                       },
                       child:
                       Row(
