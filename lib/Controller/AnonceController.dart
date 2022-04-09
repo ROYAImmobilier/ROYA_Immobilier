@@ -24,7 +24,7 @@ class AnnonceController extends GetxController {
 
   getJokeys() async {
     try {
-      var jokes = await AnnonceRepository.featcherJoke();
+      var jokes = await jokeRepository.featcherJoke();
 
       if (jokes != null) {
         allJokes.value = jokes;

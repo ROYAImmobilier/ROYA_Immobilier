@@ -47,8 +47,8 @@ class Body extends StatefulWidget {
   var description;
   var phone1;
   var phone2;
-  var media;
-  var abilities;
+  List<dynamic>? media;
+  List<dynamic>? abilities;
   var transaction;
 
   Body({
@@ -176,8 +176,8 @@ class _BodyState extends State<Body> {
                               phone1: widget.phone1,
                               email: email,
                               password: password,
-                              abilities:widget.abilities.toString(),
-                              media: widget.media);
+                              abilities:widget.abilities!,
+                              media: widget.media!);
 
                           Get.offAll(RoutingScreen());
                         } else if (!isCamindingfrom) {

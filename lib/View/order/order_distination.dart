@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:http/http.dart'as http;
+import '../../Langage/CondationLangage/condation_langage.dart';
 import '../../Model/city.dart';
 import '../../Model/cityrepo.dart';
 import '../../Model/region.dart';
@@ -20,7 +21,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   var adresse=TextEditingController();
   var quartier_=TextEditingController();
   late int id_region;
-
   String? _Property_details = "Vente";
   String? _categorie;
   String ? _categorie_select;
@@ -31,7 +31,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   String? _quartier;
   var statut;
   String? value;
-  String? city;
+  String ?city;
   // String? _categorie;
   String? _typeAvent;
   List<City>? _city;
@@ -42,16 +42,33 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   var _keyadress = GlobalKey<FormState>();
   var _keyquartier = GlobalKey<FormState>();
   var _keytest = GlobalKey<FormState>();
+
   @override
   void initState() {
-    super.initState();
-
     ServicesRgion.getUsers().then((regions) {
       setState(() {
         _region = regions!;
 
       });
     });
+    super.initState();
+    if(verify){
+    adresse.text=getData_put["address"];
+    quartier_.text=getData_put["quartier"];
+    String cat=getData_put["property_type"];
+   _categorie= CondationLangage.categorey_put(cat)?.tr;
+    String status=getData_put["status"];
+    statut= CondationLangage.status_put(status).tr;
+
+
+
+
+
+    print(_categorie);
+    print(statut);
+
+    }
+
   }
 
   void test(String? value_2) {
@@ -82,12 +99,29 @@ class _Add_AnnonceState extends State<Add_Annonce> {
       });
     });
   }
+   getNameRegion(int id) {
+
+    for (int i=0;i<_region!.length;i++){
+      if(id==_region![i].id){
+        return _region![i].regionName;
+      }
+    }
+
+  }
+  getNameCity(int id) {
+   // id_region=getData_put["region_id"];
+    value=getNameRegion(getData_put["region_id"]);
+        test(value);
+  return listCity[id].cityName;
+    }
+
+
 
   getidCity(String name_City){
     for (int i = 0; i < _city!.length; i++) {
       if (name_City == _city![i].cityName) {
          id_city=_city![i].id;
-         print(id_city.toString());
+         print("is "+id_city.toString());
         // print("id region"+ id_city.toString());
       }
     }
@@ -96,7 +130,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   Widget build(BuildContext context) {
-print(locale[1]["locale"]);
+    city= getNameCity(getData_put["city_id"]);
 
     return GestureDetector(
         onTap: ()=>FocusManager.instance.primaryFocus?.unfocus(),
@@ -193,7 +227,7 @@ print(locale[1]["locale"]);
                                 icon: const Icon(Icons.keyboard_arrow_down_sharp),
                                 iconSize: 30,
                                 style: const TextStyle(
-                                  color: Colors.black54,
+                                  color: Colors.black,
                                   fontSize: 16,
                                 ),
                                 elevation: 16,
@@ -204,9 +238,9 @@ print(locale[1]["locale"]);
                                 hint: Text(" "+'select property'.tr),
                                 value: _categorie,
                                 items: [
+                                  "Maison".tr,
                                   "Appartements".tr,
                                   "Chambre".tr,
-                                  "Maison".tr,
                                   "Villa".tr,
                                   "Riad".tr,
                                   "Commercial".tr,
@@ -222,34 +256,8 @@ print(locale[1]["locale"]);
                                 }).toList(),
                                 onChanged: (newValue) {
                                   setState(() {
-                                    if(newValue=="Appartements"||newValue=="Apartments"||newValue=="شقق") {
-                                      _categorie = newValue;
-                                      _categorie_select="apartments";
-                                    }else if(newValue=="Chambre"||newValue=="Rooms"||newValue=="غرفة"){
-                                      _categorie = newValue;
-                                      _categorie_select="rooms";
-                                    }else if(newValue=="Maison"||newValue=="House"||newValue=="منزل"){
-                                      _categorie = newValue;
-                                      _categorie_select="house";
-                                    }else if(newValue=="Villa"||newValue=="Villa"||newValue=="فيلا"){
-                                      _categorie = newValue;
-                                      _categorie_select="villa";
-                                    }else if(newValue=="Riad"||newValue=="Riad"||newValue=="رياض"){
-                                      _categorie = newValue;
-                                      _categorie_select="riad";
-                                    }else if(newValue=="Commercial"||newValue=="Commercial"||newValue=="محل تجاري"){
-                                      _categorie = newValue;
-                                      _categorie_select="commercialSpace";
-                                    }else if(newValue=="Bureau"||newValue=="Office"||newValue=="مكتب"){
-                                      _categorie = newValue;
-                                      _categorie_select="office";
-                                    }else if(newValue=="Terre"||newValue=="Land"||newValue=="أرض"){
-                                      _categorie = newValue;
-                                      _categorie_select="land";
-                                    }else if(newValue=="fermes"||newValue=="Farms"||newValue=="مزارع"){
-                                      _categorie = newValue;
-                                      _categorie_select="farm";
-                                    }
+                                    _categorie=newValue;
+                                   _categorie_select= CondationLangage.categorey(newValue!);
                                     print(_categorie);
                                   });
                                 },
@@ -278,7 +286,7 @@ print(locale[1]["locale"]);
                                 icon: const Icon(Icons.keyboard_arrow_down_sharp),
                                 iconSize: 30,
                                 style: const TextStyle(
-                                  color: Colors.black54,
+                                  color: Colors.black,
                                   fontSize: 16,
                                 ),
                                 elevation: 16,
@@ -299,16 +307,8 @@ print(locale[1]["locale"]);
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   setState(() {
-                                    if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
-                                      _statut="new";
-                                      statut=newValue;
-                                    }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
-                                      _statut="good";
-                                     statut=newValue;
-                                    }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
-                                      _statut="needRepair";
-                                      statut=newValue;
-                                    }
+                                  _statut=CondationLangage.status(newValue!);
+                                  statut=newValue;
                                   });
 
                                 }
@@ -511,9 +511,9 @@ print(locale[1]["locale"]);
                                 print(city);
                                 print(quartier_.text);
                               //  print(city);
-                                if (_keytest.currentState!.validate() &&
+                              if (_keytest.currentState!.validate() &&
                                     value != null &&
-                                    city != null ) {
+                                    city != null || verify==true) {
                                  //
                                   Get.to(Add_Annonce_2(
                                       Property_details: _Property_details,

@@ -166,7 +166,8 @@ class _StackWidget_2State extends State<StackWidget_2> {
                                   (BuildContext context, int index) {
                                 return GestureDetector(
                                     onTap: () => Get.to(Details(
-                                          image: widget.data[index].cover ?? 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                          image: widget.data[index].cover,
+                                              //?? 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
                                           data: widget.data[index],
                                         )),
                                     child: Liste_Annonce_2(
