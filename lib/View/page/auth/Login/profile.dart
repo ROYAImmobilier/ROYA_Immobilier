@@ -171,7 +171,7 @@ class _ProfileState extends State<Profile> {
                                               Poste=PosteNonValide;
                                               colorPost = Colors.white;
                                               colorPosteValide = Colors.white;
-                                             colorPosteNonValide = Colors.blue;
+                                              colorPosteNonValide = Colors.blue;
                                               v=2;
 
                                             });
@@ -304,7 +304,7 @@ class _ProfileState extends State<Profile> {
                                         await  jokeRepository.deleteitem(id: Poste[index].id.toString());
                                         setState(() {
 
-                        reloud();
+                                          reloud();
 
                                         });
                                       }),
@@ -457,15 +457,7 @@ class _ProfileState extends State<Profile> {
 
                                         ),
                                       ) ,
-                                    ),)
-
-
-
-
-
-
-
-                          ),
+                                    ),),),
                         ],
                       ),
                     ),
