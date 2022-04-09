@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Langage/CondationLangage/condation_langage.dart';
 import 'package:roya_immobilie/Model/ability.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/main.dart';
+import 'package:roya_immobilie/varia_ble/variable.dart';
 import 'contact_info.dart';
 import 'order_distination.dart';
 
@@ -37,7 +39,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   List<Ability> lmain = [];
   List<Ability> linner = [];
   List<Ability> ladditional = [];
-  List<int> idability = [];
+  List<dynamic> idability = [];
 
   bool showmain = false;
   bool showinner = false;
@@ -46,6 +48,18 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   @override
   void initState() {
     setState(() {
+
+      if(verify){
+        idability=getData_put["abilities"];
+        int x=getData_put["area"];
+        area.text=x.toString() ;
+       int y=getData_put["price"];
+       price.text=y.toString();
+       _price_type=getData_put["floor_type"];
+        _age=getData_put['age'];
+
+
+      }
       for (int i = 0; i < ability.length; i++) {
         if (ability[i].type == "main") {
           lmain.add(ability[i]);
@@ -289,52 +303,8 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                               }).toList(),
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  if (newValue == "Moins de 1 an" ||
-                                      newValue == "Less than 1 year" ||
-                                      newValue == 'أقل من 1 سنة') {
-                                    _age = newValue;
-                                    _age_select = "L1";
-                                  } else if (newValue == "1 à 5 ans" ||
-                                      newValue == "1 to 5 years old" ||
-                                      newValue == 'من 1 إلى 5 سنوات') {
-                                    _age = newValue;
-                                    _age_select = "F1T5";
-                                  } else if (newValue == "5 à 10 ans" ||
-                                      newValue == "5 to 10 years old" ||
-                                      newValue == 'من 5 إلى 10 سنوات') {
-                                    _age = newValue;
-                                    _age_select = "F5T10";
-                                  } else if (newValue == "10 à 20 ans" ||
-                                      newValue == "10 to 20 years old" ||
-                                      newValue == 'من 10 إلى 20 سنة') {
-                                    _age = newValue;
-                                    _age_select = "F10T20";
-                                  } else if (newValue == "20 à 30 ans" ||
-                                      newValue == "20 to 30 years old" ||
-                                      newValue == 'من 20 إلى 30 سنة') {
-                                    _age = newValue;
-                                    _age_select = "T20F30";
-                                  } else if (newValue == "30 à 50 ans" ||
-                                      newValue == "30 to 50 years old" ||
-                                      newValue == 'من 30 إلى 50 سنة') {
-                                    _age = newValue;
-                                    _age_select = "T30F50";
-                                  } else if (newValue == "50 à 70 ans" ||
-                                      newValue == "50 to 70 years old" ||
-                                      newValue == 'من 50 إلى 70 سنة') {
-                                    _age = newValue;
-                                    _age_select = "T50F70";
-                                  } else if (newValue == "70 à 100 ans" ||
-                                      newValue == "70 to 100 years old" ||
-                                      newValue == 'من 70 إلى 100 سنة') {
-                                    _age = newValue;
-                                    _age_select = "F70T70";
-                                  } else if (newValue == "Plus de 100 ans" ||
-                                      newValue == "Over 100 years old" ||
-                                      newValue == 'أكثر من 100 عام') {
-                                    _age = newValue;
-                                    _age_select = "G100";
-                                  }
+                                  _age = newValue;
+                                  _age_select=CondationLangage.age_put(newValue!);
                                 });
                               },
                             ),

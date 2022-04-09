@@ -1,12 +1,15 @@
 import 'dart:convert';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/joke.dart';
 
+import '../View/order/order_distination.dart';
 import '../varia_ble/variable.dart';
 import 'data_list.dart';
 import 'getdata_annonce.dart';
 
-class AnnonceRepository {
+class jokeRepository {
   static var client = http.Client();
   static Future<List<Joke>?> featcherJoke() async {
     var res = await client
@@ -54,7 +57,6 @@ class AnnonceRepository {
 
     if (res.statusCode == 200) {
       print(res.body);
-      
       // print(a[0]['title']);
       return a["data"][0];
     } else {

@@ -19,43 +19,45 @@ class MobileGridView extends StatelessWidget {
         .size
         .height *
         0.35);
-    return Stack(
-      children:[ GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: leng,
-          gridDelegate:
-          SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 205,
-              mainAxisExtent:275.h
-              ,
-              childAspectRatio: 2,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5),
-          itemBuilder: (BuildContext ctx, index) {
-            return index==leng?
-            const SizedBox(height: 200,):
-              GestureDetector(
-                onTap: () =>
-                    Get.to(Details(
+    return ScreenUtilInit(
+      builder: () => Stack(
+        children:[ GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: leng,
+            gridDelegate:
+            SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 205,
+                mainAxisExtent:275.h
+                ,
+                childAspectRatio: 2,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5),
+            itemBuilder: (BuildContext ctx, index) {
+              return index==leng?
+              const SizedBox(height: 200,):
+                GestureDetector(
+                  onTap: () =>
+                      Get.to(Details(
+                        image: data[index]
+                            .cover !=
+                            null
+                            ? data[index].cover
+                            : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                        data: data[index],
+                      )),
+                  child: test(
+                      data: data[index],
                       image: data[index]
                           .cover !=
                           null
                           ? data[index].cover
-                          : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                      data: data[index],
-                    )),
-                child: test(
-                    data: data[index],
-                    image: data[index]
-                        .cover !=
-                        null
-                        ? data[index].cover
-                        : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg')
-            );
-          }
-      ),
-   ] );
+                          : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg')
+              );
+            }
+        ),
+   ] ),
+    );
   }
 }
 

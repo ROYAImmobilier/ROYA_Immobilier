@@ -56,8 +56,10 @@ class Transation extends Translations {
           'Informations': 'معلومات',
           "Se Déconnecter": 'تسجيل الخروج',
           "Tableau De Bord": 'لوحة القيادة',
+          "Select State": 'حالة الملكية',
         },
         'fr_FR': {
+          "Select State":  "Select State",
           "Se Déconnecter": 'Se Déconnecter',
           "Tableau De Bord": 'Tableau De Bord',
           'Informations': 'Informations',
@@ -110,6 +112,7 @@ class Transation extends Translations {
           'DEPOSER UNE ANNONCE': 'DEPOSER UNE ANNONCE',
         },
         'en_US': {
+          "Select State":  "property status",
           "Se Déconnecter": 'Log Out',
           "Tableau De Bord": 'Dashboard',
           'Informations': 'Information',

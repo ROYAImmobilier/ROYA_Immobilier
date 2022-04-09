@@ -28,7 +28,7 @@ class ContactInfo extends StatefulWidget {
   int? bedroms;
   int? bathrooms;
   int? kichens;
-  List<int>? ablity;
+  List<dynamic>? ablity;
 
   String? area;
   String? price;
@@ -520,8 +520,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                         title: _titel.text,
                                         description: _description.text,
                                         phone1: _phone1.text,
-                                        abilities: widget.ablity.toString(),
-                                        media: _listimagebase64.toString()))
+                                        abilities: widget.ablity,
+                                        media: _listimagebase64))
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
                                         region_id: widget.region_1,
@@ -541,8 +541,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                         title: _titel.text,
                                         description: _description.text,
                                         phone1: _phone1.text,
-                                        abilities: widget.ablity.toString(),
-                                        media: _listimagebase64.toString(),
+                                        abilities: widget.ablity,
+                                        media: _listimagebase64,
                                         floor_type: "appartoment",
                                         floor: "4",
                                       );
