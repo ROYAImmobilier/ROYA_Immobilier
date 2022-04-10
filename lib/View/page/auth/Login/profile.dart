@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
+import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
 import '../../../../cashd_image/image.dart';
 import '../../../../varia_ble/variable.dart';
@@ -275,6 +276,77 @@ class _ProfileState extends State<Profile> {
                                           dismissible: DismissiblePane(onDismissed: () async{
                                             getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
                                             verify=true;
+                                            if(!verify_region_city) {
+                                              await   ServicesRgion.getUsers().then((regions) {
+                                                setState(() {
+                                                  region = regions!;
+
+                                                  Services.getCity().then((citys) {
+                                                    setState(() {
+                                                      //city=null;
+                                                      listCity = [];
+                                                      city = citys!;
+                                                      for (int i = 0; i < city!.length; i++) {
+                                                        if (1==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_1.add(city![i]);
+
+                                                        }if (2==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_2.add(city![i]);
+
+                                                        }if (3==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_3.add(city![i]);
+                                                        }if (4==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_4.add(city![i]);
+                                                        }if (5==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_5.add(city![i]);
+                                                        }if (6==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_6.add(city![i]);
+                                                        }if (7==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_7.add(city![i]);
+                                                        }if (8==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_8.add(city![i]);
+                                                        }if (9==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_9.add(city![i]);
+                                                        }if (10==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_10.add(city![i]);
+                                                        }if (11==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_11.add(city![i]);
+                                                        }if (12==city![i].regionId) {
+                                                          // id_city=_city![i].id;
+                                                          // print("id region"+ id_city.toString());
+                                                          listCity_Region_12.add(city![i]);
+                                                        }
+                                                      }
+
+                                                    });
+                                                  });
+                                                });
+                                                verify_region_city=true;
+                                              },
+                                              );
+                                            }
                                             Get.to(Add_Annonce());
                                           }),
                                           children: [
@@ -287,7 +359,77 @@ class _ProfileState extends State<Profile> {
 
                                                 //amar
                                                 getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
+                                                if(!verify_region_city) {
+                                                  await   ServicesRgion.getUsers().then((regions) {
+                                                    setState(() {
+                                                      region = regions!;
 
+                                                      Services.getCity().then((citys) {
+                                                        setState(() {
+                                                          //city=null;
+                                                          listCity = [];
+                                                          city = citys!;
+                                                          for (int i = 0; i < city!.length; i++) {
+                                                            if (1==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_1.add(city![i]);
+
+                                                            }if (2==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_2.add(city![i]);
+
+                                                            }if (3==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_3.add(city![i]);
+                                                            }if (4==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_4.add(city![i]);
+                                                            }if (5==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_5.add(city![i]);
+                                                            }if (6==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_6.add(city![i]);
+                                                            }if (7==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_7.add(city![i]);
+                                                            }if (8==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_8.add(city![i]);
+                                                            }if (9==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_9.add(city![i]);
+                                                            }if (10==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_10.add(city![i]);
+                                                            }if (11==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_11.add(city![i]);
+                                                            }if (12==city![i].regionId) {
+                                                              // id_city=_city![i].id;
+                                                              // print("id region"+ id_city.toString());
+                                                              listCity_Region_12.add(city![i]);
+                                                            }
+                                                          }
+
+                                                        });
+                                                      });
+                                                    });
+                                                    verify_region_city=true;
+                                                  },
+                                                  );
+                                                }
                                                 Get.to(Add_Annonce());
                                                 // setState(() {
                                                 //   reloud();
