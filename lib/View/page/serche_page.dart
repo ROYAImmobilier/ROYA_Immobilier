@@ -10,6 +10,8 @@ import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/page_details/details_serche.dart';
 
+import '../../varia_ble/variable.dart';
+
 class Sercher extends StatefulWidget {
   @override
   _HomePageState createState() => new _HomePageState();
@@ -42,11 +44,8 @@ class _HomePageState extends State<Sercher> {
     return Scaffold(
       // backgroundColor: Color(),
       appBar: AppBar(
-        title: const Center(
-            child: Icon(
-          Icons.star,
-          color: Colors.black,
-        )),
+        title:  Center(
+          child: icon_apps,),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -98,8 +97,8 @@ class _HomePageState extends State<Sercher> {
                       itemBuilder: (context, i) {
                         return GestureDetector(
                           onTap: (() {
-                            Get.to(DetailSerche(
-                              data: _searchResult[i],
+                            Get.to(Details(
+                              data: _searchResult[i], image: _searchResult[i].cover,
                             ));
                             print("aaaaaaaa" + _searchResult[i].toString());
                           }),
@@ -121,7 +120,7 @@ class _HomePageState extends State<Sercher> {
                                           decoration: BoxDecoration(
                                               image: DecorationImage(
                                                 image: NetworkImage(
-                                                    _searchResult[i].cover),
+                                                    "https://dashboard.royaimmo.ma/images/annonces/"+ _searchResult[i].cover),
                                                 fit: BoxFit.fill,
                                               ),
                                               color: Colors.white,
