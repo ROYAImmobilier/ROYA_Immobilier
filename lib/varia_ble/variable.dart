@@ -78,6 +78,7 @@ var isCamindingfrom=false;
 bool progress=false ;
 //\\
  var icon_apps=SvgPicture.asset('assets/icon/logo-roya.svg',
+color: Colors.white,
 width: 40,
 height: 40,) ;
 

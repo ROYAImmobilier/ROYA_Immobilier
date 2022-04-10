@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/RouteScreen/routeScreen.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:roya_immobilie/on_boding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
@@ -85,7 +86,7 @@ class _MyAppState extends State<MyApp> {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-    home: const RoutingScreen(),
+    home: OnBoarding(),
     // initialRoute: RouteScreen.getHomepage(),
     //     getPages: RouteScreen.route,
     );
@@ -126,3 +127,52 @@ class _TestaState extends State<Testa> {
     );
   }
 }*/
+
+class OnBoarding extends StatefulWidget {
+
+
+  @override
+  State createState() {
+    return OnBoardingState();
+  }
+}
+
+class OnBoardingState extends State<OnBoarding> {
+
+  Future hasFinishedOnBoarding() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
+
+    if (finishedOnBoarding) {
+      Get.offAll(OnBoardingScreen()
+     // Get.to(RoutingScreen();
+      );
+    } else {
+
+      Get.offAll(OnBoardingScreen());
+    }
+
+  }
+
+  @override
+  void initState() {
+
+    // final uid =Uuid().generateV4();
+    // Cachehelper.saveData(key: "uid", value: Uuid().generateV4());
+
+    super.initState();
+    hasFinishedOnBoarding();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor:Colors.blue,
+      body: Center(
+        child: CircularProgressIndicator.adaptive(
+          backgroundColor: Colors.white,
+        ),
+      ),
+    );
+  }
+}
