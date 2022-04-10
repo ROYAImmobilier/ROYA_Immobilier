@@ -36,6 +36,11 @@ class _SearchFiltterState extends State<SearchFiltter> {
 
     return Scaffold(
           appBar: AppBar(
+            title:  Center(
+              child: SvgPicture.asset('assets/icon/logo-roya.svg',
+
+                width: 40,
+                height: 40,),),
             backgroundColor: Colors.white,
             elevation: 0,
             leading:Center(
