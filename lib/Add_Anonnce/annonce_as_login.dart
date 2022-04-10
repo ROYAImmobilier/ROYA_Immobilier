@@ -37,8 +37,8 @@ class Annonce_As_Login{
     required String? phone1,
     required String? email,
     required String? password,
-    required List<dynamic> abilities,
-    required  List<dynamic>  media,
+    required var abilities,
+    required  var  media,
 
   }) async {
     try {
@@ -119,8 +119,8 @@ class Annonce_As_Login{
     required var title,
     required var description,
     required var phone1,
-    required List<dynamic>? abilities,
-    required List<dynamic>? media,
+    required var abilities,
+    required var media,
 
   }) async {
     try {

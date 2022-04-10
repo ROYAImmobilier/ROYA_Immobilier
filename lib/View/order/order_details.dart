@@ -39,7 +39,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   List<Ability> lmain = [];
   List<Ability> linner = [];
   List<Ability> ladditional = [];
-  List<dynamic> idability = [];
+  List<int> idability = [];
 
   bool showmain = false;
   bool showinner = false;
@@ -310,7 +310,7 @@ print(y);
                               onChanged: (String? newValue) {
                                 setState(() {
                                   _age = newValue;
-                                  _age_select=CondationLangage.age_put(newValue!);
+                                  _age_select=CondationLangage.age(newValue!);
                                 });
                               },
                             ),

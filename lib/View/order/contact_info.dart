@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../Add_Anonnce/annonce_as_login.dart';
+import '../../Add_Anonnce/modifier_annonce.dart';
 import '../../Model/ability.dart';
 import '../../varia_ble/variable.dart';
 import '../page/auth/Login/components/body.dart';
@@ -28,7 +29,7 @@ class ContactInfo extends StatefulWidget {
   int? bedroms;
   int? bathrooms;
   int? kichens;
-  List<dynamic>? ablity;
+  List<int>? ablity;
 
   String? area;
   String? price;
@@ -83,7 +84,7 @@ class _ContactInfoState extends State<ContactInfo> {
   String error = 'Error';
   File? _file;
   List<File> _listimage = [];
-  List<String> _listimagebase64 = [];
+  String? _listimagebase64 ;
 //   Future chooseImage() async {
 //
 //       final myfile = await ImagePicker().pickImage(source: ImageSource.gallery)   ;
@@ -102,7 +103,9 @@ class _ContactInfoState extends State<ContactInfo> {
       setState(() {
         _file = imageTemporary;
         _listimage.add(_file!);
-        _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
+        verify=true;
+        _listimagebase64=base64Encode(_file!.readAsBytesSync());
+
       });
     } catch (e) {
       print(e);
@@ -115,18 +118,18 @@ class _ContactInfoState extends State<ContactInfo> {
     //if (pickedFile!.path == null) retrieveLostData();
   }
 
-  Future<void> retrieveLostData() async {
-    final LostData response = await ImagePicker().getLostData();
-    if (response.isEmpty) {}
-    if (response.exception != null) {
-      setState(() {
-        _listimage.add(File(response.file!.path));
-        _listimagebase64.add ("data:image/jpeg;base64,"+base64Encode(_file!.readAsBytesSync()));
-      });
-    } else {
-      print(response.file);
-    }
-  }
+  // Future<void> retrieveLostData() async {
+  //   final LostData response = await ImagePicker().getLostData();
+  //   if (response.isEmpty) {}
+  //   if (response.exception != null) {
+  //     setState(() {
+  //       _listimage.add(File(response.file!.path));
+  //       _listimagebase64.add ("data:image/jpeg;base64,"+base64Encode(_file!.readAsBytesSync()));
+  //     });
+  //   } else {
+  //     print(response.file);
+  //   }
+  // }
 
 @override
   void initState() {
@@ -137,7 +140,7 @@ class _ContactInfoState extends State<ContactInfo> {
        _phone1.text=getData_put["phone1"].toString();
        _phone2.text=getData_put["phone2"].toString();
        _phone3.text=getData_put["phone3"].toString();
-       print(getData_put["covar"]);
+     //  print(getData_put["covar"]);
      }
    });
     super.initState();
@@ -145,8 +148,10 @@ class _ContactInfoState extends State<ContactInfo> {
 
   @override
   Widget build(BuildContext context) {
-    print("base64");
-    print(_listimagebase64);
+  //  var image= getData_put["media"][0]["blob"]=_listimagebase64[0];
+   // print( image);
+  //  print("base64");
+   // print(_listimagebase64);
     // print(widget.ablity.toString());
     return ScreenUtilInit(
       builder: () => Scaffold(
@@ -367,15 +372,16 @@ class _ContactInfoState extends State<ContactInfo> {
                                   ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount:verify==false? _listimage.length:getData_put["media"].length,
+                                      itemCount: _listimage.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
+                                        print(verify);
                                        // print("tes"+getData_put["media"][0]);
                                         return SizedBox(
                                           height: 75,
                                           child: Row(children: [
 
-                                           verify==false? Image.file(
+                                           verify!=false? Image.file(
                                               _listimage[i],
                                               width: 70,
                                               height: 70,
@@ -446,18 +452,19 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(_titel.text);
                             print(_description.text);
                             print(widget.ablity.toString());
-                            print(_listimagebase64.toString());
+                           // print(_listimagebase64.toString());
 
                             print(_phone1.text);
-                            print(_phone2.text);
-                            print(_phone3.text);
+                          //  print(getData_put["media"]);
+                          //  print(_phone3.text);
                             if (_key_Contact.currentState!.validate()) {
                               // Get.to(LoginScreen());
 
                               setState(() {
                                 isCamindingfrom = true;
                                 //  Get.to(LoginScreen());
-                                isLogin == false
+                                if(verify!=false) {
+                                  isLogin == false
                                     ? Get.to(LoginScreen(
                                         region_id: widget.region_1,
                                         city_id: widget.city,
@@ -479,7 +486,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                         description: _description.text,
                                         phone1: _phone1.text,
                                         abilities: widget.ablity,
-                                        media: _listimagebase64))
+                                        media: _listimagebase64.toString()))
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
                                         region_id: widget.region_1,
@@ -500,10 +507,37 @@ class _ContactInfoState extends State<ContactInfo> {
                                         description: _description.text,
                                         phone1: _phone1.text,
                                         abilities: widget.ablity,
-                                        media: _listimagebase64,
+                                        media: _listimagebase64.toString(),
                                         floor_type: "appartoment",
                                         floor: "4",
                                       );
+                                }else{
+                                  print("876");
+                                      //verify=false;
+                                  Modifier_Annonce.Modifier(
+                                    region_id: "1",
+                                    city_id: "1",
+                                    transaction: "Rent",
+                                    property_type: widget.Property_details.toString(),
+                                    status: widget.statut.toString(),
+                                    adress: widget.adress.toString(),
+                                    quartier: widget.quartier.toString(),
+                                    area: widget.area,
+                                    price: widget.price,
+                                    age: widget.age.toString(),
+                                    apartment: "1",
+                                    bedrooms: widget.bedroms.toString(),
+                                    bathrooms: widget.bathrooms.toString(),
+                                    kitchens: widget.kichens.toString(),
+                                    title: _titel.text.toString(),
+                                    description: _description.text.toString(),
+                                    phone1: _phone1.text.toString(),
+                                    abilities: widget.ablity.toString(),
+                                    media:_listimagebase64!,
+                                    floor_type: "appartoment",
+                                    floor: "4",
+                                  );
+                                }
                                 // postdata(
                                 //     address: widget.adress,
                                 //     floor_type: "appartoment",

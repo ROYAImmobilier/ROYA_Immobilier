@@ -4,13 +4,19 @@ import 'package:roya_immobilie/View/page/auth/components/text_field_container.da
 import '../../../../varia_ble/variable.dart';
 
 
-class RoundedPasswordField extends StatelessWidget {
+class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key? key,
     required this.onChanged,
   }) : super(key: key);
 
+  @override
+  State<RoundedPasswordField> createState() => _RoundedPasswordFieldState();
+}
+
+class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+  bool visible=true;
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
@@ -24,18 +30,21 @@ class RoundedPasswordField extends StatelessWidget {
           }
         },
 
-        obscureText: true,
-        onChanged: onChanged,
+        obscureText:visible,
+        onChanged: widget.onChanged,
         cursorColor: kPrimaryColor,
-        decoration: const InputDecoration(
+        decoration:  InputDecoration(
           hintText: "Password",
-          icon: Icon(
+          icon: const Icon(
             Icons.lock,
             color: kPrimaryColor,
           ),
-          suffixIcon: Icon(
-            Icons.visibility,
-            color: kPrimaryColor,
+          suffixIcon: IconButton(
+            color: kPrimaryColor, icon:visible==true?  const Icon(Icons.visibility):const Icon(Icons.visibility_off), onPressed: () {
+              setState(() {
+                visible=!visible;
+              });
+          },
           ),
           border: InputBorder.none,
         ),

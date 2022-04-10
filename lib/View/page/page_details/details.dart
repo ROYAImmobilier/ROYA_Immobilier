@@ -76,46 +76,6 @@ class _DetailsState extends State<Details> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // Container(
-                        //   //margin: const EdgeInsets.all(8),
-                        //   decoration: BoxDecoration(
-                        //       color: Color.fromARGB(255, 252, 252, 252),
-                        //       borderRadius: BorderRadius.only(
-                        //           topRight: Radius.circular(20.r),
-                        //           topLeft: Radius.circular(20.r))),
-                        //   child: Row(
-                        //     crossAxisAlignment: CrossAxisAlignment.center,
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Row(
-                        //         children: [
-                        //           SvgPicture.asset(
-                        //               'assets/icon/annonces/hand.svg',
-                        //               width: 25,
-                        //               height: 25,
-                        //               matchTextDirection: true),
-                        //           Text(
-                        //             " Immobulier Neuf",
-                        //             style: TextStyle(fontSize: 14.sp),
-                        //           ),
-                        //         ],
-                        //       ),
-                        //       Row(
-                        //         children: [
-                        //           IconButton(
-                        //               onPressed: () => Get.to(SearchFiltter()),
-                        //               icon: SvgPicture.asset(
-                        //                 'assets/icon/filter.svg',
-                        //                 width: 20,
-                        //                 height: 20,
-                        //               )),
-                        //         ],
-                        //       )
-                        //     ],
-                        //   ),
-                        //   width: double.infinity,
-                        //   height: 70.h,
-                        // ),
                         Container(
                           decoration: BoxDecoration(
                               color: Color(0xffe3e3e3),
@@ -123,7 +83,7 @@ class _DetailsState extends State<Details> {
                                   topRight: Radius.circular(10.r),
                                   topLeft: Radius.circular(10.r))),
                           width: MediaQuery.of(context).size.width.toDouble(),
-                          height: 110.h,
+                          height: 100.h,
                           child: Padding(
                               padding: EdgeInsets.only(
                                   top: 15.h, left: 2.w, right: 2.w),
@@ -196,7 +156,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           margin: EdgeInsets.only(
                               top: 20.h, right: 20.w, left: 20.w),
-                          height: 150.h,
+                          height: (MediaQuery.of(context).size.height*0.25).h,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),

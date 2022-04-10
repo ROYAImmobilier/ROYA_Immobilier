@@ -6,7 +6,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/favorite_page.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
@@ -155,9 +154,9 @@ class _DrawerPageState extends State<DrawerPage> {
                           SizedBox(
                             width: 15,
                           ),
-                          AutoSizeText(
+                          Text(
                             'DEPOSER UNE ANNONCE'.tr,
-                            style: TextStyle(color: Colors.white, fontSize: 14),
+                            style: TextStyle(color: Colors.white, fontSize: 14.sm),
                           )
                         ],
                       ),

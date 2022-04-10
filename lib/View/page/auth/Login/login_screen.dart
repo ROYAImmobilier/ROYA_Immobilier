@@ -23,8 +23,8 @@ class LoginScreen extends StatelessWidget {
   var description;
   var phone1;
   var phone2;
-  List<dynamic>? media;
-   List<dynamic> ?abilities;
+  var media;
+   var abilities;
   var transaction;
 
   LoginScreen(

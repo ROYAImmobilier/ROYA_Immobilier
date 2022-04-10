@@ -138,7 +138,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   Widget build(BuildContext context) {
-    city= getNameCity(getData_put["city_id"]);
+   // city= getNameCity(getData_put["city_id"]);
 
     return GestureDetector(
         onTap: ()=>FocusManager.instance.primaryFocus?.unfocus(),

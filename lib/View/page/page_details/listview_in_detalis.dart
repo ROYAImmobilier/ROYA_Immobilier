@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../Model/joke.dart';
+import '../../routing_login.dart';
+import 'details.dart';
 
 class ListView_in_Detalis extends StatelessWidget {
    var data;
-    ListView_in_Detalis({required this.data});
+   int ?index;
+    ListView_in_Detalis({required this.data,this.index});
 
   @override
   Widget build(BuildContext context) {
