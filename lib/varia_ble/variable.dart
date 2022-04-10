@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../Model/city.dart';
 import '../Model/data_list.dart';
+import '../Model/region.dart';
 
 var region_1;
 
@@ -85,3 +86,28 @@ height: 40,) ;
  //data for modification
 var getData_put;
 bool verify=false;
+
+///region and city
+List<Region>? region;
+List<City>? city;
+///city
+List<City> listCity=[];
+List<City> listCity_Region_1=[];
+List<City> listCity_Region_2=[];
+List<City> listCity_Region_3=[];
+List<City> listCity_Region_4=[];
+List<City> listCity_Region_5=[];
+List<City> listCity_Region_6=[];
+List<City> listCity_Region_7=[];
+List<City> listCity_Region_8=[];
+List<City> listCity_Region_9=[];
+List<City> listCity_Region_10=[];
+List<City> listCity_Region_11=[];
+List<City> listCity_Region_12=[];
+
+
+
+
+//
+
+

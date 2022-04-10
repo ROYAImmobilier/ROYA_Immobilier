@@ -83,7 +83,7 @@ class _DetailsState extends State<Details> {
                                   topRight: Radius.circular(10.r),
                                   topLeft: Radius.circular(10.r))),
                           width: MediaQuery.of(context).size.width.toDouble(),
-                          height: 100.h,
+                          height: (MediaQuery.of(context).size.height*0.15).h,
                           child: Padding(
                               padding: EdgeInsets.only(
                                   top: 15.h, left: 2.w, right: 2.w),
@@ -156,7 +156,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           margin: EdgeInsets.only(
                               top: 20.h, right: 20.w, left: 20.w),
-                          height: (MediaQuery.of(context).size.height*0.25).h,
+                          height: (MediaQuery.of(context).size.height*0.30).h,
                           decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
@@ -283,7 +283,7 @@ class _DetailsState extends State<Details> {
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 5,
                                   blurRadius: 7,
-                                  offset: Offset(
+                                  offset: const Offset(
                                       0, 3), // changes position of shadow
                                 ),
                               ],
@@ -375,7 +375,7 @@ class _DetailsState extends State<Details> {
                             children: [
                               Container(
                                   alignment: Alignment.topLeft,
-                                  child: Text("Adresse")),
+                                  child: const Text("Adresse")),
                               Container(
                                 alignment: Alignment.center,
                                 child: Text(

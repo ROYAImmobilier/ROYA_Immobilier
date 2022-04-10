@@ -31,8 +31,10 @@ class CategoryItems extends StatelessWidget{
         ),
       ),
 
-      body: ResponsiveLayout_(tabliteBody: TbletGridView(leng: leng, data: data,),
-        mobileBody: MobileGridView(leng: leng, data: data,), smallBody: SmallScreen(leng: leng, data: data),),//test(image: data[index].cover, data: data[index]) ,)
+      body: SingleChildScrollView(
+        child: ResponsiveLayout_(tabliteBody: TbletGridView(leng: leng, data: data,),
+          mobileBody: MobileGridView(leng: leng, data: data,), smallBody: SmallScreen(leng: leng, data: data),),
+      ),//test(image: data[index].cover, data: data[index]) ,)
       );
   }
 }

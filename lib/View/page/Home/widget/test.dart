@@ -112,7 +112,7 @@ class test extends StatelessWidget {
                       child: Text( data.title,maxLines: 1,style: TextStyle(fontSize: 14.sm),),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 55.h,left: 5.w),
+                      padding: EdgeInsets.only(top: 53.h,left: 5.w),
                       child: Wrap(
                         children: [
                           Row(

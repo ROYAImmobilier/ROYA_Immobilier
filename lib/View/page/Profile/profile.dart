@@ -5,12 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roya_immobilie/View/order/contact_info.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 import 'package:http/http.dart'as http;
+import '../../../Model/cityrepo.dart';
 import '../../../Model/data_list.dart';
 import '../../../Model/joke.dart';
+import '../../../Model/region.dart';
 import '../../../Model/repositery.dart';
 import '../../../cashd_image/image.dart';
 import '../../../varia_ble/variable.dart';
 import '../auth/Login/components/body.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -98,6 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size);
     initState;
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
@@ -398,6 +402,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         motion: const ScrollMotion(),
                                         dismissible: DismissiblePane(onDismissed: () async {
                                           await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+
+
                                           setState(() {
 
                                             reloud();

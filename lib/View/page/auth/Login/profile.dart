@@ -6,10 +6,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
+import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
 import '../../../../cashd_image/image.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
+import '../../Profile/profile.dart';
 import 'components/body.dart';
 import '../../../../Model/repositery.dart';
 class Profile extends StatefulWidget {
@@ -270,7 +272,13 @@ class _ProfileState extends State<Profile> {
                                         dismissible: DismissiblePane(onDismissed: () async{
                                           getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
                                           verify=true;
-                                          Get.to(Add_Annonce());
+                                          ServicesRgion.getUsers().then((regions) {
+                                            setState(() {
+                                              region = regions!;
+
+                                            });
+                                          });
+                                         // Get.to(Add_Annonce());
                                         }),
                                         children: [
 
@@ -283,7 +291,8 @@ class _ProfileState extends State<Profile> {
                                               //amar
                                               getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
 
-                                              Get.to(Add_Annonce());
+                                              print(region.toString());
+                                              //Get.to(Add_Annonce());
                                               // setState(() {
                                               //   reloud();
                                               //

@@ -20,7 +20,8 @@ class ScreenSized {
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
       return 10;
-    }else if( screenWidth>800){
+    }
+    else if( screenWidth>800){
       return 5;
     }
     else {
@@ -43,6 +44,9 @@ class ScreenSized {
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
       return 135;
+    }
+    else if( screenWidth<600 && screenWidth>400){
+      return 110;
     }else if( screenWidth>800){
       return 85;
     }

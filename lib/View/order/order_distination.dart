@@ -9,6 +9,7 @@ import '../../Model/cityrepo.dart';
 import '../../Model/region.dart';
 import '../../varia_ble/variable.dart';
 import '../page/Home/widget/drawerpage.dart';
+import '../page/Profile/profile.dart';
 import 'order_details.dart';
 
 
@@ -31,12 +32,12 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   String? _quartier;
   var statut;
   String? value;
-  String ?city;
+  String ?city_stecte;
   // String? _categorie;
   String? _typeAvent;
   List<City>? _city;
   List<Region>? _region;
-  List<City> listCity = [];
+ // List<City> listCity = [];
   var _keyVent = GlobalKey<FormState>();
   var _keyLocal = GlobalKey<FormState>();
   var _keyadress = GlobalKey<FormState>();
@@ -45,12 +46,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   void initState() {
-    ServicesRgion.getUsers().then((regions) {
-      setState(() {
-        _region = regions!;
 
-      });
-    });
+
     super.initState();
     if(verify){
     adresse.text=getData_put["address"].toString();
@@ -58,12 +55,16 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     String cat=getData_put["property_type"].toString();
    _categorie= CondationLangage.categorey_put(cat)?.tr;
     String status=getData_put["status"].toString();
+
    var x = CondationLangage.status_put(status)?.tr;
+
         if(x!=null){
           statut=x;
         }
         var len=getData_put["media"].length;
     print("tee"+ len.toString());
+
+      //getName_region_city();
 
 
 
@@ -75,33 +76,17 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   }
 
   void test(String? value_2) {
-    for (int i = 0; i < _region!.length; i++) {
-      if (_region![i].regionName == value_2) {
-        id_region = _region![i].id;
+    for (int i = 0; i < region!.length; i++) {
+      if (region![i].regionName == value_2) {
+        id_region = region![i].id;
       //  id_region_=_region![i].id;
       //  print("id region"+ id_region_.toString());
-        getCity();
+      //  getCity();
       }
     }
   }
 
-  getCity() {
-    Services.getCity().then((city) {
-      setState(() {
-        //city=null;
-        listCity = [];
-        _city = city!;
-        for (int i = 0; i < _city!.length; i++) {
-          if (id_region == _city![i].regionId) {
-           // id_city=_city![i].id;
-           // print("id region"+ id_city.toString());
-            listCity.add(_city![i]);
-          }
-        }
 
-      });
-    });
-  }
    getNameRegion(int id) {
 
     for (int i=0;i<_region!.length;i++){
@@ -112,22 +97,22 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   }
   getNameCity(int id) {
-  var city_get;
-    value=getNameRegion(getData_put["region_id"]);
+  var cityGet;
+
         test(value);
         for(int i=0;i<listCity.length;i++){
           if(id==listCity[i].id){
-            city_get=listCity[i].cityName;
+            cityGet=listCity[i].cityName;
           }
         }
-  return city_get;
+  return cityGet;
     }
 
 
 
-  getidCity(String name_City){
+  getidCity(String nameCity){
     for (int i = 0; i < _city!.length; i++) {
-      if (name_City == _city![i].cityName) {
+      if (nameCity == _city![i].cityName) {
          id_city=_city![i].id;
          print("is "+id_city.toString());
         // print("id region"+ id_city.toString());
@@ -136,9 +121,16 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   }
 
+  // getName_region_city() {
+  //   setState(() async{
+  //     city=await getNameCity(getData_put["city_id"]);
+  //   });
+  //
+  // }
+
   @override
   Widget build(BuildContext context) {
-   // city= getNameCity(getData_put["city_id"]);
+   //
 
     return GestureDetector(
         onTap: ()=>FocusManager.instance.primaryFocus?.unfocus(),
@@ -407,7 +399,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                     ),
                                     hint: Text(" "+"Region".tr),
                                     value: value,
-                                    items: _region
+                                    items: region
                                         ?.map<DropdownMenuItem<String>>((value) {
                                       return DropdownMenuItem<String>(
                                         value: value.regionName,
@@ -416,10 +408,35 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                     }).toList(),
                                     onChanged: (value_2) {
                                       setState(() {
-                                        city=null;
-                                        listCity=[];
+                                       city_stecte=null;
+                                       //print(region![12].regionName);
+                                       if(value_2==region![0].regionName){
+                                         listCity=listCity_Region_1;
+                                       }else if(value_2==region![1].regionName){
+                                         listCity=listCity_Region_2;
+                                       }else if(value_2==region![2].regionName){
+                                         listCity=listCity_Region_3;
+                                       }else if(value_2==region![3].regionName){
+                                         listCity=listCity_Region_4;
+                                       }else if(value_2==region![4].regionName){
+                                         listCity=listCity_Region_5;
+                                       }else if(value_2==region![5].regionName){
+                                         listCity=listCity_Region_6;
+                                       }else if(value_2==region![6].regionName){
+                                         listCity=listCity_Region_7;
+                                       }else if(value_2==region![7].regionName){
+                                         listCity=listCity_Region_8;
+                                       }else if(value_2==region![8].regionName){
+                                         listCity=listCity_Region_9;
+                                       }else if(value_2==region![9].regionName){
+                                         listCity=listCity_Region_10;
+                                       }else if(value_2==region![10].regionName){
+                                         listCity=listCity_Region_11;
+                                       }else if(value_2==region![11].regionName){
+                                         listCity=listCity_Region_12;
+                                       }
                                         value = value_2;
-                                        test(value_2);
+                                       // test(value_2);
                                       });
                                     },
                                   ),
@@ -457,7 +474,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                 height: 2,
                                 // color: Colors.deepPurpleAccent,
                               ),
-                              value: city,
+                              value: city_stecte,
                               items: listCity.map<DropdownMenuItem<String>>((value) {
                                 return DropdownMenuItem<String>(
                                   value: value.cityName,
@@ -466,8 +483,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               }).toList(),
                               onChanged: (String? Value) {
                                 setState(() {
-                                  city = Value;
-                                  getidCity(city!);
+                                  city_stecte = Value;
+                                 // getidCity(city!);
                                 });
                               },
                             ),
