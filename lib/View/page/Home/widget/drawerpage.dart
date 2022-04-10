@@ -84,7 +84,7 @@ class _DrawerPageState extends State<DrawerPage> {
                           left: 110,
                           child: CircleAvatar(
                             child: icon_apps,
-                            radius: 70,
+                            radius: 60,
                             backgroundColor: Color(0xff5E5486),
                           )),
                       Positioned(

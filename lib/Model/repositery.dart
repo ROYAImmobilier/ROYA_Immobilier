@@ -56,7 +56,7 @@ class jokeRepository {
     var a = json.decode(jsoon);
 
     if (res.statusCode == 200) {
-      print(res.body);
+      //print(res.body);
       // print(a[0]['title']);
       return a["data"][0];
     } else {

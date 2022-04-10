@@ -6,12 +6,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
-import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
 import '../../../../cashd_image/image.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
-import '../../Profile/profile.dart';
+import '../../Profile/detaille_profile.dart';
 import 'components/body.dart';
 import '../../../../Model/repositery.dart';
 class Profile extends StatefulWidget {
@@ -265,343 +264,207 @@ class _ProfileState extends State<Profile> {
                               shrinkWrap: true,
                               itemCount  : Poste.length,
                               itemBuilder: (context , index)=>
-                                  Slidable(
-                                    key: UniqueKey(),
-                                    startActionPane: ActionPane(
+                                  GestureDetector(
+                                    onTap: (){
+                                      Get.to(DetailleProfile(data:Poste[index] ,image:"https://dashboard.royaimmo.ma/images/annonces/"+Poste[index].cover ,));
+                                    },
+                                    child: Slidable(
+                                      key: UniqueKey(),
+                                      startActionPane: ActionPane(
+                                          motion: const ScrollMotion(),
+                                          dismissible: DismissiblePane(onDismissed: () async{
+                                            getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
+                                            verify=true;
+                                            Get.to(Add_Annonce());
+                                          }),
+                                          children: [
+
+                                            SlidableAction(
+                                              flex: 2,
+                                              autoClose: true,
+                                              label: 'Update Annonce',
+                                              onPressed: (context) async {
+
+                                                //amar
+                                                getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
+
+                                                Get.to(Add_Annonce());
+                                                // setState(() {
+                                                //   reloud();
+                                                //
+                                                // });
+                                                //delete
+                                              },
+                                              backgroundColor:const Color(0xff5E5480),
+                                              foregroundColor: Colors.white,
+                                              icon: Icons.update,
+                                            ),
+
+
+
+                                          ]),
+                                      endActionPane: ActionPane(
                                         motion: const ScrollMotion(),
-                                        dismissible: DismissiblePane(onDismissed: () async{
-                                          getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
-                                          verify=true;
-                                          if(!verify_region_city) {
-                                            await   ServicesRgion.getUsers().then((regions) {
-                                              setState(() {
-                                                region = regions!;
+                                        dismissible: DismissiblePane(onDismissed: () async {
+                                          await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                          setState(() {
 
-                                                Services.getCity().then((citys) {
-                                                  setState(() {
-                                                    //city=null;
-                                                    listCity = [];
-                                                    city = citys!;
-                                                    for (int i = 0; i < city!.length; i++) {
-                                                      if (1==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_1.add(city![i]);
+                                            reloud();
 
-                                                      }if (2==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_2.add(city![i]);
-
-                                                      }if (3==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_3.add(city![i]);
-                                                      }if (4==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_4.add(city![i]);
-                                                      }if (5==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_5.add(city![i]);
-                                                      }if (6==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_6.add(city![i]);
-                                                      }if (7==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_7.add(city![i]);
-                                                      }if (8==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_8.add(city![i]);
-                                                      }if (9==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_9.add(city![i]);
-                                                      }if (10==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_10.add(city![i]);
-                                                      }if (11==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_11.add(city![i]);
-                                                      }if (12==city![i].regionId) {
-                                                        // id_city=_city![i].id;
-                                                        // print("id region"+ id_city.toString());
-                                                        listCity_Region_12.add(city![i]);
-                                                      }
-                                                    }
-
-                                                  });
-                                                });
-                                              });
-                                              verify_region_city=true;
-                                            },
-                                            );
-                                          }
-                                          Get.to(Add_Annonce());
+                                          });
                                         }),
                                         children: [
-
                                           SlidableAction(
-                                            flex: 2,
-                                            autoClose: true,
-                                            label: 'Delete Annonce',
                                             onPressed: (context) async {
-                                              print("is ok ");
-                                              //amar
-                                              getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
-                                              if(!verify_region_city) {
-                                                await   ServicesRgion.getUsers().then((regions) {
-                                                  setState(() {
-                                                    region = regions!;
+                                              await  jokeRepository.deleteitem(id: Poste[index].id.toString());
 
-                                                    Services.getCity().then((citys) {
-                                                      setState(() {
-                                                        //city=null;
-                                                        listCity = [];
-                                                        city = citys!;
-                                                        for (int i = 0; i < city!.length; i++) {
-                                                          if (1==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_1.add(city![i]);
 
-                                                          }if (2==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_2.add(city![i]);
+                                              setState(() {
+                                                reloud();
 
-                                                          }if (3==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_3.add(city![i]);
-                                                          }if (4==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_4.add(city![i]);
-                                                          }if (5==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_5.add(city![i]);
-                                                          }if (6==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_6.add(city![i]);
-                                                          }if (7==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_7.add(city![i]);
-                                                          }if (8==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_8.add(city![i]);
-                                                          }if (9==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_9.add(city![i]);
-                                                          }if (10==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_10.add(city![i]);
-                                                          }if (11==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_11.add(city![i]);
-                                                          }if (12==city![i].regionId) {
-                                                            // id_city=_city![i].id;
-                                                            // print("id region"+ id_city.toString());
-                                                            listCity_Region_12.add(city![i]);
-                                                          }
-                                                        }
-
-                                                      });
-                                                    });
-                                                  });
-                                                  verify_region_city=true;
-                                                },
-                                                );
-                                              }
-                                             // print(region.toString());
-                                              Get.to(Add_Annonce());
-                                              // setState(() {
-                                              //   reloud();
-                                              //
-                                              // });
-                                              //delete
+                                              });
                                             },
-                                            backgroundColor:const Color(0xff5E5480),
+                                            label: "Delete Annonce",
+                                            backgroundColor: Color(0xFFFE4A49),
                                             foregroundColor: Colors.white,
                                             icon: Icons.delete,
                                           ),
+                                        ],
+                                      ),
+                                      child: Directionality(
+                                        textDirection: TextDirection.ltr,
+                                        child: Container(
+                                          padding: EdgeInsets.all(5),
+                                          child: Stack(children: [
+                                            Container(
+                                              child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",),
+                                              height: 130.h,
+                                              width: 150.w,
+                                              decoration:  const BoxDecoration(
 
-
-
-                                        ]),
-                                    endActionPane: ActionPane(
-                                      motion: const ScrollMotion(),
-                                      dismissible: DismissiblePane(onDismissed: () async {
-                                        await  jokeRepository.deleteitem(id: Poste[index].id.toString());
-                                        setState(() {
-
-                                          reloud();
-
-                                        });
-                                      }),
-                                      children: [
-                                        SlidableAction(
-                                          onPressed: (context) async {
-                                            await  jokeRepository.deleteitem(id: Poste[index].id.toString());
-
-
-                                            setState(() {
-                                              reloud();
-
-                                            });
-                                          },
-                                          backgroundColor: Color(0xFFFE4A49),
-                                          foregroundColor: Colors.white,
-                                          icon: Icons.delete,
-                                        ),
-                                      ],
-                                    ),
-                                    child: Directionality(
-                                      textDirection: TextDirection.ltr,
-                                      child: Container(
-                                        padding: EdgeInsets.all(5),
-                                        child: Stack(children: [
-                                          Container(
-                                            child: cachedImage("https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",),
-                                            height: 130.h,
-                                            width: 150.w,
-                                            decoration:  const BoxDecoration(
-
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(10),
-                                                  bottomLeft: Radius.circular(10)),
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(10),
+                                                    bottomLeft: Radius.circular(10)),
+                                              ),
                                             ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 150.w),
-                                            height: 130.h,
-                                            width: MediaQuery.of(context).size.width,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(10),
-                                                  bottomRight: Radius.circular(10)),
-                                            ),
-                                            child: Stack(children: [
-                                              Container(
-                                                  padding: EdgeInsets.only(top: 10.h,left: 10.w),
-                                                  child:Text(
-                                                    Poste[index].price.toString() + ' dh',
-                                                    style: TextStyle(
-                                                      fontSize: 18.sp,
-                                                      color: Color(
-                                                        0xffb58350,
+                                            Container(
+                                              margin: EdgeInsets.only(left: 150.w),
+                                              height: 130.h,
+                                              width: MediaQuery.of(context).size.width,
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                    topRight: Radius.circular(10),
+                                                    bottomRight: Radius.circular(10)),
+                                              ),
+                                              child: Stack(children: [
+                                                Container(
+                                                    padding: EdgeInsets.only(top: 10.h,left: 10.w),
+                                                    child:Text(
+                                                      Poste[index].price.toString() + ' dh',
+                                                      style: TextStyle(
+                                                        fontSize: 18.sp,
+                                                        color: Color(
+                                                          0xffb58350,
+                                                        ),
                                                       ),
+                                                    )
+                                                ),Container(
+                                                  padding: EdgeInsets.only(top: 35.h,left: 10.w),
+                                                  child: Text(
+                                                    Poste[index].title,
+                                                    maxLines: 1,
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                      fontSize: 14.sp,
                                                     ),
-                                                  )
-                                              ),Container(
-                                                padding: EdgeInsets.only(top: 35.h,left: 10.w),
-                                                child: Text(
-                                                  Poste[index].title,
-                                                  maxLines: 1,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    fontSize: 14.sp,
                                                   ),
                                                 ),
-                                              ),
-                                              Positioned(
-                                                  top: -5.h,
-                                                  right: 0,
-                                                  child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
-                                                      icon: const Icon( Icons.more_vert)))),
-                                              Positioned(
-                                                bottom: -10,
-                                                right: -2,
-                                                child: Align(
-                                                  alignment: Alignment.topRight,
-                                                  // child: IconButton(
-                                                  //   onPressed: ()async {
-                                                  //
-                                                  //
-                                                  //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
-                                                  //     setState(() {
-                                                  //       if(v==0) {
-                                                  //         allAnnonceLogin.remove(
-                                                  //             Poste[index]);
-                                                  //       }
-                                                  //       else if (v==1) {
-                                                  //         allAnnonceLogin.remove(
-                                                  //             PosteValide[index]);
-                                                  //       }else{
-                                                  //         allAnnonceLogin.remove(
-                                                  //             PosteNonValide[index]);
-                                                  //       }
-                                                  //       PosteNonValide=[];
-                                                  //       Poste = [];
-                                                  //       PosteValide = [];
-                                                  //       Poste = allAnnonceLogin ;
-                                                  //       for(int i =0 ; i<Poste.length ; i++){
-                                                  //         if(Poste[i].validated==1){
-                                                  //           PosteValide.add(Poste[i]);
-                                                  //         }else{
-                                                  //           PosteNonValide.add(Poste[i]);
-                                                  //         }
-                                                  //       }
-                                                  //     });
-                                                  //
-                                                  //
-                                                  //   },
-                                                  //   icon: Icon(Icons.delete,
-                                                  //       color: Colors.black54),
-                                                  // ),
-                                                ),),
+                                                // Positioned(
+                                                //     top: -5.h,
+                                                //     right: 0,
+                                                //     child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
+                                                //         icon: const Icon( Icons.more_vert)))),
+                                                Positioned(
+                                                  bottom: -10,
+                                                  right: -2,
+                                                  child: Align(
+                                                    alignment: Alignment.topRight,
+                                                    // child: IconButton(
+                                                    //   onPressed: ()async {
+                                                    //
+                                                    //
+                                                    //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                                    //     setState(() {
+                                                    //       if(v==0) {
+                                                    //         allAnnonceLogin.remove(
+                                                    //             Poste[index]);
+                                                    //       }
+                                                    //       else if (v==1) {
+                                                    //         allAnnonceLogin.remove(
+                                                    //             PosteValide[index]);
+                                                    //       }else{
+                                                    //         allAnnonceLogin.remove(
+                                                    //             PosteNonValide[index]);
+                                                    //       }
+                                                    //       PosteNonValide=[];
+                                                    //       Poste = [];
+                                                    //       PosteValide = [];
+                                                    //       Poste = allAnnonceLogin ;
+                                                    //       for(int i =0 ; i<Poste.length ; i++){
+                                                    //         if(Poste[i].validated==1){
+                                                    //           PosteValide.add(Poste[i]);
+                                                    //         }else{
+                                                    //           PosteNonValide.add(Poste[i]);
+                                                    //         }
+                                                    //       }
+                                                    //     });
+                                                    //
+                                                    //
+                                                    //   },
+                                                    //   icon: Icon(Icons.delete,
+                                                    //       color: Colors.black54),
+                                                    // ),
+                                                  ),),
 
-                                              Container(
-                                                margin: EdgeInsets.only(top: 85.h,left: 10.w),
-                                                child: Wrap(
-                                                  children: [
-                                                    Row(
-                                                      children:  [
-                                                        Icon(
-                                                          Icons.location_on_rounded,
-                                                          size: 14,
-                                                        ), Text( Poste[index].region,style: TextStyle(fontSize: 14),),
-                                                      ],
-                                                    ),
+                                                Container(
+                                                  margin: EdgeInsets.only(top: 85.h,left: 10.w),
+                                                  child: Wrap(
+                                                    children: [
+                                                      Row(
+                                                        children:  [
+                                                          Icon(
+                                                            Icons.location_on_rounded,
+                                                            size: 14,
+                                                          ), Text( Poste[index].region,style: TextStyle(fontSize: 14),),
+                                                        ],
+                                                      ),
 
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    Row(
-                                                      children:  [
-                                                        Icon(
-                                                          Icons.home,
-                                                          size: 14,
-                                                        ), Text(Poste[index].city,style: TextStyle(fontSize: 14),),
-                                                      ],
-                                                    ),
+                                                      const SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      Row(
+                                                        children:  [
+                                                          Icon(
+                                                            Icons.home,
+                                                            size: 14,
+                                                          ), Text(Poste[index].city,style: TextStyle(fontSize: 14),),
+                                                        ],
+                                                      ),
 
-                                                  ],
-                                                ),
-                                              )
-                                            ],),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],),
+                                            ),
+
+                                          ],
+
                                           ),
-
-                                        ],
-
-                                        ),
-                                      ) ,
-                                    ),),),
+                                        ) ,
+                                      ),),
+                                  ),),
                         ],
                       ),
                     ),

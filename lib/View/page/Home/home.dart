@@ -27,11 +27,16 @@ class _HomePageState extends State<HomePage> {
       // init: AnnonceController(),
       builder: (controller) => ScreenUtilInit(
         builder: () => Scaffold(
+
           backgroundColor: Colors.white,
           drawer: DrawerPage(),
           appBar: AppBar(
+
             title:  Center(
-                child: icon_apps,),
+                child: SvgPicture.asset('assets/icon/logo-roya.svg',
+
+                  width: 40,
+                  height: 40,),),
             actions: [
               GestureDetector(
                 onTap: (() => Get.to(Sercher())),
@@ -70,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             backgroundColor: Colors.white,
-            elevation: 1,
+            elevation:0,
           ),
           body: StackWidget_2(
               data: allAnnonce, leng: allAnnonce.length),

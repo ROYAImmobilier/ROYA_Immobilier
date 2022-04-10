@@ -21,8 +21,12 @@ class FavoritePage extends StatelessWidget {
       drawer: DrawerPage(),
         backgroundColor: Color(0xffefefef),
         appBar: AppBar(
-         title:  Center(
-          child: icon_apps,),
+          title:  Center(
+            child: SvgPicture.asset('assets/icon/logo-roya.svg',
+
+              width: 40,
+              height: 40,),),
+
           actions: [
             GestureDetector(
               onTap: (() => Get.to(Sercher())),
@@ -51,7 +55,7 @@ class FavoritePage extends StatelessWidget {
             },
           ),
           backgroundColor: Colors.white,
-          elevation: 1,
+          elevation: 0,
         ),
         body: GetBuilder<AnnonceController>(
           // init: AnnonceController(),

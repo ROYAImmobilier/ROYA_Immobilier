@@ -45,7 +45,10 @@ class _HomePageState extends State<Sercher> {
       // backgroundColor: Color(),
       appBar: AppBar(
         title:  Center(
-          child: icon_apps,),
+          child: SvgPicture.asset('assets/icon/logo-roya.svg',
+
+            width: 40,
+            height: 40,),),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -60,7 +63,7 @@ class _HomePageState extends State<Sercher> {
           },
         ),
         backgroundColor: Colors.white,
-        elevation: 1,
+        elevation: 0,
       ),
 
       body: Container(
