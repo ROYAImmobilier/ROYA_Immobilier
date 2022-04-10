@@ -128,70 +128,20 @@ class _ContactInfoState extends State<ContactInfo> {
     }
   }
 
-// Future upload() async{
-//         if(_file==null)
-//           return;
-//       base64Image=base64Encode(_file!.readAsBytesSync());
-//         imagepath=_file!.path.split("/").last;
-//
-//     //upload(fileName);
-//   }
-
-  // openImage() async {
-  //   try {
-  //     var pickedFile = await picker.getImage(source: ImageSource.gallery);
-  //     //you can use ImageCourse.camera for Camera capture
-  //     if (pickedFile != null) {
-  //       imagepath = pickedFile.path;
-  //       print(imagepath);
-  //       //output /data/user/0/com.example.testapp/cache/image_picker7973898508152261600.jpg
-  //
-  //       File imagefile = File(imagepath); //convert Path to File
-  //       Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
-  //        base64string =
-  //           base64.encode(imagebytes); //convert bytes to base64 string
-  //       print("test");
-  //       //a=base64string;
-  //       print(base64string);
-  //       /* Output:
-  //             /9j/4Q0nRXhpZgAATU0AKgAAAAgAFAIgAAQAAAABAAAAAAEAAAQAAAABAAAJ3
-  //             wIhAAQAAAABAAAAAAEBAAQAAAABAAAJ5gIiAAQAAAABAAAAAAIjAAQAAAABAAA
-  //             AAAIkAAQAAAABAAAAAAIlAAIAAAAgAAAA/gEoAA ... long string output
-  //             */
-  //
-  //       Uint8List decodedbytes = base64.decode(base64string!);
-  //       //decode base64 stirng to bytes
-  //
-  //       setState(() {});
-  //     } else {
-  //       print("No image is selected.");
-  //     }
-  //   } catch (e) {
-  //     print("error while picking file.");
-  //   }
-  // }
-
-  // choseImage() async {
-  //   final pickedFile = await picker.getImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     // _image.add(File(pickedFile?.path));
-  //     _image.add(File(pickedFile!.path));
-  //   });
-  //   if (pickedFile!.path == null) retrieveLostData();
-  // }
-  //
-  // Future<void> retrieveLostData() async {
-  //   final LostData response = await picker.getLostData();
-  //   if (response.isEmpty) {}
-  //   if (response.exception != null) {
-  //     setState(() {
-  //       _image.add(File(response.file!.path));
-  //     });
-  //   } else {
-  //     print(response.file);
-  //     print(response.file);
-  //   }
-  // }
+@override
+  void initState() {
+   setState(() {
+     if(verify){
+       _titel.text=getData_put["title"].toString();
+       _description.text=getData_put["description"].toString();
+       _phone1.text=getData_put["phone1"].toString();
+       _phone2.text=getData_put["phone2"].toString();
+       _phone3.text=getData_put["phone3"].toString();
+       print(getData_put["covar"]);
+     }
+   });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -420,15 +370,23 @@ class _ContactInfoState extends State<ContactInfo> {
                                       itemCount: _listimage.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
+                                       // print("tes"+getData_put["media"][0]);
                                         return SizedBox(
                                           height: 75,
                                           child: Row(children: [
-                                            Image.file(
+
+                                           verify==false? Image.file(
                                               _listimage[i],
                                               width: 70,
                                               height: 70,
                                               fit: BoxFit.cover,
-                                            ),
+                                            ):Image.memory((const Base64Decoder().convert(getData_put["media"][0]["blob"])
+
+                                                ),
+                                             fit: BoxFit.cover,
+                                              width: 70,
+                                              height: 70,
+                                           ),
                                             const SizedBox(
                                               width: 5,
                                             )

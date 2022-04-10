@@ -51,14 +51,20 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
 
       if(verify){
         idability=getData_put["abilities"];
-        int x=getData_put["area"];
-        area.text=x.toString() ;
-       int y=getData_put["price"];
-       price.text=y.toString();
-       _price_type=getData_put["floor_type"];
-        _age=getData_put['age'];
+        print(getData_put["area"]);
+       double x=getData_put["area"];
+       area.text=x.toString() ;
+        double y=getData_put["price"]+0.0;
+      price.text=y.toString();
+       //_flooring=getData_put["floor_type"];
+        _age=CondationLangage.age_put(getData_put['age']).tr;
+        _flooring=getData_put["floor_type"];
+        _bathrooms=getData_put["bathrooms"];
+        _bedroms=getData_put["bedrooms"];
+        _bathrooms=getData_put["kitchens"];
 
-
+print(x);
+print(y);
       }
       for (int i = 0; i < ability.length; i++) {
         if (ability[i].type == "main") {
@@ -78,7 +84,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   int kichens = 0;
   var area = TextEditingController();
   var price = TextEditingController();
-  String? _price_type;
+  String? _price_type="DH";
   String? _age;
   String? _age_select;
   String? _flooring;

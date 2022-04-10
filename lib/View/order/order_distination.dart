@@ -53,14 +53,17 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     });
     super.initState();
     if(verify){
-    adresse.text=getData_put["address"];
-    quartier_.text=getData_put["quartier"];
-    String cat=getData_put["property_type"];
+    adresse.text=getData_put["address"].toString();
+    quartier_.text=getData_put["quartier"].toString();
+    String cat=getData_put["property_type"].toString();
    _categorie= CondationLangage.categorey_put(cat)?.tr;
-    String status=getData_put["status"];
-    statut= CondationLangage.status_put(status).tr;
-
-
+    String status=getData_put["status"].toString();
+   var x = CondationLangage.status_put(status)?.tr;
+        if(x!=null){
+          statut=x;
+        }
+        var len=getData_put["media"][0]["blob"].length;
+    print("tee"+ len.toString());
 
 
 
@@ -109,10 +112,15 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   }
   getNameCity(int id) {
-   // id_region=getData_put["region_id"];
+  var city_get;
     value=getNameRegion(getData_put["region_id"]);
         test(value);
-  return listCity[id].cityName;
+        for(int i=0;i<listCity.length;i++){
+          if(id==listCity[i].id){
+            city_get=listCity[i].cityName;
+          }
+        }
+  return city_get;
     }
 
 

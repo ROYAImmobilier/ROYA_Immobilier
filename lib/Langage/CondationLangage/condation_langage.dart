@@ -71,14 +71,16 @@ var _statut;
     return _statut;
     }
 
-    static String status_put(String status){
-var _statut;
+    static String? status_put(String status){
+ var _statut;
       if(status=="new") {
         _statut="Neuf";
       }else if(status=="good"){
         _statut="Bon état";
       }else if(status=="needRepair"){
         _statut="A besoin de réparation";
+      }else{
+        return null;
       }
     return _statut;
     }
@@ -118,7 +120,7 @@ var _statut;
     } else if (newValue == "70 à 100 ans" ||
         newValue == "70 to 100 years old" ||
         newValue == 'من 70 إلى 100 سنة') {
-      _age_select = "F70T70";
+      _age_select = "F70T100";
     } else if (newValue == "Plus de 100 ans" ||
         newValue == "Over 100 years old" ||
         newValue == 'أكثر من 100 عام') {
@@ -131,11 +133,25 @@ var _statut;
   static String age_put(String age){
     var _age;
     if(age=="L1") {
-      _age="Neuf";
+      _age="Moins de 1 an";
     }else if(age=="F1T5"){
-      _age="Bon état";
-    }else if(age=="F5T10"){
-      _age="A besoin de réparation";
+      _age="1 à 5 ans";
+    }
+    else if(age=="F5T10"){
+      _age="5 à 1 ans";
+    }else if(age=="F10T20"){
+      _age="10 à 20 ans";
+    }else if(age=="F20T30"){
+      _age="20 à 30 ans";
+    }else if(age=="T30F50"){
+      _age="30 à 50 ans";
+    }else if(age=="T50F70"){
+      _age="50 à 70 ans";
+    }
+    else if(age=="F70T100"){
+      _age="70 à 100 ans";
+    }else if(age=="G100"){
+      _age="Plus de 100 ans";
     }
     return _age;
   }
