@@ -166,7 +166,7 @@ class OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor:Colors.blue,
       body: Center(
         child: CircularProgressIndicator.adaptive(

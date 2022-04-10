@@ -75,7 +75,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       minWidth: 240,
       shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(12)),
-      onPressed: () {},
+      onPressed: () {
+        Get.offAll(RoutingScreen());
+      },
       child: Text(
         "Continue",
         style: TextStyle(

@@ -62,7 +62,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
         if(x!=null){
           statut=x;
         }
-        var len=getData_put["media"][0]["blob"].length;
+        var len=getData_put["media"].length;
     print("tee"+ len.toString());
 
 

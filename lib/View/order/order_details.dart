@@ -52,7 +52,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
       if(verify){
         idability=getData_put["abilities"];
         print(getData_put["area"]);
-       double x=getData_put["area"];
+       double x=getData_put["area"]+0.0;
        area.text=x.toString() ;
         double y=getData_put["price"]+0.0;
       price.text=y.toString();

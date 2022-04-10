@@ -367,7 +367,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount: _listimage.length,
+                                      itemCount:verify==false? _listimage.length:getData_put["media"].length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
                                        // print("tes"+getData_put["media"][0]);
@@ -380,7 +380,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                               width: 70,
                                               height: 70,
                                               fit: BoxFit.cover,
-                                            ):Image.memory((const Base64Decoder().convert(getData_put["media"][0]["blob"])
+                                            ):Image.memory((const Base64Decoder().convert(getData_put["media"][i]["blob"])
 
                                                 ),
                                              fit: BoxFit.cover,
