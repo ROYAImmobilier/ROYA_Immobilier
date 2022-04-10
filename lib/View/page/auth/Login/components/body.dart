@@ -86,7 +86,7 @@ class _BodyState extends State<Body> {
   // var pass=TextEditingController();
   // var emaill=TextEditingController();
   //bool isLogin=false;
-
+  bool view= false;
   late String email = '';
   late String password = '';
   var _key_validation = GlobalKey<FormState>();
@@ -121,6 +121,7 @@ class _BodyState extends State<Body> {
                 },
               ),
               RoundedPasswordField(
+
                 onChanged: (value) {
                   setState(() {
                     password = value;

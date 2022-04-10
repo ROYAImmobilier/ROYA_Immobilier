@@ -357,7 +357,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                             decoration:  BoxDecoration(
                                               image:  DecorationImage(
                                                 image: NetworkImage(
-                                                  filtrResulta[i].cover,
+                                                  "https://dashboard.royaimmo.ma/images/annonces/"+ filtrResulta[i].cover,
                                                 ),
                                                 fit: BoxFit.fill,
                                               ),
