@@ -138,11 +138,12 @@ class _DrawerPageState extends State<DrawerPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius:  BorderRadius.circular(8.0),
                     ),
-                    onPressed: () {
-
-                        ServicesRgion.getUsers().then((regions) {
+                    onPressed: () async{
+                    if(!verify_region_city) {
+                      await   ServicesRgion.getUsers().then((regions) {
                         setState(() {
                           region = regions!;
+
                           Services.getCity().then((citys) {
                             setState(() {
                               //city=null;
@@ -205,27 +206,11 @@ class _DrawerPageState extends State<DrawerPage> {
                             });
                           });
                         });
+                        verify_region_city=true;
                       },
-
-
-
                       );
-                        //   await  Services.getCity().then((citys) {
-                        //   setState(() {
-                        //     //city=null;
-                        //     listCity = [];
-                        //     city = citys!;
-                        //     for (int i = 0; i < city!.length; i++) {
-                        //       if (1==city![i].regionId) {
-                        //         // id_city=_city![i].id;
-                        //         // print("id region"+ id_city.toString());
-                        //         listCity.add(city![i]);
-                        //       }
-                        //     }
-                        //
-                        //   });
-                        // });
-                //print(tange);
+                    }
+
                       Get.to(Add_Annonce());
                     },
                     child: Padding(
@@ -239,7 +224,7 @@ class _DrawerPageState extends State<DrawerPage> {
                             height: 25,
                             color: Colors.white,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           Text(

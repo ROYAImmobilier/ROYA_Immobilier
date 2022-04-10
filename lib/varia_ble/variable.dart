@@ -104,8 +104,40 @@ List<City> listCity_Region_9=[];
 List<City> listCity_Region_10=[];
 List<City> listCity_Region_11=[];
 List<City> listCity_Region_12=[];
+///region
 
+class Region_id{
+  static Region(String value_2){
+    if(value_2==region![0].regionName){
+      listCity=listCity_Region_1;
+    }else if(value_2==region![1].regionName){
+      listCity=listCity_Region_2;
+    }else if(value_2==region![2].regionName){
+      listCity=listCity_Region_3;
+    }else if(value_2==region![3].regionName){
+      listCity=listCity_Region_4;
+    }else if(value_2==region![4].regionName){
+      listCity=listCity_Region_5;
+    }else if(value_2==region![5].regionName){
+      listCity=listCity_Region_6;
+    }else if(value_2==region![6].regionName){
+      listCity=listCity_Region_7;
+    }else if(value_2==region![7].regionName){
+      listCity=listCity_Region_8;
+    }else if(value_2==region![8].regionName){
+      listCity=listCity_Region_9;
+    }else if(value_2==region![9].regionName){
+      listCity=listCity_Region_10;
+    }else if(value_2==region![10].regionName){
+      listCity=listCity_Region_11;
+    }else if(value_2==region![11].regionName){
+      listCity=listCity_Region_12;
+    }
 
+  }
+}
+///verify region and city uload
+bool verify_region_city=false;
 
 
 //

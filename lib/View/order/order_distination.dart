@@ -8,8 +8,6 @@ import '../../Model/city.dart';
 import '../../Model/cityrepo.dart';
 import '../../Model/region.dart';
 import '../../varia_ble/variable.dart';
-import '../page/Home/widget/drawerpage.dart';
-import '../page/Profile/profile.dart';
 import 'order_details.dart';
 
 
@@ -30,6 +28,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   String? _region_1;
   String? _ville;
   String? _quartier;
+  String ?name_rigion;
   var statut;
   String? value;
   String ?city_stecte;
@@ -55,6 +54,10 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     String cat=getData_put["property_type"].toString();
    _categorie= CondationLangage.categorey_put(cat)?.tr;
     String status=getData_put["status"].toString();
+     name_rigion=getNameRegion(getData_put["region_id"]);
+     value=name_rigion;
+    city_stecte=getNameCity(getData_put["city_id"]);
+    id_region=getData_put["region_id"];
 
    var x = CondationLangage.status_put(status)?.tr;
 
@@ -89,22 +92,23 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
    getNameRegion(int id) {
 
-    for (int i=0;i<_region!.length;i++){
-      if(id==_region![i].id){
-        return _region![i].regionName;
+    for (int i=0;i<region!.length;i++){
+      if(id==region![i].id){
+        return region![i].regionName;
       }
     }
 
   }
   getNameCity(int id) {
   var cityGet;
+  Region_id.Region(name_rigion!);
 
-        test(value);
         for(int i=0;i<listCity.length;i++){
           if(id==listCity[i].id){
             cityGet=listCity[i].cityName;
           }
         }
+        print(cityGet);
   return cityGet;
     }
 
@@ -408,34 +412,13 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                     }).toList(),
                                     onChanged: (value_2) {
                                       setState(() {
-                                       city_stecte=null;
-                                       //print(region![12].regionName);
-                                       if(value_2==region![0].regionName){
-                                         listCity=listCity_Region_1;
-                                       }else if(value_2==region![1].regionName){
-                                         listCity=listCity_Region_2;
-                                       }else if(value_2==region![2].regionName){
-                                         listCity=listCity_Region_3;
-                                       }else if(value_2==region![3].regionName){
-                                         listCity=listCity_Region_4;
-                                       }else if(value_2==region![4].regionName){
-                                         listCity=listCity_Region_5;
-                                       }else if(value_2==region![5].regionName){
-                                         listCity=listCity_Region_6;
-                                       }else if(value_2==region![6].regionName){
-                                         listCity=listCity_Region_7;
-                                       }else if(value_2==region![7].regionName){
-                                         listCity=listCity_Region_8;
-                                       }else if(value_2==region![8].regionName){
-                                         listCity=listCity_Region_9;
-                                       }else if(value_2==region![9].regionName){
-                                         listCity=listCity_Region_10;
-                                       }else if(value_2==region![10].regionName){
-                                         listCity=listCity_Region_11;
-                                       }else if(value_2==region![11].regionName){
-                                         listCity=listCity_Region_12;
-                                       }
+                                        city_stecte=null;
+                                        listCity=[];
+                                        Region_id.Region(value_2!);
                                         value = value_2;
+                                      // print(region![12].regionName);
+
+
                                        // test(value_2);
                                       });
                                     },
