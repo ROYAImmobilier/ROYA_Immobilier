@@ -70,10 +70,10 @@ var isLogin=false;
 String ?token_global;
 
 //
-  var id_city;
-late final int id_region_;
+  var id_city=1;
+var id_region_=7;
 
-//Verified
+//Verified Login
 var isCamindingfrom=false;
 
 bool progress=false ;
@@ -141,5 +141,17 @@ bool verify_region_city=false;
 
 
 //
+getidCity(String nameCity){
+  Region_id.Region(nameCity);
+  for (int i = 0; i < city!.length; i++) {
+    if (nameCity == city![i].cityName) {
+      id_city=city![i].id;
+      // print("id region"+ id_city.toString());
+    }
+  }
+
+}
 
 
+///verify update
+ bool verify_update=false;

@@ -144,9 +144,8 @@ class OnBoardingState extends State<OnBoarding> {
     bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
 
     if (finishedOnBoarding) {
-      Get.offAll(OnBoardingScreen()
-     // Get.to(RoutingScreen();
-      );
+      Get.offAll(OnBoardingScreen());
+     // Get.to(const RoutingScreen());
     } else {
 
       Get.offAll(OnBoardingScreen());
@@ -157,8 +156,6 @@ class OnBoardingState extends State<OnBoarding> {
   @override
   void initState() {
 
-    // final uid =Uuid().generateV4();
-    // Cachehelper.saveData(key: "uid", value: Uuid().generateV4());
 
     super.initState();
     hasFinishedOnBoarding();

@@ -12,7 +12,7 @@ import 'package:roya_immobilie/main.dart';
 import 'package:roya_immobilie/varia_ble/variable.dart';
 import 'contact_info.dart';
 import 'order_distination.dart';
-
+List<dynamic> media=getData_put["media"];
 class Add_Annonce_2 extends StatefulWidget {
   String? Property_details;
   String? categorie;
@@ -39,7 +39,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   List<Ability> lmain = [];
   List<Ability> linner = [];
   List<Ability> ladditional = [];
-  List<int> idability = [];
+  var idability = [];
 
   bool showmain = false;
   bool showinner = false;
@@ -49,22 +49,20 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   void initState() {
     setState(() {
 
-      if(verify){
+      if(verify_update){
         idability=getData_put["abilities"];
         print(getData_put["area"]);
        double x=getData_put["area"]+0.0;
        area.text=x.toString() ;
         double y=getData_put["price"]+0.0;
       price.text=y.toString();
-       //_flooring=getData_put["floor_type"];
+       _flooring=getData_put["floor_type"];
         _age=CondationLangage.age_put(getData_put['age']).tr;
-        _flooring=getData_put["floor_type"];
+       // _flooring=getData_put["floor_type"];
         _bathrooms=getData_put["bathrooms"];
         _bedroms=getData_put["bedrooms"];
-        _bathrooms=getData_put["kitchens"];
+        kichens=getData_put["kitchens"];
 
-print(x);
-print(y);
       }
       for (int i = 0; i < ability.length; i++) {
         if (ability[i].type == "main") {
@@ -100,11 +98,11 @@ print(y);
             appBar: AppBar(
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
-              title: Text(
-                ' Stepper ',
-                style: TextStyle(color: Colors.black),
-              ),
-              centerTitle: true,
+              title:SvgPicture.asset('assets/icon/logo-roya.svg',
+                //color: Colors.white,
+                width: 40,
+                height: 40,),
+
             ),
             body: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -292,7 +290,7 @@ print(y);
                               value: _age,
 
                               items: <String>[
-                                'Moins de 1 an'.tr,
+                                'Moins de 1 ans'.tr,
                                 '1 à 5 ans'.tr,
                                 '5 à 10 ans'.tr,
                                 '10 à 20 ans'.tr,
@@ -666,7 +664,7 @@ print(y);
                                     print(widget.statut);
                                     print(widget.adress);
                                     print(widget.region);
-                                    print(widget.ville);
+                                  //  print(widget.ville);
                                     print(widget.quartier);
                                     print(area.text);
                                     print(price.text);
@@ -690,7 +688,7 @@ print(y);
                                           kichens: kichens,
                                           adress: widget.adress,
                                           //ville: widget.ville,
-                                          age: _age_select,
+                                          age: _age,
                                           price: price.text,
                                           flooring: _flooring,
                                           area: area.text));

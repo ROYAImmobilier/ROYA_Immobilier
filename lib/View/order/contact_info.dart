@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ import '../../Model/ability.dart';
 import '../../varia_ble/variable.dart';
 import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
+import 'order_details.dart';
 import 'order_distination.dart';
 import 'order_distination.dart';
 import 'order_distination.dart';
@@ -29,7 +31,10 @@ class ContactInfo extends StatefulWidget {
   int? bedroms;
   int? bathrooms;
   int? kichens;
-  List<int>? ablity;
+  late int _id_region;
+  late int _id_city;
+
+  List<dynamic>? ablity;
 
   String? area;
   String? price;
@@ -85,14 +90,7 @@ class _ContactInfoState extends State<ContactInfo> {
   File? _file;
   List<File> _listimage = [];
   String? _listimagebase64 ;
-//   Future chooseImage() async {
-//
-//       final myfile = await ImagePicker().pickImage(source: ImageSource.gallery)   ;
-// setState(() {
-//   _file=File(myfile!.path) ;
-//   upload();
-// });
-//   }
+
 
   choseImage() async {
     try {
@@ -105,45 +103,63 @@ class _ContactInfoState extends State<ContactInfo> {
         _listimage.add(_file!);
         verify=true;
         _listimagebase64=base64Encode(_file!.readAsBytesSync());
+        print(getData_put["media"][0]["blob"]);
 
+        media[0]["blob"]=_listimagebase64!;
+    print( media);
       });
     } catch (e) {
       print(e);
     }
 
-    // _image.add(File(pickedFile?.path));
-    // _listimage.add(File(pickedFile!.path));
-    // _listimagebase64.add(base64Encode(_file!.readAsBytesSync()));
-
-    //if (pickedFile!.path == null) retrieveLostData();
   }
 
-  // Future<void> retrieveLostData() async {
-  //   final LostData response = await ImagePicker().getLostData();
-  //   if (response.isEmpty) {}
-  //   if (response.exception != null) {
-  //     setState(() {
-  //       _listimage.add(File(response.file!.path));
-  //       _listimagebase64.add ("data:image/jpeg;base64,"+base64Encode(_file!.readAsBytesSync()));
-  //     });
-  //   } else {
-  //     print(response.file);
-  //   }
-  // }
+
 
 @override
   void initState() {
+
+    widget._id_region=getRegionid(widget.region_1!);
+    widget._id_city=getCityid(widget.city!);
+    print("region "+widget._id_region.toString());
+    print("city "+widget._id_city.toString());
    setState(() {
-     if(verify){
+     if(verify_update){
        _titel.text=getData_put["title"].toString();
        _description.text=getData_put["description"].toString();
-       _phone1.text=getData_put["phone1"].toString();
-       _phone2.text=getData_put["phone2"].toString();
-       _phone3.text=getData_put["phone3"].toString();
+       if(getData_put["phone1"]!=null){
+         _phone1.text=getData_put["phone1"].toString();
+       }
+       if(getData_put["phone2"]!=null){
+         _phone1.text=getData_put["phone2"].toString();
+       }
+       if(getData_put["phone3"]!=null){
+         _phone1.text=getData_put["phone3"].toString();
+       }
      //  print(getData_put["covar"]);
      }
    });
     super.initState();
+  }
+ int getRegionid(String name){
+    late int id;
+    for (int i=0;i<region!.length;i++){
+          if(name==region![i].regionName){
+           id= region![i].id;
+          }
+
+    }
+    return id;
+ }
+  int getCityid(String name){
+    late int id;
+    for (int i=0;i<listCity.length;i++){
+      if(name==listCity[i].cityName){
+        id= listCity[i].id;
+      }
+
+    }
+    return id;
   }
 
   @override
@@ -156,29 +172,13 @@ class _ContactInfoState extends State<ContactInfo> {
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: const Icon(
-                    Icons.menu_outlined,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  tooltip:
-                      MaterialLocalizations.of(context).openAppDrawerTooltip,
-                );
-              },
-            ),
-          ],
-          leading: const Icon(
-            Icons.check_circle_rounded,
-            color: Colors.black,
-          ),
+          title: SvgPicture.asset('assets/icon/logo-roya.svg',
+            //color: Colors.white,
+            width: 40,
+            height: 40,),
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
-          elevation: 0,
+           elevation: 0,
         ),
         body: Form(
           key: _key_Contact,
@@ -358,6 +358,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   Card(
                                       color: Colors.cyan,
                                       child: IconButton(
+
                                           onPressed: () {
                                             setState(() {
                                               choseImage();
@@ -372,26 +373,26 @@ class _ContactInfoState extends State<ContactInfo> {
                                   ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount: _listimage.length,
+                                      itemCount:verify_update==false? _listimage.length:getData_put["media"].length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
                                         print(verify);
-                                       // print("tes"+getData_put["media"][0]);
+                                       print("tes"+getData_put["media"].length.toString());
                                         return SizedBox(
                                           height: 75,
                                           child: Row(children: [
 
-                                           verify!=false? Image.file(
+                                            verify_update==false? Image.file(
                                               _listimage[i],
-                                              width: 70,
-                                              height: 70,
+                                              width: 100,
+                                              height: 100,
                                               fit: BoxFit.cover,
-                                            ):Image.memory((const Base64Decoder().convert(getData_put["media"][i]["blob"])
+                                            ):Image.memory((const Base64Decoder().convert(getData_put["media"][i]["blob"].toString())
 
                                                 ),
                                              fit: BoxFit.cover,
-                                              width: 70,
-                                              height: 70,
+                                              width: 100,
+                                              height: 100,
                                            ),
                                             const SizedBox(
                                               width: 5,
@@ -461,22 +462,26 @@ class _ContactInfoState extends State<ContactInfo> {
                               // Get.to(LoginScreen());
 
                               setState(() {
+                              // verify=false;
                                 isCamindingfrom = true;
-                                //  Get.to(LoginScreen());
-                                if(verify!=false) {
+
+                                //
+                                // //  Get.to(LoginScreen());
+                                if(!verify_update) {
+                                  print("8761");
                                   isLogin == false
                                     ? Get.to(LoginScreen(
-                                        region_id: widget.region_1,
-                                        city_id: widget.city,
-                                        transaction: "Rent",
-                                        property_type: widget.Property_details,
+                                        region_id: widget._id_region.toString(),
+                                        city_id: widget._id_city.toString(),
+                                        transaction: widget.Property_details,
+                                        property_type: widget.categorie,
                                         status: widget.statut,
                                         adress: widget.adress,
                                         quartier: widget.quartier,
                                         area: widget.area,
                                         price: widget.price,
                                         age: widget.age,
-                                        floor_type: "appartoment",
+                                        floor_type: widget.flooring,
                                         floor: "4",
                                         apartment: "1",
                                         bedrooms: widget.bedroms,
@@ -489,10 +494,10 @@ class _ContactInfoState extends State<ContactInfo> {
                                         media: _listimagebase64.toString()))
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
-                                        region_id: widget.region_1,
-                                        city_id: widget.city,
-                                        transaction: "Rent",
-                                        property_type: widget.Property_details,
+                                    region_id: widget._id_region.toString(),
+                                    city_id: widget._id_city.toString(),
+                                        transaction: widget.Property_details,
+                                        property_type: widget.categorie,
                                         status: widget.statut,
                                         adress: widget.adress,
                                         quartier: widget.quartier,
@@ -506,24 +511,42 @@ class _ContactInfoState extends State<ContactInfo> {
                                         title: _titel.text,
                                         description: _description.text,
                                         phone1: _phone1.text,
-                                        abilities: widget.ablity,
+                                        abilities: widget.ablity.toString(),
                                         media: _listimagebase64.toString(),
-                                        floor_type: "appartoment",
+                                        floor_type: widget.flooring,
                                         floor: "4",
                                       );
                                 }else{
                                   print("876");
+                                  print(widget.Property_details);
+                                  print(widget.categorie);
+                                  print(widget.statut);
+                                  print(widget.adress);
+                                  print(widget.region_1);
+                                  print(widget.city);
+                                  print(widget.quartier);
+                                  print(widget.area);
+                                  print(widget.price);
+                                  print(widget.age);
+                                  print(widget.flooring);
+                                  print(widget.bedroms);
+                                  print(widget.bathrooms);
+                                  print(widget.kichens);
+                                  print(_titel.text);
+                                  print(_description.text);
+                                  print(widget.ablity.toString());
                                       //verify=false;
+                                  verify_update=false;
                                   Modifier_Annonce.Modifier(
-                                    region_id: "1",
-                                    city_id: "1",
-                                    transaction: "Rent",
-                                    property_type: widget.Property_details.toString(),
+                                    region_id: widget._id_region.toString(),
+                                    city_id: widget._id_city.toString(),
+                                    transaction: widget.Property_details.toString(),
+                                    property_type: widget.categorie.toString(),
                                     status: widget.statut.toString(),
                                     adress: widget.adress.toString(),
                                     quartier: widget.quartier.toString(),
-                                    area: widget.area,
-                                    price: widget.price,
+                                    area: widget.area.toString(),
+                                    price: widget.price.toString(),
                                     age: widget.age.toString(),
                                     apartment: "1",
                                     bedrooms: widget.bedroms.toString(),
@@ -532,9 +555,9 @@ class _ContactInfoState extends State<ContactInfo> {
                                     title: _titel.text.toString(),
                                     description: _description.text.toString(),
                                     phone1: _phone1.text.toString(),
-                                    abilities: widget.ablity.toString(),
-                                    media:_listimagebase64!,
-                                    floor_type: "appartoment",
+                                    abilities: [1,2,3,6].toString(),
+                                    media:media,
+                                    floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );
                                 }

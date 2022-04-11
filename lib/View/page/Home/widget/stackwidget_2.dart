@@ -39,7 +39,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
     return ScreenUtilInit(
       builder: () => Container(
         height: double.infinity,
-        color: Color(0xffefefef),
+        color: const Color(0xffefefef),
         child: Stack(
           children: [
             //const SizedBox(width: 50),
@@ -48,25 +48,25 @@ class _StackWidget_2State extends State<StackWidget_2> {
               padding: EdgeInsets.only(bottom: 35.h),
               //margin: EdgeInsets.only(bottom: 60.h),
               decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 252, 252, 252),
+                  color: const Color.fromARGB(255, 252, 252, 252),
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20.r),
                       topLeft: Radius.circular(20.r))),
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset('assets/icon/annonces/hand.svg',
-                            width: 25.w,
-                            height: 25.h,
-                            matchTextDirection: true),
-                        Text(
-                          " Immobulier Neuf",
-                          style: TextStyle(fontSize: 14.sp),
-                        ),
+                        // SvgPicture.asset('assets/icon/annonces/hand.svg',
+                        //     width: 25.w,
+                        //     height: 25.h,
+                        //     matchTextDirection: true),
+                        // Text(
+                        //   " Immobulier Neuf",
+                        //   style: TextStyle(fontSize: 14.sp),
+                        // ),
                       ],
                     ),
                     Row(
@@ -78,10 +78,10 @@ class _StackWidget_2State extends State<StackWidget_2> {
                             child: SvgPicture.asset(
                               'assets/icon/filter.svg',
                               width: ScreenSized.IconFiltter(
-                                      Screenwidth, Screenheight)
+                                      Screenwidth, Screenheight).w
                                   ,
                               height: ScreenSized.IconFiltter(
-                                      Screenwidth, Screenheight)
+                                      Screenwidth, Screenheight).h
                                   ,
                             )),
                         SizedBox(
@@ -160,7 +160,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                               ))
                           : ListView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: widget.leng,
                               itemBuilder:
                                   (BuildContext context, int index) {
@@ -212,41 +212,44 @@ class _StackWidget_2State extends State<StackWidget_2> {
                             widget.leng = select.length;
                           });
                         },
-                        child: Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.center,
-                              mainAxisAlignment:
-                              MainAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                 backgroundColor:i==j? const Color.fromARGB(255, 130, 108, 219) : Colors.white,
-                                  radius: ScreenSized.Avatar(
-                                      Screenwidth,
-                                      Screenheight),
-                                  child: SvgPicture.asset(
-                                      dataCategory[i].icon,
-                                      width: 20,
-                                      height: 20,
-                                      color: const Color(0xffC0A280)),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  dataCategory[i].name.tr,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: const Color(0xff8a8a8a),
+                        child: Padding(
+                          padding:  EdgeInsets.only(right: 5,left: 5),
+                          child: Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: [
+                                  CircleAvatar(
+                                   backgroundColor:i==j? const Color.fromARGB(255, 130, 108, 219) : Colors.white,
+                                    radius: ScreenSized.Avatar(
+                                        Screenwidth,
+                                        Screenheight),
+                                    child: SvgPicture.asset(
+                                        dataCategory[i].icon,
+                                        width: 20,
+                                        height: 20,
+                                        color: const Color(0xffC0A280)),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    dataCategory[i].name.tr,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: const Color(0xff8a8a8a),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }),

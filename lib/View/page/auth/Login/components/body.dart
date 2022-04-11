@@ -158,7 +158,7 @@ class _BodyState extends State<Body> {
                           await Annonce_As_Login.Add_Annonce_As_Login(
                               region_id: widget.region_id,
                               city_id: widget.city_id,
-                              transaction: "Rent",
+                              transaction: widget.categorie,
                               property_type: widget.property_type,
                               status: widget.status,
                               address: widget.adress,
@@ -166,7 +166,7 @@ class _BodyState extends State<Body> {
                               area: widget.area,
                               price: widget.price,
                               age: widget.age,
-                              floor_type: "appartoment",
+                              floor_type: widget.floor_type,
                               floor: "4",
                               apartment: "1",
                               bedrooms: widget.bedrooms.toString(),
@@ -179,17 +179,9 @@ class _BodyState extends State<Body> {
                               password: password,
                               abilities:widget.abilities!,
                               media: widget.media!);
-
-                          Get.offAll(RoutingScreen());
                         } else if (!isCamindingfrom) {
                           await _Login(email: email, password: password);
                         }
-                        setState(
-                              () {
-                            //  _user = user;
-                            //isLogin= user!.success;
-                          },
-                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(

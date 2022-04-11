@@ -47,6 +47,8 @@ class CondationLangage {
     }
     else if (_categorie=="Office Space") {
       _categorie_select = "Bureau";
+     }else if (_categorie=="commercialSpace") {
+      _categorie_select = "Commercial";
      }else if (_categorie=="Land") {
       _categorie_select = "Terre";
      }else if (_categorie=="Riads") {
@@ -88,7 +90,7 @@ var _statut;
     ///age
   static String age(String newValue){
     var _age_select;
-    if (newValue == "Moins de 1 an" ||
+    if (newValue == "Moins de 1 ans" ||
         newValue == "Less than 1 year" ||
         newValue == 'أقل من 1 سنة') {
 
@@ -133,7 +135,7 @@ var _statut;
   static String age_put(String age){
     var _age;
     if(age=="L1") {
-      _age="Moins de 1 an";
+      _age="Moins de 1 ans";
     }else if(age=="F1T5"){
       _age="1 à 5 ans";
     }

@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Controller/login.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
+import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
+import 'package:roya_immobilie/View/page/auth/Login/profile.dart';
 import '../Model/cityrepo.dart';
 import '../Model/joke.dart';
 import '../varia_ble/variable.dart';
@@ -113,7 +116,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
           HomePage(),
           FavoritePage(),
           ChatPage(),
-          ChatPage(),
+          isLogin?Profile():LoginScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
@@ -121,7 +124,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
     return  ScreenUtilInit(
         builder: () => Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             elevation: 1,
             // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(0)),
@@ -212,7 +215,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
           bottomNavigationBar: BottomNavigationBar(
             elevation: 2,
             iconSize: 20,
-
             type: BottomNavigationBarType.fixed,
             items: [
               const BottomNavigationBarItem(
@@ -231,11 +233,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
                 label: 'Favoris',
               ),
-              const BottomNavigationBarItem(
-                backgroundColor: Colors.white,
-                icon: Icon(Icons.camera, color: Colors.white, size: 20),
-                label: 'Annoncer',
-              ),
+
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: SvgPicture.asset(
@@ -246,15 +244,14 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 ),
                 label: 'Chat',
               ),
-              BottomNavigationBarItem(
+              isLogin?BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: SvgPicture.asset(
-                  'assets/icon/notification.svg',
-                  color: Colors.black54,
-                  width: 25.w,
-                  height: 25.h,
-                ),
-                label: 'Notification',
+                icon: Icon(Icons.person, color: Colors.black54, size: 25),
+                label: 'Profile',
+              ): BottomNavigationBarItem(
+                backgroundColor: Colors.white,
+                icon: Icon(Icons.login, color: Colors.black54, size: 25),
+                label: 'Login',
               ),
             ],
             onTap: OnbottomTapped,

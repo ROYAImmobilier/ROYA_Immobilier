@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class DetailleProfile extends StatefulWidget {
   late String image;
@@ -21,7 +22,18 @@ class _DetailleProfileState extends State<DetailleProfile> {
         builder: ()  {
         return Scaffold(
           backgroundColor: Color(0xffe3e3e3),
-          appBar: AppBar(),
+          appBar: AppBar(
+              title:  Center(
+                child: SvgPicture.asset('assets/icon/logo-roya.svg',
+                  width: 40,
+                  height: 40,),),
+
+              backgroundColor:Colors.white,
+              leading:IconButton(
+                onPressed:()=>Get.back() ,icon: Icon
+                (Icons.arrow_back_ios_sharp) , color: Colors.blue,)
+
+          ),
           body: Column(
             children: [
 
@@ -31,7 +43,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                 height: 150.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.data.cover),
+                      image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/${widget.data.cover}"),
                       fit: BoxFit.fill,
                     ),
                     color: Colors.white,

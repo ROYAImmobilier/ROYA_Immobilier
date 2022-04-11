@@ -23,7 +23,7 @@ class MobileGridView extends StatelessWidget {
       builder: () => Stack(
         children:[ GridView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: leng,
             gridDelegate:
             SliverGridDelegateWithMaxCrossAxisExtent(

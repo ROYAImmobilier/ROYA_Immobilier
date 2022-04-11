@@ -45,7 +45,7 @@ class _HomePageState extends State<Sercher> {
       // backgroundColor: Color(),
       appBar: AppBar(
         title:  Center(
-          child: SvgPicture.asset('assets/icon/logo-roya.svg',
+          child: SvgPicture.asset('assets/icon/roya.svg',
 
             width: 40,
             height: 40,),),
