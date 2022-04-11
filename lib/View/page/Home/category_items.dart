@@ -19,14 +19,14 @@ class CategoryItems extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor:  Color(0xffefefef),
+      backgroundColor:  const Color(0xffefefef),
       appBar: AppBar(
-        backgroundColor:  Color(0xffefefef),
+        backgroundColor:  const Color(0xffefefef),
         title: Row(
           children: [
             SvgPicture.asset(icon ,width: 40,height: 40,),
-            SizedBox(width: 40,),
-            Text(title , style: TextStyle(color: Colors.black45),),
+             const SizedBox(width: 40,),
+            Text(title , style: const TextStyle(color: Colors.black45),),
           ],
         ),
       ),

@@ -39,7 +39,7 @@ class test extends StatelessWidget {
                 height: 180.h,
                 width: double.infinity,
                 child: cachedImage(
-                  "https://dashboard.royaimmo.ma/images/annonces/"+image,
+                  "https://dashboard.royaimmo.ma/images/annonces/${image}",
                 ),),
               Container(
                 margin: EdgeInsets.only(top: 180.h),

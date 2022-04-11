@@ -152,7 +152,7 @@ class Transation extends Translations {
           'Location': 'Location',
           'Chat': 'Chat',
           'Mes favoris': 'My favorites',
-          'Se connecter': 'Loging',
+          'Se connecter': 'Login',
           'DEPOSER UNE ANNONCE': 'PLACE AN ANNOUNCEMENT',
           'veuillez vous connecter': 'please login',
           'pour une experience optimisee , ': 'for an optimized experience , ',

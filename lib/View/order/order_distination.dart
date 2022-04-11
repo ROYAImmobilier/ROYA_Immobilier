@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:http/http.dart'as http;
@@ -48,7 +49,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
 
     super.initState();
-    if(verify){
+    if(verify_update){
     adresse.text=getData_put["address"].toString();
     quartier_.text=getData_put["quartier"].toString();
     String cat=getData_put["property_type"].toString();
@@ -58,7 +59,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
      value=name_rigion;
     city_stecte=getNameCity(getData_put["city_id"]);
     id_region=getData_put["region_id"];
-
+    // getidCity(city_stecte!);
+    // region_id(name_rigion);
    var x = CondationLangage.status_put(status)?.tr;
 
         if(x!=null){
@@ -78,7 +80,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   }
 
-  void test(String? value_2) {
+  void region_id(String? value_2) {
     for (int i = 0; i < region!.length; i++) {
       if (region![i].regionName == value_2) {
         id_region = region![i].id;
@@ -114,16 +116,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
 
 
-  getidCity(String nameCity){
-    for (int i = 0; i < _city!.length; i++) {
-      if (nameCity == _city![i].cityName) {
-         id_city=_city![i].id;
-         print("is "+id_city.toString());
-        // print("id region"+ id_city.toString());
-      }
-    }
 
-  }
 
   // getName_region_city() {
   //   setState(() async{
@@ -143,11 +136,11 @@ class _Add_AnnonceState extends State<Add_Annonce> {
             appBar: AppBar(
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
-              title: const Text(
-                "Add Annonce",
-                style: TextStyle(color: Colors.black),
-              ),
-              centerTitle: true,
+              title: SvgPicture.asset('assets/icon/logo-roya.svg',
+                //color: Colors.white,
+                width: 40,
+                height: 40,)
+
             ),
             body: Form(
               key: _keytest,
@@ -521,15 +514,15 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                               //  print(city);
                               if (_keytest.currentState!.validate() &&
                                     value != null &&
-                                    city != null || verify==true) {
+                                    city != null ) {
                                  //
                                   Get.to(Add_Annonce_2(
                                       Property_details: _Property_details,
                                       categorie:  _categorie_select,
                                       statut: statut,
                                       adress: adresse.text,
-                                      region: id_region.toString(),
-                                      ville: id_city.toString(),
+                                      region: value,
+                                      ville:city_stecte,
                                       quartier: quartier_.text));
                                 }
                               },

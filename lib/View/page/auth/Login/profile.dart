@@ -77,6 +77,7 @@ class _ProfileState extends State<Profile> {
   void initState() {
 
     setState(() {
+      reloud();
       Poste=[];
       PosteNonValide=[];
       PosteValide=[];
@@ -267,7 +268,7 @@ class _ProfileState extends State<Profile> {
                               itemBuilder: (context , index)=>
                                   GestureDetector(
                                     onTap: (){
-                                      Get.to(DetailleProfile(data:Poste[index] ,image:"https://dashboard.royaimmo.ma/images/annonces/"+Poste[index].cover ,));
+                                      Get.to(DetailleProfile(data:Poste[index] ,image:"https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}"));
                                     },
                                     child: Slidable(
                                       key: UniqueKey(),
@@ -276,6 +277,7 @@ class _ProfileState extends State<Profile> {
                                           dismissible: DismissiblePane(onDismissed: () async{
                                             getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
                                             verify=true;
+                                            print(getData_put);
                                             if(!verify_region_city) {
                                               await   ServicesRgion.getUsers().then((regions) {
                                                 setState(() {
@@ -347,6 +349,7 @@ class _ProfileState extends State<Profile> {
                                               },
                                               );
                                             }
+                                            verify_update=true;
                                             Get.to(Add_Annonce());
                                           }),
                                           children: [
@@ -359,6 +362,7 @@ class _ProfileState extends State<Profile> {
 
                                                 //amar
                                                 getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
+                                                print(getData_put);
                                                 if(!verify_region_city) {
                                                   await   ServicesRgion.getUsers().then((regions) {
                                                     setState(() {
@@ -430,6 +434,7 @@ class _ProfileState extends State<Profile> {
                                                   },
                                                   );
                                                 }
+                                                verify_update=true;
                                                 Get.to(Add_Annonce());
                                                 // setState(() {
                                                 //   reloud();

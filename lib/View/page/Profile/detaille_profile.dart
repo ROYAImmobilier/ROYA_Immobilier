@@ -31,7 +31,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                 height: 150.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.data.cover),
+                      image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/${widget.data.cover}"),
                       fit: BoxFit.fill,
                     ),
                     color: Colors.white,

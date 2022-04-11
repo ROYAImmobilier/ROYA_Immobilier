@@ -22,7 +22,7 @@ class FavoritePage extends StatelessWidget {
         backgroundColor: Color(0xffefefef),
         appBar: AppBar(
           title:  Center(
-            child: SvgPicture.asset('assets/icon/logo-roya.svg',
+            child: SvgPicture.asset('assets/icon/roya.svg',
 
               width: 40,
               height: 40,),),
