@@ -138,6 +138,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
               color: Colors.white,
             ),
             onPressed: ()async {
+              verify_update=false;
               if(!verify_region_city) {
                 await   ServicesRgion.getUsers().then((regions) {
                   setState(() {
