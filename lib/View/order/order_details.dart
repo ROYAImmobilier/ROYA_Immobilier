@@ -12,7 +12,9 @@ import 'package:roya_immobilie/main.dart';
 import 'package:roya_immobilie/varia_ble/variable.dart';
 import 'contact_info.dart';
 import 'order_distination.dart';
-List<dynamic> media=getData_put["media"];
+
+List<dynamic> media = getData_put["media"];
+
 class Add_Annonce_2 extends StatefulWidget {
   String? Property_details;
   String? categorie;
@@ -48,21 +50,27 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   @override
   void initState() {
     setState(() {
-
-      if(verify_update){
-        idability=getData_put["abilities"];
+      if (verify_update) {
+        idability = getData_put["abilities"];
         print(getData_put["area"]);
-       double x=getData_put["area"]+0.0;
-       area.text=x.toString() ;
-        double y=getData_put["price"]+0.0;
-      price.text=y.toString();
-       _flooring=getData_put["floor_type"];
-        _age=CondationLangage.age_put(getData_put['age']).tr;
-       // _flooring=getData_put["floor_type"];
-        _bathrooms=getData_put["bathrooms"];
-        _bedroms=getData_put["bedrooms"];
-        kichens=getData_put["kitchens"];
+        double x = getData_put["area"] + 0.0;
+        area.text = x.toString();
+        double y = getData_put["price"] + 0.0;
+        price.text = y.toString();
 
+        if (getData_put["floor_type"] == "Wooden" ||
+            getData_put["floor_type"] == "Marble" ||
+            getData_put["floor_type"] == "Marble" ||
+            getData_put["floor_type"] == "Others") {
+          _flooring = getData_put["floor_type"];
+        }
+          _age = CondationLangage.age_put(getData_put['age'])?.tr;
+
+
+        //
+        _bathrooms = getData_put["bathrooms"];
+        _bedroms = getData_put["bedrooms"];
+        kichens = getData_put["kitchens"];
       }
       for (int i = 0; i < ability.length; i++) {
         if (ability[i].type == "main") {
@@ -82,7 +90,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   int kichens = 0;
   var area = TextEditingController();
   var price = TextEditingController();
-  String? _price_type="DH";
+  String? _price_type = "DH";
   String? _age;
   String? _age_select;
   String? _flooring;
@@ -98,11 +106,12 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
             appBar: AppBar(
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
-              title:SvgPicture.asset('assets/icon/logo-roya.svg',
+              title: SvgPicture.asset(
+                'assets/icon/logo-roya.svg',
                 //color: Colors.white,
                 width: 40,
-                height: 40,),
-
+                height: 40,
+              ),
             ),
             body: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -308,7 +317,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   _age = newValue;
-                                  _age_select=CondationLangage.age(newValue!);
+                                  _age_select = CondationLangage.age(newValue!);
                                 });
                               },
                             ),
@@ -664,12 +673,12 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                     print(widget.statut);
                                     print(widget.adress);
                                     print(widget.region);
-                                  //  print(widget.ville);
+                                    //  print(widget.ville);
                                     print(widget.quartier);
                                     print(area.text);
                                     print(price.text);
                                     print(_price_type);
-                                    print(_age_select);
+                                    print(_age);
                                     print(_flooring);
                                     print(idability);
                                     if (_key_details.currentState!.validate() &&
@@ -678,7 +687,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                           city: widget.ville,
                                           categorie: widget.categorie,
                                           quartier: widget.quartier,
-                                          ablity:idability,
+                                          ablity: idability,
                                           bedroms: _bedroms,
                                           region_1: widget.region,
                                           statut: widget.statut,
@@ -688,7 +697,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                           kichens: kichens,
                                           adress: widget.adress,
                                           //ville: widget.ville,
-                                          age: _age,
+                                          age: _age_select,
                                           price: price.text,
                                           flooring: _flooring,
                                           area: area.text));

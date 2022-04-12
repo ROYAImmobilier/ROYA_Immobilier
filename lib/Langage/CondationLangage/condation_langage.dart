@@ -7,35 +7,35 @@ class CondationLangage {
     if (newValue == "Appartements" ||
         newValue == "Apartments" ||
         newValue == "شقق") {
-      _categorie_select = "Apartments";
+      _categorie_select = "Appartements";
     } else if (newValue == "Chambre" ||
         newValue == "Rooms" ||
         newValue == "غرفة") {
-      _categorie_select = "rooms";
+      _categorie_select = "Rooms";
     } else if (newValue == "Maison" ||
         newValue == "House" ||
         newValue == "منزل") {
-      _categorie_select = "house";
+      _categorie_select = "House";
     } else if (newValue == "Villa" ||
         newValue == "Villa" ||
         newValue == "فيلا") {
-      _categorie_select = "villa";
+      _categorie_select = "Villa";
     } else if (newValue == "Riad" || newValue == "Riad" || newValue == "رياض") {
-      _categorie_select = "riad";
+      _categorie_select = "Riads";
     } else if (newValue == "Commercial" ||
         newValue == "Commercial" ||
         newValue == "محل تجاري") {
-      _categorie_select = "commercialSpace";
+      _categorie_select = "CommercialSpace";
     } else if (newValue == "Bureau" ||
         newValue == "Office" ||
         newValue == "مكتب") {
-      _categorie_select = "office";
+      _categorie_select = "Office";
     } else if (newValue == "Terre" || newValue == "Land" || newValue == "أرض") {
-      _categorie_select = "land";
+      _categorie_select = "Land";
     } else if (newValue == "fermes" ||
         newValue == "Farms" ||
         newValue == "مزارع") {
-      _categorie_select = "farm";
+      _categorie_select = "Farm";
     }
     return _categorie_select;
   }
@@ -47,17 +47,17 @@ class CondationLangage {
     }
     else if (_categorie=="Office Space") {
       _categorie_select = "Bureau";
-     }else if (_categorie=="commercialSpace") {
+    }else if (_categorie=="commercialSpace") {
       _categorie_select = "Commercial";
-     }else if (_categorie=="Land") {
+    }else if (_categorie=="Land") {
       _categorie_select = "Terre";
-     }else if (_categorie=="Riads") {
+    }else if (_categorie=="Riads") {
       _categorie_select = "Riad";
-     }else if (_categorie=="Villas") {
+    }else if (_categorie=="Villas") {
       _categorie_select = "Villa";
-     }else if (_categorie=="Houses") {
+    }else if (_categorie=="House") {
       _categorie_select = "Maison";
-     }
+    }
     return _categorie_select;
   }
   ///Statut
@@ -93,7 +93,6 @@ var _statut;
     if (newValue == "Moins de 1 ans" ||
         newValue == "Less than 1 year" ||
         newValue == 'أقل من 1 سنة') {
-
       _age_select = "L1";
     } else if (newValue == "1 à 5 ans" ||
         newValue == "1 to 5 years old" ||
@@ -128,11 +127,10 @@ var _statut;
         newValue == 'أكثر من 100 عام') {
       _age_select = "G100";
     }
-
     return _age_select;
   }
 
-  static String age_put(String age){
+  static String? age_put(String age){
     var _age;
     if(age=="L1") {
       _age="Moins de 1 ans";
@@ -154,8 +152,12 @@ var _statut;
       _age="70 à 100 ans";
     }else if(age=="G100"){
       _age="Plus de 100 ans";
+    }else{
+      return null;
     }
     return _age;
   }
 
 }
+
+

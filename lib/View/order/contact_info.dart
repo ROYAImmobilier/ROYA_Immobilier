@@ -101,7 +101,7 @@ class _ContactInfoState extends State<ContactInfo> {
       setState(() {
         _file = imageTemporary;
         _listimage.add(_file!);
-        verify=true;
+       // verify=true;
         _listimagebase64=base64Encode(_file!.readAsBytesSync());
         print(getData_put["media"][0]["blob"]);
 
@@ -556,7 +556,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                     description: _description.text.toString(),
                                     phone1: _phone1.text.toString(),
                                     abilities: [1,2,3,6].toString(),
-                                    media:media,
+                                    media:media.toString(),
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );
@@ -675,8 +675,8 @@ class _ContactInfoState extends State<ContactInfo> {
             "email": email,
             "password": password,
             "confirmation_password": confirmation_password,
-            "abilities[id]": abilities,
-            "media[image base64]": media,
+            "abilities": abilities,
+            "media": media,
           });
       print(response.body);
       if (response.statusCode == 200) {

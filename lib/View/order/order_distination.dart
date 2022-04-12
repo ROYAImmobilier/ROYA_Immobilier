@@ -519,7 +519,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   Get.to(Add_Annonce_2(
                                       Property_details: _Property_details,
                                       categorie:  _categorie_select,
-                                      statut: statut,
+                                      statut: _statut,
                                       adress: adresse.text,
                                       region: value,
                                       ville:city_stecte,

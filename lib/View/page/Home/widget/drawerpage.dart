@@ -139,6 +139,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       borderRadius:  BorderRadius.circular(8.0),
                     ),
                     onPressed: () async{
+                      verify_update=false;
                     if(!verify_region_city) {
                       await   ServicesRgion.getUsers().then((regions) {
                         setState(() {
