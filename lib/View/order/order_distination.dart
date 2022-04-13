@@ -54,11 +54,13 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     quartier_.text=getData_put["quartier"].toString();
     String cat=getData_put["property_type"].toString();
    _categorie= CondationLangage.categorey_put(cat)?.tr;
+    _categorie_select= cat;
     String status=getData_put["status"].toString();
      name_rigion=getNameRegion(getData_put["region_id"]);
      value=name_rigion;
     city_stecte=getNameCity(getData_put["city_id"]);
     id_region=getData_put["region_id"];
+    _statut=status;
     // getidCity(city_stecte!);
     // region_id(name_rigion);
    var x = CondationLangage.status_put(status)?.tr;
@@ -127,7 +129,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   Widget build(BuildContext context) {
-   //
 
     return GestureDetector(
         onTap: ()=>FocusManager.instance.primaryFocus?.unfocus(),
@@ -505,11 +506,11 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                             child: TextButton(
                               onPressed: () {
                                 print(_Property_details);
-                                print(_categorie);
+                                print(_categorie_select);
                                 print(_statut);
                                 print(adresse.text);
                                 print(value);
-                                print(city);
+                                print(city_stecte);
                                 print(quartier_.text);
                               //  print(city);
                               if (_keytest.currentState!.validate() &&

@@ -39,7 +39,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   List<Ability> lmain = [];
   List<Ability> linner = [];
   List<Ability> ladditional = [];
-  var idability = [];
+  List<dynamic> idability = [];
 
   bool showmain = false;
   bool showinner = false;
@@ -48,21 +48,27 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   @override
   void initState() {
     setState(() {
-
-      if(verify_update){
-        idability=getData_put["abilities"];
+      if (verify_update) {
+        idability = getData_put["abilities"];
         print(getData_put["area"]);
-       double x=getData_put["area"]+0.0;
-       area.text=x.toString() ;
-        double y=getData_put["price"]+0.0;
-      price.text=y.toString();
-       _flooring=getData_put["floor_type"];
-        _age=CondationLangage.age_put(getData_put['age']).tr;
-       // _flooring=getData_put["floor_type"];
-        _bathrooms=getData_put["bathrooms"];
-        _bedroms=getData_put["bedrooms"];
-        kichens=getData_put["kitchens"];
+        double x = getData_put["area"] + 0.0;
+        area.text = x.toString();
+        double y = getData_put["price"] + 0.0;
+        price.text = y.toString();
 
+        if (getData_put["floor_type"] == "Wooden" ||
+            getData_put["floor_type"] == "Marble" ||
+            getData_put["floor_type"] == "Tiled" ||
+            getData_put["floor_type"] == "Others") {
+          _flooring = getData_put["floor_type"];
+        }
+        _age = CondationLangage.age_put(getData_put['age'])?.tr;
+        _age_select=getData_put['age'];
+
+        //
+        _bathrooms = getData_put["bathrooms"];
+        _bedroms = getData_put["bedrooms"];
+        kichens = getData_put["kitchens"];
       }
       for (int i = 0; i < ability.length; i++) {
         if (ability[i].type == "main") {
@@ -76,6 +82,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
     });
     super.initState();
   }
+
 
   int _bedroms = 0;
   int _bathrooms = 0;
@@ -688,7 +695,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                           kichens: kichens,
                                           adress: widget.adress,
                                           //ville: widget.ville,
-                                          age: _age,
+                                          age: _age_select,
                                           price: price.text,
                                           flooring: _flooring,
                                           area: area.text));

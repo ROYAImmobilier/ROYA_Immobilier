@@ -33,8 +33,8 @@ class Body extends StatefulWidget {
   var description;
   var phone1;
   var phone2;
-  var media;
-  var abilities;
+  List<String>? media;
+  List<int> ?abilities;
   var transaction;
 
   Body({
@@ -177,7 +177,7 @@ class _BodyState extends State<Body> {
                     onPressed: () {
 
                       print(widget.adress);
-                    //  print(widget.categorie);
+                      print(widget.property_type);
                       print(widget.status);
                       print( widget.bathrooms);
                       print(widget.kitchens);
@@ -190,46 +190,47 @@ class _BodyState extends State<Body> {
                       print(widget.phone1);
                       print( widget.quartier);
                       print(widget.age);
-                      print( widget.property_type);
+                      print( widget.transaction.toString());
                       print (widget.region_id);
                       print( widget.city_id);
                       print(widget.phone2);
-
-
+                      print(widget.abilities);
+                      print(password_2.text);
+                      print(password.text);
+                      print(emaill.text);
+                      //
                       if (_key_signup.currentState!.validate()) {
                         Annonce_As_SingUp.Add_Annonce_SingUp(
-                            address: widget.adress,
+                            address: widget.adress.toString(),
                             status: widget.status,
-                            transaction:  "Rent",
-                            bathrooms: widget.bathrooms,
-                            kitchens: widget.kitchens,
+                            transaction:  widget.transaction,
+                            bathrooms: widget.bathrooms.toString(),
+                            kitchens: widget.kitchens.toString(),
                             title: widget.title,
                             floor_type: widget.floor_type,
-                            media: '',
-                            floor: widget.floor,
-                            abilities: '',
+                            media: widget.media!,
+                            floor: ''.toString(),
+                            abilities:widget.abilities!,
                             area: widget.area,
                             name:_name.text ,
                             description: widget.description,
-                            apartment: "2",
-                            bedrooms: widget.bedrooms,
-                            phone1: widget.phone1,
+                            apartment: "2".toString(),
+                            bedrooms: widget.bedrooms.toString(),
+                            phone1: widget.phone1.toString(),
                            // phone2: widget.phone2,
                             quartier: widget.quartier,
                             password: password.text,
                             age: widget.age,
-                            price: widget.price,
-                            property_type: widget.property_type,
+                            price: widget.price.toString(),
+                            property_type: widget.property_type.toString(),
                             password_confimation: password_2.text,
                             region_id: widget.region_id,
                             email: emaill.text,
-                            city_id: widget.city_id);
+                            city_id: widget.city_id.toString());
 
 
                       }
-                      print(password_2.text);
-                      print(password.text);
-                      print(emaill.text);
+
                     },
                     style: ElevatedButton.styleFrom(
                         primary: kPrimaryColor,
@@ -255,7 +256,7 @@ class _BodyState extends State<Body> {
                       Get.to(LoginScreen(
                           adress: widget.adress,
                           status: widget.status,
-                          transaction: '',
+                          transaction: widget.transaction,
                           bathrooms: widget.bathrooms,
                           kitchens: widget.kitchens,
                           title: widget.title,
@@ -265,7 +266,7 @@ class _BodyState extends State<Body> {
                           abilities: widget.media,
                           area: widget.area,
                           description: widget.description,
-                          apartment: '',
+                          apartment: '1',
                           bedrooms: widget.bedrooms,
                           phone1: widget.phone1,
                           // phone2: widget.phone2,

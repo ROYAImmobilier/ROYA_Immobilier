@@ -27,7 +27,7 @@ String username = "";
 
 class Body extends StatefulWidget {
   var property_type;
-  var categorie;
+ // var categorie;
   var status;
   var adress;
   var region_id;
@@ -47,13 +47,13 @@ class Body extends StatefulWidget {
   var description;
   var phone1;
   var phone2;
-  var media;
-  var abilities;
+  List<String>? media;
+  List<String>? abilities;
   var transaction;
 
   Body({
     this.property_type,
-    this.categorie,
+  //  this.categorie,
     this.status,
     this.adress,
     this.region_id,
@@ -158,7 +158,7 @@ class _BodyState extends State<Body> {
                           await Annonce_As_Login.Add_Annonce_As_Login(
                               region_id: widget.region_id,
                               city_id: widget.city_id,
-                              transaction: widget.categorie,
+                              transaction: widget.transaction,
                               property_type: widget.property_type,
                               status: widget.status,
                               address: widget.adress,
@@ -177,8 +177,8 @@ class _BodyState extends State<Body> {
                               phone1: widget.phone1,
                               email: email,
                               password: password,
-                              abilities:widget.abilities!,
-                              media: widget.media!);
+                              abilities:widget.abilities,
+                              media: widget.media);
                         } else if (!isCamindingfrom) {
                           await _Login(email: email, password: password);
                         }
@@ -207,9 +207,9 @@ class _BodyState extends State<Body> {
                     onTap: () {
                       FocusManager.instance.primaryFocus?.unfocus();
                       Get.to(SignUpScreen(
-                          region_id: widget.city_id,
+                          region_id: widget.region_id,
                           city_id: widget.city_id,
-                          transaction: "Rent",
+                          transaction: widget.transaction,
                           property_type: widget.property_type,
                           status: widget.status,
                           adress: widget.adress,
@@ -217,12 +217,12 @@ class _BodyState extends State<Body> {
                           area: widget.area,
                           price: widget.price,
                           age: widget.age,
-                          floor_type: "appartoment",
+                          floor_type: widget.floor_type,
                           floor: "4",
                           apartment: "1",
-                          bedrooms: widget.bedrooms,
-                          bathrooms: widget.bathrooms,
-                          kitchens: widget.kitchens,
+                          bedrooms: widget.bedrooms.toString(),
+                          bathrooms:widget.bathrooms.toString(),
+                          kitchens: widget.kitchens.toString(),
                           title: widget.title,
                           description: widget.description,
                           phone1: widget.phone1,

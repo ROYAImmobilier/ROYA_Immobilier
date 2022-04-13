@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -13,12 +11,9 @@ import '../../Add_Anonnce/annonce_as_login.dart';
 import '../../Add_Anonnce/modifier_annonce.dart';
 import '../../Model/ability.dart';
 import '../../varia_ble/variable.dart';
-import '../page/auth/Login/components/body.dart';
 import '../page/auth/Login/login_screen.dart';
 import 'order_details.dart';
-import 'order_distination.dart';
-import 'order_distination.dart';
-import 'order_distination.dart';
+
 
 class ContactInfo extends StatefulWidget {
   String? Property_details;
@@ -89,7 +84,7 @@ class _ContactInfoState extends State<ContactInfo> {
   String error = 'Error';
   File? _file;
   List<File> _listimage = [];
-  String? _listimagebase64 ;
+  List<String> _listimagebase64=[] ;
 
 
   choseImage() async {
@@ -101,11 +96,10 @@ class _ContactInfoState extends State<ContactInfo> {
       setState(() {
         _file = imageTemporary;
         _listimage.add(_file!);
-        verify=true;
-        _listimagebase64=base64Encode(_file!.readAsBytesSync());
-        print(getData_put["media"][0]["blob"]);
+        _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
+      //  print(getData_put["media"][0]["blob"]);
 
-        media[0]["blob"]=_listimagebase64!;
+       // media[0]["blob"]=_listimagebase64!;
     print( media);
       });
     } catch (e) {
@@ -377,7 +371,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
                                         print(verify);
-                                       print("tes"+getData_put["media"].length.toString());
+                                     //  print("tes"+getData_put["media"].length.toString());
                                         return SizedBox(
                                           height: 75,
                                           child: Row(children: [
@@ -446,14 +440,14 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(widget.area);
                             print(widget.price);
                             print(widget.age);
-                            print(widget.flooring);
+                            print("ferf "+widget.flooring.toString());
                             print(widget.bedroms);
                             print(widget.bathrooms);
                             print(widget.kichens);
                             print(_titel.text);
                             print(_description.text);
                             print(widget.ablity.toString());
-                           // print(_listimagebase64.toString());
+                           print(_listimagebase64);
 
                             print(_phone1.text);
                           //  print(getData_put["media"]);
@@ -491,7 +485,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                         description: _description.text,
                                         phone1: _phone1.text,
                                         abilities: widget.ablity,
-                                        media: _listimagebase64.toString()))
+                                        media: _listimagebase64))
                                     : Annonce_As_Login
                                         .Add_Annonce_As_Aredy_Login(
                                     region_id: widget._id_region.toString(),
@@ -511,8 +505,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                         title: _titel.text,
                                         description: _description.text,
                                         phone1: _phone1.text,
-                                        abilities: widget.ablity.toString(),
-                                        media: _listimagebase64.toString(),
+                                        abilities: widget.ablity,
+                                        media: _listimagebase64,
                                         floor_type: widget.flooring,
                                         floor: "4",
                                       );
@@ -535,12 +529,13 @@ class _ContactInfoState extends State<ContactInfo> {
                                   print(_titel.text);
                                   print(_description.text);
                                   print(widget.ablity.toString());
+                                  print(_listimagebase64);
                                       //verify=false;
-                                  verify_update=false;
+
                                   Modifier_Annonce.Modifier(
                                     region_id: widget._id_region.toString(),
                                     city_id: widget._id_city.toString(),
-                                    transaction: widget.Property_details.toString(),
+                                    transaction: widget.Property_details,
                                     property_type: widget.categorie.toString(),
                                     status: widget.statut.toString(),
                                     adress: widget.adress.toString(),
@@ -555,8 +550,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                     title: _titel.text.toString(),
                                     description: _description.text.toString(),
                                     phone1: _phone1.text.toString(),
-                                    abilities: [1,2,3,6].toString(),
-                                    media:media,
+                                    abilities: widget.ablity!,
+                                    media:_listimagebase64,
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );

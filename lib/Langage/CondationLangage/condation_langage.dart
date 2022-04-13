@@ -1,13 +1,13 @@
 class CondationLangage {
 
 
- ///Category
+  ///Category
   static String? categorey( String newValue) {
     String? _categorie_select;
     if (newValue == "Appartements" ||
         newValue == "Apartments" ||
         newValue == "شقق") {
-      _categorie_select = "Apartments";
+      _categorie_select = "apartment";
     } else if (newValue == "Chambre" ||
         newValue == "Rooms" ||
         newValue == "غرفة") {
@@ -42,58 +42,60 @@ class CondationLangage {
 
   static String? categorey_put(String _categorie) {
     String? _categorie_select;
-    if (_categorie=="Apartments") {
+    if (_categorie=="apartment") {
       _categorie_select = "Appartements";
     }
     else if (_categorie=="Office Space") {
       _categorie_select = "Bureau";
-     }else if (_categorie=="commercialSpace") {
-      _categorie_select = "Commercial";
-     }else if (_categorie=="Land") {
+    }else if (_categorie=="commercialSpace") {
+      _categorie_select = "commercial";
+    }else if (_categorie=="land") {
       _categorie_select = "Terre";
-     }else if (_categorie=="Riads") {
+    }else if (_categorie=="riad") {
       _categorie_select = "Riad";
-     }else if (_categorie=="Villas") {
+    }else if (_categorie=="villa") {
       _categorie_select = "Villa";
-     }else if (_categorie=="Houses") {
+    }
+    else if (_categorie=="house") {
       _categorie_select = "Maison";
-     }
+    } else if (_categorie=="farm") {
+      _categorie_select = "fermes";
+    }
     return _categorie_select;
   }
   ///Statut
-    static String status(String newValue){
-var _statut;
-      if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
-        _statut="new";
-      }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
-        _statut="good";
-      }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
-        _statut="needRepair";
-      }
-    return _statut;
+  static String status(String newValue){
+    var _statut;
+    if(newValue=="New"||newValue=="Neuf"||newValue=="جديد") {
+      _statut="new";
+    }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
+      _statut="good";
+    }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
+      _statut="needRepair";
     }
-
-    static String? status_put(String status){
- var _statut;
-      if(status=="new") {
-        _statut="Neuf";
-      }else if(status=="good"){
-        _statut="Bon état";
-      }else if(status=="needRepair"){
-        _statut="A besoin de réparation";
-      }else{
-        return null;
-      }
     return _statut;
-    }
+  }
 
-    ///age
+  static String? status_put(String status){
+    var _statut;
+    if(status=="new") {
+      _statut="Neuf";
+    }else if(status=="good"){
+      _statut="Bon état";
+    }else if(status=="needRepair"){
+      _statut="A besoin de réparation";
+    }else{
+      return null;
+    }
+    return _statut;
+  }
+
+  ///age
   static String age(String newValue){
     var _age_select;
     if (newValue == "Moins de 1 ans" ||
         newValue == "Less than 1 year" ||
         newValue == 'أقل من 1 سنة') {
-
       _age_select = "L1";
     } else if (newValue == "1 à 5 ans" ||
         newValue == "1 to 5 years old" ||
@@ -128,11 +130,10 @@ var _statut;
         newValue == 'أكثر من 100 عام') {
       _age_select = "G100";
     }
-
     return _age_select;
   }
 
-  static String age_put(String age){
+  static String? age_put(String age){
     var _age;
     if(age=="L1") {
       _age="Moins de 1 ans";
@@ -154,6 +155,8 @@ var _statut;
       _age="70 à 100 ans";
     }else if(age=="G100"){
       _age="Plus de 100 ans";
+    }else{
+      return null;
     }
     return _age;
   }

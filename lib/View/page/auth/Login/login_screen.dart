@@ -3,7 +3,7 @@ import 'package:roya_immobilie/View/page/auth/Login/components/body.dart';
 
 class LoginScreen extends StatelessWidget {
   var property_type;
-  var categorie;
+  //var categorie;
   var status;
   var adress;
   var region_id;
@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
 
   LoginScreen(
       {this.property_type,
-      this.categorie,
+    //  this.categorie,
       this.status,
       this.adress,
       this.region_id,
@@ -59,8 +59,8 @@ class LoginScreen extends StatelessWidget {
       body: Body(
           region_id: region_id,
           city_id: city_id,
-          transaction:property_type,
-          property_type: categorie,
+          transaction:transaction,
+          property_type: property_type,
           status: status,
           adress: adress,
           quartier: quartier,

@@ -272,7 +272,7 @@ class OnBoardingScreen extends StatelessWidget {
     bodyTextStyle: TextStyle(fontSize: 20),
     //descriptionPadding: EdgeInsets.all(16).copyWith(bottom: 0),
     imagePadding: EdgeInsets.all(24),
-    pageColor: Color.fromARGB(255, 130, 108, 219),
+    pageColor: Colors.white,
   );
 }
 class ButtonWidget extends StatelessWidget {
