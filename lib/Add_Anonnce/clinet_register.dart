@@ -32,7 +32,7 @@ class Annonce_As_SingUp {
     required String? password,
     required String? password_confimation,
     required String? name,
-    required List<int> abilities,
+    required List<dynamic> abilities,
     required List<String> media,
   }) async {
     try {
@@ -131,7 +131,7 @@ class Annonce_As_SingUp {
       print(response.statusCode);
       print(response.body);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         Get.to(const RoutingScreen());
       }
     } catch (e) {

@@ -86,7 +86,7 @@ Map<String,dynamic>lisst={
               'Authorization': 'Bearer $token_global'
             });
         print(response_1.statusCode);
-        if (response_1.statusCode == 200) {
+        if (response_1.statusCode == 201) {
           Get.offAll(RoutingLogin());
         }
       }
@@ -156,8 +156,8 @@ Map<String,dynamic>lisst={
           });
       print(response_1.body);
       print(response_1.statusCode);
-      if (response_1.statusCode == 200) {
-       // Get.to(const RoutingScreen());
+      if (response_1.statusCode == 201) {
+        Get.to(const RoutingScreen());
       }
     } catch (e) {
       print('error ' + e.toString());

@@ -34,7 +34,7 @@ class Body extends StatefulWidget {
   var phone1;
   var phone2;
   List<String>? media;
-  List<int> ?abilities;
+  List<dynamic> ?abilities;
   var transaction;
 
   Body({

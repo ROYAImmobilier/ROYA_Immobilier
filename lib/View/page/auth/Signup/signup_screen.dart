@@ -24,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
   var phone1;
   var phone2;
   var media;
-  var abilities;
+  List<dynamic>? abilities;
   var transaction;
   SignUpScreen(
       {

@@ -25,7 +25,7 @@ class Modifier_Annonce {
     required var title,
     required var description,
     required var phone1,
-    required List<dynamic> abilities,
+    required var abilities,
     required List<String> media,
   }) async {
     try {
@@ -52,7 +52,7 @@ class Modifier_Annonce {
         "description": description,
         "phone1": phone1,
         "abilities": abilities,
-        "media": media,
+        "media":'',
       };
       var body = json.encode(list);
       var response_1 = await http.put(
@@ -67,7 +67,7 @@ class Modifier_Annonce {
           });
       print(response_1.body);
       print(response_1.statusCode);
-      if (response_1.statusCode == 201) {
+      if (response_1.statusCode == 200) {
         verify_update=false;
         // Get.to(const RoutingScreen());
       }

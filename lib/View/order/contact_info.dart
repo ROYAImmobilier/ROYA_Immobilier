@@ -85,6 +85,7 @@ class _ContactInfoState extends State<ContactInfo> {
   File? _file;
   List<File> _listimage = [];
   List<String> _listimagebase64=[] ;
+  List<String> _listimagebase64_com=[] ;
 
 
   choseImage() async {
@@ -98,7 +99,14 @@ class _ContactInfoState extends State<ContactInfo> {
         _listimage.add(_file!);
         _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
       //  print(getData_put["media"][0]["blob"]);
+        if(isLogin){
+          for(int i=0;i<getData_put["media"].length;i++){
+            _listimagebase64_com.add("data:image/jpeg;base64,${getData_put["media"][i]["blob"]}");
+          }for(int i=0;i<_listimagebase64.length;i++){
+            _listimagebase64_com.add(_listimagebase64[i]);
+          }
 
+        }
        // media[0]["blob"]=_listimagebase64!;
     print( media);
       });
@@ -550,8 +558,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                     title: _titel.text.toString(),
                                     description: _description.text.toString(),
                                     phone1: _phone1.text.toString(),
-                                    abilities: widget.ablity!,
-                                    media:_listimagebase64,
+                                    abilities: widget.ablity,
+                                    media:_listimagebase64_com,
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );
