@@ -804,6 +804,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                 return GestureDetector(
                     onTap: () {
                       setState(() {
+
                         colorAbility(data[index].id);
                         for (int i = 0; i < idability.length; i++) {
                           if (data[index].id == idability[i]) {
@@ -814,7 +815,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           }
                         }
                         idability.add(data[index].id);
-                        print(colorAbility(data[index].id));
+                        print(idability.length);
                       });
                     },
                     child: colorAbility(data[index].id)

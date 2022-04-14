@@ -17,8 +17,7 @@ class CondationLangage {
         newValue == "منزل") {
       _categorie_select = "house";
     } else if (newValue == "Villa" ||
-        newValue == "Villa" ||
-        newValue == "فيلا") {
+        newValue == "Villa" ||newValue == "فيلا") {
       _categorie_select = "villa";
     } else if (newValue == "Riad" || newValue == "Riad" || newValue == "رياض") {
       _categorie_select = "riad";

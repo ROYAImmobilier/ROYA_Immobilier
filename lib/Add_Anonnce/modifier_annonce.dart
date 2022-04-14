@@ -26,9 +26,10 @@ class Modifier_Annonce {
     required var description,
     required var phone1,
     required var abilities,
-    required List<String> media,
+    required var media,
   }) async {
     try {
+
       Map<String, dynamic> list = {
         "region_id": region_id,
         "city_id": city_id,
@@ -55,6 +56,8 @@ class Modifier_Annonce {
         "media":'',
       };
       var body = json.encode(list);
+      print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      print(body);
       var response_1 = await http.put(
           Uri.parse(
               'https://dashboard.royaimmo.ma/api/annonces/${getData_put["id"]}'),
@@ -65,14 +68,13 @@ class Modifier_Annonce {
             //HttpHeaders.authorizationHeader:token_1.toString(),
             'Authorization': 'Bearer $token_global'
           });
-      print(response_1.body);
-      print(response_1.statusCode);
+
       if (response_1.statusCode == 200) {
         verify_update=false;
         // Get.to(const RoutingScreen());
       }
     } catch (e) {
-      print('error ' + e.toString());
+
     }
   }
 }

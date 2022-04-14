@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
@@ -36,8 +38,13 @@ class _MyAppState extends State<MyApp> {
     final responseJsoon = json.decode(response.body);
     final responseJson = responseJsoon["data"];
     setState(() {
+      int i =0;
       for (Map user in responseJson) {
         allAnnonce.add(Joke.fromJson(user.cast()));
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        print(allAnnonce[i].cover);
+        i++;
       }});}
 
   getability() async {
@@ -48,9 +55,6 @@ class _MyAppState extends State<MyApp> {
       if (200 == response.statusCode) {
         var a = response.body;
         var b = json.decode(a);
-        print('zzzz :  ');
-        print('zzzz :  ' + b[0]["name"]);
-
         setState(() {
           for (int i = 0; i < b.length; i++) {
             ability.add(
@@ -64,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                 deletedAt: b[i]["deleted_at"].toString(),
               ),
             );
-            print('zzzz :  ' + ability.length.toString());
+
           }
         });
       }
@@ -163,13 +167,15 @@ class OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor:Colors.blue,
-      body: Center(
-        child: CircularProgressIndicator.adaptive(
-          backgroundColor: Colors.white,
-        ),
+    return  Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(child: SvgPicture.asset("assets/icon/logo-roya.svg" , width: 150,height: 150,))
+        ],
       ),
     );
   }
 }
+

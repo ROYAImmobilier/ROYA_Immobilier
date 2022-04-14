@@ -58,6 +58,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     String status=getData_put["status"].toString();
      name_rigion=getNameRegion(getData_put["region_id"]);
      value=name_rigion;
+
     city_stecte=getNameCity(getData_put["city_id"]);
     id_region=getData_put["region_id"];
     _statut=status;

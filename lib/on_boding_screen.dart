@@ -233,15 +233,15 @@ class OnBoardingScreen extends StatelessWidget {
           decoration: getPageDecoration(),
         ),
       ],
-      done: Align(alignment:Alignment.topRight,child: Text('Read', style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white),)),
+      done: Align(alignment:Alignment.topRight,child: Text('Read', style: TextStyle(fontWeight: FontWeight.w600,color: Color.fromARGB(255, 130, 108, 219)),)),
       onDone: () => goToHome(context),
       showSkipButton: true,
-      skip: Align(alignment:Alignment.topLeft,child: Text('Skip',style: TextStyle(color:Colors.white),)),
+     skip: Align(alignment:Alignment.topLeft,child: Text('Skip',style: TextStyle(color:Color.fromARGB(255, 130, 108, 219)),)),
       onSkip: () => goToHome(context),
-      next: Align(alignment:Alignment.topRight,child: Icon(Icons.arrow_forward,color: Colors.white,)),
+      next: Align(alignment:Alignment.topRight,child: Icon(Icons.arrow_forward,color: Color.fromARGB(255, 130, 108, 219),)),
       dotsDecorator: getDotDecoration(),
       onChange: (index) => print('Page $index selected'),
-      globalBackgroundColor: Color.fromARGB(255, 130, 108, 219),
+      globalBackgroundColor: Colors.white,
       //dotsFlex: 0,
      //nextFlex: 0,
       // isProgressTap: false,
@@ -258,9 +258,9 @@ class OnBoardingScreen extends StatelessWidget {
       Center(child: Image.asset(path, width: 350));
 
   DotsDecorator getDotDecoration() => DotsDecorator(
-    color: Colors.white,
-    activeColor:Color(0xffefefef),
-    size: Size(10, 10),
+    color: Color.fromARGB(255, 130, 108, 219),
+    activeColor:Color.fromARGB(255, 46, 34, 106),
+    size: Size(5, 5),
     activeSize: Size(22, 10),
     activeShape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
