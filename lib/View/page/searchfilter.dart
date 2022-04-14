@@ -352,9 +352,9 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                   itemBuilder: (context , i) {
                                     return Card(
                                       child: GestureDetector(
-                                        onTap: (){
-                                          Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
-                                        },
+                                        // onTap: (){
+                                        //   Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
+                                        // },
                                         child: ListTile(
                                           leading: Container(
                                             width: 40.w,

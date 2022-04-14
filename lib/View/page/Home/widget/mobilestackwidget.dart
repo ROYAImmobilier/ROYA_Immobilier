@@ -3,14 +3,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
-
+import 'package:roya_immobilie/Model/repositery.dart';
 import '../../page_details/details.dart';
 import 'listeanonnce.dart';
-class MobileGridView extends StatelessWidget {
+class MobileGridView extends StatefulWidget {
   MobileGridView({required this.data, required this.leng});
 
   var data;
   int leng;
+
+  @override
+  State<MobileGridView> createState() => _MobileGridViewState();
+}
+
+class _MobileGridViewState extends State<MobileGridView> {
+  late List<String>images = [];
+  getdate(int index)async{
+    images = [];
+    var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+    print(k[0]['file_name']);
+    print(k.length.toString());
+    for(int i =0 ; i<k.length;i++){
+      images.add(k[i]['file_name']);
+      print(k[i]['file_name']);
+    }
+    Get.to(Details(
+      images: images,
+      data: widget.data[index],
+    ),);
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -24,7 +46,7 @@ class MobileGridView extends StatelessWidget {
         children:[ GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: leng,
+            itemCount: widget.leng,
             gridDelegate:
             SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 205,
@@ -34,24 +56,16 @@ class MobileGridView extends StatelessWidget {
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5),
             itemBuilder: (BuildContext ctx, index) {
-              return index==leng?
+              return index==widget.leng?
               const SizedBox(height: 200,):
                 GestureDetector(
-                  onTap: () =>
-                      Get.to(Details(
-                        image: data[index]
-                            .cover !=
-                            null
-                            ? data[index].cover
-                            : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                        data: data[index],
-                      )),
+                  onTap: () =>getdate(index),
                   child: test(
-                      data: data[index],
-                      image: data[index]
+                      data: widget.data[index],
+                      image: widget.data[index]
                           .cover !=
                           null
-                          ? data[index].cover
+                          ? widget.data[index].cover
                           : 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg')
               );
             }

@@ -13,14 +13,16 @@ import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/controller.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 import '../../../Model/joke.dart';
+import '../../../cashd_image/image.dart';
 import '../../../data.dart';
 import 'icon_status.dart';
-
+import 'package:roya_immobilie/Model/repositery.dart';
 class Details extends StatefulWidget {
-  late String image;
+  List<String> images ;
+
   var data;
 
-  Details({required this.image, required this.data});
+  Details({required this.images, required this.data});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -29,6 +31,9 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   List<Joke>select = [];
   bool grid = true;
+
+
+
   @override
   Widget build(BuildContext context) {
     var Screenwidth = MediaQuery.of(context).size.width;
@@ -166,20 +171,30 @@ class _DetailsState extends State<Details> {
                                       );
                                     }),),
                           ),
+
                           Container(
-                            margin: EdgeInsets.only(
-                                top: 20.h, right: 20.w, left: 20.w),
-                            height: (MediaQuery.of(context).size.height*0.30).h,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
-                                  fit: BoxFit.fill,
-                                ),
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10.r),
-                                    topRight: Radius.circular(10.r))),
+                              margin: EdgeInsets.only(
+                          top: 20.h, right: 20.w, left: 20.w),
+                              height: (MediaQuery.of(context).size.height*0.30).h,
+                              decoration: BoxDecoration(
+                          // image: DecorationImage(
+                          //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
+                          //   fit: BoxFit.fill,
+                          // ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10.r),
+                              topRight: Radius.circular(10.r))),
+                              child:ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.images.length,
+                                itemBuilder: (context , i)=>Image.network("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[i]),
+                            ),
                           ),
+
+
                           Container(
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
                             height: ScreenSized.Detalistheight(Screenwidth, Screenheight).h,
@@ -451,9 +466,9 @@ class _DetailsState extends State<Details> {
                                 itemCount: allAnnonce.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
-                                      onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
-                                          transition:Transition.zoom ,
-                                          duration: Duration(microseconds: 150)),
+                                      // onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
+                                      //     transition:Transition.zoom ,
+                                      //     duration: Duration(microseconds: 150)),
                                       child: ListView_in_Detalis(data:allAnnonce[index]));
                                 }),
                           ),

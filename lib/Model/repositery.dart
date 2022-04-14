@@ -65,5 +65,23 @@ class jokeRepository {
   }
 
 
+  static Future GetDetiller({required sug})async{
+    var res = await client .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/$sug'));
+    var jsoon = res.body;
+    //var a = json;
+    if (res.statusCode == 200) {
+      var b = json.decode(jsoon);
+      var a = b["data"][0]['media'];
+      var c = json.encode(a);
+
+      return b["data"][0]['media'];
+    } else {
+      var b = json.decode(jsoon);
+      var a = b["data"][0]['media'];
+      return a;
+    }
+  }
+
+
 
 }
