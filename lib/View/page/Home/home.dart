@@ -9,6 +9,7 @@ import 'package:roya_immobilie/View/page/Home/widget/stackwidget_2.dart';
 import '../../../screenSize/screenSized.dart';
 import '../../../varia_ble/variable.dart';
 import '../../routing_screen.dart';
+import '../page_details/details_serche.dart';
 import '../serche_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,6 +39,7 @@ class _HomePageState extends State<HomePage> {
                   height: 40,),),
             actions: [
               GestureDetector(
+
                 onTap: (() => Get.to(Sercher())),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

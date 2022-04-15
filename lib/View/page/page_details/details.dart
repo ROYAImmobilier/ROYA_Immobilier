@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -13,14 +15,16 @@ import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/controller.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 import '../../../Model/joke.dart';
+import '../../../cashd_image/image.dart';
 import '../../../data.dart';
 import 'icon_status.dart';
-
+import 'package:roya_immobilie/Model/repositery.dart';
 class Details extends StatefulWidget {
-  late String image;
+  List<String> images ;
+
   var data;
 
-  Details({required this.image, required this.data});
+  Details({required this.images, required this.data});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -29,6 +33,9 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   List<Joke>select = [];
   bool grid = true;
+
+
+
   @override
   Widget build(BuildContext context) {
     var Screenwidth = MediaQuery.of(context).size.width;
@@ -166,20 +173,76 @@ class _DetailsState extends State<Details> {
                                       );
                                     }),),
                           ),
+
                           Container(
-                            margin: EdgeInsets.only(
-                                top: 20.h, right: 20.w, left: 20.w),
-                            height: (MediaQuery.of(context).size.height*0.30).h,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.image),
-                                  fit: BoxFit.fill,
-                                ),
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10.r),
-                                    topRight: Radius.circular(10.r))),
+                              margin: EdgeInsets.only(
+                          top: 20.h, right: 20.w, left: 20.w),
+                              height: (MediaQuery.of(context).size.height*0.30).h,
+                              decoration: BoxDecoration(
+                          // image: DecorationImage(
+                          //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[0]),
+                          //   fit: BoxFit.fill,
+                          // ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10.r),
+                              topRight: Radius.circular(10.r))),
+                             child: CarouselSlider(
+                                 options: CarouselOptions(
+                                 //  height:    450.h ,
+                                   height: (MediaQuery.of(context).size.height),
+                                   scrollDirection: Axis.horizontal,
+                                   viewportFraction: 0.95,
+                                   initialPage: 0,
+                                   enableInfiniteScroll: true,
+                                   reverse: false,
+                                   autoPlay: false, pageSnapping: true,
+                                   autoPlayCurve: Curves.fastOutSlowIn,
+                                   enlargeCenterPage: true,
+                                   onScrolled: (value) {},
+                                 ),
+                                 items: widget.images
+                                     .map((String slider) => Builder(
+                                   builder: (BuildContext context) {
+                                     return ClipRRect(
+                                       borderRadius:
+                                       const BorderRadius.all(Radius.circular(10)),
+                                       child: Stack(
+                                           children: [
+                                       Container(
+                                      // margin: EdgeInsets.only(top: 50),
+                                       height:
+                                       (MediaQuery.of(context).size.height*0.5).h,
+                                       decoration: const BoxDecoration(
+                                         borderRadius: BorderRadius.all(
+                                             Radius.circular(4.5)),
+                                       ),
+                                       child: ClipRRect(
+                                         borderRadius: const BorderRadius.all(
+                                             Radius.circular(10)),
+                                         child: CachedNetworkImage(
+                                           width: MediaQuery.of(context).size.width,
+                                           fit: BoxFit.fill,
+                                           imageUrl: "https://dashboard.royaimmo.ma/images/annonces/"+slider,
+
+                                           placeholder: (context, url) =>
+                                               Icon(Icons.image),
+                                           errorWidget: (context, url, error) =>
+                                           const Icon(Icons.error),
+                                         ),
+                                       ),
+                                     ),
+
+                                     ],
+                                     ),
+                                     );
+                                   },
+                                 ))
+                                     .toList()),
+
                           ),
+
+
                           Container(
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
                             height: ScreenSized.Detalistheight(Screenwidth, Screenheight).h,
@@ -451,9 +514,9 @@ class _DetailsState extends State<Details> {
                                 itemCount: allAnnonce.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
-                                      onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
-                                          transition:Transition.zoom ,
-                                          duration: Duration(microseconds: 150)),
+                                      // onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
+                                      //     transition:Transition.zoom ,
+                                      //     duration: Duration(microseconds: 150)),
                                       child: ListView_in_Detalis(data:allAnnonce[index]));
                                 }),
                           ),

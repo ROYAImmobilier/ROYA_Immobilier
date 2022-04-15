@@ -149,7 +149,7 @@ class OnBoardingState extends State<OnBoarding> {
 
     if (finishedOnBoarding) {
      Get.offAll(OnBoardingScreen());
-      //Get.to(const RoutingScreen());
+     // Get.to(const RoutingScreen());
     } else {
 
       Get.offAll(OnBoardingScreen());

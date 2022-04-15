@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/joke.dart';
-
+import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
-import 'package:roya_immobilie/View/page/page_details/details_serche.dart';
+
 
 import '../../varia_ble/variable.dart';
 
@@ -31,6 +31,22 @@ class _HomePageState extends State<Sercher> {
       }
     });
   }
+
+  List<String>images=[];
+  // getdate(int index)async{
+  //   var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+  //   print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+  //   print(k[0]['file_name']);
+  //   print(k.length.toString());
+  //   for(int i =0 ; i<k.length;i++){
+  //     images.add(k[i]['file_name']);
+  //     print(k[i]['file_name']);
+  //   }
+  //   Get.to(Details(
+  //     images: images,
+  //     data: widget.data[index],
+  //   ),);
+  // }
 
   @override
   void initState() {
@@ -100,11 +116,11 @@ class _HomePageState extends State<Sercher> {
                       itemBuilder: (context, i) {
                         return GestureDetector(
                           onTap: (() {
-                            Get.to(Details(
-                              data: _searchResult[i], image: _searchResult[i].cover,
-                            ));
-                            print("aaaaaaaa" + _searchResult[i].toString());
-                          }),
+                          //   Get.to(Details(
+                          //     data: _searchResult[i], image: _searchResult[i].cover,
+                          //   ));
+                          //   print("aaaaaaaa" + _searchResult[i].toString());
+                           }),
                           child: ScreenUtilInit(
                               splitScreenMode: true,
                               builder: () {
