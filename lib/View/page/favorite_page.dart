@@ -7,13 +7,33 @@ import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
-
+import 'package:roya_immobilie/Model/repositery.dart';
 import '../../cashd_image/image.dart';
 import '../../varia_ble/variable.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
 
+  @override
+  State<FavoritePage> createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
+  List<String>images=[];
+  // getdate(int index)async{
+  //   var k = await jokeRepository.GetDetiller(sug: controller.cartProductsModel[index].slug);
+  //   print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+  //   print(k[0]['file_name']);
+  //   print(k.length.toString());
+  //   for(int i =0 ; i<k.length;i++){
+  //     images.add(k[i]['file_name']);
+  //     print(k[i]['file_name']);
+  //   }
+  //   Get.to(Details(
+  //     images: images,
+  //     data: widget.data[index],
+  //   ),);
+  // }
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AnnonceController());
@@ -65,9 +85,9 @@ class FavoritePage extends StatelessWidget {
                   itemBuilder: (context, i) {
                     return GestureDetector(
                       onTap: () {
-                        Get.to(Details(
-                            image: controller.cartProductsModel[i].cover,
-                            data: controller.cartProductsModel[i]));
+                        // Get.to(Details(
+                        //     image: controller.cartProductsModel[i].cover,
+                        //     data: controller.cartProductsModel[i]));
                       },
                       child: ScreenUtilInit(
                           splitScreenMode: true,
