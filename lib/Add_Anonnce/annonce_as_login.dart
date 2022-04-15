@@ -87,7 +87,7 @@ Map<String,dynamic>lisst={
             });
         print(response_1.statusCode);
         if (response_1.statusCode == 201) {
-          Get.offAll(RoutingLogin());
+          Get.offAll(RoutingScreen());
         }
       }
     } catch (e) {

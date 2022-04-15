@@ -60,6 +60,8 @@ class ContactInfo extends StatefulWidget {
   String? city;
   @override
   State<ContactInfo> createState() => _ContactInfoState();
+
+
 }
 
 class _ContactInfoState extends State<ContactInfo> {
@@ -438,6 +440,7 @@ class _ContactInfoState extends State<ContactInfo> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.r)),
                           onPressed: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
                             print(widget.Property_details);
                             print(widget.categorie);
                             print(widget.statut);
@@ -463,7 +466,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             if (_key_Contact.currentState!.validate()) {
                               // Get.to(LoginScreen());
 
-                              setState(() {
+                              setState(()  {
                               // verify=false;
                                 isCamindingfrom = true;
 
@@ -540,7 +543,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   print(_listimagebase64);
                                       //verify=false;
 
-                                  Modifier_Annonce.Modifier(
+                                 var x= Modifier_Annonce.Modifier(
                                     region_id: widget._id_region.toString(),
                                     city_id: widget._id_city.toString(),
                                     transaction: widget.Property_details,
@@ -563,6 +566,9 @@ class _ContactInfoState extends State<ContactInfo> {
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );
+                                 if(x=="500"){
+                                   Get.snackbar("update", "success");
+                                 }
                                 }
                                 // postdata(
                                 //     address: widget.adress,
@@ -689,4 +695,6 @@ class _ContactInfoState extends State<ContactInfo> {
       print('error ' + e.toString());
     }
   }
+
+
 }

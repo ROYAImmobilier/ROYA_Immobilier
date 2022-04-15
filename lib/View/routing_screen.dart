@@ -17,8 +17,8 @@ import 'page/searchfilter.dart';
 import 'page/chat_page.dart';
 import 'page/favorite_page.dart';
 
+List<Joke> allAnnonce = [];
 
-List<Joke>allAnnonce = [];
 class RoutingScreen extends StatefulWidget {
   static final id = "RoutingScreen";
 
@@ -29,8 +29,6 @@ class RoutingScreen extends StatefulWidget {
 }
 
 class _RoutingScreenState extends State<RoutingScreen> {
-
-
   // for(int i = 0 ;i<allAnnonce.length ; i++){
   //   for(int j=0; j <Listannonce.length ;j++){
   //     if(allAnnonce[i]==Listannonce[j]){
@@ -40,9 +38,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
   //   }
   //
   // }
-
-
-
 
   // final CityController annonceController = Get.put(CityController());
   int bottomSelectedIndex = 0;
@@ -57,29 +52,12 @@ class _RoutingScreenState extends State<RoutingScreen> {
   void OnbottomTapped(int index) {
     if ((bottomSelectedIndex - index.abs() == 1)) {
       pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 400), curve: Curves.easeOutSine);
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeOutSine);
     } else {
       pageController.jumpToPage(index);
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @override
   void initState() {
@@ -87,26 +65,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
     pageController = PageController();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +74,13 @@ class _RoutingScreenState extends State<RoutingScreen> {
           HomePage(),
           FavoritePage(),
           ChatPage(),
-          isLogin?Profile():LoginScreen(),
+          ChatPage(),
+          isLogin ? Profile() : LoginScreen(),
         ],
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: OnPageChanged);
 
-    return  ScreenUtilInit(
+    return ScreenUtilInit(
       builder: () => Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -137,77 +96,86 @@ class _RoutingScreenState extends State<RoutingScreen> {
             height: 20.h,
             color: Colors.white,
           ),
-          onPressed: ()async {
-            verify_update=false;
-            if(!verify_region_city) {
-              await   ServicesRgion.getUsers().then((regions) {
-                setState(() {
-                  region = regions!;
+          onPressed: () async {
+            verify_update = false;
+            if (!verify_region_city) {
+              await ServicesRgion.getUsers().then(
+                (regions) {
+                  setState(() {
+                    region = regions!;
 
-                  Services.getCity().then((citys) {
-                    setState(() {
-                      //city=null;
-                      listCity = [];
-                      city = citys!;
-                      for (int i = 0; i < city!.length; i++) {
-                        if (1==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_1.add(city![i]);
-
-                        }if (2==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_2.add(city![i]);
-
-                        }if (3==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_3.add(city![i]);
-                        }if (4==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_4.add(city![i]);
-                        }if (5==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_5.add(city![i]);
-                        }if (6==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_6.add(city![i]);
-                        }if (7==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_7.add(city![i]);
-                        }if (8==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_8.add(city![i]);
-                        }if (9==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_9.add(city![i]);
-                        }if (10==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_10.add(city![i]);
-                        }if (11==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_11.add(city![i]);
-                        }if (12==city![i].regionId) {
-                          // id_city=_city![i].id;
-                          // print("id region"+ id_city.toString());
-                          listCity_Region_12.add(city![i]);
+                    Services.getCity().then((citys) {
+                      setState(() {
+                        //city=null;
+                        listCity = [];
+                        city = citys!;
+                        for (int i = 0; i < city!.length; i++) {
+                          if (1 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_1.add(city![i]);
+                          }
+                          if (2 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_2.add(city![i]);
+                          }
+                          if (3 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_3.add(city![i]);
+                          }
+                          if (4 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_4.add(city![i]);
+                          }
+                          if (5 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_5.add(city![i]);
+                          }
+                          if (6 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_6.add(city![i]);
+                          }
+                          if (7 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_7.add(city![i]);
+                          }
+                          if (8 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_8.add(city![i]);
+                          }
+                          if (9 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_9.add(city![i]);
+                          }
+                          if (10 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_10.add(city![i]);
+                          }
+                          if (11 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_11.add(city![i]);
+                          }
+                          if (12 == city![i].regionId) {
+                            // id_city=_city![i].id;
+                            // print("id region"+ id_city.toString());
+                            listCity_Region_12.add(city![i]);
+                          }
                         }
-                      }
-
+                      });
                     });
                   });
-                });
-                verify_region_city=true;
-              },
+                  verify_region_city = true;
+                },
               );
             }
             Get.to(Add_Annonce());
@@ -218,15 +186,15 @@ class _RoutingScreenState extends State<RoutingScreen> {
           iconSize: 20,
           type: BottomNavigationBarType.fixed,
           items: [
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(Icons.home_filled, color: Colors.black54, size: 25),
+                icon: Icon(Icons.home_filled, color: Colors.black54, size: 25.h),
                 label: 'Annonces'),
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               //favor.svg
-              icon: SvgPicture.asset(
-                'assets/icon/annonces/favor.svg',
+              icon:  SvgPicture.asset(
+                'assets/icon/star.svg',
                 color: Colors.black54,
                 width: 25.w,
                 height: 25.h,
@@ -246,7 +214,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: '',
             ),
-
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               icon: SvgPicture.asset(
@@ -257,15 +224,17 @@ class _RoutingScreenState extends State<RoutingScreen> {
               ),
               label: 'Chat',
             ),
-            isLogin?BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: Icon(Icons.person, color: Colors.black54, size: 25),
-              label: 'Profile',
-            ): BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: Icon(Icons.login, color: Colors.black54, size: 25),
-              label: 'Login',
-            ),
+            isLogin
+                ? BottomNavigationBarItem(
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.person, color: Colors.black54, size: 25),
+                    label: 'Profile',
+                  )
+                : BottomNavigationBarItem(
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.login, color: Colors.black54, size: 25),
+                    label: 'Login',
+                  ),
           ],
           onTap: OnbottomTapped,
           selectedItemColor: Color.fromARGB(255, 130, 108, 219),
@@ -274,7 +243,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
         ),
         body: pageView,
       ),
-
     );
   }
 }

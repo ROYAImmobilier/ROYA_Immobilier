@@ -357,7 +357,7 @@ class _ProfileState extends State<Profile> {
                                               autoClose: true,
                                               label: 'Update Annonce',
                                               onPressed: (context) async {
-
+//print(verify_region_city);
                                                 //amar
                                                 getData_put= await  jokeRepository.getdata(id: Poste[index].id.toString());
                                                 print(getData_put);

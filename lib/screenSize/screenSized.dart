@@ -41,7 +41,7 @@ class ScreenSized {
       return 40;
     }
     else {
-      return 30;
+      return 25;
     }
   }
   static double Detalistheight(double screenWidth,double screenheight ){

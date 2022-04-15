@@ -211,20 +211,20 @@ class OnBoardingScreen extends StatelessWidget {
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: 'Featured Books',
-          body: 'Available right at your fingerprints',
+          title: '',
+          body: '',
           image: Image.asset("assets/house.png"),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: 'Simple UI',
-          body: 'For enhanced reading experience',
+          body: '',
           image: Image.asset("assets/house.png",),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: 'Roya',
-          body: 'Start your journey',
+          body: '',
           footer: ButtonWidget(
             text: 'Login',
             onClicked: () => goToHome(context),
@@ -233,7 +233,7 @@ class OnBoardingScreen extends StatelessWidget {
           decoration: getPageDecoration(),
         ),
       ],
-      done: Align(alignment:Alignment.topRight,child: Text('Read', style: TextStyle(fontWeight: FontWeight.w600,color: Color.fromARGB(255, 130, 108, 219)),)),
+      done: Align(alignment:Alignment.topRight,child: Text('Annoce', style: TextStyle(fontWeight: FontWeight.w600,color: Color.fromARGB(255, 130, 108, 219)),)),
       onDone: () => goToHome(context),
       showSkipButton: true,
      skip: Align(alignment:Alignment.topLeft,child: Text('Skip',style: TextStyle(color:Color.fromARGB(255, 130, 108, 219)),)),

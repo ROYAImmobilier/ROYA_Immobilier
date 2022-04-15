@@ -1,7 +1,12 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
+import 'package:roya_immobilie/View/routing_screen.dart';
 
+import '../View/order/contact_info.dart';
+import '../View/routing_login.dart';
 import '../varia_ble/variable.dart';
 
 class Modifier_Annonce {
@@ -53,7 +58,7 @@ class Modifier_Annonce {
         "description": description,
         "phone1": phone1,
         "abilities": abilities,
-        "media":'',
+        "media":media,
       };
       var body = json.encode(list);
       print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -68,10 +73,16 @@ class Modifier_Annonce {
             //HttpHeaders.authorizationHeader:token_1.toString(),
             'Authorization': 'Bearer $token_global'
           });
-
-      if (response_1.statusCode == 200) {
+        print(response_1.statusCode);
+      if (response_1.statusCode == 500) {
+        Get.snackbar("title", "message",);
         verify_update=false;
-        // Get.to(const RoutingScreen());
+        Get.offAll(RoutingScreen());
+      }else if(response_1.statusCode == 200){
+
+       //await ContactInfo.openSnackbar();
+        verify_update=false;
+        Get.offAll(RoutingScreen());
       }
     } catch (e) {
 

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
@@ -180,7 +181,14 @@ class _BodyState extends State<Body> {
                               abilities:widget.abilities,
                               media: widget.media);
                         } else if (!isCamindingfrom) {
-                          await _Login(email: email, password: password);
+                        var x=  await _Login(email: email, password: password,ctx: context);
+                        if(x.toString()!="200"){
+                          Get.snackbar("Error", "User not registered");
+                          setState(() {
+                            progress = false;
+                          });
+
+                        }
                         }
                       }
                     },
@@ -247,9 +255,10 @@ class _BodyState extends State<Body> {
     );
   }
 
-  _Login({
+ Future _Login({
     required var email,
     required var password,
+    required var ctx
   }) async {
 
     try {
@@ -300,20 +309,13 @@ class _BodyState extends State<Body> {
         }
         // print(response_1.body);
         //  Get.to(const HomeC());
+        return response.statusCode;
       } else {
         setState(() {
-          progress = false;
+          progress = true;
         });
-        final snackBar = SnackBar(
-          content: Row(children: const [
-            Icon(
-              Icons.error,
-              color: Colors.white,
-            ),
-            Text('n\'pas regester  ')
-          ]),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        return response.statusCode;
       }
     } catch (e) {
       print('error ' + e.toString());
