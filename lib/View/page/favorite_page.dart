@@ -20,20 +20,20 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   List<String>images=[];
-  // getdate(int index)async{
-  //   var k = await jokeRepository.GetDetiller(sug: controller.cartProductsModel[index].slug);
-  //   print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-  //   print(k[0]['file_name']);
-  //   print(k.length.toString());
-  //   for(int i =0 ; i<k.length;i++){
-  //     images.add(k[i]['file_name']);
-  //     print(k[i]['file_name']);
-  //   }
-  //   Get.to(Details(
-  //     images: images,
-  //     data: widget.data[index],
-  //   ),);
-  // }
+  getdate(int index , sulg , data)async{
+    var k = await jokeRepository.GetDetiller(sug: sulg);
+    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+    print(k[0]['file_name']);
+    print(k.length.toString());
+    for(int i =0 ; i<k.length;i++){
+      images.add(k[i]['file_name']);
+      print(k[i]['file_name']);
+    }
+    Get.to(Details(
+      images: images,
+      data: data[index],
+    ),);
+  }
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AnnonceController());
@@ -41,11 +41,10 @@ class _FavoritePageState extends State<FavoritePage> {
       drawer: DrawerPage(),
         backgroundColor: Color(0xffefefef),
         appBar: AppBar(
-          title:  Center(
-            child: SvgPicture.asset('assets/icon/roya.svg',
-
+          title:   Center(
+            child: SvgPicture.asset('assets/icon/logo-roya.svg',
               width: 40,
-              height: 40,),),
+              height: 40,)),
 
           actions: [
             GestureDetector(
@@ -85,9 +84,12 @@ class _FavoritePageState extends State<FavoritePage> {
                   itemBuilder: (context, i) {
                     return GestureDetector(
                       onTap: () {
-                        // Get.to(Details(
-                        //     image: controller.cartProductsModel[i].cover,
-                        //     data: controller.cartProductsModel[i]));
+                        List<String>images=[] ;
+                        images.add(controller.cartProductsModel[i].cover);
+                        //getdate(i, controller.cartProductsModel[i].sulg, controller.cartProductsModel[i]);
+                        Get.to(Details(
+                            images:images ,
+                            data: controller.cartProductsModel[i]));
                       },
                       child: ScreenUtilInit(
                           splitScreenMode: true,

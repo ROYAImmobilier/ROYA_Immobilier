@@ -99,24 +99,7 @@ class _ProfileState extends State<Profile> {
       builder: () => Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            leading: Padding(
-              padding: EdgeInsets.only(left: 5.w),
-              child: MaterialButton(
-                  minWidth: 40.w,
-                  height: 40.w,
-                  elevation: 6,
-                  onPressed: () {
-                    Get.back();
-                  },
-                  shape: CircleBorder(),
-                  //     color: Colors.white,
-                  padding: EdgeInsets.zero,
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Get.theme.accentColor,
-                    size: 24,
-                  )),
-            ),
+
             elevation: 0.0,
             backgroundColor:  const Color(0xFFDDECF2).withOpacity(0.35),
             title:  Center(

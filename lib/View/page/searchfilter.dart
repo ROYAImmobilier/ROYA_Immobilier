@@ -7,7 +7,7 @@ import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Home/widget/listeanonnce.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/controller.dart';
-
+import 'package:roya_immobilie/Model/repositery.dart';
 import '../../varia_ble/variable.dart';
 import 'Home/home.dart';
 
@@ -29,6 +29,24 @@ class _SearchFiltterState extends State<SearchFiltter> {
   String? searchVille ;
   List<Joke> filtrResulta = [];
   bool show = false ;
+
+  List<String>images=[];
+  getdate(int index )async{
+    var k = await jokeRepository.GetDetiller(sug: filtrResulta[index].slug);
+    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+    print(k[0]['file_name']);
+    print(k.length.toString());
+    for(int i =0 ; i<k.length;i++){
+      images.add(k[i]['file_name']);
+      print(k[i]['file_name']);
+    }
+    Get.to(Details(
+      images: images,
+      data: filtrResulta[index],
+    ),);
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,10 +55,9 @@ class _SearchFiltterState extends State<SearchFiltter> {
     return Scaffold(
           appBar: AppBar(
             title:  Center(
-              child: SvgPicture.asset('assets/icon/roya.svg',
-
-                width: 40,
-                height: 40,),),
+                child: SvgPicture.asset('assets/icon/logo-roya.svg',
+                  width: 40,
+                  height: 40,)),
             backgroundColor: Colors.white,
             elevation: 0,
             leading:Center(
@@ -352,7 +369,9 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                   itemBuilder: (context , i) {
                                     return Card(
                                       child: GestureDetector(
-                                        // onTap: (){
+                                        onTap: (){
+                                        getdate(i);
+                                        },
                                         //   Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
                                         // },
                                         child: ListTile(

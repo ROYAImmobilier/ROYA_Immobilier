@@ -33,20 +33,20 @@ class _HomePageState extends State<Sercher> {
   }
 
   List<String>images=[];
-  // getdate(int index)async{
-  //   var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
-  //   print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-  //   print(k[0]['file_name']);
-  //   print(k.length.toString());
-  //   for(int i =0 ; i<k.length;i++){
-  //     images.add(k[i]['file_name']);
-  //     print(k[i]['file_name']);
-  //   }
-  //   Get.to(Details(
-  //     images: images,
-  //     data: widget.data[index],
-  //   ),);
-  // }
+  getdate(int index)async{
+    var k = await jokeRepository.GetDetiller(sug:_searchResult[index].slug );
+    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+    print(k[0]['file_name']);
+    print(k.length.toString());
+    for(int i =0 ; i<k.length;i++){
+      images.add(k[i]['file_name']);
+      print(k[i]['file_name']);
+    }
+    Get.to(Details(
+      images: images,
+      data: _searchResult[index],
+    ),);
+  }
 
   @override
   void initState() {
@@ -61,10 +61,9 @@ class _HomePageState extends State<Sercher> {
       // backgroundColor: Color(),
       appBar: AppBar(
         title:  Center(
-          child: SvgPicture.asset('assets/icon/roya.svg',
-
-            width: 40,
-            height: 40,),),
+            child: SvgPicture.asset('assets/icon/logo-roya.svg',
+              width: 40,
+              height: 40,)),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -116,6 +115,7 @@ class _HomePageState extends State<Sercher> {
                       itemBuilder: (context, i) {
                         return GestureDetector(
                           onTap: (() {
+                            getdate(i);
                           //   Get.to(Details(
                           //     data: _searchResult[i], image: _searchResult[i].cover,
                           //   ));

@@ -46,11 +46,9 @@ class _HomePageState extends State<HomePage> {
                   child: SvgPicture.asset(
                     'assets/icon/search.svg',
                     width: ScreenSized.IconFiltter(
-                        Screenwidth, Screenheight).w
-                        ,
+                        Screenwidth, Screenheight).w,
                     height: ScreenSized.IconFiltter(
-                        Screenwidth, Screenheight).h
-                        ,
+                        Screenwidth, Screenheight).h,
                     color: Colors.black,
                   ),
                 ),
@@ -62,8 +60,7 @@ class _HomePageState extends State<HomePage> {
                   //menu.svg
                   icon: SvgPicture.asset('assets/icon/menu.svg',
                       width: ScreenSized.IconFiltter(
-                          Screenwidth, Screenheight).w
-                          ,
+                          Screenwidth, Screenheight).w,
                       height: ScreenSized.IconFiltter(
                           Screenwidth, Screenheight).h
                           , matchTextDirection: true),
