@@ -114,7 +114,7 @@ class _ProfileState extends State<Profile> {
                           child: Container(
                             //height: MediaQuery.of(context).size.height/1.9,
                             width: Get.width,
-                            color: const Color(0xFFDDECF2).withOpacity(0.35),
+                            color: const Color(0xFFDDECF2),
                             child: Column(
                               children: [
                                 Padding(
@@ -125,7 +125,7 @@ class _ProfileState extends State<Profile> {
                                     radius: 50.0,
                                     child: CircleAvatar(
                                       backgroundColor:
-                                          Color(0xFFDDECF2).withOpacity(0.35),
+                                      Color(0xFFDDECF2).withOpacity(0.35),
                                       backgroundImage: const NetworkImage(
                                         "https://i.pravatar.cc/",
                                       ),
@@ -135,7 +135,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Column(
                                       children: [
@@ -247,7 +247,7 @@ class _ProfileState extends State<Profile> {
                                 Get.to(DetailleProfile(
                                     data: Poste[index],
                                     image:
-                                        "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}"));
+                                    "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}"));
                               },
                               child: Slidable(
                                 key: UniqueKey(),
@@ -261,15 +261,15 @@ class _ProfileState extends State<Profile> {
                                         onPressed: (context) async {
                                           print(verify_region_city);
                                           if(!verify_region_city)
-                                          await ServicesRgion.getUsers().then(
-                                                (regions) {
-                                              setState(() {
-                                                region = regions!;
-                                                ListCity();
-                                              });
+                                            await ServicesRgion.getUsers().then(
+                                                  (regions) {
+                                                setState(() {
+                                                  region = regions!;
+                                                  ListCity();
+                                                });
 
-                                            },
-                                          );
+                                              },
+                                            );
 //print(verify_region_city);          print
                                           print(Poste[index].id.toString());
                                           //amar
@@ -280,7 +280,7 @@ class _ProfileState extends State<Profile> {
                                           print(getData_put);
                                           if (getData_put.isEmpty) {
                                             Get.snackbar("Error", "Server");
-                                           // Get.to(Add_Annonce());
+                                            // Get.to(Add_Annonce());
                                             reloud();
                                           } else if (!getData_put.isEmpty) {
 
@@ -288,6 +288,7 @@ class _ProfileState extends State<Profile> {
                                                 title: "Modification",
                                                 textCancel: "Cancel",
                                                 textConfirm: "yes",
+                                                middleText: "Are you wante to modifier ?",
                                                 onCancel: () {},
                                                 onConfirm: () {
                                                   Get.to(Add_Annonce());
@@ -303,7 +304,7 @@ class _ProfileState extends State<Profile> {
                                           //delete
                                         },
                                         backgroundColor:
-                                            const Color(0xff5E5480),
+                                        const Color(0xff5E5480),
                                         foregroundColor: Colors.white,
                                         icon: Icons.update,
                                       ),
@@ -311,7 +312,7 @@ class _ProfileState extends State<Profile> {
                                 endActionPane: ActionPane(
                                   motion: const ScrollMotion(),
                                   dismissible:
-                                      DismissiblePane(onDismissed: () async {
+                                  DismissiblePane(onDismissed: () async {
                                     await jokeRepository.deleteitem(
                                         id: Poste[index].id.toString());
                                     setState(() {
@@ -352,20 +353,20 @@ class _ProfileState extends State<Profile> {
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(10),
                                                 bottomLeft:
-                                                    Radius.circular(10)),
+                                                Radius.circular(10)),
                                           ),
                                         ),
                                         Container(
                                           margin: EdgeInsets.only(left: 150.w),
                                           height: 130.h,
                                           width:
-                                              MediaQuery.of(context).size.width,
+                                          MediaQuery.of(context).size.width,
                                           decoration: const BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.only(
                                                 topRight: Radius.circular(10),
                                                 bottomRight:
-                                                    Radius.circular(10)),
+                                                Radius.circular(10)),
                                           ),
                                           child: Stack(
                                             children: [
@@ -374,8 +375,8 @@ class _ProfileState extends State<Profile> {
                                                       top: 10.h, left: 10.w),
                                                   child: Text(
                                                     Poste[index]
-                                                            .price
-                                                            .toString() +
+                                                        .price
+                                                        .toString() +
                                                         ' dh',
                                                     style: TextStyle(
                                                       fontSize: 18.sp,

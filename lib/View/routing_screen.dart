@@ -9,6 +9,7 @@ import 'package:roya_immobilie/Controller/login.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
 import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/auth/Login/profile.dart';
+import 'package:roya_immobilie/View/page/notification_page.dart';
 import '../Model/cityrepo.dart';
 import '../Model/joke.dart';
 import '../varia_ble/variable.dart';
@@ -73,7 +74,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
         children: [
           HomePage(),
           FavoritePage(),
-          ChatPage(),
+          NotificationPage(),
           ChatPage(),
           isLogin ? Profile() : LoginScreen(),
         ],
@@ -84,6 +85,10 @@ class _RoutingScreenState extends State<RoutingScreen> {
       builder: () => Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+
+
+
         floatingActionButton: FloatingActionButton(
           elevation: 1,
           // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(0)),
@@ -202,7 +207,14 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: 'Favoris',
             ),
+
+
+
+
+
+
             BottomNavigationBarItem(
+
               backgroundColor: Colors.white,
               //favor.svg
               icon: SvgPicture.asset(
@@ -214,6 +226,14 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: '',
             ),
+
+
+
+
+
+
+
+
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               icon: SvgPicture.asset(

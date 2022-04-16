@@ -49,7 +49,7 @@ class jokeRepository {
   static Future getdata( {required  id}) async {
     print(id);
     var res = await client
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/${id.toString()}'),headers: {
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces/${id.toString()}'),headers: {
       'Authorization': 'Bearer $token_global'
     });
     var jsoon = res.body;
@@ -62,9 +62,9 @@ class jokeRepository {
    else if (res.statusCode == 200) {
       //print(res.body);
       // print(a[0]['title']);
-      return a["data"];
+      return a["data"][0];
     } else {
-      return getDataFromJson(jsoon);
+      return null;
     }
   }
 

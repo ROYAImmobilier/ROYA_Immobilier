@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:http/http.dart'as http;
+import 'package:roya_immobilie/View/routing_screen.dart';
 import '../../Langage/CondationLangage/condation_langage.dart';
 import '../../Model/city.dart';
 import '../../Model/cityrepo.dart';
@@ -502,47 +503,71 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                           SizedBox(
                             height: 15.h,
                           ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            child: TextButton(
-                              onPressed: () {
-                                print(_Property_details);
-                                print(_categorie_select);
-                                print(_statut);
-                                print(adresse.text);
-                                print(value);
-                                print(city_stecte);
-                                print(quartier_.text);
-                              //  print(city);
-                              if (_keytest.currentState!.validate() &&
-                                    value != null &&
-                                    city != null ) {
-                                 //
-                                  Get.to(Add_Annonce_2(
-                                      Property_details: _Property_details,
-                                      categorie:  _categorie_select,
-                                      statut: _statut,
-                                      adress: adresse.text,
-                                      region: value,
-                                      ville:city_stecte,
-                                      quartier: quartier_.text));
-                                }
-                              },
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    color: Color(0xffbfa280),
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                                padding: EdgeInsets.only(
-                                    top: 10.h, left: 25.w, bottom: 10.h, right: 25.w),
-                                child: Text("Suivant".tr,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14.sp,
-                                    )),
+
+
+                              // Container(
+                              //   alignment: Alignment.topRight,
+                              //   child: TextButton(
+                              //     onPressed: (){
+                              //       Get.offAll(RoutingScreen());
+                              //     },
+                              //     child: Container(
+                              //       decoration: const BoxDecoration(
+                              //           color: Color(0xffbfa280),
+                              //           borderRadius:
+                              //           BorderRadius.all(Radius.circular(10))),
+                              //       padding: EdgeInsets.only(
+                              //           top: 10.h, left: 25.w, bottom: 10.h, right: 25.w),
+                              //       child: Text("Cnacle".tr,
+                              //           style: TextStyle(
+                              //             color: Colors.white,
+                              //             fontSize: 14.sp,
+                              //           )),
+                              //     ),
+                              //   ),
+                              // ),
+                              Container(
+                                alignment: Alignment.topRight,
+                                child: TextButton(
+                                  onPressed: () {
+                                    print(_Property_details);
+                                    print(_categorie_select);
+                                    print(_statut);
+                                    print(adresse.text);
+                                    print(value);
+                                    print(city_stecte);
+                                    print(quartier_.text);
+                                    //  print(city);
+                                    if (_keytest.currentState!.validate() &&
+                                        value != null &&
+                                        city != null ) {
+                                      //
+                                      Get.to(Add_Annonce_2(
+                                          Property_details: _Property_details,
+                                          categorie:  _categorie_select,
+                                          statut: _statut,
+                                          adress: adresse.text,
+                                          region: value,
+                                          ville:city_stecte,
+                                          quartier: quartier_.text));
+                                    }
+                                  },
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xffbfa280),
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                    padding: EdgeInsets.only(
+                                        top: 10.h, left: 25.w, bottom: 10.h, right: 25.w),
+                                    child: Text("Suivant".tr,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14.sp,
+                                        )),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
+
                         ],
                       ),
                     ),
