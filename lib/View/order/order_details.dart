@@ -48,7 +48,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   @override
   void initState() {
     setState(() {
-      if (verify_update) {
+      if (verify_update ) {
         idability = getData_put["abilities"];
         print(getData_put["area"]);
         double x = getData_put["area"] + 0.0;

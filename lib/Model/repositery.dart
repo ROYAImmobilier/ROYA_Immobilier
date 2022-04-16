@@ -47,18 +47,22 @@ class jokeRepository {
     }
   }
   static Future getdata( {required  id}) async {
+    print(id);
     var res = await client
-
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces/${id.toString()}'),headers: {
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/${id.toString()}'),headers: {
       'Authorization': 'Bearer $token_global'
     });
     var jsoon = res.body;
     var a = json.decode(jsoon);
-
-    if (res.statusCode == 200) {
+    print(res.statusCode);
+    print(res.body);
+    if(a.isEmpty){
+      return null;
+    }
+   else if (res.statusCode == 200) {
       //print(res.body);
       // print(a[0]['title']);
-      return a["data"][0];
+      return a["data"];
     } else {
       return getDataFromJson(jsoon);
     }

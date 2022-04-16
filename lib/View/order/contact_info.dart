@@ -128,7 +128,7 @@ class _ContactInfoState extends State<ContactInfo> {
     print("region "+widget._id_region.toString());
     print("city "+widget._id_city.toString());
    setState(() {
-     if(verify_update){
+     if(verify_update && !getData_put.isEmpty){
        _titel.text=getData_put["title"].toString();
        _description.text=getData_put["description"].toString();
        if(getData_put["phone1"]!=null){
