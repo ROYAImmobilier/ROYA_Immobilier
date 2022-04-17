@@ -105,84 +105,16 @@ class _RoutingScreenState extends State<RoutingScreen> {
             verify_update = false;
             if (!verify_region_city) {
               await ServicesRgion.getUsers().then(
-                (regions) {
+                    (regions) {
                   setState(() {
                     region = regions!;
-
-                    Services.getCity().then((citys) {
-                      setState(() {
-                        //city=null;
-                        listCity = [];
-                        city = citys!;
-                        for (int i = 0; i < city!.length; i++) {
-                          if (1 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_1.add(city![i]);
-                          }
-                          if (2 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_2.add(city![i]);
-                          }
-                          if (3 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_3.add(city![i]);
-                          }
-                          if (4 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_4.add(city![i]);
-                          }
-                          if (5 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_5.add(city![i]);
-                          }
-                          if (6 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_6.add(city![i]);
-                          }
-                          if (7 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_7.add(city![i]);
-                          }
-                          if (8 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_8.add(city![i]);
-                          }
-                          if (9 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_9.add(city![i]);
-                          }
-                          if (10 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_10.add(city![i]);
-                          }
-                          if (11 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_11.add(city![i]);
-                          }
-                          if (12 == city![i].regionId) {
-                            // id_city=_city![i].id;
-                            // print("id region"+ id_city.toString());
-                            listCity_Region_12.add(city![i]);
-                          }
-                        }
-                      });
-                    });
+                    ListCity();
                   });
-                  verify_region_city = true;
+
                 },
               );
             }
+
             Get.to(Add_Annonce());
           },
         ),
