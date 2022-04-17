@@ -35,7 +35,7 @@ class CustomDialog extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 40.w),
                     color: Color.fromRGBO(246, 250, 252, 1),
-                    height: 49.h,
+                    height: 60.h,
                     child: Column(
                       children: [
                         Text(
@@ -47,7 +47,7 @@ class CustomDialog extends StatelessWidget {
                               color: Color.fromRGBO(77, 77, 77, 1)),
                         ),
                         Text(
-                          "Sorry !  ",
+                          "Sorry !  ".tr,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 17.sp,
@@ -63,7 +63,7 @@ class CustomDialog extends StatelessWidget {
                     color: Color.fromRGBO(246, 250, 252, 1),
                     height: 93.h,
                     child: Text(
-                      "this feature is not yet available in this version of the application ",
+                      "this feature is not yet available in this version of the application ".tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 15.sp,
@@ -87,14 +87,14 @@ class CustomDialog extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "This feature will be ",
+                              "This feature will be".tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Color.fromRGBO(0, 157, 205, 1)),
                             ),
                             Text(
-                              "available",
+                              "available".tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 24.sp,
@@ -102,7 +102,7 @@ class CustomDialog extends StatelessWidget {
                                   color: Color.fromRGBO(0, 157, 205, 1)),
                             ),
                             Text(
-                              "soon  in the application ",
+                              "soon in the application".tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 11.sp,

@@ -286,9 +286,9 @@ class _ProfileState extends State<Profile> {
 
                                             Get.defaultDialog(
                                                 title: "Modification",
-                                                textCancel: "Cancel",
-                                                textConfirm: "yes",
-                                                middleText: "Are you wante to modifier ?",
+                                                textCancel: "Cancel".tr,
+                                                textConfirm: "yes".tr,
+                                                middleText: "Are you wante to modifier ?".tr,
                                                 onCancel: () {},
                                                 onConfirm: () {
                                                   Get.to(Add_Annonce());

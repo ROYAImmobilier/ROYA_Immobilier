@@ -5,6 +5,7 @@ class Transation extends Translations {
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
         'ar_MA': {
+
           'Property details': 'تفاصيل اوضح',
           'Vente': 'بيع',
           'À location': 'للايجار',
@@ -57,8 +58,22 @@ class Transation extends Translations {
           "Se Déconnecter": 'تسجيل الخروج',
           "Tableau De Bord": 'لوحة القيادة',
           "Select State": 'حالة الملكية',
+          "Home":'الرئيسية',
+          "This feature will be":"هذه الميزة سوف تكون",
+          "available":"متاحة",
+          "soon in the application":"  قريبا في التطبيق",
+          "Sorry !  ":"نحن اسفون !!",
+          "Your Email" : "الايميل",
+          'Login':'تسجيل الدخول',
+          "Don’t have an Account ":"لا أملك حسابا ",
+          "Sign Up":'انشاء حساب',
+          "Are you wante to modifier ?":"هل تريد تعديل هذا الاعلان ؟ ",
+          "Cancel":"الغاء",
+          "yes":"نعم",
+           "this feature is not yet available in this version of the application ":"هذه الميزة غير متوفرة بعد في هذا الإصدار من التطبيق"
         },
         'fr_FR': {
+
           "Select State":  "Select State",
           "Se Déconnecter": 'Se Déconnecter',
           "Tableau De Bord": 'Tableau De Bord',
@@ -110,8 +125,23 @@ class Transation extends Translations {
           'Mes favoris': 'Mes favoris',
           'Se connecter': 'Se connecter',
           'DEPOSER UNE ANNONCE': 'DEPOSER UNE ANNONCE',
+          "This feature will be":"Cette fonctionnalité sera bientôt",
+          "available":"disponible",
+          "soon in the application":"dans l'application",
+          "Sorry !  ":"Nous sommes désolés !  ",
+          "Your Email" : "Your Email",
+          'Login':'Login',
+          "Don’t have an Account ":"Vous n'avez pas de compte",
+          "Sign Up":'Register',
+          "Are you wante to modifier ?":"Are you wante to modifier ?",
+          "Cancel":"Cancel",
+          "yes":"yes",
+          "this feature is not yet available in this version of the application ":"cette fonctionnalité n'est pas encore disponible dans cette version de l'application "
+
+
         },
         'en_US': {
+
           "Select State":  "property status",
           "Se Déconnecter": 'Log Out',
           "Tableau De Bord": 'Dashboard',
@@ -164,7 +194,21 @@ class Transation extends Translations {
           'Choose Your Language': 'Choose Your Language',
           'casablaca': 'casablaca',
           'Langues': 'Langues',
-          'Contactez nous': 'Contactez nous'
-        }
+          'Contactez nous': 'Contactez nous',
+          "Home":"Home",
+          "This feature will be":"This feature will be ",
+          "available":"available",
+          "soon in the application":"soon in the application",
+          "Sorry !  ":"Sorry !  ",
+          "Your Email" : "Your Email",
+          'Login':'Login',
+          "Don’t have an Account ":"Don’t have an Account ",
+          "Sign Up":"Sign Up",
+"Are you wante to modifier ?":"Are you wante to modifier ?",
+"Cancel":"Cancel",
+"yes":"yes",
+          "this feature is not yet available in this version of the application ":"this feature is not yet available in this version of the application "
+
+}
       };
 }

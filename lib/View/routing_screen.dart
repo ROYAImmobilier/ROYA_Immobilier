@@ -194,7 +194,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Icon(Icons.home_filled, color: Colors.black54, size: 25.h),
-                label: 'Annonces'),
+                label: 'Home'.tr),
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               //favor.svg
@@ -205,7 +205,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 height: 25.h,
               ),
 
-              label: 'Favoris',
+              label: 'Mes favoris'.tr,
             ),
 
 
@@ -224,7 +224,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 height: 25.h,
               ),
 
-              label: '',
+              label: 'DEPOSER UNE ANNONCE'.tr,
             ),
 
 
@@ -242,18 +242,18 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 width: 25.w,
                 height: 25.h,
               ),
-              label: 'Chat',
+              label: 'Chat'.tr,
             ),
             isLogin
                 ? BottomNavigationBarItem(
                     backgroundColor: Colors.white,
                     icon: Icon(Icons.person, color: Colors.black54, size: 25),
-                    label: 'Profile',
+                    label: 'Tableau De Bord'.tr,
                   )
                 : BottomNavigationBarItem(
                     backgroundColor: Colors.white,
                     icon: Icon(Icons.login, color: Colors.black54, size: 25),
-                    label: 'Login',
+                    label: 'Se connecter'.tr,
                   ),
           ],
           onTap: OnbottomTapped,

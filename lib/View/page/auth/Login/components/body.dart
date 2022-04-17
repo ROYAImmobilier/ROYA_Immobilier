@@ -114,7 +114,7 @@ class _BodyState extends State<Body> {
               ),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
-                hintText: "Your Email",
+                hintText: "Your Email".tr,
                 onChanged: (value) {
                   setState(() {
                     email = value;
@@ -136,8 +136,8 @@ class _BodyState extends State<Body> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(29),
                   child: ElevatedButton(
-                    child: const Text(
-                      'Login',
+                    child:  Text(
+                      'Login'.tr,
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
@@ -207,8 +207,8 @@ class _BodyState extends State<Body> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
-                    "Don’t have an Account ",
+                   Text(
+                    "Don’t have an Account ".tr,
                     style: TextStyle(color: kPrimaryColor),
                   ),
                   GestureDetector(
@@ -238,8 +238,8 @@ class _BodyState extends State<Body> {
                           media: widget.media
                       ));
                     },
-                    child: const Text(
-                      "Sign Up",
+                    child:  Text(
+                      "Sign Up".tr,
                       style: TextStyle(
                         color: kPrimaryColor,
                         fontWeight: FontWeight.bold,
