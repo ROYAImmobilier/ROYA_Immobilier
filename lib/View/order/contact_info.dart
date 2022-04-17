@@ -140,11 +140,13 @@ class _ContactInfoState extends State<ContactInfo> {
        if(getData_put["phone3"]!=null){
          _phone1.text=getData_put["phone3"].toString();
        }
-     //  print(getData_put["covar"]);
+       print("dddddddddddddddddddddddddddddddddddddddddddd");
+       print(getData_put["covar"]);
      }
    });
     super.initState();
   }
+
  int getRegionid(String name){
     late int id;
     for (int i=0;i<region!.length;i++){
@@ -173,6 +175,7 @@ class _ContactInfoState extends State<ContactInfo> {
   //  print("base64");
    // print(_listimagebase64);
     // print(widget.ablity.toString());
+
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
@@ -366,8 +369,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                           onPressed: () {
                                             setState(() {
                                               choseImage();
-                                              print(
-                                                  "adzgdsjhfgshdfvbsd,gfbdgng");
+
                                             });
                                           },
                                           icon: const Icon(
