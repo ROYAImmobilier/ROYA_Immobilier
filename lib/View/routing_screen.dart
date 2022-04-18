@@ -103,12 +103,12 @@ class _RoutingScreenState extends State<RoutingScreen> {
           ),
           onPressed: () async {
             verify_update = false;
-            if (!verify_region_city) {
-              await ServicesRgion.getUsers().then(
-                    (regions) {
-                  setState(() {
-                    region = regions!;
-                    ListCity();
+    if (!verify_region_city) {
+    await ServicesRgion.getUsers().then(
+    (regions) {
+    setState(() {
+    region = regions!;
+    ListCity();
                   });
 
                 },
@@ -156,7 +156,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 height: 25.h,
               ),
 
-              label: 'DEPOSER UNE ANNONCE'.tr,
+              label: 'Vender'.tr,
             ),
 
 
@@ -178,15 +178,15 @@ class _RoutingScreenState extends State<RoutingScreen> {
             ),
             isLogin
                 ? BottomNavigationBarItem(
-                    backgroundColor: Colors.white,
-                    icon: Icon(Icons.person, color: Colors.black54, size: 25),
-                    label: 'Tableau De Bord'.tr,
-                  )
+              backgroundColor: Colors.white,
+              icon: Icon(Icons.person, color: Colors.black54, size: 25),
+              label: 'Bord'.tr,
+            )
                 : BottomNavigationBarItem(
-                    backgroundColor: Colors.white,
-                    icon: Icon(Icons.login, color: Colors.black54, size: 25),
-                    label: 'Se connecter'.tr,
-                  ),
+              backgroundColor: Colors.white,
+              icon: Icon(Icons.login, color: Colors.black54, size: 25),
+              label: 'Compte'.tr,
+            ),
           ],
           onTap: OnbottomTapped,
           selectedItemColor: Color.fromARGB(255, 130, 108, 219),
@@ -198,13 +198,3 @@ class _RoutingScreenState extends State<RoutingScreen> {
     );
   }
 }
-//
-// isLogin?BottomNavigationBarItem(
-// backgroundColor: Colors.white,
-// icon: Icon(Icons.person, color: Colors.black54, size: 25),
-// label: 'Profile',
-// ): BottomNavigationBarItem(
-// backgroundColor: Colors.white,
-// icon: Icon(Icons.login, color: Colors.black54, size: 25),
-// label: 'Login',
-// ),

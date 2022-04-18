@@ -50,32 +50,32 @@ class Annonce_As_Login {
         isLogin = true;
         print("test" + response.body);
 
-Map<String,dynamic>lisst={
-  "region_id": region_id,
-  "city_id": city_id,
-  "transaction": transaction,
-  "property_type": property_type,
-  "transaction": transaction,
-  "property_type": property_type,
-  "status": status,
-  "address": address,
-  "quartier": quartier,
-  "area": area,
-  "price": price,
-  "age": age,
-  "floor_type": floor_type,
-  "floor": floor,
-  "apartment": apartment,
-  "bedrooms": bedrooms,
-  "bathrooms": bathrooms,
-  "kitchens": kitchens,
-  "title": title,
-  "description": description,
-  "phone1": phone1,
-  "abilities": abilities,
-  "media": media,
-};
-      var body=json.encode(lisst);
+        Map<String,dynamic>lisst={
+          "region_id": region_id,
+          "city_id": city_id,
+          "transaction": transaction,
+          "property_type": property_type,
+          "transaction": transaction,
+          "property_type": property_type,
+          "status": status,
+          "address": address,
+          "quartier": quartier,
+          "area": area,
+          "price": price,
+          "age": age,
+          "floor_type": floor_type,
+          "floor": floor,
+          "apartment": apartment,
+          "bedrooms": bedrooms,
+          "bathrooms": bathrooms,
+          "kitchens": kitchens,
+          "title": title,
+          "description": description,
+          "phone1": phone1,
+          "abilities": abilities,
+          "media": media,
+        };
+        var body=json.encode(lisst);
         var response_1 = await http.post(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
             body: body,
@@ -85,6 +85,7 @@ Map<String,dynamic>lisst={
               'Accept': 'application/json',
               'Authorization': 'Bearer $token_global'
             });
+        print(response_1.body);
         print(response_1.statusCode);
         if (response_1.statusCode == 201) {
           Get.offAll(RoutingScreen());
@@ -144,14 +145,15 @@ Map<String,dynamic>lisst={
         "abilities": abilities,
         "media": media,
       };
-    var  body=json.encode(list);
+
+      var  body=json.encode(list);
+      print(body);
       var response_1 = await http.post(
           Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
           body: body,
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
-            //HttpHeaders.authorizationHeader:token_1.toString(),
             'Authorization': 'Bearer $token_global'
           });
       print(response_1.body);

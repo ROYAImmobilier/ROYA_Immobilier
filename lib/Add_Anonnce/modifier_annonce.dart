@@ -30,8 +30,8 @@ class Modifier_Annonce {
     required var title,
     required var description,
     required var phone1,
-    required var abilities,
-    required var media,
+    required List<dynamic> abilities,
+    required List<String> media,
   }) async {
     try {
 
