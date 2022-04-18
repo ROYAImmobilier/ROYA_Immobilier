@@ -62,7 +62,6 @@ class _RoutingLoginState extends State<RoutingLogin> {
         children: [
           HomePage(),
           FavoritePage(),
-
           ChatPage(),
           Profile(),
         ],

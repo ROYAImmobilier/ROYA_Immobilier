@@ -178,10 +178,10 @@ class _BodyState extends State<Body> {
                               phone1: widget.phone1,
                               email: email,
                               password: password,
-                              abilities:widget.abilities,
+                              abilities:widget.abilities!,
                               media: widget.media);
                         } else if (!isCamindingfrom) {
-                        var x=  await _Login(email: email, password: password,ctx: context);
+                        var x=  await _Login(email: email, password: password);
                         if(x.toString()!="200"){
                           Get.snackbar("Error", "User not registered");
                           setState(() {
@@ -258,7 +258,6 @@ class _BodyState extends State<Body> {
  Future _Login({
     required var email,
     required var password,
-    required var ctx
   }) async {
 
     try {

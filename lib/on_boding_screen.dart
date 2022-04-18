@@ -207,19 +207,19 @@ class OnBoardingScreen extends StatelessWidget {
         PageViewModel(
           title: 'Roya',
           body: 'Roya Immobilier est active dans le domaine Achat & vente de biens immobiliers propres.',
-          image: Image.asset("assets/house.png"),
+          image: Image.asset("assets/logo-roya.png"),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: '',
           body: '',
-          image: Image.asset("assets/house.png"),
+          image: Image.asset("assets/images/img1.jpg"),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: 'Simple UI',
           body: '',
-          image: Image.asset("assets/house.png",),
+          image: Image.asset("assets/images/img2.jpg",),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
@@ -229,7 +229,7 @@ class OnBoardingScreen extends StatelessWidget {
             text: 'Login',
             onClicked: () => goToHome(context),
           ),
-          image:Image.asset("assets/house.png"),
+          image:Image.asset("assets/images/img3.jpg"),
           decoration: getPageDecoration(),
         ),
       ],

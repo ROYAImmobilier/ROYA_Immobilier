@@ -135,7 +135,7 @@ class _BodyState extends State<Body> {
                     {
                       return 'Please a Enter';
                     }
-                    if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(val)){
+                    if(!RegExp("^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val)){
                       return 'Please a valid Email';
                     }
                     return null;
