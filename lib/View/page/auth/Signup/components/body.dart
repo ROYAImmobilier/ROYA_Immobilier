@@ -68,6 +68,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+
   var _key_signup = GlobalKey<FormState>();
   var emaill = TextEditingController();
   var _name = TextEditingController();
@@ -130,6 +131,7 @@ class _BodyState extends State<Body> {
               // ),
               TextFieldContainer(
                 child: TextFormField(
+
                   validator: ( val){
                     if(val!.isEmpty)
                     {
@@ -147,7 +149,7 @@ class _BodyState extends State<Body> {
                       Icons.email,
                       color: kPrimaryColor,
                     ),
-                    hintText: "Your Name",
+                    hintText: "Your Email",
                     border: InputBorder.none,
 
                   ),

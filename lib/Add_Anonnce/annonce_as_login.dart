@@ -76,6 +76,7 @@ class Annonce_As_Login {
           "media": media,
         };
         var body=json.encode(lisst);
+        print(body);
         var response_1 = await http.post(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
             body: body,

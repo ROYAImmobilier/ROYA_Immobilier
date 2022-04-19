@@ -4,20 +4,25 @@ import 'package:roya_immobilie/View/page/auth/components/text_field_container.da
 import '../../../../varia_ble/variable.dart';
 
 
-class RoundedPasswordFieldSignup extends StatelessWidget {
+class RoundedPasswordFieldSignup extends StatefulWidget {
  var password=TextEditingController();
  var password_2=TextEditingController();
 
  RoundedPasswordFieldSignup(this.password, this.password_2);
 
+  @override
+  State<RoundedPasswordFieldSignup> createState() => _RoundedPasswordFieldSignupState();
+}
 
-
+class _RoundedPasswordFieldSignupState extends State<RoundedPasswordFieldSignup> {
+  bool isvesible=true;
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [TextFieldContainer(
         child: TextFormField(
-          controller: password,
+          controller: widget.password,
           validator: (val){
             if(val!.isEmpty){
               return "entre voter password";
@@ -30,49 +35,51 @@ class RoundedPasswordFieldSignup extends StatelessWidget {
             }
           },
 
-          obscureText: true,
+          obscureText: isvesible,
           cursorColor: kPrimaryColor,
-          decoration: const InputDecoration(
+          decoration:  InputDecoration(
             hintText: "Password",
             icon: Icon(
               Icons.lock,
               color: kPrimaryColor,
             ),
-            suffixIcon: Icon(
-              Icons.visibility,
-              color: kPrimaryColor,
-            ),
+            suffixIcon:  IconButton(
+                color: kPrimaryColor, icon:isvesible==true?  const Icon(Icons.visibility):const Icon(Icons.visibility_off), onPressed: () {
+              setState(() {
+                isvesible=!isvesible;
+              });}),
             border: InputBorder.none,
           ),
         ),
       ),
         TextFieldContainer(
           child: TextFormField(
-             controller:password_2 ,
+             controller:widget.password_2 ,
             validator: (val){
               if(val!.isEmpty)
               {
                 return 'Please re-enter password';
               }
-              print(password.text);
-             print(password_2.text);
-                if(password.text!=password_2.text){
+              print(widget.password.text);
+             print(widget.password_2.text);
+                if(widget.password.text!=widget.password_2.text){
                   return "Password does not match";
                 }
               return null;
             },
-            obscureText: true,
+            obscureText: isvesible,
             cursorColor: kPrimaryColor,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               hintText: "Password",
               icon: Icon(
                 Icons.lock,
                 color: kPrimaryColor,
               ),
-              suffixIcon: Icon(
-                Icons.visibility,
-                color: kPrimaryColor,
-              ),
+              suffixIcon: IconButton(
+    color: kPrimaryColor, icon:isvesible==true?  const Icon(Icons.visibility):const Icon(Icons.visibility_off), onPressed: () {
+    setState(() {
+      isvesible=!isvesible;
+    });}),
               border: InputBorder.none,
             ),
           ),

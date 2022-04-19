@@ -72,15 +72,15 @@ class CustomDialog extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 93.h,
+                    height: 100.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
                           "assets/icon/logo-roya.svg",
-                          width: 49.0.h,
-                          height: 49.0.h,
+                          width: 46.0.h,
+                          height:46.0.h,
                           // color: Color(0xFFB3B3B3),
                         ),
                         Column(

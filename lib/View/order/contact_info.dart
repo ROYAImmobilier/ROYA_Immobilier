@@ -90,33 +90,42 @@ class _ContactInfoState extends State<ContactInfo> {
   List<String> _listimagebase64_com=[] ;
 
 
-  choseImage() async {
-    try {
-      final pickedFile =
-      await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (pickedFile == null) return;
-      final imageTemporary = File(pickedFile.path);
-      setState(() {
-        _file = imageTemporary;
-        _listimage.add(_file!);
-        _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
-        //  print(getData_put["media"][0]["blob"]);
-        // if(isLogin){
-        //   for(int i=0;i<getData_put["media"].length;i++){
-        //     _listimagebase64_com.add("data:image/jpeg;base64,${getData_put["media"][i]["blob"]}");
-        //   }for(int i=0;i<_listimagebase64.length;i++){
-        //     _listimagebase64_com.add(_listimagebase64[i]);
-        //   }
-        //
-        // }
-        // media[0]["blob"]=_listimagebase64!;
-        print( media);
-      });
-    } catch (e) {
-      print(e);
-    }
 
+  final ImagePicker imagePicker = ImagePicker();
+  List<XFile>? imageFileList = [];
+
+  void choseImage() async {
+    var imageTemporary;
+    final List<XFile>? selectedImages = await
+    imagePicker.pickMultiImage();
+    if (selectedImages!.isNotEmpty) {
+      imageFileList!.addAll(selectedImages);
+
+    }
+    for(int i=0;i<imageFileList!.length;i++)
+      imageTemporary = File(imageFileList![i].path);
+    _file=imageTemporary;
+    _listimage.add(_file!);
+    _listimage.length;
+    print("Image List Length:" + _listimage.length.toString());
+    print("Image List Length:" + imageFileList!.length.toString());
+    setState((){});
   }
+  // choseImage() async {
+  //   try {
+  //     final pickedFile =
+  //     await ImagePicker().pickImage(source: getMultiImage.gallery);
+  //     if (pickedFile == null) return;
+  //     final imageTemporary = File(pickedFile.path);
+  //       _file = imageTemporary;
+  //       _listimage.add(_file!);
+  //       _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
+  //
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //
+  // }
 
 
 
@@ -237,7 +246,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Description :',
+                                  'Description :'.tr,
                                   style: TextStyle(fontSize: 13.sp),
                                 )),
                             const SizedBox(
@@ -268,7 +277,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Phone 1 :',
+                                  'Phone 1 :'.tr,
                                   style: TextStyle(fontSize: 13.sp),
                                 )),
                             SizedBox(
@@ -299,7 +308,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Phone 2 :',
+                                  'Phone 2 :'.tr,
                                   style: TextStyle(fontSize: 13.sp),
                                 )),
                             const SizedBox(
@@ -324,7 +333,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Phone 3 :',
+                                  'Phone 3 :'.tr,
                                   style: TextStyle(fontSize: 13.sp),
                                 )),
                             const SizedBox(
@@ -348,7 +357,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Upload image(jpg-png-jpeg)',
+                                  'Upload image(jpg-png-jpeg)'.tr,
                                   style: TextStyle(fontSize: 13.sp),
                                 )),
                             SizedBox(
@@ -366,8 +375,6 @@ class _ContactInfoState extends State<ContactInfo> {
                                           onPressed: () {
                                             setState(() {
                                               choseImage();
-                                              print(
-                                                  "adzgdsjhfgshdfvbsd,gfbdgng");
                                             });
                                           },
                                           icon: const Icon(
@@ -380,19 +387,17 @@ class _ContactInfoState extends State<ContactInfo> {
                                       itemCount:verify_update==false? _listimage.length:getData_put["media"].length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
-                                        print(verify);
-                                        //  print("tes"+getData_put["media"].length.toString());
+                                        print(verify_update);
+
                                         return SizedBox(
-                                          height: 75,
+                                          height: 250,
                                           child: Row(children: [
-
                                             verify_update==false? Image.file(
-                                              _listimage[i],
-                                              width: 100,
-                                              height: 100,
-                                              fit: BoxFit.cover,
-                                            ):Image.memory((const Base64Decoder().convert(getData_put["media"][i]["blob"].toString())
-
+                                           _listimage[i],
+                                            width: 100,
+                                            height: 250,
+                                            fit: BoxFit.cover,
+                                              ):Image.memory((const Base64Decoder().convert(getData_put["media"][i]["blob"].toString())
                                             ),
                                               fit: BoxFit.cover,
                                               width: 100,
