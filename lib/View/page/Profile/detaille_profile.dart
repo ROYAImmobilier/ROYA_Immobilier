@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../screenSize/screenSized.dart';
+
 class DetailleProfile extends StatefulWidget {
   late String image;
   var data;
@@ -18,6 +20,8 @@ class _DetailleProfileState extends State<DetailleProfile> {
 
   @override
   Widget build(BuildContext context) {
+    var Screenwidth = MediaQuery.of(context).size.width;
+    var Screenheight = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
         builder: ()  {
         return Scaffold(
@@ -54,7 +58,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                 ),
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                  height: 110.h,
+                  height: ScreenSized.ProfileDetalse(Screenwidth,Screenheight),
                   decoration: BoxDecoration(
                       color: Color(0xffc7c2d8),
                       borderRadius: BorderRadius.only(
@@ -174,11 +178,12 @@ class _DetailleProfileState extends State<DetailleProfile> {
                       )),
                   child: Text(
                     widget.data.title,
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 24,),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
                       margin: EdgeInsets.all(25),

@@ -100,6 +100,16 @@ class ScreenSized {
     else {
       return 70;
     }
+  }static double ProfileDetalse(double screenWidth,double screenheight ){
+    if( screenWidth < 385 && screenheight<600){
+      //print("ttt"+ screenWidth.toString());
+      return 100;
+    }else if( screenWidth>800){
+      return 120;
+    }
+    else {
+      return 120;
+    }
   }
 
 }

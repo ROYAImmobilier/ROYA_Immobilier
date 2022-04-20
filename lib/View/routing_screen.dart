@@ -85,10 +85,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
       builder: () => Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-
-
-
         floatingActionButton: FloatingActionButton(
           elevation: 1,
           // shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(0)),
@@ -103,14 +99,13 @@ class _RoutingScreenState extends State<RoutingScreen> {
           ),
           onPressed: () async {
             verify_update = false;
-    if (!verify_region_city) {
-    await ServicesRgion.getUsers().then(
-    (regions) {
-    setState(() {
-    region = regions!;
-    ListCity();
+            if (!verify_region_city) {
+              await ServicesRgion.getUsers().then(
+                (regions) {
+                  setState(() {
+                    region = regions!;
+                    ListCity();
                   });
-
                 },
               );
             }
@@ -125,28 +120,22 @@ class _RoutingScreenState extends State<RoutingScreen> {
           items: [
             BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(Icons.home_filled, color: Colors.black54, size: 25.h),
+                icon:
+                    Icon(Icons.home_filled, color: Colors.black54, size: 25.h),
                 label: 'Home'.tr),
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               //favor.svg
-              icon:  SvgPicture.asset(
+              icon: SvgPicture.asset(
                 'assets/icon/star.svg',
                 color: Colors.black54,
                 width: 25.w,
                 height: 25.h,
               ),
 
-              label: 'Mes favoris'.tr,
+              label: 'favoris'.tr,
             ),
-
-
-
-
-
-
             BottomNavigationBarItem(
-
               backgroundColor: Colors.white,
               //favor.svg
               icon: SvgPicture.asset(
@@ -158,14 +147,6 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: 'Vender'.tr,
             ),
-
-
-
-
-
-
-
-
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               icon: SvgPicture.asset(
@@ -178,15 +159,15 @@ class _RoutingScreenState extends State<RoutingScreen> {
             ),
             isLogin
                 ? BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: Icon(Icons.person, color: Colors.black54, size: 25),
-              label: 'Bord'.tr,
-            )
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.person, color: Colors.black54, size: 25),
+                    label: 'Bord'.tr,
+                  )
                 : BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: Icon(Icons.login, color: Colors.black54, size: 25),
-              label: 'Compte'.tr,
-            ),
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.login, color: Colors.black54, size: 25),
+                    label: 'Compte'.tr,
+                  ),
           ],
           onTap: OnbottomTapped,
           selectedItemColor: Color.fromARGB(255, 130, 108, 219),
