@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
-import 'package:roya_immobilie/RouteScreen/routeScreen.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/on_boding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,7 +28,9 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
 List<Ability> ability = [];
+
 class _MyAppState extends State<MyApp> {
   List<Joke> Listannonce = [];
   Future<void> getUserDetails() async {
@@ -38,14 +38,16 @@ class _MyAppState extends State<MyApp> {
     final responseJsoon = json.decode(response.body);
     final responseJson = responseJsoon["data"];
     setState(() {
-      int i =0;
+      int i = 0;
       for (Map user in responseJson) {
         allAnnonce.add(Joke.fromJson(user.cast()));
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
         print(allAnnonce[i].cover);
         i++;
-      }});}
+      }
+    });
+  }
 
   getability() async {
     print("e.");
@@ -68,7 +70,6 @@ class _MyAppState extends State<MyApp> {
                 deletedAt: b[i]["deleted_at"].toString(),
               ),
             );
-
           }
         });
       }
@@ -81,18 +82,18 @@ class _MyAppState extends State<MyApp> {
     getUserDetails();
     getability();
   }
+
   @override
   Widget build(BuildContext context) {
-    return
-      GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-    //  initialBinding: Binding(),
+      //  initialBinding: Binding(),
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-    home: OnBoarding(),
-    // initialRoute: RouteScreen.getHomepage(),
-    //     getPages: RouteScreen.route,
+      home: OnBoarding(),
+      // initialRoute: RouteScreen.getHomepage(),
+      //     getPages: RouteScreen.route,
     );
   }
 }
@@ -133,8 +134,6 @@ class _TestaState extends State<Testa> {
 }*/
 
 class OnBoarding extends StatefulWidget {
-
-
   @override
   State createState() {
     return OnBoardingState();
@@ -142,40 +141,39 @@ class OnBoarding extends StatefulWidget {
 }
 
 class OnBoardingState extends State<OnBoarding> {
-
   Future hasFinishedOnBoarding() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
 
     if (finishedOnBoarding) {
-     Get.offAll(OnBoardingScreen());
-     // Get.to(const RoutingScreen());
+      Get.offAll(OnBoardingScreen());
+      // Get.to(const RoutingScreen());
     } else {
-
       Get.offAll(OnBoardingScreen());
     }
-
   }
 
   @override
   void initState() {
-
-
     super.initState();
     hasFinishedOnBoarding();
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child: SvgPicture.asset("assets/icon/logo-roya.svg" , width: 150,height: 150,))
+          Center(
+              child: SvgPicture.asset(
+            "assets/icon/logo-roya.svg",
+            width: 150,
+            height: 150,
+          ))
         ],
       ),
     );
   }
 }
-

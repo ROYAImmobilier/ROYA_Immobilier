@@ -58,7 +58,7 @@ class CondationLangage {
     else if (_categorie=="house") {
       _categorie_select = "Maison";
     } else if (_categorie=="farm") {
-      _categorie_select = "fermes";
+      _categorie_select = "Fermes";
     }
     return _categorie_select;
   }

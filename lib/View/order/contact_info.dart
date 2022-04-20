@@ -14,7 +14,6 @@ import '../../varia_ble/variable.dart';
 import '../page/auth/Login/login_screen.dart';
 import 'order_details.dart';
 
-
 class ContactInfo extends StatefulWidget {
   String? Property_details;
   String? categorie;
@@ -28,6 +27,7 @@ class ContactInfo extends StatefulWidget {
   int? kichens;
   late int _id_region;
   late int _id_city;
+  bool addimage=false;
 
   List<dynamic>? ablity;
 
@@ -60,8 +60,6 @@ class ContactInfo extends StatefulWidget {
   String? city;
   @override
   State<ContactInfo> createState() => _ContactInfoState();
-
-
 }
 
 class _ContactInfoState extends State<ContactInfo> {
@@ -86,91 +84,81 @@ class _ContactInfoState extends State<ContactInfo> {
   String error = 'Error';
   File? _file;
   List<File> _listimage = [];
-  List<String> _listimagebase64=[] ;
-  List<String> _listimagebase64_com=[] ;
-
-
+  List<String> _listimagebase64 = [];
+  List<String> _listimagebase64_com = [];
 
   final ImagePicker imagePicker = ImagePicker();
   List<XFile>? imageFileList = [];
 
   void choseImage() async {
     var imageTemporary;
-    final List<XFile>? selectedImages = await
-    imagePicker.pickMultiImage();
+    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
     if (selectedImages!.isNotEmpty) {
       imageFileList!.addAll(selectedImages);
-
     }
-    for(int i=0;i<imageFileList!.length;i++)
+    for (int i = 0; i < imageFileList!.length; i++) {
       imageTemporary = File(imageFileList![i].path);
-    _file=imageTemporary;
-    _listimage.add(_file!);
-    _listimage.length;
-    print("Image List Length:" + _listimage.length.toString());
-    print("Image List Length:" + imageFileList!.length.toString());
-    setState((){});
+      _file = imageTemporary;
+      _listimage.add(_file!);
+      _listimagebase64.add(
+          "${base64Encode(_file!.readAsBytesSync())}");
+    }
+
+    setState(() {
+      widget.addimage=true;
+    for(int i=0;i<_listimagebase64.length;i++){
+          _listimagebase64_com.add(_listimagebase64[i]);
+        }
+
+
+    });
   }
-  // choseImage() async {
-  //   try {
-  //     final pickedFile =
-  //     await ImagePicker().pickImage(source: getMultiImage.gallery);
-  //     if (pickedFile == null) return;
-  //     final imageTemporary = File(pickedFile.path);
-  //       _file = imageTemporary;
-  //       _listimage.add(_file!);
-  //       _listimagebase64.add("data:image/jpeg;base64,${base64Encode(_file!.readAsBytesSync())}");
-  //
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  //
-  // }
-
-
 
   @override
   void initState() {
-
-    widget._id_region=getRegionid(widget.region_1!);
-    widget._id_city=getCityid(widget.city!);
-    print("region "+widget._id_region.toString());
-    print("city "+widget._id_city.toString());
+    widget._id_region = getRegionid(widget.region_1!);
+    widget._id_city = getCityid(widget.city!);
+    print("region " + widget._id_region.toString());
+    print("city " + widget._id_city.toString());
     setState(() {
-      if(verify_update){
-        _titel.text=getData_put["title"].toString();
-        _description.text=getData_put["description"].toString();
-        if(getData_put["phone1"]!=null){
-          _phone1.text=getData_put["phone1"].toString();
+      if (verify_update) {
+        _titel.text = getData_put["title"].toString();
+        _description.text = getData_put["description"].toString();
+        if (getData_put["phone1"] != null) {
+          _phone1.text = getData_put["phone1"].toString();
         }
-        if(getData_put["phone2"]!=null){
-          _phone1.text=getData_put["phone2"].toString();
+        if (getData_put["phone2"] != null) {
+          _phone1.text = getData_put["phone2"].toString();
         }
-        if(getData_put["phone3"]!=null){
-          _phone1.text=getData_put["phone3"].toString();
+        if (getData_put["phone3"] != null) {
+          _phone1.text = getData_put["phone3"].toString();
         }
-        //  print(getData_put["covar"]);
-      }
+        for(int i=0;i<getData_put["media"].length;i++){
+          _listimagebase64_com.add("${getData_put["media"][i]["blob"]}");
+        }
+            }
     });
+
+
     super.initState();
   }
-  int getRegionid(String name){
-    late int id;
-    for (int i=0;i<region!.length;i++){
-      if(name==region![i].regionName){
-        id= region![i].id;
-      }
 
+  int getRegionid(String name) {
+    late int id;
+    for (int i = 0; i < region!.length; i++) {
+      if (name == region![i].regionName) {
+        id = region![i].id;
+      }
     }
     return id;
   }
-  int getCityid(String name){
-    late int id;
-    for (int i=0;i<listCity.length;i++){
-      if(name==listCity[i].cityName){
-        id= listCity[i].id;
-      }
 
+  int getCityid(String name) {
+    late int id;
+    for (int i = 0; i < listCity.length; i++) {
+      if (name == listCity[i].cityName) {
+        id = listCity[i].id;
+      }
     }
     return id;
   }
@@ -185,10 +173,12 @@ class _ContactInfoState extends State<ContactInfo> {
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
-          title: SvgPicture.asset('assets/icon/logo-roya.svg',
+          title: SvgPicture.asset(
+            'assets/icon/logo-roya.svg',
             //color: Colors.white,
             width: 40,
-            height: 40,),
+            height: 40,
+          ),
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           elevation: 0,
@@ -209,7 +199,7 @@ class _ContactInfoState extends State<ContactInfo> {
                   Container(
                     child: Padding(
                       padding:
-                      EdgeInsets.only(left: 12.w, right: 12.w, top: 15.h),
+                          EdgeInsets.only(left: 12.w, right: 12.w, top: 15.h),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -366,12 +356,11 @@ class _ContactInfoState extends State<ContactInfo> {
                             SizedBox(
                               height: 100.h,
                               child: SingleChildScrollView(
-                                scrollDirection:  Axis.horizontal,
+                                scrollDirection: Axis.horizontal,
                                 child: Row(children: [
                                   Card(
                                       color: Colors.cyan,
                                       child: IconButton(
-
                                           onPressed: () {
                                             setState(() {
                                               choseImage();
@@ -384,29 +373,50 @@ class _ContactInfoState extends State<ContactInfo> {
                                   ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount:verify_update==false? _listimage.length:getData_put["media"].length,
+                                      itemCount: verify_update == false
+                                          ? _listimage.length
+                                          : _listimagebase64_com.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, i) {
                                         print(verify_update);
 
-                                        return SizedBox(
-                                          height: 250,
-                                          child: Row(children: [
-                                            verify_update==false? Image.file(
-                                           _listimage[i],
-                                            width: 100,
+                                        return GestureDetector(
+                                          onLongPress:(){
+                                            setState(() {
+                                              _listimage.removeAt(i);
+                                            });
+
+                                          },
+                                          child: SizedBox(
                                             height: 250,
-                                            fit: BoxFit.cover,
-                                              ):Image.memory((const Base64Decoder().convert(getData_put["media"][i]["blob"].toString())
-                                            ),
-                                              fit: BoxFit.cover,
-                                              width: 100,
-                                              height: 100,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            )
-                                          ]),
+                                            child: Row(children: [
+                                              verify_update == false
+                                                  ? Image.file(
+                                                      _listimage[i],
+                                                      width: 100,
+                                                      height: 250,
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                  : Image.memory(
+                                                      (const Base64Decoder()
+                                                          .convert(
+                                                              _listimagebase64_com[i]
+                                                                  .toString())),
+                                                      fit: BoxFit.cover,
+                                                      width: 100,
+                                                      height: 100,
+                                                    ),
+                                                  // verify_update==true && widget.addimage==true?Image.file(
+                                                  //   _listimage[i],
+                                                  //   width: 100,
+                                                  //   height: 100,
+                                                  //   fit: BoxFit.cover,
+                                                  // ):SizedBox(width: 5,),
+                                              const SizedBox(
+                                                width: 5,
+                                              )
+                                            ]),
+                                          ),
                                         );
                                       }),
                                 ]),
@@ -456,7 +466,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             print(widget.area);
                             print(widget.price);
                             print(widget.age);
-                            print("ferf "+widget.flooring.toString());
+                            print("ferf " + widget.flooring.toString());
                             print(widget.bedroms);
                             print(widget.bathrooms);
                             print(widget.kichens);
@@ -471,62 +481,65 @@ class _ContactInfoState extends State<ContactInfo> {
                             if (_key_Contact.currentState!.validate()) {
                               // Get.to(LoginScreen());
 
-                              setState(()  {
+                              setState(() {
                                 // verify=false;
                                 isCamindingfrom = true;
 
                                 //
                                 // //  Get.to(LoginScreen());
-                                if(!verify_update) {
+                                if (!verify_update) {
                                   print("8761");
                                   isLogin == false
                                       ? Get.to(LoginScreen(
-                                      region_id: widget._id_region.toString(),
-                                      city_id: widget._id_city.toString(),
-                                      transaction: widget.Property_details,
-                                      property_type: widget.categorie,
-                                      status: widget.statut,
-                                      adress: widget.adress,
-                                      quartier: widget.quartier,
-                                      area: widget.area,
-                                      price: widget.price,
-                                      age: widget.age,
-                                      floor_type: widget.flooring,
-                                      floor: "4",
-                                      apartment: "1",
-                                      bedrooms: widget.bedroms,
-                                      bathrooms: widget.bathrooms,
-                                      kitchens: widget.kichens,
-                                      title: _titel.text,
-                                      description: _description.text,
-                                      phone1: _phone1.text,
-                                      abilities: widget.ablity,
-                                      media: _listimagebase64))
+                                          region_id:
+                                              widget._id_region.toString(),
+                                          city_id: widget._id_city.toString(),
+                                          transaction: widget.Property_details,
+                                          property_type: widget.categorie,
+                                          status: widget.statut,
+                                          adress: widget.adress,
+                                          quartier: widget.quartier,
+                                          area: widget.area,
+                                          price: widget.price,
+                                          age: widget.age,
+                                          floor_type: widget.flooring,
+                                          floor: "4",
+                                          apartment: "1",
+                                          bedrooms: widget.bedroms,
+                                          bathrooms: widget.bathrooms,
+                                          kitchens: widget.kichens,
+                                          title: _titel.text,
+                                          description: _description.text,
+                                          phone1: _phone1.text,
+                                          abilities: widget.ablity,
+                                          media: _listimagebase64))
                                       : Annonce_As_Login
-                                      .Add_Annonce_As_Aredy_Login(
-                                    region_id: widget._id_region.toString(),
-                                    city_id: widget._id_city.toString(),
-                                    transaction: widget.Property_details,
-                                    property_type: widget.categorie,
-                                    status: widget.statut,
-                                    adress: widget.adress,
-                                    quartier: widget.quartier,
-                                    area: widget.area,
-                                    price: widget.price,
-                                    age: widget.age,
-                                    apartment: "1",
-                                    bedrooms: widget.bedroms.toString(),
-                                    bathrooms: widget.bathrooms.toString(),
-                                    kitchens: widget.kichens.toString(),
-                                    title: _titel.text,
-                                    description: _description.text,
-                                    phone1: _phone1.text,
-                                    abilities: widget.ablity!,
-                                    media: _listimagebase64,
-                                    floor_type: widget.flooring,
-                                    floor: "4",
-                                  );
-                                }else{
+                                          .Add_Annonce_As_Aredy_Login(
+                                          region_id:
+                                              widget._id_region.toString(),
+                                          city_id: widget._id_city.toString(),
+                                          transaction: widget.Property_details,
+                                          property_type: widget.categorie,
+                                          status: widget.statut,
+                                          adress: widget.adress,
+                                          quartier: widget.quartier,
+                                          area: widget.area,
+                                          price: widget.price,
+                                          age: widget.age,
+                                          apartment: "1",
+                                          bedrooms: widget.bedroms.toString(),
+                                          bathrooms:
+                                              widget.bathrooms.toString(),
+                                          kitchens: widget.kichens.toString(),
+                                          title: _titel.text,
+                                          description: _description.text,
+                                          phone1: _phone1.text,
+                                          abilities: widget.ablity!,
+                                          media: _listimagebase64,
+                                          floor_type: widget.flooring,
+                                          floor: "4",
+                                        );
+                                } else {
                                   print("876");
                                   print(widget.Property_details);
                                   print(widget.categorie);
@@ -548,7 +561,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   print(_listimagebase64);
                                   //verify=false;
 
-                                  var x= Modifier_Annonce.Modifier(
+                                  var x = Modifier_Annonce.Modifier(
                                     region_id: widget._id_region.toString(),
                                     city_id: widget._id_city.toString(),
                                     transaction: widget.Property_details,
@@ -567,11 +580,11 @@ class _ContactInfoState extends State<ContactInfo> {
                                     description: _description.text.toString(),
                                     phone1: _phone1.text.toString(),
                                     abilities: widget.ablity!,
-                                    media:_listimagebase64_com,
+                                    media: _listimagebase64_com,
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );
-                                  if(x=="500"){
+                                  if (x == "500") {
                                     Get.snackbar("update", "success");
                                   }
                                 }
@@ -631,32 +644,32 @@ class _ContactInfoState extends State<ContactInfo> {
 
   postdata(
       {required String? region_id,
-        required String? city_id,
-        required String? transaction,
-        required String? property_type,
-        required String? status,
-        required String? address,
-        required String? quartier,
-        required String? area,
-        required String? price,
-        required String? age,
-        required String? floor_type,
-        required String? floor,
-        required String? apartment,
-        required String? bedrooms,
-        required String? bathrooms,
-        required String? kitchens,
-        required String? title,
-        required String? description,
-        required String? phone1,
-        required String? phone2,
-        required String? name,
-        required String? email,
-        required String? password,
-        required String? confirmation_password,
-        required abilities,
-        required media,
-        String? phone3}) async {
+      required String? city_id,
+      required String? transaction,
+      required String? property_type,
+      required String? status,
+      required String? address,
+      required String? quartier,
+      required String? area,
+      required String? price,
+      required String? age,
+      required String? floor_type,
+      required String? floor,
+      required String? apartment,
+      required String? bedrooms,
+      required String? bathrooms,
+      required String? kitchens,
+      required String? title,
+      required String? description,
+      required String? phone1,
+      required String? phone2,
+      required String? name,
+      required String? email,
+      required String? password,
+      required String? confirmation_password,
+      required abilities,
+      required media,
+      String? phone3}) async {
     try {
       var response = await http.post(
           Uri.parse(
@@ -700,6 +713,4 @@ class _ContactInfoState extends State<ContactInfo> {
       print('error ' + e.toString());
     }
   }
-
-
 }

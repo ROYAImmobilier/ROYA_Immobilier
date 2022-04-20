@@ -211,25 +211,21 @@ class OnBoardingScreen extends StatelessWidget {
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: '',
-          body: '',
-          image: Image.asset("assets/images/img1.jpg"),
-          decoration: getPageDecoration(),
-        ),
-        PageViewModel(
           title: 'Simple UI',
           body: '',
-          image: Image.asset("assets/images/img2.jpg",),
+          image: Image.asset("assets/images/img2.jpg",height: 400,),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
+
           title: 'Roya',
           body: '',
+
           footer: ButtonWidget(
             text: 'Login',
             onClicked: () => goToHome(context),
           ),
-          image:Image.asset("assets/images/img3.jpg"),
+          image:Image.asset("assets/images/img3.jpg",height: 400),
           decoration: getPageDecoration(),
         ),
       ],
