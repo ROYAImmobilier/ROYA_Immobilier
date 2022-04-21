@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -19,9 +19,10 @@ import '../../../cashd_image/image.dart';
 import '../../../data.dart';
 import 'icon_status.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
-class Details extends StatefulWidget {
-  List<String> images ;
 
+class Details extends StatefulWidget {
+  List<String> images;
+  int activeindex = 0;
   var data;
 
   Details({required this.images, required this.data});
@@ -31,10 +32,8 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  List<Joke>select = [];
+  List<Joke> select = [];
   bool grid = true;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +43,20 @@ class _DetailsState extends State<Details> {
     return ScreenUtilInit(
         builder: () => Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                title:  Center(
-                  child: SvgPicture.asset('assets/icon/logo-roya.svg',
-                    width: 40,
-                    height: 40,),),
-
-                  leading:IconButton(
-                    onPressed:()=>Get.back() ,icon: Icon
-                    (Icons.arrow_back_ios_sharp) , color: Colors.blue,)
-              ),
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  title: Center(
+                    child: SvgPicture.asset(
+                      'assets/icon/logo-roya.svg',
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
+                  leading: IconButton(
+                    onPressed: () => Get.back(),
+                    icon: Icon(Icons.arrow_back_ios_sharp),
+                    color: Colors.blue,
+                  )),
               body: Directionality(
                 textDirection: TextDirection.ltr,
                 child: ListView(children: [
@@ -78,7 +80,6 @@ class _DetailsState extends State<Details> {
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
@@ -101,157 +102,195 @@ class _DetailsState extends State<Details> {
                                     topRight: Radius.circular(10.r),
                                     topLeft: Radius.circular(10.r))),
                             width: MediaQuery.of(context).size.width.toDouble(),
-                            height: (MediaQuery.of(context).size.height*0.15).h,
+                            height:
+                                (MediaQuery.of(context).size.height * 0.15).h,
                             child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: 15.h, left: 2.w, right: 2.w),
-                                child: ListView.builder(
-                                    itemCount: dataCategory.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, i) {
-                                      return
-                                         GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              select=[];
-                                              for(int k=0 ;k<allAnnonce.length;k++){
-                                                if(dataCategory[i].name==("All")){
-                                                  select.add(allAnnonce[k]);
-                                                }
-                                               else if(allAnnonce[k].propertyType.contains(dataCategory[i].name)){
-                                                  select.add(allAnnonce[k]);
-                                                }
-                                              }
-                                              Get.to(CategoryItems(icon: dataCategory[i].icon, title: dataCategory[i].name, data: select, leng: select.length));
-
-
-                                            });
-
-
-                                          },
-
-
-                                          child: Padding(
-                                            padding:  EdgeInsets.only(right: 5.w,left: 5.w),                                            child: Row(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
+                              padding: EdgeInsets.only(
+                                  top: 15.h, left: 2.w, right: 2.w),
+                              child: ListView.builder(
+                                  itemCount: dataCategory.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, i) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          select = [];
+                                          for (int k = 0;
+                                              k < allAnnonce.length;
+                                              k++) {
+                                            if (dataCategory[i].name ==
+                                                ("All")) {
+                                              select.add(allAnnonce[k]);
+                                            } else if (allAnnonce[k]
+                                                .propertyType
+                                                .contains(
+                                                    dataCategory[i].name)) {
+                                              select.add(allAnnonce[k]);
+                                            }
+                                          }
+                                          Get.to(CategoryItems(
+                                              icon: dataCategory[i].icon,
+                                              title: dataCategory[i].name,
+                                              data: select,
+                                              leng: select.length));
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            right: 5.w, left: 5.w),
+                                        child: Row(
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
                                                   CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
+                                              mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor: Colors.white,
-                                                      radius: ScreenSized.Avatar(
+                                              children: [
+                                                CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  radius: ScreenSized.Avatar(
                                                           Screenwidth,
-                                                          Screenheight).h,
-                                                      child: SvgPicture.asset(
-                                                          dataCategory[i].icon,
-                                                          width: 20.w,
-                                                          height: 20.h,
-                                                          color: Color(0xffC0A280)),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10.h,
-                                                    ),
-                                                    Text(
-                                                      dataCategory[i].name.tr,
-                                                      style: TextStyle(
-                                                        fontSize: 12.sp,
-                                                        color: Color(0xff8a8a8a),
+                                                          Screenheight)
+                                                      .h,
+                                                  child: SvgPicture.asset(
+                                                      dataCategory[i].icon,
+                                                      width: 20.w,
+                                                      height: 20.h,
+                                                      color: Color(0xffC0A280)),
+                                                ),
+                                                SizedBox(
+                                                  height: 10.h,
+                                                ),
+                                                Text(
+                                                  dataCategory[i].name.tr,
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: Color(0xff8a8a8a),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: 10.w,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ),
+                          Stack(
+                              alignment: Alignment.center,
+                              children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                  top: 20.h, right: 20.w, left: 20.w),
+                              height:
+                                  (MediaQuery.of(context).size.height * 0.30).h,
+                              decoration: BoxDecoration(
+                                  // image: DecorationImage(
+                                  //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[0]),
+                                  //   fit: BoxFit.fill,
+                                  // ),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10.r),
+                                      topRight: Radius.circular(10.r))),
+                              child: CarouselSlider(
+                                  options: CarouselOptions(
+                                    //  height:    450.h ,
+                                    height:
+                                        (MediaQuery.of(context).size.height),
+                                    scrollDirection: Axis.horizontal,
+                                    viewportFraction: 1,
+                                    initialPage: 0,
+                                    enableInfiniteScroll: false,
+                                    reverse: false,
+                                    autoPlay: false,
+                                    pageSnapping: true,
+                                    autoPlayCurve: Curves.fastOutSlowIn,
+                                    enlargeCenterPage: true,
+                                    onPageChanged: (value, res) {
+                                      setState(() {
+                                        widget.activeindex = value;
+                                      });
+                                    },
+                                  ),
+                                  items: widget.images
+                                      .map((String slider) => Builder(
+                                            builder: (BuildContext context) {
+                                              return ClipRRect(
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(10.r),
+                                                    topRight:
+                                                        Radius.circular(10.r)),
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                      // margin: EdgeInsets.only(top: 50),
+                                                      height: (MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.5)
+                                                          .h,
+                                                      // decoration: const BoxDecoration(
+                                                      // //   borderRadius: BorderRadius.all(
+                                                      // //       Radius.circular(4.5)),
+                                                      // ),
+                                                      child: ClipRRect(
+                                                        // borderRadius: const BorderRadius.all(
+                                                        //     Radius.circular(10)),
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          width: MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .width,
+                                                          fit: BoxFit.fill,
+                                                          imageUrl:
+                                                              "https://dashboard.royaimmo.ma/images/annonces/" +
+                                                                  slider,
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              Icon(Icons.image),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              const Icon(
+                                                                  Icons.error),
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
-                                                  width: 10.w,
-                                                ),
-                                              ],
+                                              );
+                                            },
+                                          ))
+                                      .toList()),
+                            ),
+                            Positioned(
+                              child: BuldeIndector(),
+                             // top: 0,
+                             // right: 0,
+                             // left: MediaQuery.of(context).size.width.toDouble()/2,
+                              bottom: 5,
+                            ),
 
-                                        ),
-                                          ),
-                                      );
-                                    }),),
-                          ),
-
-                          Container(
-                              margin: EdgeInsets.only(
-                          top: 20.h, right: 20.w, left: 20.w),
-                              height: (MediaQuery.of(context).size.height*0.30).h,
-                              decoration: BoxDecoration(
-                          // image: DecorationImage(
-                          //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[0]),
-                          //   fit: BoxFit.fill,
-                          // ),
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10.r),
-                              topRight: Radius.circular(10.r))),
-                             child: CarouselSlider(
-                                 options: CarouselOptions(
-                                 //  height:    450.h ,
-                                   height: (MediaQuery.of(context).size.height),
-                                   scrollDirection: Axis.horizontal,
-                                   viewportFraction: 0.95,
-                                   initialPage: 0,
-                                   enableInfiniteScroll: true,
-                                   reverse: false,
-                                   autoPlay: false, pageSnapping: true,
-                                   autoPlayCurve: Curves.fastOutSlowIn,
-                                   enlargeCenterPage: true,
-                                   onScrolled: (value) {},
-                                 ),
-                                 items: widget.images
-                                     .map((String slider) => Builder(
-                                   builder: (BuildContext context) {
-                                     return ClipRRect(
-                                       borderRadius:
-                                       const BorderRadius.all(Radius.circular(10)),
-                                       child: Stack(
-                                           children: [
-                                       Container(
-                                      // margin: EdgeInsets.only(top: 50),
-                                       height:
-                                       (MediaQuery.of(context).size.height*0.5).h,
-                                       decoration: const BoxDecoration(
-                                         borderRadius: BorderRadius.all(
-                                             Radius.circular(4.5)),
-                                       ),
-                                       child: ClipRRect(
-                                         borderRadius: const BorderRadius.all(
-                                             Radius.circular(10)),
-                                         child: CachedNetworkImage(
-                                           width: MediaQuery.of(context).size.width,
-                                           fit: BoxFit.fill,
-                                           imageUrl: "https://dashboard.royaimmo.ma/images/annonces/"+slider,
-
-                                           placeholder: (context, url) =>
-                                               Icon(Icons.image),
-                                           errorWidget: (context, url, error) =>
-                                           const Icon(Icons.error),
-                                         ),
-                                       ),
-                                     ),
-
-                                     ],
-                                     ),
-                                     );
-                                   },
-                                 ))
-                                     .toList()),
-
-                          ),
-
-
+                          ]),
                           Container(
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                            height: ScreenSized.Detalistheight(Screenwidth, Screenheight).h,
+                            height: ScreenSized.Detalistheight(
+                                    Screenwidth, Screenheight)
+                                .h,
                             decoration: BoxDecoration(
                                 color: Color(0xffc7c2d8),
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(10.r),
                                     bottomRight: Radius.circular(10.r))),
                             child: Column(children: [
+                              // Align(child: BuldeIndector(),alignment: Alignment.bottomCenter,),
                               Row(
                                 children: [
                                   Container(
@@ -265,7 +304,8 @@ class _DetailsState extends State<Details> {
                                     ),
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                           // alignment: Alignment.topLeft,
@@ -274,8 +314,8 @@ class _DetailsState extends State<Details> {
                                           child: Text(
                                               "${widget.data.advertiser}")),
                                       Container(
-                                        padding:
-                                            EdgeInsets.only(top: 3.h, left: 10.w),
+                                        padding: EdgeInsets.only(
+                                            top: 3.h, left: 10.w),
                                         child: const Text(
                                           "Membre depuis 2 Mois",
                                           style: TextStyle(color: Colors.grey),
@@ -285,7 +325,7 @@ class _DetailsState extends State<Details> {
                                   )
                                 ],
                               ),
-                               SizedBox(
+                              SizedBox(
                                 height: 5.h,
                               ),
                               Row(
@@ -309,9 +349,9 @@ class _DetailsState extends State<Details> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                         Text(
+                                        Text(
                                           "SEND MESSAGE",
-                                           style: TextStyle(fontSize: 13.sm),
+                                          style: TextStyle(fontSize: 13.sm),
                                         ),
                                       ],
                                     ),
@@ -335,8 +375,9 @@ class _DetailsState extends State<Details> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                         Text(
-                                          "SHOW NUMBER",style: TextStyle(fontSize: 13.sm),
+                                        Text(
+                                          "SHOW NUMBER",
+                                          style: TextStyle(fontSize: 13.sm),
                                         ),
                                       ],
                                     ),
@@ -352,7 +393,7 @@ class _DetailsState extends State<Details> {
                           Container(
                             alignment: Alignment.center,
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                           // height: 50.h,
+                            // height: 50.h,
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
@@ -377,7 +418,6 @@ class _DetailsState extends State<Details> {
                           Padding(
                             padding: const EdgeInsets.all(25.0),
                             child: Row(
-
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Row(children: [
@@ -385,7 +425,7 @@ class _DetailsState extends State<Details> {
                                     'assets/icon/annonces/bed-sharp.svg',
                                     width: 20.w,
                                     height: 20.h,
-                                 //   matchTextDirection: true,
+                                    //   matchTextDirection: true,
                                     color: Color(0xff8a8a8a),
                                   ),
                                   SizedBox(
@@ -401,7 +441,7 @@ class _DetailsState extends State<Details> {
                                     'assets/icon/annonces/bathroom.svg',
                                     width: 20.w,
                                     height: 20.h,
-                                   // matchTextDirection: true,
+                                    // matchTextDirection: true,
                                     color: Color(0xff8a8a8a),
                                   ),
                                   SizedBox(
@@ -417,7 +457,7 @@ class _DetailsState extends State<Details> {
                                     'assets/icon/m.svg',
                                     width: 20.w,
                                     height: 20.h,
-                                  //  matchTextDirection: true,
+                                    //  matchTextDirection: true,
                                     color: const Color(0xff8a8a8a),
                                   ),
                                   SizedBox(
@@ -425,7 +465,8 @@ class _DetailsState extends State<Details> {
                                   ),
                                   Text(
                                     "${widget.data.area} m²",
-                                    style: const TextStyle(color: Color(0xff8a8a8a)),
+                                    style: const TextStyle(
+                                        color: Color(0xff8a8a8a)),
                                   )
                                 ]),
                               ],
@@ -441,7 +482,8 @@ class _DetailsState extends State<Details> {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                      width: 2.w, color: const Color(0xff8a8a8a)),
+                                      width: 2.w,
+                                      color: const Color(0xff8a8a8a)),
                                 ),
                               )),
                           Container(
@@ -476,18 +518,18 @@ class _DetailsState extends State<Details> {
                                       width: 2.w, color: Color(0xff8a8a8a)),
                                 ),
                               )),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Container(
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
                             alignment: Alignment.topLeft,
-                            child:  Text(
+                            child: Text(
                               'Description',
                               style: TextStyle(fontSize: 25.sp),
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Container(
@@ -495,13 +537,13 @@ class _DetailsState extends State<Details> {
                             alignment: Alignment.topLeft,
                             child: Text(widget.data.description),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Container(
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
                             alignment: Alignment.topLeft,
-                            child:  Text(
+                            child: Text(
                               'Autre Annonces',
                               style: TextStyle(fontSize: 25.sp),
                             ),
@@ -517,10 +559,11 @@ class _DetailsState extends State<Details> {
                                       // onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
                                       //     transition:Transition.zoom ,
                                       //     duration: Duration(microseconds: 150)),
-                                      child: ListView_in_Detalis(data:allAnnonce[index]));
+                                      child: ListView_in_Detalis(
+                                          data: allAnnonce[index]));
                                 }),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 20.h,
                           ),
                         ],
@@ -531,4 +574,16 @@ class _DetailsState extends State<Details> {
               ),
             ));
   }
+
+  Widget BuldeIndector() => AnimatedSmoothIndicator(
+        count: widget.images.length,
+        activeIndex: widget.activeindex,
+    effect:  WormEffect(
+        dotHeight: 16,
+        dotWidth: 16,
+        type: WormType.thin,
+        // strokeWidth: 5,
+      ),
+
+      );
 }

@@ -6,14 +6,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
 import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
+import '../../../../Model/repositery.dart';
 import '../../../../cashd_image/image.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../Profile/detaille_profile.dart';
 import 'components/body.dart';
-import '../../../../Model/repositery.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);

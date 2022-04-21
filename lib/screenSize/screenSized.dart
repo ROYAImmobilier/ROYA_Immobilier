@@ -32,7 +32,7 @@ class ScreenSized {
   static double Avatar(double screenWidth,double screenheight ){
     if( screenWidth < 385 && screenheight<600){
       //print("ttt"+ screenWidth.toString());
-      return 20;
+      return 15;
     }
     else if( screenWidth<600 && screenWidth>400){
       return 25;

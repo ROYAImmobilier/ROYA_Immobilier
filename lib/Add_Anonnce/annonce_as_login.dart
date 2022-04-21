@@ -32,7 +32,7 @@ class Annonce_As_Login {
     required String? email,
     required String? password,
     required var abilities,
-    required var media,
+    required var media,required phone2,required phone3,
   }) async {
     try {
       var response = await http.post(
@@ -118,7 +118,7 @@ class Annonce_As_Login {
     required var description,
     required var phone1,
     required var abilities,
-    required var media,
+    required var media, var phone2, var phone3,
   }) async {
     try {
       Map<String,dynamic> list={
@@ -157,7 +157,7 @@ class Annonce_As_Login {
             'Accept': 'application/json',
             'Authorization': 'Bearer $token_global'
           });
-      print(response_1.body);
+         print("tes" +response_1.body);
       print(response_1.statusCode);
       if (response_1.statusCode == 201) {
        return response_1.statusCode;

@@ -103,13 +103,13 @@ class _ContactInfoState extends State<ContactInfo> {
       _listimage.add(_file!);
       _listimagebase64.add("${base64Encode(_file!.readAsBytesSync())}");
     }
-
-    setState(() {
-      widget.addimage = true;
-      for (int i = 0; i < _listimagebase64.length; i++) {
-        _listimagebase64_com.add(_listimagebase64[i]);
-      }
-    });
+    setState(() {});
+    if (verify_update)
+      setState(() {
+        for (int i = 0; i < _listimagebase64.length; i++) {
+          _listimagebase64_com.add(_listimagebase64[i]);
+        }
+      });
   }
 
   @override
@@ -126,10 +126,10 @@ class _ContactInfoState extends State<ContactInfo> {
           _phone1.text = getData_put["phone1"].toString();
         }
         if (getData_put["phone2"] != null) {
-          _phone1.text = getData_put["phone2"].toString();
+          _phone2.text = getData_put["phone2"].toString();
         }
         if (getData_put["phone3"] != null) {
-          _phone1.text = getData_put["phone3"].toString();
+          _phone3.text = getData_put["phone3"].toString();
         }
         for (int i = 0; i < getData_put["media"].length; i++) {
           _listimagebase64_com.add("${getData_put["media"][i]["blob"]}");
@@ -381,7 +381,10 @@ class _ContactInfoState extends State<ContactInfo> {
                                           return GestureDetector(
                                             onLongPress: () {
                                               setState(() {
-                                                _listimage.removeAt(i);
+                                                verify_update == false
+                                                    ? _listimage.removeAt(i)
+                                                    : _listimagebase64_com
+                                                        .removeAt(i);
                                               });
                                             },
                                             child: SizedBox(
@@ -512,6 +515,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                           title: _titel.text,
                                           description: _description.text,
                                           phone1: _phone1.text,
+                                          phone2: _phone2.text,
+                                          phone3: _phone3.text,
                                           abilities: widget.ablity,
                                           media: _listimagebase64))
                                       : x = await Annonce_As_Login
@@ -535,6 +540,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                           title: _titel.text,
                                           description: _description.text,
                                           phone1: _phone1.text,
+                                          phone2: _phone2.text,
+                                          phone3: _phone3.text,
                                           abilities: widget.ablity!,
                                           media: _listimagebase64,
                                           floor_type: widget.flooring,
@@ -551,7 +558,9 @@ class _ContactInfoState extends State<ContactInfo> {
                                     Get.snackbar("Error",
                                         "Votre annonce est ne pas ajoute");
                                     verify_update = false;
-                                    progress_modife = false;
+                                    setState(() {
+                                      progress_modife = false;
+                                    });
                                   }
                                 } else {
                                   print("876");
@@ -595,6 +604,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                     title: _titel.text.toString(),
                                     description: _description.text.toString(),
                                     phone1: _phone1.text.toString(),
+                                    phone2: _phone2.text.toString(),
+                                    phone3: _phone3.text.toString(),
                                     abilities: widget.ablity!,
                                     media: _listimagebase64_com,
                                     floor_type: widget.flooring.toString(),
@@ -658,11 +669,12 @@ class _ContactInfoState extends State<ContactInfo> {
               ]),
             ),
             progress_modife == true
-                ? Center(child: CircularProgressIndicator(
-                  backgroundColor: Colors.grey,
-                  strokeWidth: 8,
-                ),
-             )
+                ? Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.grey,
+                      strokeWidth: 8,
+                    ),
+                  )
                 : Container(),
           ]),
         ),
