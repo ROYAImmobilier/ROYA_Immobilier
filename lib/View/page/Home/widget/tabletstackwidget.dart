@@ -20,7 +20,7 @@ class _TbletGridViewState extends State<TbletGridView> {
   getdate(int index)async{
     images = [];
     var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
-    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+
     print(k[0]['file_name']);
     print(k.length.toString());
     for(int i =0 ; i<k.length;i++){

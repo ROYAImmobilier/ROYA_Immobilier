@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import '../../../screenSize/screenSized.dart';
 
 class DetailleProfile extends StatefulWidget {
-  late String image;
+  late List<String> images;
   var data;
 
-  DetailleProfile({required this.image, required this.data});
+  DetailleProfile({required this.images, required this.data});
 
   @override
   _DetailleProfileState createState() => _DetailleProfileState();
@@ -48,7 +48,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                   height: 250.h,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/${widget.data.cover}"),
+                        image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/${widget.images[0]}"),
                         fit: BoxFit.fill,
                       ),
                       color: Colors.white,

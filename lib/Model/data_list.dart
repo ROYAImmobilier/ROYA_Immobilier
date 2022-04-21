@@ -32,6 +32,7 @@ class DataList {
     required this.phone1,
     this.phone2,
     this.phone3,
+    required this.slug,
     required this.validated,
     required this.createdAt,
     this.cover,
@@ -39,6 +40,7 @@ class DataList {
 
   var id;
   var userId;
+  var slug;
   var advertiser;
   var region;
   var city;
@@ -71,6 +73,7 @@ class DataList {
     advertiser: json["advertiser"],
     region: json["region"],
     city: json["city"],
+    slug: json["slug"],
     transaction: json["transaction"],
     propertyType: json["property_type"],
     status: json["status"],
@@ -101,6 +104,7 @@ class DataList {
     "advertiser": advertiser,
     "region": region,
     "city": city,
+    "slug": slug,
     "transaction": transaction,
     "property_type": propertyType,
     "status": status,

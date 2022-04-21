@@ -90,6 +90,22 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    late List<String>images = [];
+    getdate(int index)async{
+      images = [];
+      var k = await jokeRepository.GetDetiller(sug:Poste[index].title);
+
+      print(k[0]['file_name']);
+      print(k.length.toString());
+      for(int i =0 ; i<k.length;i++){
+        images.add(k[i]['file_name']);
+        print(k[i]['file_name']);
+      }
+      Get.to(DetailleProfile(
+        images: images,
+        data: Poste[index],
+      ),);
+    }
     return ScreenUtilInit(
       builder: () => Scaffold(
           backgroundColor: Colors.white,
@@ -247,10 +263,17 @@ class _ProfileState extends State<Profile> {
                             itemCount: Poste.length,
                             itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
-                                Get.to(DetailleProfile(
-                                    data: Poste[index],
-                                    image:
-                                    "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}"));
+
+                                getdate( index);
+                                //
+                                // Get.to(DetailleProfile(
+                                //     data: Poste[index],
+                                //     image:
+                                //     "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}"));
+
+
+
+
                               },
                               child: Slidable(
                                 key: UniqueKey(),
