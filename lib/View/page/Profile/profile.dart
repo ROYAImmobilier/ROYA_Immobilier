@@ -13,6 +13,7 @@ import '../../../Model/repositery.dart';
 import '../../../cashd_image/image.dart';
 import '../../../varia_ble/variable.dart';
 import '../auth/Login/components/body.dart';
+import '../auth/Login/login_screen.dart';
 
 
 class ProfilePage extends StatefulWidget {

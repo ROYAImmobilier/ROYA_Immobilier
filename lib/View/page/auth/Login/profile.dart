@@ -6,14 +6,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+
 import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
+import '../../../../Model/repositery.dart';
 import '../../../../cashd_image/image.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../Profile/detaille_profile.dart';
 import 'components/body.dart';
-import '../../../../Model/repositery.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -120,8 +121,7 @@ class _ProfileState extends State<Profile> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
+                                  padding: const EdgeInsets.only(top: 20 , left: 20,right: 20 , bottom: 5),
                                   child: CircleAvatar(
                                     backgroundColor: Colors.white,
                                     radius: 50.0,
@@ -135,6 +135,7 @@ class _ProfileState extends State<Profile> {
                                     ),
                                   ),
                                 ),
+                                Text(username),
                                 Row(
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceEvenly,
@@ -272,8 +273,6 @@ class _ProfileState extends State<Profile> {
 
                                               },
                                             );
-//print(verify_region_city);          print
-                                          print(Poste[index].id.toString());
                                           //amar
                                           getData_put =
                                           await jokeRepository.getdata(

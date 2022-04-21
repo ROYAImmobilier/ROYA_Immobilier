@@ -32,6 +32,8 @@ class Modifier_Annonce {
     required var phone1,
     required List<dynamic> abilities,
     required List<String> media,
+    required var phone2,
+    required var phone3,
   }) async {
     try {
 
@@ -57,6 +59,8 @@ class Modifier_Annonce {
         "title": title,
         "description": description,
         "phone1": phone1,
+        "phone2": phone2,
+        "phone3": phone3,
         "abilities": abilities,
         "media":media,
       };

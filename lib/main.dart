@@ -146,10 +146,10 @@ class OnBoardingState extends State<OnBoarding> {
     bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
 
     if (finishedOnBoarding) {
-      Get.offAll(OnBoardingScreen());
+      Get.offAll(BoardingPage());
       // Get.to(const RoutingScreen());
     } else {
-      Get.offAll(OnBoardingScreen());
+      Get.offAll(BoardingPage());
     }
   }
 

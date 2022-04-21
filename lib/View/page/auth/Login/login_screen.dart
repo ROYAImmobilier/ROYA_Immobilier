@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
   var media;
    var abilities;
   var transaction;
+  var phone3;
 
   LoginScreen(
       {this.property_type,
@@ -51,33 +52,36 @@ class LoginScreen extends StatelessWidget {
       this.phone2,
       this.media,
       this.abilities,
-      this.transaction});
+      this.transaction,this.phone3});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Body(
-          region_id: region_id,
-          city_id: city_id,
-          transaction:transaction,
-          property_type: property_type,
-          status: status,
-          adress: adress,
-          quartier: quartier,
-          area: area,
-          price: price,
-          age: age,
-          floor_type: floor_type,
-          floor: "4",
-          apartment: "1",
-          bedrooms:bedrooms,
-          bathrooms: bathrooms,
-          kitchens:kitchens,
-          title: title,
-          description: description,
-          phone1: phone1,
-          abilities: abilities,
-          media: media),
+            region_id: region_id,
+            city_id: city_id,
+            transaction:transaction,
+            property_type: property_type,
+            status: status,
+            adress: adress,
+            quartier: quartier,
+            area: area,
+            price: price,
+            age: age,
+            floor_type: floor_type,
+            floor: "4",
+            apartment: "1",
+            bedrooms:bedrooms,
+            bathrooms: bathrooms,
+            kitchens:kitchens,
+            title: title,
+            description: description,
+            phone1: phone1,
+            phone2: phone2,
+            phone3: phone3,
+            abilities: abilities,
+            media: media),
     );
+
   }
 }
