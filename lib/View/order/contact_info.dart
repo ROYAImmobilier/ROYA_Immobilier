@@ -12,6 +12,7 @@ import '../../Add_Anonnce/modifier_annonce.dart';
 import '../../Model/ability.dart';
 import '../../varia_ble/variable.dart';
 import '../page/auth/Login/login_screen.dart';
+import '../routing_screen.dart';
 import 'order_details.dart';
 
 class ContactInfo extends StatefulWidget {
@@ -27,7 +28,7 @@ class ContactInfo extends StatefulWidget {
   int? kichens;
   late int _id_region;
   late int _id_city;
-  bool addimage=false;
+  bool addimage = false;
 
   List<dynamic>? ablity;
 
@@ -100,17 +101,14 @@ class _ContactInfoState extends State<ContactInfo> {
       imageTemporary = File(imageFileList![i].path);
       _file = imageTemporary;
       _listimage.add(_file!);
-      _listimagebase64.add(
-          "${base64Encode(_file!.readAsBytesSync())}");
+      _listimagebase64.add("${base64Encode(_file!.readAsBytesSync())}");
     }
 
     setState(() {
-      widget.addimage=true;
-    for(int i=0;i<_listimagebase64.length;i++){
-          _listimagebase64_com.add(_listimagebase64[i]);
-        }
-
-
+      widget.addimage = true;
+      for (int i = 0; i < _listimagebase64.length; i++) {
+        _listimagebase64_com.add(_listimagebase64[i]);
+      }
     });
   }
 
@@ -133,12 +131,11 @@ class _ContactInfoState extends State<ContactInfo> {
         if (getData_put["phone3"] != null) {
           _phone1.text = getData_put["phone3"].toString();
         }
-        for(int i=0;i<getData_put["media"].length;i++){
+        for (int i = 0; i < getData_put["media"].length; i++) {
           _listimagebase64_com.add("${getData_put["media"][i]["blob"]}");
         }
-            }
+      }
     });
-
 
     super.initState();
   }
@@ -185,309 +182,313 @@ class _ContactInfoState extends State<ContactInfo> {
         ),
         body: Form(
           key: _key_Contact,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            color: Colors.white,
-            child: ListView(children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 30.h,
-                    color: const Color(0xffefefef),
-                  ),
-                  Container(
-                    child: Padding(
-                      padding:
-                          EdgeInsets.only(left: 12.w, right: 12.w, top: 15.h),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Title :',
-                                  style: TextStyle(fontSize: 13.sp),
-                                )),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            TextFormField(
-                              validator: (value) {
-                                if (value?.length == 0) {
-                                  return " Entre L \' Titel";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              controller: _titel,
-                              decoration: const InputDecoration(
-                                isDense: true, // Added this
-                                contentPadding: EdgeInsets.only(
-                                    left: 8, right: 8, bottom: 8, top: 8),
-                                // labelText: "",
-                                border: OutlineInputBorder(),
+          child: Stack(children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              color: Colors.white,
+              child: ListView(children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 30.h,
+                      color: const Color(0xffefefef),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(left: 12.w, right: 12.w, top: 15.h),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Title :',
+                                    style: TextStyle(fontSize: 13.sp),
+                                  )),
+                              SizedBox(
+                                height: 15.h,
                               ),
-                              keyboardType: TextInputType.text,
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Description :'.tr,
-                                  style: TextStyle(fontSize: 13.sp),
-                                )),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            TextFormField(
-                              validator: (value) {
-                                if (value?.length == 0) {
-                                  return " Entre L \' Description";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              maxLines: 3,
-                              controller: _description,
-                              decoration: const InputDecoration(
-                                isDense: true, // Added this
-                                contentPadding: EdgeInsets.only(
-                                    left: 8, right: 8, bottom: 8, top: 8),
-                                // labelText: "",
-                                border: OutlineInputBorder(),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value?.length == 0) {
+                                    return " Entre L \' Titel";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                controller: _titel,
+                                decoration: const InputDecoration(
+                                  isDense: true, // Added this
+                                  contentPadding: EdgeInsets.only(
+                                      left: 8, right: 8, bottom: 8, top: 8),
+                                  // labelText: "",
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.text,
                               ),
-                              keyboardType: TextInputType.text,
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Phone 1 :'.tr,
-                                  style: TextStyle(fontSize: 13.sp),
-                                )),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            TextFormField(
-                              validator: (value) {
-                                if (value?.length == 0) {
-                                  return " Entre L \' Phone";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              maxLength: 10,
-                              controller: _phone1,
-                              decoration: const InputDecoration(
-                                isDense: true, // Added this
-                                contentPadding: EdgeInsets.only(
-                                    left: 8, right: 8, bottom: 8, top: 8),
-                                // labelText: "",
-                                border: OutlineInputBorder(),
+                              SizedBox(
+                                height: 15.h,
                               ),
-                              keyboardType: TextInputType.phone,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Phone 2 :'.tr,
-                                  style: TextStyle(fontSize: 13.sp),
-                                )),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            TextFormField(
-                              maxLength: 10,
-                              controller: _phone2,
-                              //: title,
-                              decoration: const InputDecoration(
-                                isDense: true, // Added this
-                                contentPadding: EdgeInsets.only(
-                                    left: 8, right: 8, bottom: 8, top: 8),
-                                // labelText: "",
-                                border: OutlineInputBorder(),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Description :'.tr,
+                                    style: TextStyle(fontSize: 13.sp),
+                                  )),
+                              const SizedBox(
+                                height: 15,
                               ),
-                              keyboardType: TextInputType.phone,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Phone 3 :'.tr,
-                                  style: TextStyle(fontSize: 13.sp),
-                                )),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            TextFormField(
-                              maxLength: 10,
-                              controller: _phone3,
-                              decoration: const InputDecoration(
-                                isDense: true, // Added this
-                                contentPadding: EdgeInsets.only(
-                                    left: 8, right: 8, bottom: 8, top: 8),
-                                // labelText: "",
-                                border: OutlineInputBorder(),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value?.length == 0) {
+                                    return " Entre L \' Description";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                maxLines: 3,
+                                controller: _description,
+                                decoration: const InputDecoration(
+                                  isDense: true, // Added this
+                                  contentPadding: EdgeInsets.only(
+                                      left: 8, right: 8, bottom: 8, top: 8),
+                                  // labelText: "",
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.text,
                               ),
-                              keyboardType: TextInputType.phone,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Container(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Upload image(jpg-png-jpeg)'.tr,
-                                  style: TextStyle(fontSize: 13.sp),
-                                )),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            SizedBox(
-                              height: 100.h,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(children: [
-                                  Card(
-                                      color: Colors.cyan,
-                                      child: IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              choseImage();
-                                            });
-                                          },
-                                          icon: const Icon(
-                                            Icons.add_photo_alternate_rounded,
-                                            color: Colors.black,
-                                          ))),
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: verify_update == false
-                                          ? _listimage.length
-                                          : _listimagebase64_com.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, i) {
-                                        print(verify_update);
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Phone 1 :'.tr,
+                                    style: TextStyle(fontSize: 13.sp),
+                                  )),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  if (value?.length == 0) {
+                                    return " Entre L \' Phone";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                maxLength: 10,
+                                controller: _phone1,
+                                decoration: const InputDecoration(
+                                  isDense: true, // Added this
+                                  contentPadding: EdgeInsets.only(
+                                      left: 8, right: 8, bottom: 8, top: 8),
+                                  // labelText: "",
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.phone,
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Phone 2 :'.tr,
+                                    style: TextStyle(fontSize: 13.sp),
+                                  )),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              TextFormField(
+                                maxLength: 10,
+                                controller: _phone2,
+                                //: title,
+                                decoration: const InputDecoration(
+                                  isDense: true, // Added this
+                                  contentPadding: EdgeInsets.only(
+                                      left: 8, right: 8, bottom: 8, top: 8),
+                                  // labelText: "",
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.phone,
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Phone 3 :'.tr,
+                                    style: TextStyle(fontSize: 13.sp),
+                                  )),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              TextFormField(
+                                maxLength: 10,
+                                controller: _phone3,
+                                decoration: const InputDecoration(
+                                  isDense: true, // Added this
+                                  contentPadding: EdgeInsets.only(
+                                      left: 8, right: 8, bottom: 8, top: 8),
+                                  // labelText: "",
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.phone,
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Upload image(jpg-png-jpeg)'.tr,
+                                    style: TextStyle(fontSize: 13.sp),
+                                  )),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              SizedBox(
+                                height: 100.h,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(children: [
+                                    Card(
+                                        color: Colors.cyan,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                choseImage();
+                                              });
+                                            },
+                                            icon: const Icon(
+                                              Icons.add_photo_alternate_rounded,
+                                              color: Colors.black,
+                                            ))),
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: verify_update == false
+                                            ? _listimage.length
+                                            : _listimagebase64_com.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, i) {
+                                          print(verify_update);
 
-                                        return GestureDetector(
-                                          onLongPress:(){
-                                            setState(() {
-                                              _listimage.removeAt(i);
-                                            });
-
-                                          },
-                                          child: SizedBox(
-                                            height: 250,
-                                            child: Row(children: [
-                                              verify_update == false
-                                                  ? Image.file(
-                                                      _listimage[i],
-                                                      width: 100,
-                                                      height: 250,
-                                                      fit: BoxFit.cover,
-                                                    )
-                                                  : Image.memory(
-                                                      (const Base64Decoder()
-                                                          .convert(
-                                                              _listimagebase64_com[i]
-                                                                  .toString())),
-                                                      fit: BoxFit.cover,
-                                                      width: 100,
-                                                      height: 100,
-                                                    ),
-                                                  // verify_update==true && widget.addimage==true?Image.file(
-                                                  //   _listimage[i],
-                                                  //   width: 100,
-                                                  //   height: 100,
-                                                  //   fit: BoxFit.cover,
-                                                  // ):SizedBox(width: 5,),
-                                              const SizedBox(
-                                                width: 5,
-                                              )
-                                            ]),
-                                          ),
-                                        );
-                                      }),
-                                ]),
+                                          return GestureDetector(
+                                            onLongPress: () {
+                                              setState(() {
+                                                _listimage.removeAt(i);
+                                              });
+                                            },
+                                            child: SizedBox(
+                                              height: 250,
+                                              child: Row(children: [
+                                                verify_update == false
+                                                    ? Image.file(
+                                                        _listimage[i],
+                                                        width: 100,
+                                                        height: 250,
+                                                        fit: BoxFit.cover,
+                                                      )
+                                                    : Image.memory(
+                                                        (const Base64Decoder()
+                                                            .convert(
+                                                                _listimagebase64_com[
+                                                                        i]
+                                                                    .toString())),
+                                                        fit: BoxFit.cover,
+                                                        width: 100,
+                                                        height: 100,
+                                                      ),
+                                                // verify_update==true && widget.addimage==true?Image.file(
+                                                //   _listimage[i],
+                                                //   width: 100,
+                                                //   height: 100,
+                                                //   fit: BoxFit.cover,
+                                                // ):SizedBox(width: 5,),
+                                                const SizedBox(
+                                                  width: 5,
+                                                )
+                                              ]),
+                                            ),
+                                          );
+                                        }),
+                                  ]),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.w, right: 10.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MaterialButton(
-                          color: const Color(0xffbfa280),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                              side: const BorderSide(color: Color(0xE2DDD9))),
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: Text(
-                            "Precedent",
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.white,
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.w, right: 10.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          MaterialButton(
+                            color: const Color(0xffbfa280),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                                side: const BorderSide(color: Color(0xE2DDD9))),
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              "Precedent",
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r)),
-                          onPressed: () {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                            print(widget.Property_details);
-                            print(widget.categorie);
-                            print(widget.statut);
-                            print(widget.adress);
-                            print(widget.region_1);
-                            print(widget.city);
-                            print(widget.quartier);
-                            print(widget.area);
-                            print(widget.price);
-                            print(widget.age);
-                            print("ferf " + widget.flooring.toString());
-                            print(widget.bedroms);
-                            print(widget.bathrooms);
-                            print(widget.kichens);
-                            print(_titel.text);
-                            print(_description.text);
-                            print(widget.ablity.toString());
-                            print(_listimagebase64);
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r)),
+                            onPressed: () async {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                              print(widget.Property_details);
+                              print(widget.categorie);
+                              print(widget.statut);
+                              print(widget.adress);
+                              print(widget.region_1);
+                              print(widget.city);
+                              print(widget.quartier);
+                              print(widget.area);
+                              print(widget.price);
+                              print(widget.age);
+                              print("ferf " + widget.flooring.toString());
+                              print(widget.bedroms);
+                              print(widget.bathrooms);
+                              print(widget.kichens);
+                              print(_titel.text);
+                              print(_description.text);
+                              print(widget.ablity.toString());
+                              print(_listimagebase64);
 
-                            print(_phone1.text);
-                            //  print(getData_put["media"]);
-                            //  print(_phone3.text);
-                            if (_key_Contact.currentState!.validate()) {
-                              // Get.to(LoginScreen());
+                              print(_phone1.text);
+                              //  print(getData_put["media"]);
+                              //  print(_phone3.text);
+                              if (_key_Contact.currentState!.validate()) {
+                                // Get.to(LoginScreen());
 
-                              setState(() {
                                 // verify=false;
                                 isCamindingfrom = true;
 
                                 //
                                 // //  Get.to(LoginScreen());
                                 if (!verify_update) {
+                                  setState(() {
+                                    progress_modife = true;
+                                  });
+                                  var x;
                                   print("8761");
                                   isLogin == false
                                       ? Get.to(LoginScreen(
@@ -513,7 +514,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                           phone1: _phone1.text,
                                           abilities: widget.ablity,
                                           media: _listimagebase64))
-                                      : Annonce_As_Login
+                                      : x = await Annonce_As_Login
                                           .Add_Annonce_As_Aredy_Login(
                                           region_id:
                                               widget._id_region.toString(),
@@ -539,6 +540,19 @@ class _ContactInfoState extends State<ContactInfo> {
                                           floor_type: widget.flooring,
                                           floor: "4",
                                         );
+                                  //  print("wetwrw"+x.toString());
+                                  if (x == 201) {
+                                    Get.snackbar(
+                                        "success", "Votre annonce est ajoute");
+                                    verify_update = false;
+                                    progress_modife = false;
+                                    Get.to(const RoutingScreen());
+                                  } else {
+                                    Get.snackbar("Error",
+                                        "Votre annonce est ne pas ajoute");
+                                    verify_update = false;
+                                    progress_modife = false;
+                                  }
                                 } else {
                                   print("876");
                                   print(widget.Property_details);
@@ -560,8 +574,10 @@ class _ContactInfoState extends State<ContactInfo> {
                                   print(widget.ablity.toString());
                                   print(_listimagebase64);
                                   //verify=false;
-
-                                  var x = Modifier_Annonce.Modifier(
+                                  setState(() {
+                                    progress_modife = true;
+                                  });
+                                  var x = await Modifier_Annonce.Modifier(
                                     region_id: widget._id_region.toString(),
                                     city_id: widget._id_city.toString(),
                                     transaction: widget.Property_details,
@@ -584,8 +600,12 @@ class _ContactInfoState extends State<ContactInfo> {
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );
-                                  if (x == "500") {
+
+                                  if (x == 500 || x == 200) {
                                     Get.snackbar("update", "success");
+                                    verify_update = false;
+                                    progress_modife = false;
+                                    Get.offAll(RoutingScreen());
                                   }
                                 }
                                 // postdata(
@@ -618,99 +638,37 @@ class _ContactInfoState extends State<ContactInfo> {
                                 //     password: "12345678"
                                 //
                                 // );
-                              });
-                            }
-                          },
-                          child: Text(
-                            "Reservez ",
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.white,
+
+                              }
+                            },
+                            child: Text(
+                              "Reservez ",
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                color: Colors.white,
+                              ),
                             ),
+                            color: const Color(0xffbfa280),
                           ),
-                          color: const Color(0xffbfa280),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ]),
-          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ]),
+            ),
+            progress_modife == true
+                ? Center(child: CircularProgressIndicator(
+                  backgroundColor: Colors.grey,
+                  strokeWidth: 8,
+                ),
+             )
+                : Container(),
+          ]),
         ),
       ),
     );
   }
 
-  postdata(
-      {required String? region_id,
-      required String? city_id,
-      required String? transaction,
-      required String? property_type,
-      required String? status,
-      required String? address,
-      required String? quartier,
-      required String? area,
-      required String? price,
-      required String? age,
-      required String? floor_type,
-      required String? floor,
-      required String? apartment,
-      required String? bedrooms,
-      required String? bathrooms,
-      required String? kitchens,
-      required String? title,
-      required String? description,
-      required String? phone1,
-      required String? phone2,
-      required String? name,
-      required String? email,
-      required String? password,
-      required String? confirmation_password,
-      required abilities,
-      required media,
-      String? phone3}) async {
-    try {
-      var response = await http.post(
-          Uri.parse(
-              'https://dashboard.royaimmo.ma/api/annonce/storeWithRegister'),
-          body: {
-            "region_id": region_id,
-            "city_id": city_id,
-            "transaction": transaction,
-            "property_type": property_type,
-            "transaction": transaction,
-            "property_type": property_type,
-            "status": status,
-            "address": address,
-            "quartier": quartier,
-            "area": area,
-            "price": price,
-            "age": age,
-            "floor_type": floor_type,
-            "floor": floor,
-            "apartment": apartment,
-            "bedrooms": bedrooms,
-            "bathrooms": bathrooms,
-            "kitchens": kitchens,
-            "title": title,
-            "description": description,
-            "phone1": phone1,
-            "phone2": phone2,
-            "phone3": phone3,
-            "name": name,
-            "email": email,
-            "password": password,
-            "confirmation_password": confirmation_password,
-            "abilities[id]": abilities,
-            "media[image base64]": media,
-          });
-      print(response.body);
-      if (response.statusCode == 200) {
-        print("test" + response.body);
-      }
-    } catch (e) {
-      print('error ' + e.toString());
-    }
-  }
+  void cicularProgress() {}
 }

@@ -75,14 +75,13 @@ class Modifier_Annonce {
           });
         print(response_1.statusCode);
       if (response_1.statusCode == 500) {
-        Get.snackbar("title", "message",);
-        verify_update=false;
-        Get.offAll(RoutingScreen());
+
+       return  response_1.statusCode;
       }else if(response_1.statusCode == 200){
 
        //await ContactInfo.openSnackbar();
-        verify_update=false;
-        Get.offAll(RoutingScreen());
+
+       return response_1.statusCode;
       }
     } catch (e) {
 

@@ -32,6 +32,7 @@ class _ProfileState extends State<Profile> {
   Color colorPosteValide = Colors.white;
   Color colorPosteNonValide = Colors.white;
 
+
   reloud() async {
     allAnnonceLogin = [];
     PosteNonValide = [];
@@ -107,6 +108,7 @@ class _ProfileState extends State<Profile> {
               SingleChildScrollView(
                 child: Column(
                   children: [
+
                     Column(
                       children: [
                         ClipPath(
@@ -460,7 +462,7 @@ class _ProfileState extends State<Profile> {
                                                         Text(
                                                           Poste[index].region,
                                                           style: TextStyle(
-                                                              fontSize: 14),
+                                                              fontSize: 12.sp),
                                                         ),
                                                       ],
                                                     ),
@@ -476,7 +478,7 @@ class _ProfileState extends State<Profile> {
                                                         Text(
                                                           Poste[index].city,
                                                           style: TextStyle(
-                                                              fontSize: 14),
+                                                              fontSize: 12.sp),
                                                         ),
                                                       ],
                                                     ),
@@ -496,6 +498,7 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 25,)
                   ],
                 ),
               ),

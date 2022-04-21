@@ -80,6 +80,7 @@ var id_region_=7;
 var isCamindingfrom=false;
 
 bool progress=false ;
+bool progress_modife=false;
 //\\
  var icon_apps=SvgPicture.asset('assets/icon/logo-roya.svg',
 color: Colors.white,

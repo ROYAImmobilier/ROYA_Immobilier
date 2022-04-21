@@ -161,7 +161,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                 Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                  height: 50.h,
+                 // height: 50.h,
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -182,17 +182,18 @@ class _DetailleProfileState extends State<DetailleProfile> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(25),
-                      child: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Row(
+
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(children: [
                         SvgPicture.asset(
                           'assets/icon/annonces/bed-sharp.svg',
                           width: 20.w,
                           height: 20.h,
-                          matchTextDirection: true,
+                          //   matchTextDirection: true,
                           color: Color(0xff8a8a8a),
                         ),
                         SizedBox(
@@ -203,15 +204,12 @@ class _DetailleProfileState extends State<DetailleProfile> {
                           style: TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(25),
-                      child: Row(children: [
+                      Row(children: [
                         SvgPicture.asset(
                           'assets/icon/annonces/bathroom.svg',
                           width: 20.w,
                           height: 20.h,
-                          matchTextDirection: true,
+                          // matchTextDirection: true,
                           color: Color(0xff8a8a8a),
                         ),
                         SizedBox(
@@ -222,27 +220,24 @@ class _DetailleProfileState extends State<DetailleProfile> {
                           style: TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(25),
-                      child: Row(children: [
+                      Row(children: [
                         SvgPicture.asset(
                           'assets/icon/m.svg',
                           width: 20.w,
                           height: 20.h,
-                          matchTextDirection: true,
-                          color: Color(0xff8a8a8a),
+                          //  matchTextDirection: true,
+                          color: const Color(0xff8a8a8a),
                         ),
                         SizedBox(
                           width: 5.w,
                         ),
                         Text(
                           "${widget.data.area} m²",
-                          style: TextStyle(color: Color(0xff8a8a8a)),
+                          style: const TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Container(
                   //height: ,
@@ -265,8 +260,9 @@ class _DetailleProfileState extends State<DetailleProfile> {
                       Container(
                           alignment: Alignment.topLeft,
                           child: Text("Adresse")),
+                      SizedBox(width: 15,),
                       Container(
-                        alignment: Alignment.center,
+                        alignment: Alignment.topRight,
                         child: Text(
                           widget.data.address +
                               ' => ' +
