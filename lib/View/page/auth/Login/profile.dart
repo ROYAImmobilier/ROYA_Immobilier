@@ -42,7 +42,7 @@ class _ProfileState extends State<Profile> {
     PosteValide = [];
 
     var response_1 = await http
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces'), headers: {
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
       //HttpHeaders.authorizationHeader:token_1.toString(),
       'Authorization': 'Bearer $token_global'
     });
@@ -340,13 +340,12 @@ class _ProfileState extends State<Profile> {
                                           setState(() {
                                             reloud();
                                           });
+
                                         },
                                         onConfirm: () async {
                                           await jokeRepository.deleteitem(
                                               id: Poste[index].id.toString());
-                                          setState(() {
-                                            reloud();
-                                          });
+                                          Get.back();
                                         });
                                   }),
                                   children: [
@@ -363,16 +362,19 @@ class _ProfileState extends State<Profile> {
                                               setState(() {
                                                 reloud();
                                               });
+
                                             },
                                             onConfirm: () async {
                                               await jokeRepository.deleteitem(
                                                   id: Poste[index]
                                                       .id
                                                       .toString());
+                                              Get.back();
                                               setState(() {
                                                 reloud();
                                               });
                                             });
+
                                       },
                                       label: "Delete Annonce",
                                       backgroundColor: Color(0xFFFE4A49),
