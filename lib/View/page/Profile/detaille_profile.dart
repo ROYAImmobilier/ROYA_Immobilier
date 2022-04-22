@@ -1,15 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../screenSize/screenSized.dart';
 
 class DetailleProfile extends StatefulWidget {
-  late String image;
+  List<String> images;
   var data;
 
-  DetailleProfile({required this.image, required this.data});
+  int activeindex=0;
+
+  DetailleProfile({required this.images, required this.data});
 
   @override
   _DetailleProfileState createState() => _DetailleProfileState();
@@ -42,20 +47,119 @@ class _DetailleProfileState extends State<DetailleProfile> {
             child: Column(
               children: [
 
-                Container(
-                  margin:
-                  EdgeInsets.only(top: 20.h, right: 20.w, left: 20.w),
-                  height: 250.h,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/${widget.data.cover}"),
-                        fit: BoxFit.fill,
+                Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: 20.h, right: 20.w, left: 20.w),
+                        height:
+                        (MediaQuery.of(context).size.height * 0.30).h,
+                        decoration: BoxDecoration(
+                          // image: DecorationImage(
+                          //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[0]),
+                          //   fit: BoxFit.fill,
+                          // ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10.r),
+                                topRight: Radius.circular(10.r))),
+                        child: CarouselSlider(
+                            options: CarouselOptions(
+                              //  height:    450.h ,
+                              height:
+                              (MediaQuery.of(context).size.height),
+                              scrollDirection: Axis.horizontal,
+                              viewportFraction: 1,
+                              initialPage: 0,
+                              enableInfiniteScroll: false,
+                              reverse: false,
+                              autoPlay: false,
+                              pageSnapping: true,
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              enlargeCenterPage: true,
+                              onPageChanged: (value, res) {
+                                setState(() {
+                                  widget.activeindex = value;
+                                });
+                              },
+                            ),
+                            items: widget.images
+                                .map((String slider) => Builder(
+                              builder: (BuildContext context) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft:
+                                      Radius.circular(10.r),
+                                      topRight:
+                                      Radius.circular(10.r)),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        // margin: EdgeInsets.only(top: 50),
+                                        height: (MediaQuery.of(
+                                            context)
+                                            .size
+                                            .height *
+                                            0.5)
+                                            .h,
+                                        // decoration: const BoxDecoration(
+                                        // //   borderRadius: BorderRadius.all(
+                                        // //       Radius.circular(4.5)),
+                                        // ),
+                                        child: ClipRRect(
+                                          // borderRadius: const BorderRadius.all(
+                                          //     Radius.circular(10)),
+                                          child:
+                                          CachedNetworkImage(
+                                            width: MediaQuery.of(
+                                                context)
+                                                .size
+                                                .width,
+                                            fit: BoxFit.fill,
+                                            imageUrl:
+                                            "https://dashboard.royaimmo.ma/images/annonces/" +
+                                                slider,
+                                            placeholder: (context,
+                                                url) =>
+                                                Icon(Icons.image),
+                                            errorWidget: (context,
+                                                url, error) =>
+                                            const Icon(
+                                                Icons.error),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ))
+                                .toList()),
                       ),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.r),
-                          topRight: Radius.circular(10.r))),
-                ),
+                      Positioned(
+                        child: BuldeIndector(),
+                        // top: 0,
+                        // right: 0,
+                        // left: MediaQuery.of(context).size.width.toDouble()/2,
+                        bottom: 5,
+                      ),
+
+                    ]),
+                // Container(
+                //   margin:
+                //   EdgeInsets.only(top: 20.h, right: 20.w, left: 20.w),
+                //   height: 250.h,
+                //   decoration: BoxDecoration(
+                //       image: DecorationImage(
+                //         image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/${widget.data.cover}"),
+                //         fit: BoxFit.fill,
+                //       ),
+                //       color: Colors.white,
+                //       borderRadius: BorderRadius.only(
+                //           topLeft: Radius.circular(10.r),
+                //           topRight: Radius.circular(10.r))),
+                // ),
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
                   height: ScreenSized.ProfileDetalse(Screenwidth,Screenheight),
@@ -311,4 +415,15 @@ class _DetailleProfileState extends State<DetailleProfile> {
       }
     );
   }
+  Widget BuldeIndector() => AnimatedSmoothIndicator(
+    count: widget.images.length,
+    activeIndex: widget.activeindex,
+    effect:  WormEffect(
+      dotHeight: 16,
+      dotWidth: 16,
+      type: WormType.thin,
+      // strokeWidth: 5,
+    ),
+
+  );
 }

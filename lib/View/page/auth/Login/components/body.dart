@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
+import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
@@ -16,7 +17,7 @@ import '../../../../../varia_ble/variable.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 
-List<DataList> allAnnonceLogin = [];
+List<Joke> allAnnonceLogin = [];
 String username = "";
 
 class Body extends StatefulWidget {
@@ -294,7 +295,7 @@ class _BodyState extends State<Body> {
           final responseJson = responseJsoon["data"];
           setState(() {
             for (Map annoncelogin in responseJson) {
-              allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
+              allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
             }
           });
           Get.offAll(const RoutingScreen());

@@ -441,7 +441,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r),
                                 side: const BorderSide(color: Color(0xE2DDD9))),
-                            onPressed: () {
+                            onPressed: progress_modife ==true?null:() {
                               Get.back();
                             },
                             child: Text(
@@ -455,30 +455,9 @@ class _ContactInfoState extends State<ContactInfo> {
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r)),
-                            onPressed: () async {
+                            onPressed:   progress_modife ==true? null:() async{
                               FocusManager.instance.primaryFocus?.unfocus();
-                              print(widget.Property_details);
-                              print(widget.categorie);
-                              print(widget.statut);
-                              print(widget.adress);
-                              print(widget.region_1);
-                              print(widget.city);
-                              print(widget.quartier);
-                              print(widget.area);
-                              print(widget.price);
-                              print(widget.age);
-                              print("ferf " + widget.flooring.toString());
-                              print(widget.bedroms);
-                              print(widget.bathrooms);
-                              print(widget.kichens);
-                              print(_titel.text);
-                              print(_description.text);
-                              print(widget.ablity.toString());
-                              print(_listimagebase64);
 
-                              print(_phone1.text);
-                              //  print(getData_put["media"]);
-                              //  print(_phone3.text);
                               if (_key_Contact.currentState!.validate()) {
                                 // Get.to(LoginScreen());
 
@@ -614,9 +593,13 @@ class _ContactInfoState extends State<ContactInfo> {
 
                                   if (x == 500 || x == 200) {
                                     Get.snackbar("update", "success");
-                                    verify_update = false;
-                                    progress_modife = false;
-                                    Get.offAll(RoutingScreen());
+
+                                    setState(() {
+                                      verify_update = false;
+                                      progress_modife = false;
+                                    });
+
+                                   Get.offAll(RoutingScreen());
                                   }
                                 }
                                 // postdata(
@@ -682,5 +665,5 @@ class _ContactInfoState extends State<ContactInfo> {
     );
   }
 
-  void cicularProgress() {}
+
 }

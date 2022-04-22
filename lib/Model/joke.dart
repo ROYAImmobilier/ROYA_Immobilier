@@ -1,11 +1,11 @@
 // To parse this JSON data, do
 //
-//     final joke = jokeFromJson(jsonString);
+//     final joke = jokeFromJson(jsonvar);
 
 import 'dart:convert';
 
 
-List<Joke> jokeFromJson(String str) =>
+List<Joke> jokeFromJson(var str) =>
     List<Joke>.from(json.decode(str).map((x) => Joke.fromJson(x)));
 
 String jokeToJson(List<Joke> data) =>
@@ -46,33 +46,33 @@ class Joke {
     required this.cover,
   });
 
-  int id;
-  String advertiser;
-  String slug;
-  String region;
-  String city;
-  String transaction;
-  String propertyType;
-  String status;
-  String address;
-  String quartier;
-  double area;
-  int price;
-  String age;
-  String floorType;
-  int floor;
-  int apartment;
-  int bedrooms;
-  int bathrooms;
-  int kitchens;
-  String title;
-  String description;
-  String phone1;
-  String phone2;
+  var id;
+  var advertiser;
+  var slug;
+  var region;
+  var city;
+  var transaction;
+  var propertyType;
+  var status;
+  var address;
+  var quartier;
+  var area;
+  var price;
+  var age;
+  var floorType;
+  var floor;
+  var apartment;
+  var bedrooms;
+  var bathrooms;
+  var kitchens;
+  var title;
+  var description;
+  var phone1;
+  var phone2;
   dynamic phone3;
-  int validated;
-  String createdAt;
-  String cover;
+  var validated;
+  var createdAt;
+  var cover;
 
   factory Joke.fromJson(Map<String, dynamic> json) =>
       Joke(

@@ -6,9 +6,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:roya_immobilie/RouteScreen/routeScreen.dart';
 
 import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
+import '../../../../Model/joke.dart';
 import '../../../../Model/repositery.dart';
 import '../../../../cashd_image/image.dart';
 import '../../../../varia_ble/variable.dart';
@@ -25,14 +27,13 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   late int v = 0;
-  List<DataList> Poste = [];
-  List<DataList> PosteValide = [];
-  List<DataList> PosteNonValide = [];
+  List<Joke> Poste = [];
+  List<Joke> PosteValide = [];
+  List<Joke> PosteNonValide = [];
 
   Color colorPost = Colors.blue;
   Color colorPosteValide = Colors.white;
   Color colorPosteNonValide = Colors.white;
-
 
   reloud() async {
     allAnnonceLogin = [];
@@ -41,7 +42,7 @@ class _ProfileState extends State<Profile> {
     PosteValide = [];
 
     var response_1 = await http
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces'), headers: {
       //HttpHeaders.authorizationHeader:token_1.toString(),
       'Authorization': 'Bearer $token_global'
     });
@@ -52,7 +53,7 @@ class _ProfileState extends State<Profile> {
       final responseJson = responseJsoon["data"];
       setState(() {
         for (Map annoncelogin in responseJson) {
-          allAnnonceLogin.add(DataList.fromJson(annoncelogin.cast()));
+          allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
         }
 
         setState(() {
@@ -90,6 +91,23 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    print(token_global);
+    late List<String>images = [];
+    getdate(int index)async{
+      images = [];
+      var k = await jokeRepository.GetDetiller(sug: Poste[index].slug);
+      print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+      print(k[0]['file_name']);
+      print(k.length.toString());
+      for(int i =0 ; i<k.length;i++){
+        images.add(k[i]['file_name']);
+        print(k[i]['file_name']);
+      }
+      Get.to(DetailleProfile(
+        images: images,
+        data: Poste[index],
+      ),);
+    }
     return ScreenUtilInit(
       builder: () => Scaffold(
           backgroundColor: Colors.white,
@@ -109,7 +127,6 @@ class _ProfileState extends State<Profile> {
               SingleChildScrollView(
                 child: Column(
                   children: [
-
                     Column(
                       children: [
                         ClipPath(
@@ -121,13 +138,14 @@ class _ProfileState extends State<Profile> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 20 , left: 20,right: 20 , bottom: 5),
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 20, right: 20, bottom: 5),
                                   child: CircleAvatar(
                                     backgroundColor: Colors.white,
                                     radius: 50.0,
                                     child: CircleAvatar(
                                       backgroundColor:
-                                      Color(0xFFDDECF2).withOpacity(0.35),
+                                          Color(0xFFDDECF2).withOpacity(0.35),
                                       backgroundImage: const NetworkImage(
                                         "https://i.pravatar.cc/",
                                       ),
@@ -138,7 +156,7 @@ class _ProfileState extends State<Profile> {
                                 Text(username),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Column(
                                       children: [
@@ -247,10 +265,7 @@ class _ProfileState extends State<Profile> {
                             itemCount: Poste.length,
                             itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
-                                Get.to(DetailleProfile(
-                                    data: Poste[index],
-                                    image:
-                                    "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}"));
+                              getdate(index);
                               },
                               child: Slidable(
                                 key: UniqueKey(),
@@ -263,20 +278,21 @@ class _ProfileState extends State<Profile> {
                                         label: 'Update Annonce',
                                         onPressed: (context) async {
                                           print(verify_region_city);
-                                          if(!verify_region_city)
+                                          if (!verify_region_city)
                                             await ServicesRgion.getUsers().then(
-                                                  (regions) {
+                                              (regions) {
                                                 setState(() {
                                                   region = regions!;
                                                   ListCity();
                                                 });
-
                                               },
                                             );
                                           //amar
                                           getData_put =
-                                          await jokeRepository.getdata(
-                                              id: Poste[index].id.toString());
+                                              await jokeRepository.getdata(
+                                                  id: Poste[index]
+                                                      .id
+                                                      .toString());
                                           verify = true;
                                           print(getData_put);
                                           if (getData_put.isEmpty) {
@@ -284,17 +300,17 @@ class _ProfileState extends State<Profile> {
                                             // Get.to(Add_Annonce());
                                             reloud();
                                           } else if (!getData_put.isEmpty) {
-
                                             Get.defaultDialog(
                                                 title: "Modification",
                                                 textCancel: "Cancel".tr,
                                                 textConfirm: "yes".tr,
-                                                middleText: "Are you wante to modifier ?".tr,
+                                                middleText:
+                                                    "Are you wante to modifier ?"
+                                                        .tr,
                                                 onCancel: () {},
                                                 onConfirm: () {
                                                   Get.to(Add_Annonce());
                                                 });
-
                                           }
                                           verify_update = true;
                                           //  Get.to(Add_Annonce());
@@ -305,30 +321,58 @@ class _ProfileState extends State<Profile> {
                                           //delete
                                         },
                                         backgroundColor:
-                                        const Color(0xff5E5480),
+                                            const Color(0xff5E5480),
                                         foregroundColor: Colors.white,
                                         icon: Icons.update,
                                       ),
                                     ]),
                                 endActionPane: ActionPane(
                                   motion: const ScrollMotion(),
-                                  dismissible:
-                                  DismissiblePane(onDismissed: () async {
-                                    await jokeRepository.deleteitem(
-                                        id: Poste[index].id.toString());
-                                    setState(() {
-                                      reloud();
-                                    });
+                                  dismissible: DismissiblePane(onDismissed: () {
+                                    Get.defaultDialog(
+                                        title: "Supprimer",
+                                        textCancel: "Cancel".tr,
+                                        textConfirm: "yes".tr,
+                                        middleText:
+                                            "Are you want to delete ?".tr,
+                                        barrierDismissible:false,
+                                        onCancel: () {
+                                          setState(() {
+                                            reloud();
+                                          });
+                                        },
+                                        onConfirm: () async {
+                                          await jokeRepository.deleteitem(
+                                              id: Poste[index].id.toString());
+                                          setState(() {
+                                            reloud();
+                                          });
+                                        });
                                   }),
                                   children: [
                                     SlidableAction(
-                                      onPressed: (context) async {
-                                        await jokeRepository.deleteitem(
-                                            id: Poste[index].id.toString());
-
-                                        setState(() {
-                                          reloud();
-                                        });
+                                      onPressed: (context) {
+                                        Get.defaultDialog(
+                                            title: "Supprimer",
+                                            textCancel: "Cancel".tr,
+                                            textConfirm: "yes".tr,
+                                            middleText:
+                                                "Are you want to delete ?".tr,
+                                            barrierDismissible:false,
+                                            onCancel: () {
+                                              setState(() {
+                                                reloud();
+                                              });
+                                            },
+                                            onConfirm: () async {
+                                              await jokeRepository.deleteitem(
+                                                  id: Poste[index]
+                                                      .id
+                                                      .toString());
+                                              setState(() {
+                                                reloud();
+                                              });
+                                            });
                                       },
                                       label: "Delete Annonce",
                                       backgroundColor: Color(0xFFFE4A49),
@@ -354,20 +398,20 @@ class _ProfileState extends State<Profile> {
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(10),
                                                 bottomLeft:
-                                                Radius.circular(10)),
+                                                    Radius.circular(10)),
                                           ),
                                         ),
                                         Container(
                                           margin: EdgeInsets.only(left: 150.w),
                                           height: 130.h,
                                           width:
-                                          MediaQuery.of(context).size.width,
+                                              MediaQuery.of(context).size.width,
                                           decoration: const BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.only(
                                                 topRight: Radius.circular(10),
                                                 bottomRight:
-                                                Radius.circular(10)),
+                                                    Radius.circular(10)),
                                           ),
                                           child: Stack(
                                             children: [
@@ -376,8 +420,8 @@ class _ProfileState extends State<Profile> {
                                                       top: 10.h, left: 10.w),
                                                   child: Text(
                                                     Poste[index]
-                                                        .price
-                                                        .toString() +
+                                                            .price
+                                                            .toString() +
                                                         ' dh',
                                                     style: TextStyle(
                                                       fontSize: 18.sp,
@@ -497,7 +541,9 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 25,)
+                    SizedBox(
+                      height: 25,
+                    )
                   ],
                 ),
               ),
