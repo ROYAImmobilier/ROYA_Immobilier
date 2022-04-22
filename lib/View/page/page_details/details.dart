@@ -34,7 +34,22 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   List<Joke> select = [];
   bool grid = true;
-
+  //fonction prendre le date String et return la difirent
+  String datename (dateString){
+    DateTime dateTime = DateTime.parse(dateString);
+    Duration diff = DateTime.now().difference(dateTime);
+    if (diff.inDays >= 1) {
+      return 'Membre depuis ${diff.inDays} day(s) ';
+    } else if (diff.inHours >= 1) {
+      return 'Membre depuis ${diff.inHours} hour(s) ';
+    } else if (diff.inMinutes >= 1) {
+      return 'Membre depuis ${diff.inMinutes} minute(s) ';
+    } else if (diff.inSeconds >= 1) {
+      return 'Membre depuis ${diff.inSeconds} second(s) ';
+    } else {
+      return 'just now';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var Screenwidth = MediaQuery.of(context).size.width;
@@ -297,10 +312,10 @@ class _DetailsState extends State<Details> {
                                     padding:
                                         EdgeInsets.only(top: 10.h, left: 10.w),
                                     alignment: Alignment.topLeft,
-                                    child: const CircleAvatar(
+                                    child:  CircleAvatar(
                                       backgroundColor: Color(0xffbfa280),
                                       radius: 20,
-                                      child: Text('AA'),
+                                      child: Text(widget.data.advertiser[0].toString() +widget.data.advertiser[0].toString() ),
                                     ),
                                   ),
                                   Column(
@@ -316,8 +331,8 @@ class _DetailsState extends State<Details> {
                                       Container(
                                         padding: EdgeInsets.only(
                                             top: 3.h, left: 10.w),
-                                        child: const Text(
-                                          "Membre depuis 2 Mois",
+                                        child:  Text(
+                                          widget.data.createdAt,
                                           style: TextStyle(color: Colors.grey),
                                         ),
                                       ),

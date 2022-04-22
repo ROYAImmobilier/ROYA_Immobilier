@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/RouteScreen/routeScreen.dart';
+import 'package:roya_immobilie/View/routing_login.dart';
 
 import '../../../../Model/cityrepo.dart';
 import '../../../../Model/data_list.dart';
@@ -42,7 +43,7 @@ class _ProfileState extends State<Profile> {
     PosteValide = [];
 
     var response_1 = await http
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces'), headers: {
+        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
       //HttpHeaders.authorizationHeader:token_1.toString(),
       'Authorization': 'Bearer $token_global'
     });
@@ -88,15 +89,33 @@ class _ProfileState extends State<Profile> {
     });
     super.initState();
   }
+  String getSulg(id){
 
+
+    return "";
+  }
   @override
   Widget build(BuildContext context) {
-    print(token_global);
+
     late List<String>images = [];
     getdate(int index)async{
+      String x ="" ;
+      for(int i=0 ; i<allAnnonce.length;i++){
+        print(Poste[index].id.toString());
+        print(allAnnonce[i].id.toString());
+
+        if(Poste[index].id.toString() ==allAnnonce[i].id.toString()){
+          print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+          print( allAnnonce[i].slug);
+          setState(() {
+            x= allAnnonce[i].slug;
+          });
+
+        }
+      }
       images = [];
-      var k = await jokeRepository.GetDetiller(sug: Poste[index].slug);
-      print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+      var k = await jokeRepository.GetDetiller(sug: x);
+
       print(k[0]['file_name']);
       print(k.length.toString());
       for(int i =0 ; i<k.length;i++){
@@ -340,13 +359,12 @@ class _ProfileState extends State<Profile> {
                                           setState(() {
                                             reloud();
                                           });
+
                                         },
                                         onConfirm: () async {
                                           await jokeRepository.deleteitem(
                                               id: Poste[index].id.toString());
-                                          setState(() {
-                                            reloud();
-                                          });
+                                          Get.back();
                                         });
                                   }),
                                   children: [
@@ -363,16 +381,19 @@ class _ProfileState extends State<Profile> {
                                               setState(() {
                                                 reloud();
                                               });
+
                                             },
                                             onConfirm: () async {
                                               await jokeRepository.deleteitem(
                                                   id: Poste[index]
                                                       .id
                                                       .toString());
+                                              Get.back();
                                               setState(() {
                                                 reloud();
                                               });
                                             });
+
                                       },
                                       label: "Delete Annonce",
                                       backgroundColor: Color(0xFFFE4A49),
