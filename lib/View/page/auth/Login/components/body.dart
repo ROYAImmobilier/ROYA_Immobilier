@@ -10,6 +10,7 @@ import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../Add_Anonnce/annonce_as_login.dart';
 import '../../../../../Model/data_list.dart';
@@ -269,10 +270,13 @@ class _BodyState extends State<Body> {
 
       var token = json.decode(response.body);
       var token_1 = token['data']['token'];
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token_1 );
+      prefs.setString("username", token['data']['name']);
 
       setState(() {
-        username = token['data']['name'];
-        token_global = token_1;
+        username = prefs.getString("username")!;
+        token_global = prefs.getString("token");
       });
 
       print(token_1);
@@ -289,6 +293,7 @@ class _BodyState extends State<Body> {
           setState(() {
             progress = false;
           });
+
           isLogin = true;
           print(isLogin);
           final responseJsoon = json.decode(response_1.body);

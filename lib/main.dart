@@ -7,9 +7,11 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/on_boding_screen.dart';
+import 'package:roya_immobilie/varia_ble/variable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
+import 'View/page/auth/Login/components/body.dart';
 import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
 import 'package:http/http.dart' as http;
@@ -145,11 +147,18 @@ class OnBoardingState extends State<OnBoarding> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
 
+
     if (finishedOnBoarding) {
-      Get.offAll(BoardingPage());
-      // Get.to(const RoutingScreen());
+      //Get.offAll(BoardingPage());
+       Get.to(const RoutingScreen());
+      if(prefs.getString("token")!=null){
+        username = prefs.getString("username")!;
+        token_global = prefs.getString("token");
+        isLogin = true;
+      }
     } else {
       Get.offAll(BoardingPage());
+
     }
   }
 

@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/favorite_page.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../Model/cityrepo.dart';
 import '../../../../varia_ble/variable.dart';
 import '../../../order/order_distination.dart';
@@ -231,9 +232,11 @@ class _DrawerPageState extends State<DrawerPage> {
                 isLogin==true?  Padding(
                   padding: const EdgeInsets.only(left: 12, right: 12),
                   child: GestureDetector(
-                      onTap: (){
+                      onTap: () async {
                         isLogin=false;
-                        token_global="";
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.remove('token');
+                        await prefs.remove('username');
                         Get.offAll(const RoutingScreen());
                       },
                       child:

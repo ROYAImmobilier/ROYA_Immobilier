@@ -326,8 +326,10 @@ class _BoardingScreenState extends State<BoardingPage> {
                   child: SizedBox(
                       width: double.infinity,
                       child: GradientButton(
-                        callback: () => {
-                          Get.offAll(LoginScreen())
+                        callback: ()  async {
+                          final SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setBool('finishedOnBoarding', true);
+                          Get.offAll(LoginScreen());
                         },
                         gradient: LinearGradient(colors: [
                           Color.fromRGBO(11, 198, 200, 1),
@@ -362,7 +364,10 @@ class _BoardingScreenState extends State<BoardingPage> {
                         color: Colors.grey,
                       ),
                     ),
-                    onPressed: () => {Get.offAll(RoutingScreen())}),
+                    onPressed: () async {
+                      final SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setBool('finishedOnBoarding', true);
+                      Get.offAll(RoutingScreen());}),
                 SizedBox(
                   height: 30,
                 )
