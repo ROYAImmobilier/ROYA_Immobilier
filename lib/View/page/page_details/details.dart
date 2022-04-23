@@ -410,10 +410,11 @@ class _DetailsState extends State<Details> {
                                        // widget._launched=   _makePhoneCall(widget.data.phone1);
 
                                       });
-                                      String telephoneNumber = '+2347012345678';
-                                      String telephoneUrl = "tel:$telephoneNumber";
-                                      if (await canLaunch(telephoneUrl)) {
-                                      await launch(telephoneUrl);
+                                     // String telephoneNumber = '+2347012345678';
+                                      String telephoneUrl = "tel:${widget.data.phone1.toString()}";
+                                      if( widget._shownumber==true)
+                                        if (await canLaunchUrlString(telephoneUrl)) {
+                                      await launchUrlString(telephoneUrl);
                                       } else {
                                       throw "Error occured trying to call that number.";
                                       }
