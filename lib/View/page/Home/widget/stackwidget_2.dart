@@ -41,7 +41,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
     k++) {
       if (dataCategory[indexselectCategory].name == "All") {
         setState(() {
-          select.add(allAnnonce[indexselectCategory]);
+          select.add(allAnnonce[k]);
 
         });
 
@@ -230,7 +230,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                           k++) {
                             if (dataCategory[indexselectCategory].name == "All") {
                               setState(() {
-                                select.add(allAnnonce[indexselectCategory]);
+                                select.add(allAnnonce[k]);
                               });
 
                             } else if (allAnnonce[k]
