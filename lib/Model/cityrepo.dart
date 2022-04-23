@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/region.dart';
-import '../varia_ble/variable.dart';
 import 'city.dart';
 
 class CityRepo {

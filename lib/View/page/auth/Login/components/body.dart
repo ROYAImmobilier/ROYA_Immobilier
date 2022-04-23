@@ -13,8 +13,8 @@ import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../Add_Anonnce/annonce_as_login.dart';
-import '../../../../../Model/data_list.dart';
-import '../../../../../varia_ble/variable.dart';
+
+import '../../../../../variable/variable.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 
@@ -91,163 +91,163 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Background(
-        child: Form(
-          key: _key_validation,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "LOGIN",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: size.height * 0.03),
-                SvgPicture.asset(
-                  "assets/icons/login.svg",
-                  height: size.height * 0.35,
-                ),
-                SizedBox(height: size.height * 0.03),
-                RoundedInputField(
-                  hintText: "Your Email".tr,
-                  onChanged: (value) {
-                    setState(() {
-                      email = value;
-                    });
-                  },
-                ),
-                RoundedPasswordField(
+    return Background(
+      child: Form(
+        key: _key_validation,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "LOGIN",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: size.height * 0.03),
+              SvgPicture.asset(
+                "assets/icons/login.svg",
+                height: size.height * 0.35,
+              ),
+              SizedBox(height: size.height * 0.03),
+              RoundedInputField(
+                hintText: "Your Email".tr,
+                onChanged: (value) {
+                  setState(() {
+                    email = value;
+                  });
+                },
+              ),
+              RoundedPasswordField(
 
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                    });
-                  },
-                ),
-                progress == true ? CircularProgressIndicator() : Container(),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  width: size.width * 0.8,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(29),
-                    child: ElevatedButton(
-                      child:  Text(
-                        'Login'.tr,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () async {
-
-                        setState(() {
-                          allAnnonceLogin=[];
-                        });
-
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        if (_key_validation.currentState!.validate()) {
-                          print(email + ' ' + password);
-
-                          //
-                            progress = true;
-                          if (isCamindingfrom) {
-                            isCamindingfrom = false;
-                            isLogin = true;
-                            //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
-                            await Annonce_As_Login.Add_Annonce_As_Login(
-                                region_id: widget.region_id,
-                                city_id: widget.city_id,
-                                transaction: widget.transaction,
-                                property_type: widget.property_type,
-                                status: widget.status,
-                                address: widget.adress,
-                                quartier: widget.quartier,
-                                area: widget.area,
-                                price: widget.price,
-                                age: widget.age,
-                                floor_type: widget.floor_type,
-                                floor: "4",
-                                apartment: "1",
-                                bedrooms: widget.bedrooms.toString(),
-                                bathrooms:widget.bathrooms.toString(),
-                                kitchens: widget.kitchens.toString(),
-                                title: widget.title,
-                                description: widget.description,
-                                phone1: widget.phone1,
-                                phone2: widget.phone2,
-                                phone3: widget.phone3,
-                                email: email,
-                                password: password,
-                                abilities:widget.abilities!,
-                                media: widget.media);
-                          } else if (!isCamindingfrom) {
-                          var x=  await _Login(email: email, password: password);
-                          if(x.toString()!="200"){
-                            Get.snackbar("Error", "User not registered");
-                            setState(() {
-                              progress = false;
-                            });
-
-                          }
-                          }
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          primary: kPrimaryColor,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 20),
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500)),
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
+              ),
+              progress == true ? CircularProgressIndicator() : Container(),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: size.width * 0.8,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(29),
+                  child: ElevatedButton(
+                    child:  Text(
+                      'Login'.tr,
+                      style: TextStyle(color: Colors.white),
                     ),
+                    onPressed: () async {
+
+                      setState(() {
+                        allAnnonceLogin=[];
+                      });
+
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      if (_key_validation.currentState!.validate()) {
+                        print(email + ' ' + password);
+
+                        //
+                          progress = true;
+                        if (isCamindingfrom) {
+                          isCamindingfrom = false;
+                          isLogin = true;
+                          //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
+                          await Annonce_As_Login.Add_Annonce_As_Login(
+                              region_id: widget.region_id,
+                              city_id: widget.city_id,
+                              transaction: widget.transaction,
+                              property_type: widget.property_type,
+                              status: widget.status,
+                              address: widget.adress,
+                              quartier: widget.quartier,
+                              area: widget.area,
+                              price: widget.price,
+                              age: widget.age,
+                              floor_type: widget.floor_type,
+                              floor: "4",
+                              apartment: "1",
+                              bedrooms: widget.bedrooms.toString(),
+                              bathrooms:widget.bathrooms.toString(),
+                              kitchens: widget.kitchens.toString(),
+                              title: widget.title,
+                              description: widget.description,
+                              phone1: widget.phone1,
+                              phone2: widget.phone2,
+                              phone3: widget.phone3,
+                              email: email,
+                              password: password,
+                              abilities:widget.abilities!,
+                              media: widget.media);
+                        } else if (!isCamindingfrom) {
+                        var x=  await _Login(email: email, password: password);
+                        if(x.toString()!="200"){
+                          Get.snackbar("Error", "User not registered");
+                          setState(() {
+                            progress = false;
+                          });
+
+                        }
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        primary: kPrimaryColor,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 20),
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500)),
                   ),
                 ),
-                SizedBox(height: size.height * 0.03),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                     Text(
-                      "Don’t have an Account ".tr,
-                      style: TextStyle(color: kPrimaryColor),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        Get.to(SignUpScreen(
-                            region_id: widget.region_id,
-                            city_id: widget.city_id,
-                            transaction: widget.transaction,
-                            property_type: widget.property_type,
-                            status: widget.status,
-                            adress: widget.adress,
-                            quartier: widget.quartier,
-                            area: widget.area,
-                            price: widget.price,
-                            age: widget.age,
-                            floor_type: widget.floor_type,
-                            floor: "4",
-                            apartment: "1",
-                            bedrooms: widget.bedrooms.toString(),
-                            bathrooms:widget.bathrooms.toString(),
-                            kitchens: widget.kitchens.toString(),
-                            title: widget.title,
-                            description: widget.description,
-                            phone1: widget.phone1,
-                            abilities:widget.abilities,
-                            media: widget.media
-                        ));
-                      },
-                      child:  Text(
-                        " "+"Sign Up".tr,
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+              ),
+              SizedBox(height: size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   Text(
+                    "Don’t have an Account ".tr,
+                    style: TextStyle(color: kPrimaryColor),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      Get.to(SignUpScreen(
+                          region_id: widget.region_id,
+                          city_id: widget.city_id,
+                          transaction: widget.transaction,
+                          property_type: widget.property_type,
+                          status: widget.status,
+                          adress: widget.adress,
+                          quartier: widget.quartier,
+                          area: widget.area,
+                          price: widget.price,
+                          age: widget.age,
+                          floor_type: widget.floor_type,
+                          floor: "4",
+                          apartment: "1",
+                          bedrooms: widget.bedrooms.toString(),
+                          bathrooms:widget.bathrooms.toString(),
+                          kitchens: widget.kitchens.toString(),
+                          title: widget.title,
+                          description: widget.description,
+                          phone1: widget.phone1,
+                          abilities:widget.abilities,
+                          media: widget.media
+                      ));
+                    },
+                    child:  Text(
+                      " "+"Sign Up".tr,
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.bold,
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
+                    ),
+                  ),
+
+                ],
+              ),
+              SizedBox(height: 50,)
+            ],
           ),
         ),
       ),

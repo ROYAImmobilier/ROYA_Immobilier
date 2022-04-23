@@ -22,8 +22,9 @@ class _MobileGridViewState extends State<MobileGridView> {
     images = [];
     var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
     print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    print(k[0]['file_name']);
-    print(k.length.toString());
+    //print(k[0]['file_name']);
+  //  print(k.length.toString());
+    if(k.toString().isNotEmpty)
     for(int i =0 ; i<k.length;i++){
       images.add(k[i]['file_name']);
       print(k[i]['file_name']);

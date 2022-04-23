@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/View/page/home_c.dart';
-import 'package:roya_immobilie/View/routing_login.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-import 'package:roya_immobilie/varia_ble/variable.dart';
+
+import '../variable/variable.dart';
 
 class Annonce_As_Login {
   static Future Add_Annonce_As_Login({

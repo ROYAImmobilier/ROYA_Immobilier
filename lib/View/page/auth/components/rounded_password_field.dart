@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:roya_immobilie/View/page/auth/components/text_field_container.dart';
 
-import '../../../../varia_ble/variable.dart';
+import '../../../../variable/variable.dart';
+
+
 
 
 class RoundedPasswordField extends StatefulWidget {

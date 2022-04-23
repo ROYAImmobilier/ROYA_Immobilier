@@ -1,29 +1,28 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
-import 'package:roya_immobilie/View/page/searchfilter.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-import 'package:roya_immobilie/controller.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../../Model/joke.dart';
-import '../../../cashd_image/image.dart';
 import '../../../data.dart';
-import 'icon_status.dart';
-import 'package:roya_immobilie/Model/repositery.dart';
 
 class Details extends StatefulWidget {
   List<String> images;
   int activeindex = 0;
   var data;
+  bool _shownumber=false;
+  Future<void>? _launched;
+  bool _hasCallSupport = false;
 
   Details({required this.images, required this.data});
 
@@ -49,6 +48,15 @@ class _DetailsState extends State<Details> {
     } else {
       return 'just now';
     }
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    canLaunchUrl(Uri(scheme: 'tel', path: '123')).then((bool result) {
+      setState(() {
+        widget._hasCallSupport = result;
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -391,12 +399,25 @@ class _DetailsState extends State<Details> {
                                           width: 2.w,
                                         ),
                                         Text(
-                                          "SHOW NUMBER",
+                                         widget._shownumber==false? "SHOW NUMBER":widget.data.phone1,
                                           style: TextStyle(fontSize: 13.sm),
                                         ),
                                       ],
                                     ),
-                                    onPressed: () {},
+                                    onPressed: ()async {
+                                      setState(() {
+                                        widget._shownumber=!widget._shownumber;
+                                       // widget._launched=   _makePhoneCall(widget.data.phone1);
+
+                                      });
+                                      String telephoneNumber = '+2347012345678';
+                                      String telephoneUrl = "tel:$telephoneNumber";
+                                      if (await canLaunch(telephoneUrl)) {
+                                      await launch(telephoneUrl);
+                                      } else {
+                                      throw "Error occured trying to call that number.";
+                                      }
+                                    },
                                   )
                                 ],
                               )
@@ -564,11 +585,11 @@ class _DetailsState extends State<Details> {
                             ),
                           ),
                           SizedBox(
-                            height: 200.h,
+                            height: 150.h,
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 shrinkWrap: true,
-                                itemCount: allAnnonce.length,
+                                itemCount: 5,
                                 itemBuilder: (BuildContext context, int index) {
                                   return GestureDetector(
                                       // onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
@@ -601,4 +622,11 @@ class _DetailsState extends State<Details> {
       ),
 
       );
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
 }

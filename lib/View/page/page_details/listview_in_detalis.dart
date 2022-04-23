@@ -21,16 +21,16 @@ class ListView_in_Detalis extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                child: const Text(
-                  'À vendre',
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                child:  Text(
+                 data.transaction.toString().tr,
+                  style: TextStyle(color:Colors.white, fontSize: 15),
                 ),
                 padding: const EdgeInsets.all(5),
                 margin: EdgeInsets.only(top: 10.h, left: 10.w),
                 //width: 50.h,
                 // height: 20,
-                decoration: const BoxDecoration(
-                    color: Color(0xff9787cc),
+                decoration:  BoxDecoration(
+                    color: data.transaction.toString()=="Sale"?Color(0xff9787cc):Colors.greenAccent,
                     borderRadius: BorderRadius.all(Radius.circular(10))),
               )
             ],

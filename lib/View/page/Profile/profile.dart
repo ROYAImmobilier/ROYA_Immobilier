@@ -11,7 +11,7 @@
 // import '../../../Model/region.dart';
 // import '../../../Model/repositery.dart';
 // import '../../../cashd_image/image.dart';
-// import '../../../varia_ble/variable.dart';
+// import '../../../variable/variable.dart';
 // import '../auth/Login/components/body.dart';
 // import '../auth/Login/login_screen.dart';
 //

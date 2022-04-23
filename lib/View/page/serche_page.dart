@@ -10,7 +10,6 @@ import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 
 
-import '../../varia_ble/variable.dart';
 
 class Sercher extends StatefulWidget {
   @override
@@ -293,7 +292,15 @@ class _HomePageState extends State<Sercher> {
     }
 
     _userDetails.forEach((userDetail) {
-      if (userDetail.title.contains(text) || userDetail.address.contains(text))
+
+      if (userDetail.title.toString().toLowerCase().contains(text.toLowerCase())
+        ||
+           userDetail.address.toString().toLowerCase().contains(text.toLowerCase())
+        ||
+          userDetail.region.toString().toLowerCase().contains(text.toLowerCase())
+          ||
+          userDetail.city.toString().toLowerCase().contains(text.toLowerCase())
+      )
         _searchResult.add(userDetail);
     });
 

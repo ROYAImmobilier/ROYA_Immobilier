@@ -7,7 +7,8 @@ import 'package:roya_immobilie/View/routing_screen.dart';
 
 import '../View/order/contact_info.dart';
 import '../View/routing_login.dart';
-import '../varia_ble/variable.dart';
+import '../variable/variable.dart';
+
 
 class Modifier_Annonce {
   static Future Modifier({

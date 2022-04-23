@@ -4,9 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../Langage/CondationLangage/condation_langage.dart';
-import '../../Model/city.dart';
-import '../../Model/region.dart';
-import '../../varia_ble/variable.dart';
+
+import '../../variable/variable.dart';
 import 'order_details.dart';
 
 class Add_Annonce extends StatefulWidget {

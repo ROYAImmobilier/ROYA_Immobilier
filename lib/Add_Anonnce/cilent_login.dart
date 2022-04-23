@@ -1,16 +1,15 @@
 import 'dart:convert';
 
-
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/varia_ble/variable.dart';
 
 import '../Model/data_list.dart';
 import '../Model/joke.dart';
 import '../View/page/auth/Login/components/body.dart';
 import '../View/page/auth/Login/login_screen.dart';
 import '../View/routing_screen.dart';
+import '../variable/variable.dart';
 class Clinet_Login{
 
   static Future Add_Annonce_As_Login({

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:roya_immobilie/View/order/order_distination.dart';
 
 import '../../Model/cityrepo.dart';
-import '../../varia_ble/variable.dart';
+import '../../variable/variable.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);

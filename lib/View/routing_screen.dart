@@ -12,7 +12,7 @@ import 'package:roya_immobilie/View/page/auth/Login/profile.dart';
 import 'package:roya_immobilie/View/page/notification_page.dart';
 import '../Model/cityrepo.dart';
 import '../Model/joke.dart';
-import '../varia_ble/variable.dart';
+import '../variable/variable.dart';
 import 'order/order_distination.dart';
 import 'page/searchfilter.dart';
 import 'page/chat_page.dart';

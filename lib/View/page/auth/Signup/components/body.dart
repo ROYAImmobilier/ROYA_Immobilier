@@ -7,7 +7,8 @@ import 'package:roya_immobilie/View/page/auth/Signup/components/or_divider.dart'
 import 'package:roya_immobilie/View/page/auth/Signup/components/social_icon.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import '../../../../../Add_Anonnce/clinet_register.dart';
-import '../../../../../varia_ble/variable.dart';
+
+import '../../../../../variable/variable.dart';
 import '../../components/text_field_container.dart';
 import '../rounded_password_field_signup.dart';
 

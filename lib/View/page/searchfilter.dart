@@ -4,12 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/joke.dart';
-import 'package:roya_immobilie/View/page/Home/widget/listeanonnce.dart';
-import 'package:roya_immobilie/View/page/page_details/details.dart';
-import 'package:roya_immobilie/controller.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
-import '../../varia_ble/variable.dart';
-import 'Home/home.dart';
+import 'package:roya_immobilie/View/page/page_details/details.dart';
+
+import '../../variable/variable.dart';
+
 
 class SearchFiltter extends StatefulWidget {
   var data ;

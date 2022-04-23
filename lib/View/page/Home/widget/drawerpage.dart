@@ -8,7 +8,8 @@ import 'package:roya_immobilie/View/page/favorite_page.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../Model/cityrepo.dart';
-import '../../../../varia_ble/variable.dart';
+
+import '../../../../variable/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
 import '../../auth/Login/profile.dart';

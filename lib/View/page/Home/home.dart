@@ -7,9 +7,7 @@ import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/Home/widget/stackwidget_2.dart';
 
 import '../../../screenSize/screenSized.dart';
-import '../../../varia_ble/variable.dart';
 import '../../routing_screen.dart';
-import '../page_details/details_serche.dart';
 import '../serche_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,38 +15,40 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
 
   final controller = Get.put(AnnonceController());
+
   @override
   Widget build(BuildContext context) {
+
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return GetBuilder<AnnonceController>(
-      // init: AnnonceController(),
+     // init: AnnonceController(),
       builder: (controller) => ScreenUtilInit(
         builder: () => Scaffold(
-
           backgroundColor: Colors.white,
           drawer: DrawerPage(),
           appBar: AppBar(
-
-            title:  Center(
-                child: SvgPicture.asset('assets/icon/logo-roya.svg',
-                  width: 40,
-                  height: 40,),),
+            title: Center(
+              child: SvgPicture.asset(
+                'assets/icon/logo-roya.svg',
+                width: 40,
+                height: 40,
+              ),
+            ),
             actions: [
               GestureDetector(
-
                 onTap: (() => Get.to(Sercher())),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SvgPicture.asset(
                     'assets/icon/search.svg',
-                    width: ScreenSized.IconFiltter(
-                        Screenwidth, Screenheight).w,
-                    height: ScreenSized.IconFiltter(
-                        Screenwidth, Screenheight).h,
+                    width: ScreenSized.IconFiltter(Screenwidth, Screenheight).w,
+                    height:
+                        ScreenSized.IconFiltter(Screenwidth, Screenheight).h,
                     color: Colors.black,
                   ),
                 ),
@@ -59,11 +59,11 @@ class _HomePageState extends State<HomePage> {
                 return IconButton(
                   //menu.svg
                   icon: SvgPicture.asset('assets/icon/menu.svg',
-                      width: ScreenSized.IconFiltter(
-                          Screenwidth, Screenheight).w,
-                      height: ScreenSized.IconFiltter(
-                          Screenwidth, Screenheight).h
-                          , matchTextDirection: true),
+                      width:
+                          ScreenSized.IconFiltter(Screenwidth, Screenheight).w,
+                      height:
+                          ScreenSized.IconFiltter(Screenwidth, Screenheight).h,
+                      matchTextDirection: true),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
@@ -73,10 +73,9 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             backgroundColor: Colors.white,
-            elevation:0,
+            elevation: 0,
           ),
-          body: StackWidget_2(
-              data: allAnnonce, leng: allAnnonce.length),
+          body: StackWidget_2(data: allAnnonce, leng: allAnnonce.length),
         ),
       ),
     );

@@ -6,15 +6,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/RouteScreen/routeScreen.dart';
-import 'package:roya_immobilie/View/routing_login.dart';
 
 import '../../../../Model/cityrepo.dart';
-import '../../../../Model/data_list.dart';
 import '../../../../Model/joke.dart';
 import '../../../../Model/repositery.dart';
 import '../../../../cashd_image/image.dart';
-import '../../../../varia_ble/variable.dart';
+import '../../../../variable/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../Profile/detaille_profile.dart';
 import 'components/body.dart';
@@ -100,23 +97,12 @@ class _ProfileState extends State<Profile> {
     late List<String>images = [];
     getdate(int index)async{
       String x ="" ;
-      for(int i=0 ; i<allAnnonce.length;i++){
-        print(Poste[index].id.toString());
-        print(allAnnonce[i].id.toString());
+      int i=0;
 
-        if(Poste[index].id.toString() ==allAnnonce[i].id.toString()){
-          print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-          print( allAnnonce[i].slug);
-          setState(() {
-            x= allAnnonce[i].slug;
-          });
-
-        }
-      }
       images = [];
-      var k = await jokeRepository.GetDetiller(sug: x);
+      var k = await jokeRepository.GetDetiller(sug: slug_data[index].slug);
 
-      print(k[0]['file_name']);
+      //print(k[0]['file_name']);
       print(k.length.toString());
       for(int i =0 ; i<k.length;i++){
         images.add(k[i]['file_name']);
@@ -285,6 +271,10 @@ class _ProfileState extends State<Profile> {
                             itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
                               getdate(index);
+                             //    Get.to(DetailleProfile(
+                             //      images: images,
+                             //      data: Poste[index],
+                             //    ),);
                               },
                               child: Slidable(
                                 key: UniqueKey(),

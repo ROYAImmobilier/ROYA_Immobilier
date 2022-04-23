@@ -9,7 +9,7 @@ import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import '../../cashd_image/image.dart';
-import '../../varia_ble/variable.dart';
+
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);

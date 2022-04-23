@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../Model/anonce_model_favote.dart';
-import '../../varia_ble/variable.dart';
+import '../../variable/variable.dart';
 
 class CordDatabaseHelper {
   CordDatabaseHelper._();

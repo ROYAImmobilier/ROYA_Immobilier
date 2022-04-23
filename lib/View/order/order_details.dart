@@ -9,7 +9,7 @@ import 'package:roya_immobilie/Langage/CondationLangage/condation_langage.dart';
 import 'package:roya_immobilie/Model/ability.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/main.dart';
-import 'package:roya_immobilie/varia_ble/variable.dart';
+import '../../variable/variable.dart';
 import 'contact_info.dart';
 import 'order_distination.dart';
 List<dynamic> media=getData_put["media"];

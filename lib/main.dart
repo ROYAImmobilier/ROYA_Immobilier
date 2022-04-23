@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:roya_immobilie/Langage/transation.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/on_boding_screen.dart';
-import 'package:roya_immobilie/varia_ble/variable.dart';
+import 'package:roya_immobilie/variable/variable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
@@ -46,8 +45,11 @@ class _MyAppState extends State<MyApp> {
         print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
         print(allAnnonce[i].cover);
+
         i++;
       }
+      slug_data = allAnnonce;
+      isLoaded=true;
     });
   }
 
@@ -99,41 +101,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-/*
-class Testa extends StatefulWidget {
-  const Testa({Key? key}) : super(key: key);
-
-  @override
-  State<Testa> createState() => _TestaState();
-}
-
-class _TestaState extends State<Testa> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: AnnonceRepository.featcherAnnonce(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            if (snapshot.hasData) {
-              //  var totalData = snapshot.data.length;
-              print(snapshot.data.length);
-              return HomePage(snapshot.data, snapshot.data.length);
-            } else {
-              return const Center(
-                child: Text("No data Available"),
-              );
-            }
-          }
-        },
-      ),
-    );
-  }
-}*/
 
 class OnBoarding extends StatefulWidget {
   @override
@@ -147,18 +114,16 @@ class OnBoardingState extends State<OnBoarding> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
 
-
     if (finishedOnBoarding) {
       //Get.offAll(BoardingPage());
-       Get.to(const RoutingScreen());
-      if(prefs.getString("token")!=null){
+      Get.to(const RoutingScreen());
+      if (prefs.getString("token") != null) {
         username = prefs.getString("username")!;
         token_global = prefs.getString("token");
         isLogin = true;
       }
     } else {
       Get.offAll(BoardingPage());
-
     }
   }
 

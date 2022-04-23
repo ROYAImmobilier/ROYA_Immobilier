@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../Add_Anonnce/annonce_as_login.dart';
 import '../../Add_Anonnce/modifier_annonce.dart';
 import '../../Model/ability.dart';
-import '../../varia_ble/variable.dart';
+import '../../variable/variable.dart';
 import '../page/auth/Login/login_screen.dart';
 import '../routing_screen.dart';
 import 'order_details.dart';
@@ -471,7 +471,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                     progress_modife = true;
                                   });
                                   var x;
-                                  print("8761");
+                                //  print("8761");
                                   isLogin == false
                                       ? Get.to(LoginScreen(
                                           region_id:
@@ -542,26 +542,26 @@ class _ContactInfoState extends State<ContactInfo> {
                                     });
                                   }
                                 } else {
-                                  print("876");
-                                  print(widget.Property_details);
-                                  print(widget.categorie);
-                                  print(widget.statut);
-                                  print(widget.adress);
-                                  print(widget.region_1);
-                                  print(widget.city);
-                                  print(widget.quartier);
-                                  print(widget.area);
-                                  print(widget.price);
-                                  print(widget.age);
-                                  print(widget.flooring);
-                                  print(widget.bedroms);
-                                  print(widget.bathrooms);
-                                  print(widget.kichens);
-                                  print(_titel.text);
-                                  print(_description.text);
-                                  print(widget.ablity.toString());
-                                  print(_listimagebase64);
-                                  //verify=false;
+                                  // print("876");
+                                  // print(widget.Property_details);
+                                  // print(widget.categorie);
+                                  // print(widget.statut);
+                                  // print(widget.adress);
+                                  // print(widget.region_1);
+                                  // print(widget.city);
+                                  // print(widget.quartier);
+                                  // print(widget.area);
+                                  // print(widget.price);
+                                  // print(widget.age);
+                                  // print(widget.flooring);
+                                  // print(widget.bedroms);
+                                  // print(widget.bathrooms);
+                                  // print(widget.kichens);
+                                  // print(_titel.text);
+                                  // print(_description.text);
+                                  // print(widget.ablity.toString());
+                                  // print(_listimagebase64);
+                                  // //verify=false;
                                   setState(() {
                                     progress_modife = true;
                                   });

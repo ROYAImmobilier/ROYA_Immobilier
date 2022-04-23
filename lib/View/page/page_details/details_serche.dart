@@ -11,7 +11,6 @@ import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/page/searchfilter.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-import 'package:roya_immobilie/controller.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 import '../../../Model/joke.dart';
 import '../../../data.dart';

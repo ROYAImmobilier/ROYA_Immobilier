@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/View/page/home_c.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
-import 'package:roya_immobilie/varia_ble/variable.dart';
+
 
 class Annonce_As_SingUp {
   static Future Add_Annonce_SingUp({

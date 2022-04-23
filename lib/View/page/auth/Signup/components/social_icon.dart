@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../varia_ble/variable.dart';
+import '../../../../../variable/variable.dart';
+
+
 
 class SocalIcon extends StatelessWidget {
   final String iconSrc;

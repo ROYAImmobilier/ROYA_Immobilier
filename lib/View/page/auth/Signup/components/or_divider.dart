@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../varia_ble/variable.dart';
+import '../../../../../variable/variable.dart';
+
+
 
 
 class OrDivider extends StatelessWidget {
