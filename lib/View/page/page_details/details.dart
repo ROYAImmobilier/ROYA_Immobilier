@@ -15,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../Model/joke.dart';
 import '../../../data.dart';
+import '../Home/widget/stackwidget_2.dart';
 
 class Details extends StatefulWidget {
   List<String> images;
@@ -137,25 +138,8 @@ class _DetailsState extends State<Details> {
                                     return GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          select = [];
-                                          for (int k = 0;
-                                              k < allAnnonce.length;
-                                              k++) {
-                                            if (dataCategory[i].name ==
-                                                ("All")) {
-                                              select.add(allAnnonce[k]);
-                                            } else if (allAnnonce[k]
-                                                .propertyType
-                                                .contains(
-                                                    dataCategory[i].name)) {
-                                              select.add(allAnnonce[k]);
-                                            }
-                                          }
-                                          Get.to(CategoryItems(
-                                              icon: dataCategory[i].icon,
-                                              title: dataCategory[i].name,
-                                              data: select,
-                                              leng: select.length));
+                                          indexselectCategory = i ;
+                                          Get.offAll(RoutingScreen());
                                         });
                                       },
                                       child: Padding(
@@ -295,9 +279,7 @@ class _DetailsState extends State<Details> {
                             ),
                             Positioned(
                               child: BuldeIndector(),
-                             // top: 0,
-                             // right: 0,
-                             // left: MediaQuery.of(context).size.width.toDouble()/2,
+
                               bottom: 5,
                             ),
 
@@ -410,10 +392,11 @@ class _DetailsState extends State<Details> {
                                        // widget._launched=   _makePhoneCall(widget.data.phone1);
 
                                       });
-                                      String telephoneNumber = '+2347012345678';
-                                      String telephoneUrl = "tel:$telephoneNumber";
-                                      if (await canLaunch(telephoneUrl)) {
-                                      await launch(telephoneUrl);
+                                     // String telephoneNumber = '+2347012345678';
+                                      String telephoneUrl = "tel:${widget.data.phone1.toString()}";
+                                      if( widget._shownumber==true)
+                                        if (await canLaunchUrlString(telephoneUrl)) {
+                                      await launchUrlString(telephoneUrl);
                                       } else {
                                       throw "Error occured trying to call that number.";
                                       }

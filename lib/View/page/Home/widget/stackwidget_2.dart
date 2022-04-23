@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
@@ -16,22 +17,49 @@ import '../../searchfilter.dart';
 import 'listeanonnce_2.dart';
 import 'mobilestackwidget.dart';
 
-
+int indexselectCategory = 0 ;
 final colors = Color(0xefefef);
 class StackWidget_2 extends StatefulWidget {
-  List<Joke> data;
-
-  int leng;
-  StackWidget_2({required this.data, required this.leng});
 
   @override
   State<StackWidget_2> createState() => _StackWidget_2State();
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
+  List<Joke> data = [];
+  int leng =0 ;
+
   List<Joke> select = [];
-  int j = 0 ;
+  int j = indexselectCategory ;
   bool grid = true;
+
+  @override
+  void initState() {
+
+    for (int k = 0;
+    k < allAnnonce.length;
+    k++) {
+      if (dataCategory[indexselectCategory].name == "All") {
+        setState(() {
+          select.add(allAnnonce[indexselectCategory]);
+
+        });
+
+      } else if (allAnnonce[k]
+          .propertyType
+          .contains(dataCategory[indexselectCategory].name)) {
+        select.add(allAnnonce[k]);
+      }
+    }
+    setState(() {
+      data = select;
+      leng = select.length;
+    });
+
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var Screenwidth = MediaQuery.of(context).size.width;
@@ -74,7 +102,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       children: [
                         GestureDetector(
                             onTap: () => Get.to(SearchFiltter(
-                                  data: widget.data,
+                                  data: data,
                                 )),
                             child: SvgPicture.asset(
                               'assets/icon/filter.svg',
@@ -148,32 +176,32 @@ class _StackWidget_2State extends State<StackWidget_2> {
                       children:[ grid
                           ? ResponsiveLayout_(
                               tabliteBody: TbletGridView(
-                                leng: widget.leng,
-                                data: widget.data,
+                                leng: leng,
+                                data:data,
                               ),
                               mobileBody: MobileGridView(
-                                leng: widget.leng,
-                                data: widget.data,
+                                leng: leng,
+                                data:data,
                               ),
                               smallBody: SmallScreen(
-                                leng: widget.leng,
-                                data: widget.data,
+                                leng: leng,
+                                data: data,
                               ))
                           : ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: widget.leng,
+                              itemCount: leng,
                               itemBuilder:
                                   (BuildContext context, int index) {
                                 return GestureDetector(
                                     onTap: () => Get.to(d(
-                                          image: widget.data[index].cover,
+                                          image: data[index].cover,
                                               //?? 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
-                                          data: widget.data[index],
+                                          data: data[index],
                                         )),
                                     child: Liste_Annonce_2(
-                                        data: widget.data[index],
-                                        image: widget.data[index].cover ));}),
+                                        data: data[index],
+                                        image: data[index].cover ));}),
                       SizedBox(height: 20.h,)]
                     ),
                   ),
@@ -190,27 +218,30 @@ class _StackWidget_2State extends State<StackWidget_2> {
                     itemBuilder: (context, i) {
                       return GestureDetector(
                         onTap: () {
+
+
                           setState(() {
                             j=i;
+                            indexselectCategory=i;
                           });
                           select = [];
                           for (int k = 0;
                           k < allAnnonce.length;
                           k++) {
-                            if (dataCategory[i].name == "All") {
+                            if (dataCategory[indexselectCategory].name == "All") {
                               setState(() {
-                                select.add(allAnnonce[k]);
+                                select.add(allAnnonce[indexselectCategory]);
                               });
 
                             } else if (allAnnonce[k]
                                 .propertyType
-                                .contains(dataCategory[i].name)) {
+                                .contains(dataCategory[indexselectCategory].name)) {
                               select.add(allAnnonce[k]);
                             }
                           }
                           setState(() {
-                            widget.data = select;
-                            widget.leng = select.length;
+                           data = select;
+                           leng = select.length;
                           });
                         },
                         child: Padding(

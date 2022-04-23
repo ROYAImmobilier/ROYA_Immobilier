@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.white,
             elevation: 0,
           ),
-          body: StackWidget_2(data: allAnnonce, leng: allAnnonce.length),
+          body: StackWidget_2(),
         ),
       ),
     );

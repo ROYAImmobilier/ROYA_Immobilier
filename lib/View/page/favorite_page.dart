@@ -19,6 +19,7 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
+  final controllerAnnonce = Get.put(AnnonceController());
   List<String>images=[];
   getdate(int index , sulg , data)async{
     var k = await jokeRepository.GetDetiller(sug: sulg);
