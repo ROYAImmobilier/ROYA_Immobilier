@@ -50,6 +50,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   gradient_widgets: ^0.6.0
   url_launcher: ^6.0.17
+  expandable: ^5.0.1
 
 
 

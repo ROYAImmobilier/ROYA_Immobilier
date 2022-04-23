@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../../Model/joke.dart';
 import '../../../data.dart';
 import '../Home/widget/stackwidget_2.dart';
+import '../contact_send.dart';
 
 class Details extends StatefulWidget {
   List<String> images;
@@ -360,7 +361,9 @@ class _DetailsState extends State<Details> {
                                         ),
                                       ],
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.to(ContactSend());
+                                    },
                                   ),
                                   SizedBox(
                                     width: 5.w,

@@ -7,6 +7,7 @@ import 'package:roya_immobilie/View/page/serche_page.dart';
 import 'package:roya_immobilie/View/page/show_dialoge.dart';
 
 import '../../screenSize/screenSized.dart';
+import 'contact_list.dart';
 
 class ChatPage extends StatefulWidget {
  ChatPage({Key? key}) : super(key: key);
@@ -72,8 +73,8 @@ class _ChatPageState extends State<ChatPage> {
       backgroundColor: Colors.white,
       elevation:0,
     ),
-      body:
-          CustomDialog(),
+      body:ContactList()
+          //CustomDialog(),
 
       );
   }
