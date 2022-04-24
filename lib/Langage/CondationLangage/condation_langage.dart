@@ -69,7 +69,7 @@ class CondationLangage {
       _statut="new";
     }else if(newValue=="good"||newValue=="Bon état"||newValue=="بحالة جيدة"){
       _statut="good";
-    }else if(newValue=="good"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
+    }else if(newValue=="needRepair"||newValue=="A besoin de réparation"||newValue=="يتطلب الصيانة"){
       _statut="needRepair";
     }
     return _statut;
@@ -159,5 +159,36 @@ class CondationLangage {
     }
     return _age;
   }
-
+//flooring
+  static String? flooring_put(String floor){
+    var _floor;
+    if(floor=="Wooden") {
+      _floor="Wooden";
+    }else if(floor=="Marble"){
+      _floor="Marble";
+    }
+    else if(floor=="Tiled"){
+      _floor="Tiled";
+    }else if(floor=="Others"){
+      _floor="Others";
+    }
+    else{
+      return null;
+    }
+    return _floor;
+  }
+  static String flooring(String newValue){
+    var _statut;
+    if(newValue=="Wooden"||newValue=="Parquet"||newValue=="التخشيب") {
+      _statut="Wooden";
+    }else if(newValue=="Marble"||newValue=="Marbre"||newValue=="الرخام"){
+      _statut="Marble";
+    }
+    else if(newValue=="Tiled"||newValue=="Carrelage"||newValue=="البلاط"){
+      _statut="Tiled";
+    }else if(newValue=="Others"||newValue=="Autre"||newValue=="مواد أخرى"){
+      _statut="Others";
+    }
+    return _statut;
+  }
 }

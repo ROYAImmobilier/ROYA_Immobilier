@@ -52,14 +52,16 @@ class jokeRepository {
         .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces/${id.toString()}'),headers: {
       'Authorization': 'Bearer $token_global'
     });
-    var jsoon = res.body;
-    var a = json.decode(jsoon);
-    print(res.statusCode);
-    print(res.body);
-    if(a.isEmpty){
-      return null;
-    }
-   else if (res.statusCode == 200) {
+
+
+   if (res.statusCode == 200) {
+     var jsoon = res.body;
+     var a = json.decode(jsoon);
+     print(res.statusCode);
+     print(res.body);
+     if(a.isEmpty){
+       return null;
+     }
       //print(res.body);
       // print(a[0]['title']);
       return a["data"][0];

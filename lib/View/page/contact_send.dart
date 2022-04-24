@@ -304,7 +304,7 @@ class _ContactSendState extends State<ContactSend> {
                     ),
                   ),
 
-
+        SizedBox(height: 20,)
                 ],
               ),
             ),

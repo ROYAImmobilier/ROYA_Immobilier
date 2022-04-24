@@ -238,6 +238,10 @@ class _DrawerPageState extends State<DrawerPage> {
                         SharedPreferences prefs = await SharedPreferences.getInstance();
                         await prefs.remove('token');
                         await prefs.remove('username');
+                        setState(() {
+                          contact=[];
+                        });
+
                         Get.offAll(const RoutingScreen());
                       },
                       child:
