@@ -6,7 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/joke.dart';
 
-import '../Controller/login.dart';
+import '../Model/Contact.dart';
+import '../Model/login.dart';
 import '../Model/city.dart';
 import '../Model/cityrepo.dart';
 import '../Model/data_list.dart';
@@ -230,3 +231,5 @@ ListCity() async{
 List<Joke> slug_data=[];
 ///data loaded
 bool isLoaded=false;
+///get contacs
+List<Contacts> contact=[];

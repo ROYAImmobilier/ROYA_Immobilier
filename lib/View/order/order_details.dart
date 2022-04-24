@@ -62,6 +62,8 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
             getData_put["floor_type"] == "Others") {
           _flooring = getData_put["floor_type"];
         }
+
+        _flooring=CondationLangage.flooring_put(getData_put["floor_type"])?.tr;
         _age = CondationLangage.age_put(getData_put['age'])?.tr;
         _age_select=getData_put['age'];
 
@@ -364,6 +366,8 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   _flooring = newValue;
+                                  _floor_select=CondationLangage.flooring(newValue!);
+                                 // print(_floor_select);
                                 });
                               },
                             ),
@@ -677,7 +681,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                     print(price.text);
                                     print(_price_type);
                                     print(_age_select);
-                                    print(_flooring);
+                                    print(_floor_select);
                                     print(idability);
                                     if (_key_details.currentState!.validate() &&
                                         _age != null) {
@@ -697,7 +701,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                           //ville: widget.ville,
                                           age: _age_select,
                                           price: price.text,
-                                          flooring: _flooring,
+                                          flooring: _floor_select,
                                           area: area.text));
                                     }
                                   },

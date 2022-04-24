@@ -304,10 +304,10 @@ class _ProfileState extends State<Profile> {
                                                       .toString());
                                           verify = true;
                                           print(getData_put);
-                                          if (getData_put.isEmpty) {
+                                          if (getData_put==null) {
                                             Get.snackbar("Error", "Server");
                                             // Get.to(Add_Annonce());
-                                            reloud();
+                                           // reloud();
                                           } else if (!getData_put.isEmpty) {
                                             Get.defaultDialog(
                                                 title: "Modification",

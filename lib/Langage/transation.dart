@@ -70,7 +70,11 @@ class Transation extends Translations {
           "Are you wante to modifier ?":"هل تريد تعديل هذا الاعلان ؟ ",
           "Cancel":"الغاء",
           "yes":"نعم",
-           "this feature is not yet available in this version of the application ":"هذه الميزة غير متوفرة بعد في هذا الإصدار من التطبيق"
+           "this feature is not yet available in this version of the application ":"هذه الميزة غير متوفرة بعد في هذا الإصدار من التطبيق",
+          "Wooden":"التخشيب",
+          'Marble':"الرخام",
+          "Tiled":"البلاط",
+          "Others":"مواد أخرى"
         },
         'fr_FR': {
 
@@ -136,12 +140,19 @@ class Transation extends Translations {
           "Are you wante to modifier ?":"Are you wante to modifier ?",
           "Cancel":"Cancel",
           "yes":"yes",
-          "this feature is not yet available in this version of the application ":"cette fonctionnalité n'est pas encore disponible dans cette version de l'application "
+          "this feature is not yet available in this version of the application ":"cette fonctionnalité n'est pas encore disponible dans cette version de l'application ",
+  "Wooden":"Parquet",
+  'Marble':"Marbre",
+  "Tiled":"Carrelage",
+  "Others":"Autre"
 
 
         },
         'en_US': {
-
+  "Wooden":"Wooden",
+  'Marble':"Marble",
+  "Tiled":"Tiled",
+  "Others":"Others",
           "Select State":  "property status",
           "Se Déconnecter": 'Log Out',
           "Tableau De Bord": 'Dashboard',

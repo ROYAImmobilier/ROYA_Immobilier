@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return GetBuilder<AnnonceController>(
-     // init: AnnonceController(),
+     //init: AnnonceController(),
       builder: (controller) => ScreenUtilInit(
         builder: () => Scaffold(
           backgroundColor: Colors.white,

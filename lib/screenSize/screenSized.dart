@@ -38,7 +38,7 @@ class ScreenSized {
       return 25;
     }
     else if( screenWidth>800){
-      return 40;
+      return 30;
     }
     else {
       return 25;

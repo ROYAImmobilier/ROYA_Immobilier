@@ -21,6 +21,7 @@ class Liste_Annonce_2 extends StatefulWidget {
 }
 
 class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
+
   bool fav = true;
   @override
   Widget build(BuildContext context) {

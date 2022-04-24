@@ -116,7 +116,7 @@ class OnBoardingState extends State<OnBoarding> {
 
     if (finishedOnBoarding) {
       //Get.offAll(BoardingPage());
-      Get.to(const RoutingScreen());
+      Get.to( RoutingScreen());
       if (prefs.getString("token") != null) {
         username = prefs.getString("username")!;
         token_global = prefs.getString("token");

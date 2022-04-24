@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:roya_immobilie/Controller/login.dart';
+import 'package:roya_immobilie/Model/login.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
 import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/auth/Login/profile.dart';
@@ -156,6 +156,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 height: 25.h,
               ),
               label: 'Chat'.tr,
+
             ),
             isLogin
                 ? BottomNavigationBarItem(

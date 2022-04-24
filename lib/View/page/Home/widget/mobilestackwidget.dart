@@ -35,6 +35,13 @@ class _MobileGridViewState extends State<MobileGridView> {
     ),);
   }
   @override
+  void initState() {
+   setState(() {
+
+   });
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     print(MediaQuery
