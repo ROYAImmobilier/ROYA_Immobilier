@@ -44,11 +44,10 @@ class ContactList extends StatelessWidget {
                       children: [
                         ExpandableNotifier(
                           child: ExpandablePanel(
-
                             theme: const ExpandableThemeData(
-                              iconSize: 40,
                               hasIcon: false,
-                              headerAlignment: ExpandablePanelHeaderAlignment.center,
+                              headerAlignment:
+                              ExpandablePanelHeaderAlignment.center,
                               tapBodyToExpand: false,
                               tapBodyToCollapse: false,
                             ),
@@ -98,29 +97,17 @@ class ContactList extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            collapsed: Container(
-
-                            ),
+                            collapsed: Container(),
                             expanded: Column(
                               children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.phone),
-                                    Container(
-                                        padding: EdgeInsets.only(left: 5),
-                                        width: MediaQuery.of(context).size.width,
-                                        child: Text(contact[i].phone.toString())),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(Icons.email),
-                                    Container(
-                                        padding: EdgeInsets.only(left: 5),
-                                        width: MediaQuery.of(context).size.width,
-                                        child: Text(contact[i].email.toString())),
-                                  ],
-                                ),
+                                Container(
+                                    padding: EdgeInsets.only(left: 5),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Text(contact[i].phone.toString())),
+                                Container(
+                                    padding: EdgeInsets.only(left: 5),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Text(contact[i].email.toString())),
 
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -216,7 +203,7 @@ class ContactList extends StatelessWidget {
                               ],
                             ),
                           ),
-                          initialExpanded: false,
+                          initialExpanded: true,
                         ),
 
                       ],

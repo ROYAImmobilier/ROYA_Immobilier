@@ -16,9 +16,9 @@ import '../../screenSize/screenSized.dart';
 import '../../variable/variable.dart';
 
 class ChatPage extends StatefulWidget {
- ChatPage({Key? key}) : super(key: key);
- Joke? _annonce;
- late int index;
+  ChatPage({Key? key}) : super(key: key);
+  Joke? _annonce;
+  late int index;
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -29,7 +29,7 @@ class _ChatPageState extends State<ChatPage> {
     print(5);
     if(contact.isEmpty){
       setState(() {
-       getContacts();
+        getContacts();
       });
     }
 
@@ -66,11 +66,11 @@ class _ChatPageState extends State<ChatPage> {
                   width: ScreenSized
                       .IconFiltter(
                       Screenwidth, Screenheight)
-                      ,
+                  ,
                   height: ScreenSized
                       .IconFiltter(
                       Screenwidth, Screenheight)
-                      ,
+                  ,
                   color: Colors.black,
                 ),
               ),
@@ -85,7 +85,7 @@ class _ChatPageState extends State<ChatPage> {
                     width: ScreenSized
                         .IconFiltter(
                         Screenwidth, Screenheight)
-                        ,
+                    ,
                     height: ScreenSized
                         .IconFiltter(
                         Screenwidth, Screenheight)
@@ -118,15 +118,15 @@ class _ChatPageState extends State<ChatPage> {
               itemCount: contact.length,
               itemBuilder: (context, i) {
 
-               widget.index=contact[i].annonceId!.toInt();
+                widget.index=contact[i].annonceId!.toInt();
                 // print(_annonce?.cover.toString());
                 return Card(
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    // margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  // margin: EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
                       decoration: BoxDecoration(
                           color: Color(0xffF8F8F8),
                           boxShadow: [
@@ -137,218 +137,233 @@ class _ChatPageState extends State<ChatPage> {
                           ],
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
-                        children: [
-                          ExpandableNotifier(
-                            child: ExpandablePanel(
-                              theme: const ExpandableThemeData(
-                                hasIcon: true,
-                                headerAlignment:
-                                ExpandablePanelHeaderAlignment.center,
-                                tapBodyToExpand: true,
-                                tapBodyToCollapse: true,
-                              ),
-                              header: Container(
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.grey,
-                                                blurRadius: 3,
-                                                offset: Offset(2, 1)),
-                                          ],
-                                        ),
-                                        margin: EdgeInsets.only(left: 10),
-                                        child: CircleAvatar(
-                                            backgroundColor: Colors.white,
-                                            child: Icon(Icons.message)
-                                        )),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                        left: 10,
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment
-                                            .start,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Container(
-                                              width: 200,
-                                              child: Text(contact[i].subject
-                                                  .toString())),
-                                          Container(
-                                              width: 200,
-                                              child: Text(contact[i].createdAt
-                                                  .toString().substring(0, 10)))
-                                        ],
-                                      ),
-                                    ),
+                          children: [
+                      ExpandableNotifier(
+                      child: ExpandablePanel(
+                      theme: const ExpandableThemeData(
 
-                                  ],
-                                ),
-                              ),
-                              collapsed: Container(child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(contact[i].message.toString() , maxLines: 1,),
-                              ),),
-                              expanded: Column(
-                                children: [
-                                  Container(
-                                      padding: EdgeInsets.only(left: 5),
-                                      width: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width,
-                                      child: Row(
-                                        children: [
-                                          Icon(Icons.phone,color: Colors.grey),
-                                          SizedBox(width: 10,),
-                                          Text(contact[i].phone.toString()),
-                                        ],
-                                      )),
-
-                                  SizedBox(height: 10,),
-                                  Container(
-                                      padding: EdgeInsets.only(left: 5),
-                                      width: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width,
-                                      child: Row(
-                                        children: [
-                                          Icon(Icons.email ,color: Colors.grey),
-                                          SizedBox(width: 10,),
-                                          Text(contact[i].email.toString() , style: TextStyle(color: Colors.blue),),
-                                        ],
-                                      )),
-                                  SizedBox(height: 10,),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      //  color: Colors.white,
-                                        width: MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width,
-                                        child: Container(
-                                          child: Text(
-                                              contact[i].message.toString() , style: TextStyle(fontSize: 16.sp,color: Colors.grey),),
-                                        )),
-
-                                  ),
-                                  Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        padding: EdgeInsets.all(5),
-                                        child: Stack(children: [
-                                          Container(
-                                            child: cachedImage(
-                                              "https://dashboard.royaimmo.ma/images/annonces/${slug_data[widget.index].cover}",),
-                                            height: 100,
-                                            width: 150,
-                                            decoration: const BoxDecoration(
-                                              // image: DecorationImage(
-                                              //                 image:
-                                              //                 fit: BoxFit.fill,
-                                              //               ),
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(10),
-                                                  bottomLeft: Radius.circular(
-                                                      10)),
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 150),
-                                            height: 100,
-                                            width: MediaQuery
-                                                .of(context)
-                                                .size
-                                                .width,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(10),
-                                                  bottomRight: Radius.circular(
-                                                      10)),
-
-                                            ),
-                                            child: Stack(children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 15, left: 10),
-                                                child: Text(
-                                                  "${slug_data[widget.index].title}",
-                                                  maxLines: 2,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ),
-
-
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    top: 60, left: 10),
-                                                child: Wrap(
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .location_on_rounded,
-                                                          size: 14,
-                                                        ),
-                                                        Text("${slug_data[widget.index].region}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),),
-                                                      ],
-                                                    ),
-
-                                                    SizedBox(
-                                                      height: 20,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.home,
-                                                          size: 14,
-                                                        ),
-                                                        Text("${slug_data[widget.index].city}",
-                                                          style: TextStyle(
-                                                              fontSize: 14),),
-                                                      ],
-                                                    ),
-
-                                                  ],
-                                                ),
-                                              )
-                                            ],),
-                                          ),
-
-                                        ],
-
-                                        ),
-                                      )),
-
-
-                                ],
-                              ),
-                            ),
-                            initialExpanded: false,
-                          ),
-
-                        ],
+                      hasIcon: true,
+                          headerAlignment:
+                          ExpandablePanelHeaderAlignment.center,
+                          tapBodyToExpand: true,
+                          tapBodyToCollapse: true,
                       ),
-                    ));
+
+
+                      header: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                          Container(
+                          decoration: const BoxDecoration(
+                          color: Colors.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 3,
+                                  offset: Offset(2, 1)),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(left: 10),
+                          child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.message)
+                          )),
+                      Container(
+                        padding: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment
+                              .start,
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                                width: 200,
+                                child: Text(contact[i].subject
+                                    .toString())),
+                            Container(
+                                width: 200,
+                                child: Text(contact[i].createdAt
+                                    .toString().substring(0, 10)))
+                          ],
+                        ),
+                      ),
+
+
+                ],
+                ),
+                ),
+
+                collapsed: Container(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(contact[i].message.toString() , maxLines: 1,),
+                ),),
+
+                expanded: Column(
+                children: [
+                Container(
+                padding: EdgeInsets.only(left: 5),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+
+                child: Row(
+                children: [
+                Icon(Icons.phone,color: Colors.grey),
+                SizedBox(width: 10,),
+                Text(contact[i].phone.toString()),
+                ],
+                )),
+
+                SizedBox(height: 10,),
+
+                Container(
+                padding: EdgeInsets.only(left: 5),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+
+                child: Row(
+                children: [
+                Icon(Icons.email ,color: Colors.grey),
+                SizedBox(width: 10,),
+                Text(contact[i].email.toString() , style: TextStyle(color: Colors.blue),),
+                ],
+                )),
+                SizedBox(height: 10,),
+
+                Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                //  color: Colors.white,
+
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                child: Container(
+                child: Text(
+                contact[i].message.toString() , style: TextStyle(fontSize: 16.sp,color: Colors.grey),),
+                )),
+
+
+
+                ),
+                Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                padding: EdgeInsets.all(5),
+                child: Stack(children: [
+                Container(
+                child: cachedImage(
+                "https://dashboard.royaimmo.ma/images/annonces/${slug_data[widget.index].cover}",),
+                height: 100,
+                width: 150,
+                decoration: const BoxDecoration(
+                // image: DecorationImage(
+                //                 image:
+                //                 fit: BoxFit.fill,
+                //               ),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(
+                10)),
+                ),
+                ),
+                Container(
+                margin: EdgeInsets.only(left: 150),
+                height: 100,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                bottomRight: Radius.circular(
+                10)),
+
+                ),
+                child: Stack(children: [
+                Padding(
+                padding: EdgeInsets.only(
+                top: 15, left: 10),
+                child: Text(
+                "${slug_data[widget.index].title}",
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                fontSize: 14,
+                ),
+                ),
+                ),
+
+
+                Container(
+                margin: EdgeInsets.only(
+                top: 60, left: 10),
+                child: Wrap(
+                children: [
+                Row(
+                children: [
+                Icon(
+                Icons
+                    .location_on_rounded,
+                size: 14,
+                ),
+                Text("${slug_data[widget.index].region}",
+                style: TextStyle(
+                fontSize: 12),),
+                ],
+                ),
+
+                SizedBox(
+                height: 20,
+                ),
+                Row(
+                children: [
+                Icon(
+                Icons.home,
+                size: 14,
+                ),
+                Text("${slug_data[widget.index].city}",
+                style: TextStyle(
+                fontSize: 14),),
+                ],
+                ),
+
+                ],
+                ),
+                )
+                ],),
+                ),
+
+                ],
+
+                ),
+                )),
+
+
+                ],
+                ),
+                ),
+
+                initialExpanded: false,
+
+                ),
+
+                ],
+                ),
+                ));
               }),
         )
     );
@@ -358,14 +373,14 @@ class _ChatPageState extends State<ChatPage> {
     print(slug_data[id].title);
     for (int i = 0; i < slug_data.length; i++) {
       if (id == slug_data[i].id) {
-          widget._annonce =await slug_data[i];
+        widget._annonce =await slug_data[i];
       }
 
       //print(" fgsd"+widget._annonce?.title);
-     // return;
+      // return;
     }
   }
-   Future getContacts() async {
+  Future getContacts() async {
     print(token_global);
     try {
       var response = await http.get(
@@ -379,16 +394,16 @@ class _ChatPageState extends State<ChatPage> {
 
 
 //print(response.body);
-print(response.statusCode);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         final responseJsoon = json.decode(response.body);
         final responseJson = responseJsoon["data"];
         print(responseJson);
-          setState(() {
-            for (Map annoncelogin in responseJson) {
-              contact.add(Contacts.fromJson(annoncelogin.cast()));
-            }
-          });
+        setState(() {
+          for (Map annoncelogin in responseJson) {
+            contact.add(Contacts.fromJson(annoncelogin.cast()));
+          }
+        });
 
 
       }
