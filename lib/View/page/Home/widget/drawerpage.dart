@@ -271,7 +271,7 @@ class _DrawerPageState extends State<DrawerPage> {
                           const SizedBox(
                             width: 15,
                           ),
-                          Text('Chat'.tr, style: TextStyle(fontSize: 20.sm))
+                          Text('Contact'.tr, style: TextStyle(fontSize: 20.sm))
                         ],
                       ),
                     ),

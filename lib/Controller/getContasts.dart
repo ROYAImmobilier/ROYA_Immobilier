@@ -7,7 +7,7 @@ import '../View/page/auth/Login/components/body.dart';
 import '../variable/variable.dart';
 class GetContcts{
  static Future getContacts() async {
-print(token_global);
+print("token"+token_global!);
     try {
       var response = await http.get(
           Uri.parse('https://dashboard.royaimmo.ma/api/contacts'),

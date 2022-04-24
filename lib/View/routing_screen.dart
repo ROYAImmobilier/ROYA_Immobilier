@@ -131,6 +131,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: 'favoris'.tr,
             ),
+
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               //favor.svg
@@ -143,6 +144,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: 'Vender'.tr,
             ),
+
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               icon: SvgPicture.asset(
@@ -151,7 +153,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 width: 25.w,
                 height: 25.h,
               ),
-              label: 'Chat'.tr,
+              label: 'Contact'.tr,
 
             ),
             isLogin
