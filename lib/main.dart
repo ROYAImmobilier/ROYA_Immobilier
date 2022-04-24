@@ -39,20 +39,13 @@ class _MyAppState extends State<MyApp> {
     final responseJsoon = json.decode(response.body);
     final responseJson = responseJsoon["data"];
     setState(() {
-      int i = 0;
       for (Map user in responseJson) {
         allAnnonce.add(Joke.fromJson(user.cast()));
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
-        print(allAnnonce[i].cover);
-
-        i++;
       }
       slug_data = allAnnonce;
       isLoaded=true;
     });
   }
-
   getability() async {
     print("e.");
     try {

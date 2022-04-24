@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return GetBuilder<AnnonceController>(
-     //init: AnnonceController(),
+     // init: AnnonceController(),
       builder: (controller) => ScreenUtilInit(
         builder: () => Scaffold(
           backgroundColor: Colors.white,
@@ -75,9 +75,10 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.white,
             elevation: 0,
           ),
-          body: StackWidget_2(),
+          body: StackWidget_2(data: allAnnonce, leng: allAnnonce.length),
         ),
       ),
     );
   }
 }
+int indexselectCategory = 0;
