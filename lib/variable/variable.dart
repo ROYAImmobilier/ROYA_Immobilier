@@ -233,3 +233,9 @@ List<Joke> slug_data=[];
 bool isLoaded=false;
 ///get contacs
 List<Contacts> contact=[];
+///index page in routing screen
+bool indexPage=false;
+//image slug id
+List<String>? slug_image;
+//cammen from contact
+bool fromContact=false;

@@ -1,20 +1,16 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:roya_immobilie/Model/login.dart';
 import 'package:roya_immobilie/View/page/Home/home.dart';
 import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/auth/Login/profile.dart';
 import 'package:roya_immobilie/View/page/notification_page.dart';
+
 import '../Model/cityrepo.dart';
 import '../Model/joke.dart';
 import '../variable/variable.dart';
 import 'order/order_distination.dart';
-import 'page/searchfilter.dart';
 import 'page/chat_page.dart';
 import 'page/favorite_page.dart';
 

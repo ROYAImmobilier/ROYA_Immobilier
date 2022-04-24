@@ -10,6 +10,6 @@ class RouteScreen {
   static String getHomepage() => home;
 
   static List<GetPage> route = [
-    GetPage(name: home, page: () => const RoutingScreen()),
+    GetPage(name: home, page: () =>  RoutingScreen()),
   ];
 }

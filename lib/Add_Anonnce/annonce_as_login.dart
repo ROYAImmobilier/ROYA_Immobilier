@@ -31,7 +31,9 @@ class Annonce_As_Login {
     required String? email,
     required String? password,
     required var abilities,
-    required var media,required phone2,required phone3,
+    required var media,
+    required phone2,
+    required phone3,
   }) async {
     try {
       var response = await http.post(
@@ -49,7 +51,7 @@ class Annonce_As_Login {
         isLogin = true;
         print("test" + response.body);
 
-        Map<String,dynamic>lisst={
+        Map<String, dynamic> lisst = {
           "region_id": region_id,
           "city_id": city_id,
           "transaction": transaction,
@@ -74,7 +76,7 @@ class Annonce_As_Login {
           "abilities": abilities,
           "media": media,
         };
-        var body=json.encode(lisst);
+        var body = json.encode(lisst);
         print(body);
         var response_1 = await http.post(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
@@ -117,10 +119,12 @@ class Annonce_As_Login {
     required var description,
     required var phone1,
     required var abilities,
-    required var media, var phone2, var phone3,
+    required var media,
+    var phone2,
+    var phone3,
   }) async {
     try {
-      Map<String,dynamic> list={
+      Map<String, dynamic> list = {
         "region_id": region_id,
         "city_id": city_id,
         "transaction": transaction,
@@ -146,7 +150,7 @@ class Annonce_As_Login {
         "media": media,
       };
 
-      var  body=json.encode(list);
+      var body = json.encode(list);
       print(body);
       var response_1 = await http.post(
           Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
@@ -156,15 +160,53 @@ class Annonce_As_Login {
             'Accept': 'application/json',
             'Authorization': 'Bearer $token_global'
           });
-         print("tes" +response_1.body);
+      print("tes" + response_1.body);
       print(response_1.statusCode);
       if (response_1.statusCode == 201) {
-       return response_1.statusCode;
-      }else{
+        return response_1.statusCode;
+      } else {
         return response_1.statusCode;
       }
     } catch (e) {
       print('error ' + e.toString());
     }
   }
+
+  static Future PostContact(
+      {required annonce_id,
+      required full_name,
+      required email,
+      required phone,
+      required subject,
+      required message}) async {
+    try {
+      Map<String, dynamic> list = {
+        "annonce_id": annonce_id,
+        "full_name": full_name,
+        "phone": phone,
+        "subject": subject,
+        "message": message,
+        "email": email
+      };
+
+      var body = json.encode(list);
+      print(body);
+      var response = await http.post(
+          Uri.parse("https://dashboard.royaimmo.ma/api/contacts/storeAnnonces"),
+          body: body, headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      }
+         );
+     print(response.body) ;
+     print(response.statusCode) ;
+      if(response.statusCode==200){
+        return response.statusCode;
+      }
+    }
+    catch (e) {
+      return 1;
+    }
+  }
+
 }

@@ -532,7 +532,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                         "success", "Votre annonce est ajoute");
                                     verify_update = false;
                                     progress_modife = false;
-                                    Get.to(const RoutingScreen());
+                                    Get.to( RoutingScreen());
                                   } else {
                                     Get.snackbar("Error",
                                         "Votre annonce est ne pas ajoute");

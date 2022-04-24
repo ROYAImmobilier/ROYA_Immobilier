@@ -15,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../Model/joke.dart';
 import '../../../data.dart';
+import '../../../variable/variable.dart';
 import '../Home/home.dart';
 import '../Home/widget/stackwidget_2.dart';
 import '../contact_send.dart';
@@ -36,6 +37,8 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   List<Joke> select = [];
   bool grid = true;
+
+
   //fonction prendre le date String et return la difirent
   String datename (dateString){
     DateTime dateTime = DateTime.parse(dateString);
@@ -63,9 +66,10 @@ class _DetailsState extends State<Details> {
   }
   @override
   Widget build(BuildContext context) {
+   
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
-    print(MediaQuery.of(context).size);
+
     return ScreenUtilInit(
         builder: () => Scaffold(
               appBar: AppBar(
@@ -79,7 +83,7 @@ class _DetailsState extends State<Details> {
                     ),
                   ),
                   leading: IconButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () =>fromContact==false? Get.back():Get.to(RoutingScreen()),
                     icon: Icon(Icons.arrow_back_ios_sharp),
                     color: Colors.blue,
                   )),
@@ -363,7 +367,10 @@ class _DetailsState extends State<Details> {
                                       ],
                                     ),
                                     onPressed: () {
-                                      Get.to(ContactSend());
+                                      print(widget.data.id);
+                                      slug_image=widget.images;
+                                     // print("images "+widget.images);
+                                      Get.to(ContactSend(annonce_id: widget.data.id,));
                                     },
                                   ),
                                   SizedBox(

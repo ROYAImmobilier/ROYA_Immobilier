@@ -303,7 +303,8 @@ class _BodyState extends State<Body> {
               allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
             }
           });
-          Get.offAll(const RoutingScreen());
+          indexPage=true;
+          Get.offAll( RoutingScreen());
         } else {
           setState(() {
             progress = false;

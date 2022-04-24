@@ -6,11 +6,10 @@ import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
-import '../../../../Model/category.dart';
 import '../../../../data.dart';
 import '../../../../screenSize/screenSized.dart';
+import '../../../../variable/variable.dart';
 import '../../../routing_screen.dart';
-import '../../page_details/details.dart';
 import '../../page_details/details_serche.dart';
 import '../../searchfilter.dart';
 import '../home.dart';
@@ -22,6 +21,7 @@ final colors = Color(0xefefef);
 class StackWidget_2 extends StatefulWidget {
   List<Joke> data;
   int leng;
+
   StackWidget_2({required this.data, required this.leng});
 
   @override
@@ -29,11 +29,13 @@ class StackWidget_2 extends StatefulWidget {
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
+
   List<Joke> select = [];
   int j = indexselectCategory ;
   bool grid = true;
   @override
   void initState() {
+    fromContact=false;
     for (int k = 0;
     k < allAnnonce.length;
     k++) {
