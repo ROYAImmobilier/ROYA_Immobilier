@@ -151,7 +151,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 width: 25.w,
                 height: 25.h,
               ),
-              label: 'Chat'.tr,
+              label: 'Contact'.tr,
 
             ),
             isLogin

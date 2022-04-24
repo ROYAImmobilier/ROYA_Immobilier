@@ -322,8 +322,10 @@ class _ContactSendState extends State<ContactSend> {
                                           message: message.text);
                                       if (code.toString() == "200") {
                                         Get.snackbar("Sucsses", "Message envoi");
-                                       fromContact=true;
-                                       Get.offAll(Details(data: slug_data[widget.annonce_id], images: slug_image!,));
+                                      // fromContact=true;
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+
                                       } else {
                                         Get.snackbar("error", "Message pas envoi");
                                       }

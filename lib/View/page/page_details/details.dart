@@ -6,18 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
 import '../../../Model/joke.dart';
 import '../../../data.dart';
 import '../../../variable/variable.dart';
 import '../Home/home.dart';
-import '../Home/widget/stackwidget_2.dart';
 import '../contact_send.dart';
 
 class Details extends StatefulWidget {
@@ -27,8 +26,9 @@ class Details extends StatefulWidget {
   bool _shownumber=false;
   Future<void>? _launched;
   bool _hasCallSupport = false;
+  bool ?showList;
 
-  Details({required this.images, required this.data});
+  Details({required this.images, required this.data,this.showList=false});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -570,15 +570,15 @@ class _DetailsState extends State<Details> {
                           SizedBox(
                             height: 10.h,
                           ),
-                          Container(
+                          widget.showList==false?   Container(
                             margin: EdgeInsets.only(right: 20.w, left: 20.w),
                             alignment: Alignment.topLeft,
                             child: Text(
                               'Autre Annonces',
                               style: TextStyle(fontSize: 25.sp),
                             ),
-                          ),
-                          SizedBox(
+                          ):Container(),
+                          widget.showList==false? SizedBox(
                             height: 150.h,
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -590,9 +590,9 @@ class _DetailsState extends State<Details> {
                                       //     transition:Transition.zoom ,
                                       //     duration: Duration(microseconds: 150)),
                                       child: ListView_in_Detalis(
-                                          data: allAnnonce[index]));
+                                          data: allAnnonce[index],index: index,));
                                 }),
-                          ),
+                          ):Container(),
                           SizedBox(
                             height: 20.h,
                           ),

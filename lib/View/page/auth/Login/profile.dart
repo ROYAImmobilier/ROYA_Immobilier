@@ -185,8 +185,8 @@ class _ProfileState extends State<Profile> {
                                               PosteNonValide.length.toString()),
                                           shape: const CircleBorder(),
                                         ),
-                                        const Text(
-                                          'Non valide',
+                                         Text(
+                                          'Non valide'.tr,
                                           //  style: Get.theme.textTheme.bodyText1,
                                         ).marginOnly(top: 10),
                                       ],
@@ -218,7 +218,7 @@ class _ProfileState extends State<Profile> {
                                             shape: const CircleBorder(),
                                           ),
                                           Text(
-                                            'Post',
+                                            'Post'.tr,
                                             //  style: Get.theme.textTheme.bodyText1,
                                           ).marginOnly(top: 10),
                                         ],
@@ -247,8 +247,8 @@ class _ProfileState extends State<Profile> {
                                               PosteValide.length.toString()),
                                           shape: const CircleBorder(),
                                         ),
-                                        const Text(
-                                          'Valide',
+                                         Text(
+                                          'Valide'.tr,
                                           // style: Get.theme.textTheme.bodyText1,
                                         ).marginOnly(top: 10),
                                       ],
@@ -385,7 +385,7 @@ class _ProfileState extends State<Profile> {
                                             });
 
                                       },
-                                      label: "Delete Annonce",
+                                      label: "Delete Annonce".tr,
                                       backgroundColor: Color(0xFFFE4A49),
                                       foregroundColor: Colors.white,
                                       icon: Icons.delete,
