@@ -135,7 +135,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                               child: RichText(
                                 text: TextSpan(children: <TextSpan>[
                                   TextSpan(
-                                      text: "Area ",
+                                      text: "Area ".tr,
                                       style: TextStyle(
                                           fontSize: 13.sp,
                                           color: Colors.black)),
@@ -180,7 +180,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           ),
                           Container(
                               alignment: Alignment.topLeft,
-                              child: Text('Price')),
+                              child: Text('Price'.tr)),
                           SizedBox(
                             height: 15.h,
                           ),
@@ -271,7 +271,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           Container(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'Age',
+                                'Age'.tr,
                                 style: TextStyle(fontSize: 14.sp),
                               )),
                           SizedBox(
@@ -327,7 +327,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           ),
                           Container(
                               alignment: Alignment.topLeft,
-                              child: Text('Flooring',
+                              child: Text('Flooring'.tr,
                                   style: TextStyle(fontSize: 14.sp))),
                           const SizedBox(
                             height: 15,
@@ -555,7 +555,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                   });
                                 },
                                 color: const Color.fromARGB(255, 175, 178, 206),
-                                child: Text('Main Abilites',
+                                child: Text('Main Abilites'.tr,
                                     style: TextStyle(fontSize: 14.sp)),
                               ),
                             ),
@@ -589,7 +589,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                   });
                                 },
                                 color: Color.fromARGB(255, 175, 178, 206),
-                                child: Text('Innir Abilites',
+                                child: Text('Innir Abilites'.tr,
                                     style: TextStyle(fontSize: 14.sp)),
                               ),
                             ),
@@ -619,7 +619,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                   });
                                 },
                                 color: Color.fromARGB(255, 175, 178, 206),
-                                child: Text('Addition Abilites',
+                                child: Text('Addition Abilites'.tr,
                                     style: TextStyle(fontSize: 14.sp)),
                               ),
                             ),
@@ -656,7 +656,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                         right: 25),
                                     child: Center(
                                       child: Text(
-                                        "Précédent",
+                                        "Precedent".tr,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12.sp),
@@ -718,7 +718,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                         right: 25),
                                     child: Center(
                                       child: Text(
-                                        "Suivant",
+                                        "following".tr,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12.sp),

@@ -131,6 +131,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: 'favoris'.tr,
             ),
+
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               //favor.svg
@@ -143,6 +144,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
               label: 'Vender'.tr,
             ),
+
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
               icon: SvgPicture.asset(

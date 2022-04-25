@@ -29,7 +29,7 @@ class _ContactSendState extends State<ContactSend> {
   String? _object;
   @override
   Widget build(BuildContext context) {
-    print("fdsdf" + widget.annonce_id.toString());
+
 
     return Scaffold(
       appBar: AppBar(
@@ -77,7 +77,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("FULL NAME", textAlign: TextAlign.left),
+                            child: Text("FULL NAME", ),
                           )),
                     ),
                     Padding(
@@ -155,7 +155,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("PHONE", textAlign: TextAlign.left),
+                            child: Text("PHONE", ),
                           )),
                     ),
                     Padding(
@@ -258,7 +258,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("MESSAGE", textAlign: TextAlign.left),
+                            child: Text("MESSAGE",),
                           )),
                     ),
                     Padding(

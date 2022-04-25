@@ -82,7 +82,7 @@ class _ContactInfoState extends State<ContactInfo> {
   String status = '';
   String? base64Image;
   File? tmpFile;
-  String error = 'Error';
+  String error = 'Error'.tr;
   File? _file;
   List<File> _listimage = [];
   List<String> _listimagebase64 = [];
@@ -116,8 +116,7 @@ class _ContactInfoState extends State<ContactInfo> {
   void initState() {
     widget._id_region = getRegionid(widget.region_1!);
     widget._id_city = getCityid(widget.city!);
-    print("region " + widget._id_region.toString());
-    print("city " + widget._id_city.toString());
+
     setState(() {
       if (verify_update) {
         _titel.text = getData_put["title"].toString();
@@ -204,7 +203,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               Container(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Title :',
+                                    'Title'.tr,
                                     style: TextStyle(fontSize: 13.sp),
                                   )),
                               SizedBox(
@@ -213,7 +212,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               TextFormField(
                                 validator: (value) {
                                   if (value?.length == 0) {
-                                    return " Entre L \' Titel";
+                                    return " Entre L \' Titel".tr;
                                   } else {
                                     return null;
                                   }
@@ -274,7 +273,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               TextFormField(
                                 validator: (value) {
                                   if (value?.length == 0) {
-                                    return " Entre L \' Phone";
+                                    return " Entre L \' Phone".tr;
                                   } else {
                                     return null;
                                   }
@@ -445,7 +444,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               Get.back();
                             },
                             child: Text(
-                              "Precedent",
+                              "Precedent".tr,
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Colors.white,
@@ -529,13 +528,13 @@ class _ContactInfoState extends State<ContactInfo> {
                                   //  print("wetwrw"+x.toString());
                                   if (x == 201) {
                                     Get.snackbar(
-                                        "success", "Votre annonce est ajoute");
+                                        "success".tr, "Your ad is added".tr);
                                     verify_update = false;
                                     progress_modife = false;
                                     Get.to( RoutingScreen());
                                   } else {
                                     Get.snackbar("Error",
-                                        "Votre annonce est ne pas ajoute");
+                                        "Your ad is not adding".tr);
                                     verify_update = false;
                                     setState(() {
                                       progress_modife = false;
@@ -592,7 +591,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   );
 
                                   if (x == 500 || x == 200) {
-                                    Get.snackbar("update", "success");
+                                    Get.snackbar("update".tr, "success".tr);
 
                                     setState(() {
                                       verify_update = false;
@@ -636,7 +635,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               }
                             },
                             child: Text(
-                              "Reservez ",
+                              "Reservez ".tr,
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Colors.white,
