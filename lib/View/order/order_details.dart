@@ -56,14 +56,16 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
         double y = getData_put["price"] + 0.0;
         price.text = y.toString();
 
-        if (getData_put["floor_type"] == "Wooden" ||
-            getData_put["floor_type"] == "Marble" ||
-            getData_put["floor_type"] == "Tiled" ||
-            getData_put["floor_type"] == "Others") {
-          _flooring = getData_put["floor_type"];
-        }
+        // if (getData_put["floor_type"] == "Wooden" ||
+        //     getData_put["floor_type"] == "Marble" ||
+        //     getData_put["floor_type"] == "Tiled" ||
+        //     getData_put["floor_type"] == "Others") {
+        //   _flooring = getData_put["floor_type"];
+        // }
 
-        _flooring=CondationLangage.flooring_put(getData_put["floor_type"])?.tr;
+       var _floo=CondationLangage.flooring_put(getData_put["floor_type"])?.tr;
+       if(_floo!=null)
+         _flooring=_floo;
         _age = CondationLangage.age_put(getData_put['age'])?.tr;
         _age_select=getData_put['age'];
 
@@ -94,7 +96,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   String? _price_type="DH";
   String? _age;
   String? _age_select;
-  String? _flooring;
+  var _flooring;
   String? _floor_select;
 
   var _key_details = GlobalKey<FormState>();
@@ -118,7 +120,10 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
               child: Form(
                 key: _key_details,
                 child: SingleChildScrollView(
-                  child: Column(children: [
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                     Container(
                       height: 30.h,
                       color: const Color(0xffefefef),
@@ -129,9 +134,11 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                           left: 15.w, right: 15.w, bottom: 15.h, top: 15.h),
                       // margin: const EdgeInsets.all(15),
                       child: Column(
+                      //  mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                              alignment: Alignment.topLeft,
+
                               child: RichText(
                                 text: TextSpan(children: <TextSpan>[
                                   TextSpan(
@@ -179,7 +186,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             height: 15.h,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
+                            //  alignment: Alignment.topLeft,
                               child: Text('Price'.tr)),
                           SizedBox(
                             height: 15.h,
@@ -269,7 +276,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             height: 25,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
+                            //  alignment: Alignment.topLeft,
                               child: Text(
                                 'Age'.tr,
                                 style: TextStyle(fontSize: 14.sp),
@@ -326,7 +333,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             height: 15,
                           ),
                           Container(
-                              alignment: Alignment.topLeft,
+                            //  alignment: Alignment.topLeft,
                               child: Text('Flooring'.tr,
                                   style: TextStyle(fontSize: 14.sp))),
                           const SizedBox(
@@ -792,52 +799,54 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
     );
   }
 
-  Widget appability(data) => Container(
-        width: MediaQuery.of(context).size.width * .7,
-        height: MediaQuery.of(context).size.height * .15,
-        child: Card(
-          child: GridView.builder(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 30,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20),
-              itemCount: data.length,
-              itemBuilder: (BuildContext ctx, index) {
-                return GestureDetector(
-                    onTap: () {
-                      setState(() {
+  Widget appability(data) => Center(
+    child: Container(
+          width: MediaQuery.of(context).size.width * .7,
+          height: MediaQuery.of(context).size.height * .15,
+          child: Card(
+            child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 30,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20),
+                itemCount: data.length,
+                itemBuilder: (BuildContext ctx, index) {
+                  return GestureDetector(
+                      onTap: () {
+                        setState(() {
 
-                        colorAbility(data[index].id);
-                        for (int i = 0; i < idability.length; i++) {
-                          if (data[index].id == idability[i]) {
-                            setState(() {
-                              idability.remove(idability[i]);
-                            });
-                            return;
+                          colorAbility(data[index].id);
+                          for (int i = 0; i < idability.length; i++) {
+                            if (data[index].id == idability[i]) {
+                              setState(() {
+                                idability.remove(idability[i]);
+                              });
+                              return;
+                            }
                           }
-                        }
-                        idability.add(data[index].id);
-                        print(idability.length);
-                      });
-                    },
-                    child: colorAbility(data[index].id)
-                        ? SvgPicture.asset(
-                            data[index].icon,
-                            width: 30,
-                            height: 30,
-                            color: Colors.blue,
-                          )
-                        : SvgPicture.asset(
-                            data[index].icon,
-                            width: 30,
-                            height: 30,
-                            color: Colors.black,
-                          )); // Icon(Icons.circle_notifications , size: 25,);
-              }),
+                          idability.add(data[index].id);
+                          print(idability.length);
+                        });
+                      },
+                      child: colorAbility(data[index].id)
+                          ? SvgPicture.asset(
+                              data[index].icon,
+                              width: 30,
+                              height: 30,
+                              color: Colors.blue,
+                            )
+                          : SvgPicture.asset(
+                              data[index].icon,
+                              width: 30,
+                              height: 30,
+                              color: Colors.black,
+                            )); // Icon(Icons.circle_notifications , size: 25,);
+                }),
+          ),
         ),
-      );
+  );
 
   bool colorAbility(int id) {
     for (int i = 0; i < idability.length; i++) {

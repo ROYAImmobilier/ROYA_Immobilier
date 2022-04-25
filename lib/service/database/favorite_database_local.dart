@@ -36,7 +36,8 @@ class CordDatabaseHelper {
         $columnadvertiser TEXT NOT NULL,
         $columnphone1 TEXT NOT NULL,
         $columnarea TEXT NOT NULL,
-        $columnquartier TEXT NOT NULL
+        $columnquartier TEXT NOT NULL,
+        $columncreatedAt TEXT NOT NULL
         )
       ''');
     });

@@ -93,6 +93,7 @@ class test extends StatelessWidget {
                                 advertiser:data.advertiser,
                                 area:data.area.toString(),
                                 quartier:data.quartier,
+                                createdAt: data.createdAt,
                               ));
                               controller.getAllProducts();
                             },

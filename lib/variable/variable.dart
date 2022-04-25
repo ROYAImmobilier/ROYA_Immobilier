@@ -66,6 +66,7 @@ final String columnphone3 = 'phone3';
 const String columnvalidated = 'validated';
 final String columnvcreated_at = 'created_at';
 const String columncover = 'cover';
+const String columncreatedAt = 'createdAt';
 
 const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
@@ -239,3 +240,5 @@ bool indexPage=false;
 List<String>? slug_image;
 //cammen from contact
 bool fromContact=false;
+//reload
+bool relaod=false;

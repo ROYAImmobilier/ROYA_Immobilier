@@ -160,7 +160,7 @@ class CondationLangage {
     return _age;
   }
 //flooring
-  static String? flooring_put(String floor){
+  static String? flooring_put(var floor){
     var _floor;
     if(floor=="Wooden") {
       _floor="Wooden";

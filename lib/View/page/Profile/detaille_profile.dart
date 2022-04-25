@@ -7,7 +7,10 @@ import 'package:get/get.dart';
 import 'package:roya_immobilie/variable/variable.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../Model/cityrepo.dart';
+import '../../../Model/repositery.dart';
 import '../../../screenSize/screenSized.dart';
+import '../../order/order_distination.dart';
 
 class DetailleProfile extends StatefulWidget {
   List<String> images;
@@ -192,8 +195,8 @@ class _DetailleProfileState extends State<DetailleProfile> {
                             Container(
                               padding:
                               EdgeInsets.only(top: 3.h, left: 10.w),
-                              child: const Text(
-                                "Membre depuis 2 Mois",
+                              child:  Text(
+                                widget.data.createdAt,
                                 style: TextStyle(color: Colors.grey),
                               ),
                             ),
@@ -222,12 +225,55 @@ class _DetailleProfileState extends State<DetailleProfile> {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                const Text(
-                                  "Update",
+                                 Text(
+                                  "Update".tr,
                                 ),
                               ],
                             ),
-                            onPressed: () {},
+                            onPressed: ()async {
+                              if (!verify_region_city)
+                                await ServicesRgion.getUsers().then(
+                                    (regions) {
+                                  setState(() {
+                                    region = regions!;
+                                    ListCity();
+                                  });
+                                },
+                              );
+                              //amar
+                              getData_put =
+                                  await jokeRepository.getdata(
+                                  id: widget.data
+                                      .id
+                                      .toString());
+                              verify = true;
+                              print(getData_put);
+                              if (getData_put==null) {
+                                Get.snackbar("Error", "Server");
+                                // Get.to(Add_Annonce());
+                                // reloud();
+                              } else if (!getData_put.isEmpty) {
+                                Get.defaultDialog(
+                                    title: "Modification",
+                                    textCancel: "Cancel".tr,
+                                    textConfirm: "yes".tr,
+                                    middleText:
+                                    "Are you wante to modifier ?"
+                                        .tr,
+                                    onCancel: () {},
+                                    onConfirm: () {
+                          Get.to(Add_Annonce());
+                                    });
+                              }
+                              verify_update = true;
+                              //  Get.to(Add_Annonce());
+                              // setState(() {
+                              //   reloud();
+                              //
+                              // });
+                              //delete
+
+                            },
                           ),
                         ),
                         SizedBox(
@@ -248,12 +294,38 @@ class _DetailleProfileState extends State<DetailleProfile> {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                const Text(
-                                  "Delete",
+                                 Text(
+                                  "Delete".tr,
                                 ),
                               ],
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.defaultDialog(
+                                  title: "Supprimer",
+                                  textCancel: "Cancel".tr,
+                                  textConfirm: "yes".tr,
+                                  middleText:
+                                  "Are you want to delete ?".tr,
+                                  barrierDismissible:false,
+                                  onCancel: () {
+
+
+                                  },
+                                  onConfirm: () async {
+                                    // await jokeRepository.deleteitem(
+                                    //     id: widget.data.id.toString());
+                                    Get.snackbar("Sucsses", "Voter Annonce et supprimer" );
+                                    //  Future.delayed( Duration(milliseconds: 500), () {
+                                    //   // deleayed code here
+                                    //       Get.back();
+                                    // });
+
+                                    Navigator.pop(context,true);
+                                    Navigator.pop(context,true);
+
+
+                                  });
+                            },
                           ),
                         )
                       ],
@@ -409,6 +481,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                   alignment: Alignment.topLeft,
                   child: Text(widget.data.description),
                 ),
+                SizedBox(height: 20,),
               ],
             ),
           ),

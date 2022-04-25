@@ -181,13 +181,16 @@ class _ContactInfoState extends State<ContactInfo> {
         ),
         body: Form(
           key: _key_Contact,
-          child: Stack(children: [
+          child: Stack(
+
+              children: [
             Container(
               height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: ListView(children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 // mainAxisAlignment: MainAxisAlignment.start,
+
                   children: [
                     Container(
                       height: 30.h,
@@ -199,9 +202,10 @@ class _ContactInfoState extends State<ContactInfo> {
                             EdgeInsets.only(left: 12.w, right: 12.w, top: 15.h),
                         child: SingleChildScrollView(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                  alignment: Alignment.topLeft,
+                                  //alignment: Alignment.topLeft,
                                   child: Text(
                                     'Title'.tr,
                                     style: TextStyle(fontSize: 13.sp),
@@ -231,7 +235,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 height: 15.h,
                               ),
                               Container(
-                                  alignment: Alignment.topLeft,
+                                 // alignment: Alignment.topLeft,
                                   child: Text(
                                     'Description :'.tr,
                                     style: TextStyle(fontSize: 13.sp),
@@ -262,7 +266,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 height: 15.h,
                               ),
                               Container(
-                                  alignment: Alignment.topLeft,
+                                //  alignment: Alignment.topLeft,
                                   child: Text(
                                     'Phone 1 :'.tr,
                                     style: TextStyle(fontSize: 13.sp),
@@ -293,7 +297,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 height: 15,
                               ),
                               Container(
-                                  alignment: Alignment.topLeft,
+                                //  alignment: Alignment.topLeft,
                                   child: Text(
                                     'Phone 2 :'.tr,
                                     style: TextStyle(fontSize: 13.sp),
@@ -318,7 +322,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 height: 15,
                               ),
                               Container(
-                                  alignment: Alignment.topLeft,
+                                  //alignment: Alignment.topLeft,
                                   child: Text(
                                     'Phone 3 :'.tr,
                                     style: TextStyle(fontSize: 13.sp),
@@ -342,7 +346,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                 height: 15,
                               ),
                               Container(
-                                  alignment: Alignment.topLeft,
+                                 // alignment: Alignment.topLeft,
                                   child: Text(
                                     'Upload image(jpg-png-jpeg)'.tr,
                                     style: TextStyle(fontSize: 13.sp),
@@ -526,20 +530,20 @@ class _ContactInfoState extends State<ContactInfo> {
                                           floor: "4",
                                         );
                                   //  print("wetwrw"+x.toString());
-                                  if (x == 201) {
-                                    Get.snackbar(
-                                        "success".tr, "Your ad is added".tr);
-                                    verify_update = false;
-                                    progress_modife = false;
-                                    Get.to( RoutingScreen());
-                                  } else {
-                                    Get.snackbar("Error",
-                                        "Your ad is not adding".tr);
-                                    verify_update = false;
+                                  // if (x == 201) {
+                                  //   Get.snackbar(
+                                  //       "success".tr, "Your ad is added".tr);
+                                  //   verify_update = false;
+                                  //   progress_modife = false;
+                                  //   Get.to( RoutingScreen());
+                                  // } else {
+                                  //   Get.snackbar("Error",
+                                  //       "Your ad is not adding".tr);
+                                  //   verify_update = false;
                                     setState(() {
                                       progress_modife = false;
                                     });
-                                  }
+                                  // }
                                 } else {
                                   // print("876");
                                   // print(widget.Property_details);

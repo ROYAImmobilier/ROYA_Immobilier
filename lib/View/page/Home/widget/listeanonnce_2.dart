@@ -84,11 +84,11 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                         ),
                                       ),
                     ),
-                    Positioned(
-                        top: -5.h,
-                        right: 0,
-                        child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
-                            icon: const Icon( Icons.more_vert)))),
+                    // Positioned(
+                    //     top: -5.h,
+                    //     right: 0,
+                    //     child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
+                    //         icon: const Icon( Icons.more_vert)))),
                     Positioned(
                       bottom: 0,
                         right: 0,
@@ -114,6 +114,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                   advertiser: widget.data.advertiser,
                                   area: widget.data.area.toString(),
                                   quartier: widget.data.quartier,
+                                  createdAt: widget.data.createdAt.toString(),
                                 ));
                                 controller.getAllProducts();
                               },

@@ -17,6 +17,7 @@ import '../../../Model/joke.dart';
 import '../../../data.dart';
 import '../../../variable/variable.dart';
 import '../Home/home.dart';
+import '../Home/widget/drawerpage.dart';
 import '../contact_send.dart';
 
 class Details extends StatefulWidget {
@@ -66,7 +67,7 @@ class _DetailsState extends State<Details> {
   }
   @override
   Widget build(BuildContext context) {
-   
+   print(locale[1]["name"]);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
 
@@ -121,7 +122,7 @@ class _DetailsState extends State<Details> {
                             topLeft: Radius.circular(20.r))),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           decoration: BoxDecoration(
@@ -360,7 +361,7 @@ class _DetailsState extends State<Details> {
                                       ),
                                       Text(
                                         "SEND MESSAGE".tr,
-                                        style: TextStyle(fontSize: 13.sm),
+                                        style: TextStyle(fontSize:locale[1]["name"]!="France"? 13.sm:8),
                                       ),
                                     ],
                                   ),
@@ -391,7 +392,7 @@ class _DetailsState extends State<Details> {
                                       ),
                                       Text(
                                        widget._shownumber==false? "SHOW NUMBER".tr:widget.data.phone1,
-                                        style: TextStyle(fontSize: 13.sm),
+                                        style: TextStyle(fontSize:locale[1]["name"]!="France"? 13.sm:8),
                                       ),
                                     ],
                                   ),
@@ -460,7 +461,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bedrooms} Beds".tr,
+                                  "${widget.data.bedrooms} "+ "Beds".tr,
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -476,7 +477,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bathrooms} Boths".tr,
+                                  "${widget.data.bathrooms} "+ "Baths".tr,
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -515,12 +516,12 @@ class _DetailsState extends State<Details> {
                               ),
                             )),
                         Container(
-                          margin: EdgeInsets.only(right: 20.w, left: 20.w),
+                          margin: EdgeInsets.only(right: 20.w, left: 20.w,),
                           child: Stack(
                             // mainAxisAlignment: ,
                             children: [
                               Container(
-                                  alignment: Alignment.topLeft,
+                                //  alignment: Alignment.topLeft,
                                   child:  Text("Adresse".tr)),
                               Container(
                                 alignment: Alignment.center,
@@ -551,7 +552,7 @@ class _DetailsState extends State<Details> {
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          alignment: Alignment.topLeft,
+                         // alignment: Alignment.,
                           child: Text(
                             'Description'.tr,
                             style: TextStyle(fontSize: 25.sp),
@@ -570,7 +571,7 @@ class _DetailsState extends State<Details> {
                         ),
                         widget.showList==false?   Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          alignment: Alignment.topLeft,
+                         // alignment: Alignment.topLeft,
                           child: Text(
                             'Autre Annonces'.tr,
                             style: TextStyle(fontSize: 25.sp),
