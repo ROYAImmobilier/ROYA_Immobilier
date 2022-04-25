@@ -294,7 +294,7 @@ class _DrawerPageState extends State<DrawerPage> {
                             SizedBox(
                               width: 15,
                             ),
-                            Text('Mes favoris'.tr,
+                            Text('favoris'.tr,
                                 style: TextStyle(fontSize: 20.sm))
                           ],
                         ),

@@ -186,7 +186,7 @@ class _ProfileState extends State<Profile> {
                                           shape: const CircleBorder(),
                                         ),
                                          Text(
-                                          'Non valide'.tr,
+                                          'Non valider'.tr,
                                           //  style: Get.theme.textTheme.bodyText1,
                                         ).marginOnly(top: 10),
                                       ],
@@ -248,7 +248,7 @@ class _ProfileState extends State<Profile> {
                                           shape: const CircleBorder(),
                                         ),
                                          Text(
-                                          'Valide'.tr,
+                                          'Valider'.tr,
                                           // style: Get.theme.textTheme.bodyText1,
                                         ).marginOnly(top: 10),
                                       ],
@@ -284,7 +284,7 @@ class _ProfileState extends State<Profile> {
                                       SlidableAction(
                                         flex: 2,
                                         autoClose: true,
-                                        label: 'Update Annonce',
+                                        label: 'Update'.tr,
                                         onPressed: (context) async {
                                           print(verify_region_city);
                                           if (!verify_region_city)
@@ -385,7 +385,7 @@ class _ProfileState extends State<Profile> {
                                             });
 
                                       },
-                                      label: "Delete Annonce".tr,
+                                      label: "Delete".tr,
                                       backgroundColor: Color(0xFFFE4A49),
                                       foregroundColor: Colors.white,
                                       icon: Icons.delete,

@@ -49,7 +49,7 @@ class ListView_in_Detalis extends StatelessWidget {
                     style: TextStyle(color:Colors.white, fontSize: 15),
                   ),
                   padding: const EdgeInsets.all(5),
-                  margin: EdgeInsets.only(top: 10.h, left: 10.w),
+                  margin: EdgeInsets.only(top: 10.h, left: 10.w,right: 10.w),
                   //width: 50.h,
                   // height: 20,
                   decoration:  BoxDecoration(

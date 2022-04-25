@@ -8,6 +8,7 @@ class Transation extends Translations {
 
           'Property details': 'تفاصيل اوضح',
           'Vente': 'بيع',
+          'Vender': 'نشر',
           'À location': 'للايجار',
           'Catégorie': 'فئة',
           'Adresse': 'عنوان',
@@ -26,8 +27,8 @@ class Transation extends Translations {
           'Choose Your Language': "اختر لغتك",
           'RECHERCHER (56242)': 'بحث (56242)',
           'Contact': 'دردشة',
-          'Mes favoris': 'المفضلة لدي',
-          'Se connecter': 'تسجيل دخول',
+          'favoris': 'المفضلة لدي',
+          'connecter': 'تسجيل دخول',
           'DEPOSER UNE ANNONCE': 'نشر اعلان',
           "Bienvenue ,": 'مرحبا ،',
           'pour une experience optimisee , ': 'لتجربة محسّنة ،',
@@ -74,7 +75,16 @@ class Transation extends Translations {
           "Wooden":"التخشيب",
           'Marble':"الرخام",
           "Tiled":"البلاط",
-          "Others":"مواد أخرى"
+          "Others":"مواد أخرى",
+          "Update":"تعديل",
+          "Valider":"مؤكد",
+          "Non valider":"غير مؤكد",
+          "Post":"الإعلانات",
+          "Bord": 'حسابي',
+          "Description": 'الوصف',
+          "Autre Annonces": 'الوصف',
+          "Delete":"حذف"
+
         },
         'fr_FR': {
 
@@ -144,11 +154,14 @@ class Transation extends Translations {
   "Wooden":"Parquet",
   'Marble':"Marbre",
   "Tiled":"Carrelage",
-  "Others":"Autre"
-
+  "Others":"Autre",
+  "Delete":"Supprimer",
+  "Update":"Éditer"
 
         },
         'en_US': {
+  "Update":"Update",
+  "Delete":"Delete",
   "Wooden":"Wooden",
   'Marble':"Marble",
   "Tiled":"Tiled",
