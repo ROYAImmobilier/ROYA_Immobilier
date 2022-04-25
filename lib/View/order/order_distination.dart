@@ -31,6 +31,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   void initState() {
+    listCity=[];
     super.initState();
     if (verify_update) {
       adresse.text = getData_put["address"].toString();

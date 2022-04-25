@@ -80,10 +80,10 @@ class jokeRepository {
       var a = b["data"][0]['media'];
       var c = json.encode(a);
 
-      return b["data"][0]['media'];
+      return b["data"][0];
     } else {
       var b = json.decode(jsoon);
-      var a = b["data"][0]['media'];
+      var a = b["data"][0];
       return a;
     }
   }

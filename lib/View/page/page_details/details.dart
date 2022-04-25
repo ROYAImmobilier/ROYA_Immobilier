@@ -15,12 +15,15 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../Model/joke.dart';
 import '../../../data.dart';
+import '../../../main.dart';
 import '../../../variable/variable.dart';
 import '../Home/home.dart';
+import '../Home/widget/drawerpage.dart';
 import '../contact_send.dart';
 
 class Details extends StatefulWidget {
   List<String> images;
+  List<String>iconability ;
   int activeindex = 0;
   var data;
   bool _shownumber=false;
@@ -28,7 +31,7 @@ class Details extends StatefulWidget {
   bool _hasCallSupport = false;
   bool ?showList;
 
-  Details({required this.images, required this.data,this.showList=false});
+  Details({required this.images,required this.iconability, required this.data,this.showList=false});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -57,6 +60,7 @@ class _DetailsState extends State<Details> {
   }
   @override
   void initState() {
+    abilitycompre();
     // TODO: implement initState
     canLaunchUrl(Uri(scheme: 'tel', path: '123')).then((bool result) {
       setState(() {
@@ -66,7 +70,7 @@ class _DetailsState extends State<Details> {
   }
   @override
   Widget build(BuildContext context) {
-   
+   print(locale[1]["name"]);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
 
@@ -121,7 +125,7 @@ class _DetailsState extends State<Details> {
                             topLeft: Radius.circular(20.r))),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           decoration: BoxDecoration(
@@ -360,7 +364,7 @@ class _DetailsState extends State<Details> {
                                       ),
                                       Text(
                                         "SEND MESSAGE".tr,
-                                        style: TextStyle(fontSize: 13.sm),
+                                        style: TextStyle(fontSize:locale[1]["name"]!="France"? 13.sm:8),
                                       ),
                                     ],
                                   ),
@@ -391,7 +395,7 @@ class _DetailsState extends State<Details> {
                                       ),
                                       Text(
                                        widget._shownumber==false? "SHOW NUMBER".tr:widget.data.phone1,
-                                        style: TextStyle(fontSize: 13.sm),
+                                        style: TextStyle(fontSize:locale[1]["name"]!="France"? 13.sm:8),
                                       ),
                                     ],
                                   ),
@@ -460,7 +464,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bedrooms} Beds".tr,
+                                  "${widget.data.bedrooms} "+ "Beds".tr,
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -476,7 +480,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bathrooms} Boths".tr,
+                                  "${widget.data.bathrooms} "+ "Baths".tr,
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -514,13 +518,48 @@ class _DetailsState extends State<Details> {
                                     color: const Color(0xff8a8a8a)),
                               ),
                             )),
+                        Text("Inner Ability"),
+    Padding(
+      padding: EdgeInsets.only(
+          right: 20.w, left: 20.w, bottom: 15.h),
+      child: GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount:widget.iconability.length,
+      gridDelegate:
+      SliverGridDelegateWithMaxCrossAxisExtent(
+      maxCrossAxisExtent: 20,
+      mainAxisExtent:20.h
+      ,
+      childAspectRatio: 10,
+      crossAxisSpacing:10,
+      mainAxisSpacing: 10),
+      itemBuilder: (BuildContext ctx, index) {
+        return SvgPicture.asset("lib/abilities/${widget.iconability[index].toString()}.svg" , width: 18.w,height: 18.h,);
+      }),
+    ),
+                        SizedBox(height: 10,),
                         Container(
-                          margin: EdgeInsets.only(right: 20.w, left: 20.w),
+                            //height: ,
+                            margin: EdgeInsets.only(
+                                right: 20.w, left: 20.w, bottom: 15.h),
+                            // child: Divider(
+                            //   color: Colors.black,
+                            // ),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    width: 2.w,
+                                    color: const Color(0xff8a8a8a)),
+                              ),
+                            )),
+                        Container(
+                          margin: EdgeInsets.only(right: 20.w, left: 20.w,),
                           child: Stack(
                             // mainAxisAlignment: ,
                             children: [
                               Container(
-                                  alignment: Alignment.topLeft,
+                                //  alignment: Alignment.topLeft,
                                   child:  Text("Adresse".tr)),
                               Container(
                                 alignment: Alignment.center,
@@ -551,7 +590,7 @@ class _DetailsState extends State<Details> {
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          alignment: Alignment.topLeft,
+                         // alignment: Alignment.,
                           child: Text(
                             'Description'.tr,
                             style: TextStyle(fontSize: 25.sp),
@@ -570,7 +609,7 @@ class _DetailsState extends State<Details> {
                         ),
                         widget.showList==false?   Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                          alignment: Alignment.topLeft,
+                         // alignment: Alignment.topLeft,
                           child: Text(
                             'Autre Annonces'.tr,
                             style: TextStyle(fontSize: 25.sp),
@@ -620,4 +659,27 @@ class _DetailsState extends State<Details> {
     );
     await launchUrl(launchUri);
   }
+List<String> innerAbility = [];
+List<String> MainAbilities = [];
+List<String> AdditionalAbilities = [];
+
+  abilitycompre(){
+    for(int i =0 ; i<widget.iconability.length ;i++){
+      for(int j=0;j<ability.length;j++){
+        if(widget.iconability[i]==ability[j].icon){
+          if(ability[j].id<9){
+            MainAbilities.add(widget.iconability[i]);
+          }
+         else if(ability[j].id<17){
+            innerAbility.add(widget.iconability[i]);
+          }
+         else if(ability[j].id<24){
+            AdditionalAbilities.add(widget.iconability[i]);
+          }
+
+        }
+      }
+    }
+  }
 }
+

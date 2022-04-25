@@ -20,19 +20,34 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   final controllerAnnonce = Get.put(AnnonceController());
-  List<String>images=[];
+
+ //
+  late List<String>images = [];
+  late List<String>abilityicon = [];
   getdate(int index , sulg , data)async{
-    var k = await jokeRepository.GetDetiller(sug: sulg);
+    images = [];
+    var l = await jokeRepository.GetDetiller(sug: data[index].slug);
+    var k = l['media'] ;
+    var abi = l["abilities"];
     print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    print(k[0]['file_name']);
-    print(k.length.toString());
-    for(int i =0 ; i<k.length;i++){
-      images.add(k[i]['file_name']);
-      print(k[i]['file_name']);
+    //print(k[0]['file_name']);
+    //  print(k.length.toString());
+    if(k.toString().isNotEmpty)
+      for(int i =0 ; i<k.length;i++){
+        images.add(k[i]['file_name']);
+        print(k[i]['file_name']);
+      }
+
+    for(int i =0 ; i<abi.length ; i++){
+      abilityicon.add(abi[i]["icon"]);
+      print(abi[i]["icon"].toString());
     }
+
+
     Get.to(Details(
       images: images,
       data: data[index],
+      iconability:abilityicon,
     ),);
   }
   @override
@@ -89,6 +104,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         images.add(controller.cartProductsModel[i].cover);
                         //getdate(i, controller.cartProductsModel[i].sulg, controller.cartProductsModel[i]);
                         Get.to(Details(
+                           iconability: ["1","2"],
                             images:images ,
                             data: controller.cartProductsModel[i]));
                       },

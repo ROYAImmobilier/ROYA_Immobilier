@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
+import 'package:roya_immobilie/main.dart';
 import '../../page_details/details.dart';
 import 'listeanonnce.dart';
 class MobileGridView extends StatefulWidget {
@@ -18,9 +19,12 @@ class MobileGridView extends StatefulWidget {
 
 class _MobileGridViewState extends State<MobileGridView> {
   late List<String>images = [];
+  late List<String>abilityicon = [];
   getdate(int index)async{
     images = [];
-    var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+    var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+    var k = l['media'] ;
+    var abi = l["abilities"];
     print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
     //print(k[0]['file_name']);
   //  print(k.length.toString());
@@ -29,9 +33,17 @@ class _MobileGridViewState extends State<MobileGridView> {
       images.add(k[i]['file_name']);
       print(k[i]['file_name']);
     }
+
+    for(int i =0 ; i<abi.length ; i++){
+      abilityicon.add(abi[i]["icon"]);
+      print(abi[i]["icon"].toString());
+    }
+
+
     Get.to(Details(
       images: images,
       data: widget.data[index],
+      iconability:abilityicon,
     ),);
   }
   @override

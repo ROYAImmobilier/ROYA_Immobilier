@@ -82,6 +82,7 @@ class AnnonceController extends GetxController {
           advertiser: data.advertiser,
           area: data.area.toString(),
           quartier: data.quartier,
+          createdAt: data.createdAt.toString(),
         ));
         return;
       }

@@ -14,6 +14,7 @@ class FavCategoryItem {
   late String phone1;
   late String area;
   late String quartier;
+  late String createdAt;
   FavCategoryItem(
       {required this.id,
       required this.region,
@@ -29,7 +30,9 @@ class FavCategoryItem {
       required this.advertiser,
       required this.phone1,
       required this.area,
-      required this.quartier});
+      required this.quartier,
+      required this.createdAt,
+      });
   FavCategoryItem.fromJson(Map<dynamic, dynamic> map) {
     if (map == null) {
       return;
@@ -49,6 +52,7 @@ class FavCategoryItem {
     phone1 = map["phone1"];
     area = map["area"];
     quartier = map["quartier"];
+    createdAt = map["createdAt"];
   }
   toJson() {
     return {
@@ -67,6 +71,7 @@ class FavCategoryItem {
       "phone1": phone1,
       "area": area,
       "quartier": quartier,
+      "createdAt": createdAt,
     };
   }
 }

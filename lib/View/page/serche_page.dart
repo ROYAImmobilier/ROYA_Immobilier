@@ -32,16 +32,26 @@ class _HomePageState extends State<Sercher> {
   }
 
   List<String>images=[];
+  List<String>abilityicon=[];
   getdate(int index)async{
-    var k = await jokeRepository.GetDetiller(sug:_searchResult[index].slug );
+    var l = await jokeRepository.GetDetiller(sug: _searchResult[index].slug);
+    var k = l['media'] ;
+    var abi = l["abilities"];
     print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    print(k[0]['file_name']);
-    print(k.length.toString());
-    for(int i =0 ; i<k.length;i++){
-      images.add(k[i]['file_name']);
-      print(k[i]['file_name']);
+    //print(k[0]['file_name']);
+    //  print(k.length.toString());
+    if(k.toString().isNotEmpty)
+      for(int i =0 ; i<k.length;i++){
+        images.add(k[i]['file_name']);
+        print(k[i]['file_name']);
+      }
+
+    for(int i =0 ; i<abi.length ; i++){
+      abilityicon.add(abi[i]["icon"]);
+      print(abi[i]["icon"].toString());
     }
     Get.to(Details(
+      iconability: abilityicon,
       images: images,
       data: _searchResult[index],
     ),);

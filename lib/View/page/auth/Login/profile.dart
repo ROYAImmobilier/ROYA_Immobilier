@@ -67,7 +67,9 @@ class _ProfileState extends State<Profile> {
       });
     }
   }
-
+  _getRequests()async{
+reloud();
+  }
   @override
   void initState() {
     setState(() {
@@ -93,7 +95,10 @@ class _ProfileState extends State<Profile> {
   }
   @override
   Widget build(BuildContext context) {
-
+    if(relaod==true){
+    reloud();
+    relaod=false;
+    }
     late List<String>images = [];
     getdate(int index)async{
       String x ="" ;
@@ -108,6 +113,12 @@ class _ProfileState extends State<Profile> {
         images.add(k[i]['file_name']);
         print(k[i]['file_name']);
       }
+      Navigator.of(context).push(new MaterialPageRoute(builder: (_)=>DetailleProfile(
+        images: images,
+        data: Poste[index],
+      )),)
+          .then((val)=>val?_getRequests():null);
+
       Get.to(DetailleProfile(
         images: images,
         data: Poste[index],

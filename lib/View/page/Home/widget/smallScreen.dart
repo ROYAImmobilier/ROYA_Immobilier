@@ -16,20 +16,32 @@ class SmallScreen extends StatefulWidget {
 }
 
 class _SmallScreenState extends State<SmallScreen> {
-  List<String>images=[];
+  late List<String>images = [];
+  late List<String>abilityicon = [];
   getdate(int index)async{
     images = [];
-    var k = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+    var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+    var k = l['media'] ;
+    var abi = l["abilities"];
     print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    print(k[0]['file_name']);
-    print(k.length.toString());
-    for(int i =0 ; i<k.length;i++){
-      images.add(k[i]['file_name']);
-      print(k[i]['file_name']);
+    //print(k[0]['file_name']);
+    //  print(k.length.toString());
+    if(k.toString().isNotEmpty)
+      for(int i =0 ; i<k.length;i++){
+        images.add(k[i]['file_name']);
+        print(k[i]['file_name']);
+      }
+
+    for(int i =0 ; i<abi.length ; i++){
+      abilityicon.add(abi[i]["icon"]);
+      print(abi[i]["icon"].toString());
     }
+
+
     Get.to(Details(
       images: images,
       data: widget.data[index],
+      iconability:abilityicon,
     ),);
   }
   @override
