@@ -104,7 +104,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     late List<String> images = [];
-    late List<String> abilityicon = [];
+    late List<dynamic> abilityicon = [];
     if (relaod == true) {
       reloud();
       relaod = false;
@@ -119,7 +119,7 @@ class _ProfileState extends State<Profile> {
     // await Annonce_As_Login.getAnonnce();
         print(Poste[index].title);
       print("slug "+slug_data[0].slug.toString());
-      print("id "+Poste[index].id.toString());
+     // print("id "+.toString());
       for(int i=0;i<slug_data.length;i++){
         if(slug_data[i].id==Poste[index].id){
           print("slug"+slug_data[i].id.toString());
@@ -130,7 +130,7 @@ class _ProfileState extends State<Profile> {
       }
      print("slug 1"+slug.toString());
      print(Poste[index].id);
-      var l = await jokeRepository.GetDetiller(sug: slug);
+      var l = await jokeRepository.GetDetillerLogin(sug: Poste[index].id);
       var k = l['media'];
       var abi = l["abilities"];
       print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
@@ -142,10 +142,10 @@ class _ProfileState extends State<Profile> {
           print(k[i]['file_name']);
         }
       //
-      for (int i = 0; i < abi.length; i++) {
-        abilityicon.add(abi[i]["icon"]);
-       // print(abi[i]["icon"].toString());
-      }
+
+        abilityicon=abi;
+       print(abi.toString());
+
       print(abilityicon);
       Navigator.of(context)
           .push(

@@ -158,6 +158,7 @@ int _maxIndex=15;
 
 
 
+
             Positioned(
               top:50.h,
               right: 0,
@@ -289,6 +290,19 @@ int _maxIndex=15;
                     }),
               ),
             ),
+
+
+            progressdetille? Positioned(
+                left: 180,
+                right: 180,
+                top: 250,
+                bottom: 250,
+                child: Container(
+
+                  //color: Colors.white,
+                    width: 40,
+                    height: 40,
+                    child: CircularProgressIndicator())):Container(),
           ],
 
         ),
