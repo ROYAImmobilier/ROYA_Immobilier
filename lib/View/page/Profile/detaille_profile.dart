@@ -15,7 +15,7 @@ import '../../order/order_distination.dart';
 class DetailleProfile extends StatefulWidget {
   List<String> images;
   var data;
-  List<String>iconability ;
+  List<dynamic>iconability ;
   List<String> innerAbility = [];
   List<String> MainAbilities = [];
   List<String> AdditionalAbilities = [];
@@ -496,7 +496,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                             itemBuilder: (BuildContext ctx, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset("lib/abilities/${widget.MainAbilities[index].toString()}.svg" , width: 25,height: 25,color: Colors.blue,),
+                                child: SvgPicture.asset("lib/abilities/${widget.MainAbilities[index].toString()}" , width: 25,height: 25,color: Colors.blue,),
                               );
                             }),
                       ),
@@ -517,7 +517,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                             itemBuilder: (BuildContext ctx, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset("lib/abilities/${widget.innerAbility[index].toString()}.svg" ,  width: 25,height: 25,color: Colors.blue),
+                                child: SvgPicture.asset("lib/abilities/${widget.innerAbility[index].toString()}" ,  width: 25,height: 25,color: Colors.blue),
                               );
                             }),
                       ),
@@ -538,7 +538,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                             itemBuilder: (BuildContext ctx, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset("lib/abilities/${widget.AdditionalAbilities[index].toString()}.svg" ,  width: 25,height: 25,color: Colors.blue),
+                                child: SvgPicture.asset("lib/abilities/${widget.AdditionalAbilities[index].toString()}" ,  width: 25,height: 25,color: Colors.blue),
                               );
                             }),
                       ),
@@ -601,19 +601,19 @@ abilitycompre() {
 
   for(int j=0;j<widget.iconability.length;j++){
     for(int i=0;i<ListAbility.length;i++){
-      if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
+      if (ListAbility[i].id.toString()==widget.iconability[j].toString() && ListAbility[i].type=="main" ){
 
-        widget.MainAbilities.add(widget.iconability[j]);
-
-      }
-      else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
-
-        widget.AdditionalAbilities.add(widget.iconability[j]);
+        widget.MainAbilities.add(ListAbility[i].icon.split("/")[2]);
 
       }
-      else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="inner" ){
+      else if(ListAbility[i].id.toString()==widget.iconability[j].toString() && ListAbility[i].type=="additional" ){
 
-        widget.innerAbility.add(widget.iconability[j]);
+        widget.AdditionalAbilities.add(ListAbility[i].icon.split("/")[2]);
+
+      }
+      else if (ListAbility[i].id.toString()==widget.iconability[j].toString() && ListAbility[i].type=="inner" ){
+
+        widget.innerAbility.add(ListAbility[i].icon.split("/")[2]);
 
       }
     } }

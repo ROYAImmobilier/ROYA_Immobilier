@@ -53,12 +53,12 @@ class _ContactSendState extends State<ContactSend> {
           color: Color(0xFFDDECF2).withOpacity(0.35),
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 4,
-              child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 4,
                 child: Column(
                   children: [
                     Center(
@@ -75,7 +75,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("FULL NAME", ),
+                            child: Text("FULL NAME".tr, ),
                           )),
                     ),
                     Padding(
