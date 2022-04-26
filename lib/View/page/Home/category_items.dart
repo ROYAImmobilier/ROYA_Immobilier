@@ -4,7 +4,6 @@ import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/Home/widget/mobilestackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
-import 'package:roya_immobilie/View/page/Home/widget/test.dart';
 import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
 
 class CategoryItems extends StatelessWidget{

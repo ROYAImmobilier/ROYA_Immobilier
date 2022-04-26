@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:roya_immobilie/View/page/Home/widget/test.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
-import 'package:roya_immobilie/main.dart';
+import 'package:roya_immobilie/View/page/Home/widget/test.dart';
+
 import '../../page_details/details.dart';
-import 'listeanonnce.dart';
 class MobileGridView extends StatefulWidget {
   MobileGridView({required this.data, required this.leng});
 
@@ -22,6 +21,7 @@ class _MobileGridViewState extends State<MobileGridView> {
   late List<String>abilityicon = [];
   getdate(int index)async{
     images = [];
+    abilityicon=[];
     var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
     var k = l['media'] ;
     var abi = l["abilities"];
@@ -36,9 +36,9 @@ class _MobileGridViewState extends State<MobileGridView> {
 
     for(int i =0 ; i<abi.length ; i++){
       abilityicon.add(abi[i]["icon"]);
-      print(abi[i]["icon"].toString());
+     // print(abi[i]["icon"].toString());
     }
-
+    print(abilityicon);
 
     Get.to(Details(
       images: images,
@@ -55,12 +55,7 @@ class _MobileGridViewState extends State<MobileGridView> {
   }
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    print(MediaQuery
-        .of(context)
-        .size
-        .height *
-        0.35);
+
     return ScreenUtilInit(
       builder: () => Stack(
         children:[ GridView.builder(

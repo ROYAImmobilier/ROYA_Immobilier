@@ -1,16 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../Model/joke.dart';
@@ -23,15 +20,21 @@ import '../contact_send.dart';
 
 class Details extends StatefulWidget {
   List<String> images;
-  List<String>iconability ;
+  List<String> iconability;
+  List<String> innerAbility = [];
+  List<String> MainAbilities = [];
+  List<String> AdditionalAbilities = [];
   int activeindex = 0;
   var data;
-  bool _shownumber=false;
-  Future<void>? _launched;
-  bool _hasCallSupport = false;
-  bool ?showList;
+  bool _shownumber = false;
 
-  Details({required this.images,required this.iconability, required this.data,this.showList=false});
+  bool? showList;
+
+  Details(
+      {required this.images,
+      required this.iconability,
+      required this.data,
+      this.showList = false});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -41,9 +44,8 @@ class _DetailsState extends State<Details> {
   List<Joke> select = [];
   bool grid = true;
 
-
   //fonction prendre le date String et return la difirent
-  String datename (dateString){
+  String datename(dateString) {
     DateTime dateTime = DateTime.parse(dateString);
     Duration diff = DateTime.now().difference(dateTime);
     if (diff.inDays >= 1) {
@@ -60,17 +62,18 @@ class _DetailsState extends State<Details> {
   }
   @override
   void initState() {
-    abilitycompre();
-    // TODO: implement initState
-    canLaunchUrl(Uri(scheme: 'tel', path: '123')).then((bool result) {
-      setState(() {
-        widget._hasCallSupport = result;
-      });
+    setState(() {
+      widget.MainAbilities=[];
+      widget.innerAbility=[];
+      widget.AdditionalAbilities=[];
     });
+    abilitycompre();
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-   print(locale[1]["name"]);
+   // print(locale[1]["name"]);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
 
@@ -87,7 +90,9 @@ class _DetailsState extends State<Details> {
                     ),
                   ),
                   leading: IconButton(
-                    onPressed: () =>fromContact==false? Get.back():Get.to(RoutingScreen()),
+                    onPressed: () => fromContact == false
+                        ? Get.back()
+                        : Get.to(RoutingScreen()),
                     icon: Icon(Icons.arrow_back_ios_sharp),
                     color: Colors.blue,
                   )),
@@ -134,8 +139,7 @@ class _DetailsState extends State<Details> {
                                   topRight: Radius.circular(10.r),
                                   topLeft: Radius.circular(10.r))),
                           width: MediaQuery.of(context).size.width.toDouble(),
-                          height:
-                              (MediaQuery.of(context).size.height * 0.15).h,
+                          height: (MediaQuery.of(context).size.height * 0.15).h,
                           child: Padding(
                             padding: EdgeInsets.only(
                                 top: 15.h, left: 2.w, right: 2.w),
@@ -146,7 +150,7 @@ class _DetailsState extends State<Details> {
                                   return GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        indexselectCategory = i ;
+                                        indexselectCategory = i;
                                         Get.offAll(RoutingScreen());
                                       });
                                     },
@@ -195,9 +199,7 @@ class _DetailsState extends State<Details> {
                                 }),
                           ),
                         ),
-                        Stack(
-                            alignment: Alignment.center,
-                            children: [
+                        Stack(alignment: Alignment.center, children: [
                           Container(
                             margin: EdgeInsets.only(
                                 top: 20.h, right: 20.w, left: 20.w),
@@ -215,8 +217,7 @@ class _DetailsState extends State<Details> {
                             child: CarouselSlider(
                                 options: CarouselOptions(
                                   //  height:    450.h ,
-                                  height:
-                                      (MediaQuery.of(context).size.height),
+                                  height: (MediaQuery.of(context).size.height),
                                   scrollDirection: Axis.horizontal,
                                   viewportFraction: 1,
                                   initialPage: 0,
@@ -245,12 +246,12 @@ class _DetailsState extends State<Details> {
                                                 children: [
                                                   Container(
                                                     // margin: EdgeInsets.only(top: 50),
-                                                    height: (MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            0.5)
-                                                        .h,
+                                                    height:
+                                                        (MediaQuery.of(context)
+                                                                    .size
+                                                                    .height *
+                                                                0.5)
+                                                            .h,
                                                     // decoration: const BoxDecoration(
                                                     // //   borderRadius: BorderRadius.all(
                                                     // //       Radius.circular(4.5)),
@@ -258,8 +259,7 @@ class _DetailsState extends State<Details> {
                                                     child: ClipRRect(
                                                       // borderRadius: const BorderRadius.all(
                                                       //     Radius.circular(10)),
-                                                      child:
-                                                          CachedNetworkImage(
+                                                      child: CachedNetworkImage(
                                                         width: MediaQuery.of(
                                                                 context)
                                                             .size
@@ -287,10 +287,8 @@ class _DetailsState extends State<Details> {
                           ),
                           Positioned(
                             child: BuldeIndector(),
-
                             bottom: 5,
                           ),
-
                         ]),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
@@ -310,26 +308,27 @@ class _DetailsState extends State<Details> {
                                   padding:
                                       EdgeInsets.only(top: 10.h, left: 10.w),
                                   alignment: Alignment.topLeft,
-                                  child:  CircleAvatar(
+                                  child: CircleAvatar(
                                     backgroundColor: Color(0xffbfa280),
                                     radius: 20,
-                                    child: Text(widget.data.advertiser[0].toString() +widget.data.advertiser[0].toString() ),
+                                    child: Text(widget.data.advertiser[0]
+                                            .toString() +
+                                        widget.data.advertiser[0].toString()),
                                   ),
                                 ),
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
                                         // alignment: Alignment.topLeft,
                                         padding: EdgeInsets.only(
                                             top: 15.h, left: 10.w),
-                                        child: Text(
-                                            "${widget.data.advertiser}")),
+                                        child:
+                                            Text("${widget.data.advertiser}")),
                                     Container(
-                                      padding: EdgeInsets.only(
-                                          top: 3.h, left: 10.w),
-                                      child:  Text(
+                                      padding:
+                                          EdgeInsets.only(top: 3.h, left: 10.w),
+                                      child: Text(
                                         widget.data.createdAt,
                                         style: TextStyle(color: Colors.grey),
                                       ),
@@ -347,8 +346,7 @@ class _DetailsState extends State<Details> {
                               children: [
                                 MaterialButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
+                                      borderRadius: BorderRadius.circular(10)),
                                   color: const Color(0xff5d5386),
                                   child: Row(
                                     children: [
@@ -364,15 +362,21 @@ class _DetailsState extends State<Details> {
                                       ),
                                       Text(
                                         "SEND MESSAGE".tr,
-                                        style: TextStyle(fontSize:locale[1]["name"]!="France"? 13.sm:8),
+                                        style: TextStyle(
+                                            fontSize:
+                                                locale[1]["name"] != "France"
+                                                    ? 13.sm
+                                                    : 8),
                                       ),
                                     ],
                                   ),
                                   onPressed: () {
                                     print(widget.data.id);
-                                    slug_image=widget.images;
-                                   // print("images "+widget.images);
-                                    Get.to(ContactSend(annonce_id: widget.data.id,));
+                                    slug_image = widget.images;
+                                    // print("images "+widget.images);
+                                    Get.to(ContactSend(
+                                      annonce_id: widget.data.id,
+                                    ));
                                   },
                                 ),
                                 SizedBox(
@@ -380,8 +384,7 @@ class _DetailsState extends State<Details> {
                                 ),
                                 MaterialButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
+                                      borderRadius: BorderRadius.circular(10)),
                                   color: const Color(0xff5d5386),
                                   child: Row(
                                     children: [
@@ -394,24 +397,30 @@ class _DetailsState extends State<Details> {
                                         width: 2.w,
                                       ),
                                       Text(
-                                       widget._shownumber==false? "SHOW NUMBER".tr:widget.data.phone1,
-                                        style: TextStyle(fontSize:locale[1]["name"]!="France"? 13.sm:8),
+                                        widget._shownumber == false
+                                            ? "SHOW NUMBER".tr
+                                            : widget.data.phone1,
+                                        style: TextStyle(
+                                            fontSize:
+                                                locale[1]["name"] != "France"
+                                                    ? 13.sm
+                                                    : 8),
                                       ),
                                     ],
                                   ),
-                                  onPressed: ()async {
+                                  onPressed: () async {
                                     setState(() {
-                                      widget._shownumber=!widget._shownumber;
-                                     // widget._launched=   _makePhoneCall(widget.data.phone1);
-
+                                      widget._shownumber = !widget._shownumber;
+                                      // widget._launched=   _makePhoneCall(widget.data.phone1);
                                     });
-                                   // String telephoneNumber = '+2347012345678';
-                                    String telephoneUrl = "tel:${widget.data.phone1.toString()}";
-                                    if( widget._shownumber==true)
-                                      if (await canLaunchUrlString(telephoneUrl)) {
-                                    await launchUrlString(telephoneUrl);
+                                    // String telephoneNumber = '+2347012345678';
+                                    String telephoneUrl =
+                                        "tel:${widget.data.phone1.toString()}";
+                                    if (widget._shownumber ==
+                                        true) if (await canLaunchUrlString(telephoneUrl)) {
+                                      await launchUrlString(telephoneUrl);
                                     } else {
-                                    throw "Error occured trying to call that number.";
+                                      throw "Error occured trying to call that number.";
                                     }
                                   },
                                 )
@@ -464,7 +473,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bedrooms} "+ "Beds".tr,
+                                  "${widget.data.bedrooms} " + "Beds".tr,
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -480,7 +489,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bathrooms} "+ "Baths".tr,
+                                  "${widget.data.bathrooms} " + "Baths".tr,
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -497,8 +506,8 @@ class _DetailsState extends State<Details> {
                                 ),
                                 Text(
                                   "${widget.data.area} m²",
-                                  style: const TextStyle(
-                                      color: Color(0xff8a8a8a)),
+                                  style:
+                                      const TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
                             ],
@@ -514,31 +523,96 @@ class _DetailsState extends State<Details> {
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
-                                    width: 2.w,
-                                    color: const Color(0xff8a8a8a)),
+                                    width: 2.w, color: const Color(0xff8a8a8a)),
                               ),
                             )),
-                        Text("Inner Ability"),
-    Padding(
-      padding: EdgeInsets.only(
-          right: 20.w, left: 20.w, bottom: 15.h),
-      child: GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount:widget.iconability.length,
-      gridDelegate:
-      SliverGridDelegateWithMaxCrossAxisExtent(
-      maxCrossAxisExtent: 20,
-      mainAxisExtent:20.h
-      ,
-      childAspectRatio: 10,
-      crossAxisSpacing:10,
-      mainAxisSpacing: 10),
-      itemBuilder: (BuildContext ctx, index) {
-        return SvgPicture.asset("lib/abilities/${widget.iconability[index].toString()}.svg" , width: 18.w,height: 18.h,);
-      }),
-    ),
-                        SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, top: 5, bottom: 5, right: 15),
+                          child: Text(
+                            "Main Abilites".tr,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right: 20.w, left: 20.w, bottom: 5),
+                          child: Container(
+                            height: 50,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                //   physics: const NeverScrollableScrollPhysics(),
+                                itemCount: widget.MainAbilities.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SvgPicture.asset(
+                                      "lib/abilities/${widget.MainAbilities[index].toString()}.svg",
+                                      width: 25,
+                                      height: 25,
+                                      color: Colors.blue,
+                                    ),
+                                  );
+                                }),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, bottom: 5, right: 15),
+                          child: Text("Innir Abilites".tr),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right: 20.w, left: 20.w, bottom: 5),
+                          child: Container(
+                            height: 50,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                //  physics: const NeverScrollableScrollPhysics(),
+                                itemCount: widget.innerAbility.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SvgPicture.asset(
+                                        "lib/abilities/${widget.innerAbility[index].toString()}.svg",
+                                        width: 25,
+                                        height: 25,
+                                        color: Colors.blue),
+                                  );
+                                }),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, bottom: 5, right: 15),
+                          child: Text("Addition Abilites".tr),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              right: 20.w, left: 20.w, bottom: 5),
+                          child: Container(
+                            height: 50,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                //   physics: const NeverScrollableScrollPhysics(),
+                                itemCount: widget.AdditionalAbilities.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SvgPicture.asset(
+                                        "lib/abilities/${widget.AdditionalAbilities[index].toString()}.svg",
+                                        width: 25,
+                                        height: 25,
+                                        color: Colors.blue),
+                                  );
+                                }),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                             //height: ,
                             margin: EdgeInsets.only(
@@ -549,18 +623,20 @@ class _DetailsState extends State<Details> {
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
-                                    width: 2.w,
-                                    color: const Color(0xff8a8a8a)),
+                                    width: 2.w, color: const Color(0xff8a8a8a)),
                               ),
                             )),
                         Container(
-                          margin: EdgeInsets.only(right: 20.w, left: 20.w,),
+                          margin: EdgeInsets.only(
+                            right: 20.w,
+                            left: 20.w,
+                          ),
                           child: Stack(
                             // mainAxisAlignment: ,
                             children: [
                               Container(
-                                //  alignment: Alignment.topLeft,
-                                  child:  Text("Adresse".tr)),
+                                  //  alignment: Alignment.topLeft,
+                                  child: Text("Adresse".tr)),
                               Container(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -590,7 +666,7 @@ class _DetailsState extends State<Details> {
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                         // alignment: Alignment.,
+                          // alignment: Alignment.,
                           child: Text(
                             'Description'.tr,
                             style: TextStyle(fontSize: 25.sp),
@@ -607,29 +683,37 @@ class _DetailsState extends State<Details> {
                         SizedBox(
                           height: 10.h,
                         ),
-                        widget.showList==false?   Container(
-                          margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                         // alignment: Alignment.topLeft,
-                          child: Text(
-                            'Autre Annonces'.tr,
-                            style: TextStyle(fontSize: 25.sp),
-                          ),
-                        ):Container(),
-                        widget.showList==false? SizedBox(
-                          height: 150.h,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemCount: 5,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                    // onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
-                                    //     transition:Transition.zoom ,
-                                    //     duration: Duration(microseconds: 150)),
-                                    child: ListView_in_Detalis(
-                                        data: allAnnonce[index],index: index,));
-                              }),
-                        ):Container(),
+                        widget.showList == false
+                            ? Container(
+                                margin:
+                                    EdgeInsets.only(right: 20.w, left: 20.w),
+                                // alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Autre Annonces'.tr,
+                                  style: TextStyle(fontSize: 25.sp),
+                                ),
+                              )
+                            : Container(),
+                        widget.showList == false
+                            ? SizedBox(
+                                height: 150.h,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: 5,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return GestureDetector(
+                                          // onTap: ()=>  Get.to(Details(image: allAnnonce[index].cover, data: allAnnonce[index]),
+                                          //     transition:Transition.zoom ,
+                                          //     duration: Duration(microseconds: 150)),
+                                          child: ListView_in_Detalis(
+                                        data: allAnnonce[index],
+                                        index: index,
+                                      ));
+                                    }),
+                              )
+                            : Container(),
                         SizedBox(
                           height: 20.h,
                         ),
@@ -644,42 +728,40 @@ class _DetailsState extends State<Details> {
   Widget BuldeIndector() => AnimatedSmoothIndicator(
         count: widget.images.length,
         activeIndex: widget.activeindex,
-    effect:  WormEffect(
-        dotHeight: 16,
-        dotWidth: 16,
-        type: WormType.thin,
-        // strokeWidth: 5,
-      ),
-
+        effect: WormEffect(
+          dotHeight: 16,
+          dotWidth: 16,
+          type: WormType.thin,
+          // strokeWidth: 5,
+        ),
       );
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launchUrl(launchUri);
-  }
-List<String> innerAbility = [];
-List<String> MainAbilities = [];
-List<String> AdditionalAbilities = [];
 
-  abilitycompre(){
-    for(int i =0 ; i<widget.iconability.length ;i++){
-      for(int j=0;j<ability.length;j++){
-        if(widget.iconability[i]==ability[j].icon){
-          if(ability[j].id<9){
-            MainAbilities.add(widget.iconability[i]);
-          }
-         else if(ability[j].id<17){
-            innerAbility.add(widget.iconability[i]);
-          }
-         else if(ability[j].id<24){
-            AdditionalAbilities.add(widget.iconability[i]);
-          }
+  abilitycompre() {
+    ListAbility;
+    print("abi"+widget.iconability.toString());
+          for(int j=0;j<widget.iconability.length;j++){
+    for(int i=0;i<ListAbility.length;i++){
+      if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
 
-        }
+        widget.MainAbilities.add(widget.iconability[j]);
+        print(ListAbility[i].icon.split('/')[2]);
+        print(" ${widget.iconability[j]}.svg".toString());
+     }
+      else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
+
+        widget.AdditionalAbilities.add(widget.iconability[j]);
+
       }
-    }
-  }
-}
+      else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="inner" ){
 
+        widget.innerAbility.add(widget.iconability[j]);
+
+      }
+    } }
+
+  }
+  getid( ){
+
+  }
+
+}

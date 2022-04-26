@@ -52,7 +52,7 @@ class _FavoritePageState extends State<FavoritePage> {
   }
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AnnonceController());
+
     return Scaffold(
       drawer: DrawerPage(),
         backgroundColor: Color(0xffefefef),

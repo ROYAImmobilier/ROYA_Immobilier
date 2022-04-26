@@ -15,6 +15,7 @@ class FavCategoryItem {
   late String area;
   late String quartier;
   late String createdAt;
+   List<String>? abilities;
   FavCategoryItem(
       {required this.id,
       required this.region,
@@ -32,9 +33,10 @@ class FavCategoryItem {
       required this.area,
       required this.quartier,
       required this.createdAt,
+      required this.abilities,
       });
   FavCategoryItem.fromJson(Map<dynamic, dynamic> map) {
-    if (map == null) {
+    if (map.isEmpty) {
       return;
     }
     id = map["id"];
@@ -53,6 +55,7 @@ class FavCategoryItem {
     area = map["area"];
     quartier = map["quartier"];
     createdAt = map["createdAt"];
+    abilities = map["abilities"];
   }
   toJson() {
     return {

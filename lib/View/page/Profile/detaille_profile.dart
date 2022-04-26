@@ -15,10 +15,13 @@ import '../../order/order_distination.dart';
 class DetailleProfile extends StatefulWidget {
   List<String> images;
   var data;
-
+  List<String>iconability ;
+  List<String> innerAbility = [];
+  List<String> MainAbilities = [];
+  List<String> AdditionalAbilities = [];
   int activeindex=0;
 
-  DetailleProfile({required this.images, required this.data});
+  DetailleProfile({required this.images, required this.data,required this.iconability});
 
   @override
   _DetailleProfileState createState() => _DetailleProfileState();
@@ -26,9 +29,14 @@ class DetailleProfile extends StatefulWidget {
 
 class _DetailleProfileState extends State<DetailleProfile> {
 
-
+@override
+  void initState() {
+  abilitycompre();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+    print(widget.iconability);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
@@ -43,7 +51,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
 
               backgroundColor:Colors.white,
               leading:IconButton(
-                onPressed:()=>Get.back() ,icon: Icon
+                onPressed:()=>Navigator.pop(context,true) ,icon: Icon
                 (Icons.arrow_back_ios_sharp) , color: Colors.blue,)
 
           ),
@@ -208,7 +216,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                       height: 5,
                     ),
                     Row(
-                      //crossAxisAlignment: CrossAxisAlignment.center,
+                     // crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
@@ -246,7 +254,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                                   id: widget.data
                                       .id
                                       .toString());
-                              verify = true;
+                             // verify = true;
                               print(getData_put);
                               if (getData_put==null) {
                                 Get.snackbar("Error", "Server");
@@ -262,10 +270,11 @@ class _DetailleProfileState extends State<DetailleProfile> {
                                         .tr,
                                     onCancel: () {},
                                     onConfirm: () {
+                                      verify_update = true;
                           Get.to(Add_Annonce());
                                     });
                               }
-                              verify_update = true;
+
                               //  Get.to(Add_Annonce());
                               // setState(() {
                               //   reloud();
@@ -322,7 +331,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
 
                                     Navigator.pop(context,true);
                                     Navigator.pop(context,true);
-                                    Navigator.pop(context,true);
+                                   // Navigator.pop(context,true);
 
 
                                   });
@@ -450,22 +459,109 @@ class _DetailleProfileState extends State<DetailleProfile> {
                     ],
                   ),
                 ),
-                Container(
-                  //height: ,
-                    margin: EdgeInsets.only(
-                        right: 20.w, left: 20.w, top: 15.h),
-                    // child: Divider(
-                    //   color: Colors.black,
-                    // ),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2.w, color: Color(0xff8a8a8a)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      //height: ,
+                        margin: EdgeInsets.only(
+                            right: 20.w, left: 20.w, top: 15.h),
+                        // child: Divider(
+                        //   color: Colors.black,
+                        // ),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                width: 2.w, color: Color(0xff8a8a8a)),
+                          ),
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,top:5,bottom: 5,right: 15),
+                      child: Text("Main Abilites".tr,),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: 20.w, left: 20.w, bottom: 5),
+                      child: Container(
+                        height: 50,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            //   physics: const NeverScrollableScrollPhysics(),
+                            itemCount:widget.MainAbilities.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset("lib/abilities/${widget.MainAbilities[index].toString()}.svg" , width: 25,height: 25,color: Colors.blue,),
+                              );
+                            }),
                       ),
-                    )),
-                const SizedBox(
-                  height: 10,
+                    ),  Padding(
+                      padding: const EdgeInsets.only(left: 15,bottom: 5,right: 15),
+                      child: Text("Innir Abilites".tr),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: 20.w, left: 20.w, bottom: 5),
+                      child: Container(
+                        height: 50,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            //  physics: const NeverScrollableScrollPhysics(),
+                            itemCount:widget.innerAbility.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset("lib/abilities/${widget.innerAbility[index].toString()}.svg" ,  width: 25,height: 25,color: Colors.blue),
+                              );
+                            }),
+                      ),
+                    ),  Padding(
+                      padding: const EdgeInsets.only(left: 15,bottom: 5,right: 15),
+                      child: Text("Addition Abilites".tr),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: 20.w, left: 20.w, bottom: 5),
+                      child: Container(
+                        height: 50,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            //   physics: const NeverScrollableScrollPhysics(),
+                            itemCount:widget.AdditionalAbilities.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset("lib/abilities/${widget.AdditionalAbilities[index].toString()}.svg" ,  width: 25,height: 25,color: Colors.blue),
+                              );
+                            }),
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Container(
+                      //height: ,
+                        margin: EdgeInsets.only(
+                            right: 20.w, left: 20.w, bottom: 15.h),
+                        // child: Divider(
+                        //   color: Colors.black,
+                        // ),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                width: 2.w,
+                                color: const Color(0xff8a8a8a)),
+                          ),
+                        )),
+                  ],
                 ),
+
+
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
                   alignment: Alignment.topLeft,
@@ -501,4 +597,26 @@ class _DetailleProfileState extends State<DetailleProfile> {
     ),
 
   );
+abilitycompre() {
+
+  for(int j=0;j<widget.iconability.length;j++){
+    for(int i=0;i<ListAbility.length;i++){
+      if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
+
+        widget.MainAbilities.add(widget.iconability[j]);
+
+      }
+      else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
+
+        widget.AdditionalAbilities.add(widget.iconability[j]);
+
+      }
+      else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="inner" ){
+
+        widget.innerAbility.add(widget.iconability[j]);
+
+      }
+    } }
+
+}
 }

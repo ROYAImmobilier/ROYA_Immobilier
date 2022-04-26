@@ -1,14 +1,9 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 
-import '../Model/data_list.dart';
 import '../Model/joke.dart';
 import '../View/page/auth/Login/components/body.dart';
-import '../View/page/auth/Login/login_screen.dart';
-import '../View/routing_screen.dart';
 import '../variable/variable.dart';
 class Clinet_Login{
 

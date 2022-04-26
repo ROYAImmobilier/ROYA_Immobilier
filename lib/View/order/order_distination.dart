@@ -21,7 +21,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   String? _categorie;
   String? _categorie_select;
   String? _statut;
-  String? _adress;
   String? name_rigion;
   var statut;
   String? value;

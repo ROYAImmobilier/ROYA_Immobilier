@@ -20,6 +20,7 @@ import 'mobilestackwidget.dart';
 final colors = Color(0xefefef);
 class StackWidget_2 extends StatefulWidget {
   List<Joke> data;
+
   int leng;
 
   StackWidget_2({required this.data, required this.leng});
@@ -29,12 +30,17 @@ class StackWidget_2 extends StatefulWidget {
 }
 
 class _StackWidget_2State extends State<StackWidget_2> {
-
+ScrollController _scrollController=ScrollController();
+int _maxIndex=15;
   List<Joke> select = [];
   int j = indexselectCategory ;
   bool grid = true;
+
+
+
   @override
   void initState() {
+
     fromContact=false;
     for (int k = 0;
     k < allAnnonce.length;
@@ -210,6 +216,7 @@ class _StackWidget_2State extends State<StackWidget_2> {
               child: SizedBox(
                 height: 85.h,
                 child: ListView.builder(
+                  controller: _scrollController,
                     itemCount: dataCategory.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, i) {

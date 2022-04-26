@@ -9,7 +9,7 @@ import '../../../../Model/cityrepo.dart';
 import '../../../../variable/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
-import '../../auth/Login/profile.dart';
+import '../../Profile/profile.dart';
 
 final List locale = [
   {'name': 'English', 'locale': const Locale('en', 'US')},
@@ -237,6 +237,7 @@ class _DrawerPageState extends State<DrawerPage> {
                                   setState(() {
                                     contact = [];
                                     indexPage=true;
+                                    isCamindingfrom = false;
                                   });
 
                                   Get.offAll( RoutingScreen());

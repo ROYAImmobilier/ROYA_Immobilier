@@ -1,17 +1,13 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Langage/CondationLangage/condation_langage.dart';
 import 'package:roya_immobilie/Model/ability.dart';
-import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/main.dart';
+
 import '../../variable/variable.dart';
 import 'contact_info.dart';
-import 'order_distination.dart';
 List<dynamic> media=getData_put["media"];
 class Add_Annonce_2 extends StatefulWidget {
   String? Property_details;
@@ -49,6 +45,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   void initState() {
     setState(() {
       if (verify_update ) {
+        print(getData_put["abilities"]);
         idability = getData_put["abilities"];
         print(getData_put["area"]);
         double x = getData_put["area"] + 0.0;

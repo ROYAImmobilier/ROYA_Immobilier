@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/joke.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
@@ -136,7 +135,7 @@ class _BodyState extends State<Body> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-
+                      int ?x;
                       setState(() {
                         allAnnonceLogin=[];
                       });
@@ -144,14 +143,14 @@ class _BodyState extends State<Body> {
                       FocusManager.instance.primaryFocus?.unfocus();
                       if (_key_validation.currentState!.validate()) {
                         print(email + ' ' + password);
-
+                       // isCamindingfrom = true;
                         //
                           progress = true;
                         if (isCamindingfrom) {
-                          isCamindingfrom = false;
-                          isLogin = true;
+
+
                           //  Clinet_Login.Add_Annonce_As_Login(email: email, password: password);
-                          await Annonce_As_Login.Add_Annonce_As_Login(
+                       x=   await Annonce_As_Login.Add_Annonce_As_Login(
                               region_id: widget.region_id,
                               city_id: widget.city_id,
                               transaction: widget.transaction,
@@ -163,8 +162,8 @@ class _BodyState extends State<Body> {
                               price: widget.price,
                               age: widget.age,
                               floor_type: widget.floor_type,
-                              floor: "4",
-                              apartment: "1",
+                              floor: "",
+                              apartment: "",
                               bedrooms: widget.bedrooms.toString(),
                               bathrooms:widget.bathrooms.toString(),
                               kitchens: widget.kitchens.toString(),
@@ -177,9 +176,27 @@ class _BodyState extends State<Body> {
                               password: password,
                               abilities:widget.abilities!,
                               media: widget.media);
+
+                          if(x==201){
+                            Get.snackbar(
+                                "success".tr, "Your ad is added".tr);
+                            //isLogin = true;
+                            setState(() {
+                              progress = false;
+                              isCamindingfrom = false;
+                            });
+                              Get.offAll(RoutingScreen());
+                          }
+                          else if(x==401){
+                            Get.snackbar(
+                                "Error".tr, "password or email".tr);
+                            setState(() {
+                              progress = false;
+                            });
+                          }
                         } else if (!isCamindingfrom) {
-                        var x=  await _Login(email: email, password: password);
-                        if(x.toString()!="200"){
+                        x=  await _Login(email: email, password: password);
+                        if(x!=200){
                           Get.snackbar("Error", "User not registered");
                           setState(() {
                             progress = false;
@@ -280,6 +297,7 @@ class _BodyState extends State<Body> {
       });
 
       print(token_1);
+      print("response"+response.statusCode.toString());
       if (response.statusCode == 200) {
         var response_1 = await http.get(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonces'),

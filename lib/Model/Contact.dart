@@ -18,7 +18,7 @@ class Contacts {
   String? message;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
 
   Contacts(
       {this.id,

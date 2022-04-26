@@ -1,13 +1,9 @@
 import 'dart:convert';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/joke.dart';
 
-import '../View/order/order_distination.dart';
 import '../variable/variable.dart';
-import 'data_list.dart';
-import 'getdata_annonce.dart';
 
 class jokeRepository {
   static var client = http.Client();
@@ -33,14 +29,10 @@ class jokeRepository {
         .delete(Uri.parse('https://dashboard.royaimmo.ma/api/annonces/${id.toString()}'),headers: {
       'Authorization': 'Bearer $token_global'
     });
-    var jsoon = res.body;
-    //var a = json;
+
 
     if (res.statusCode == 200) {
       print(res.body);
-      var b = json.decode(jsoon);
-      var c = json.encode(b);
-      // print(a[0]['title']);
       return null;
     } else {
       return null;
@@ -62,8 +54,7 @@ class jokeRepository {
      if(a.isEmpty){
        return null;
      }
-      //print(res.body);
-      // print(a[0]['title']);
+
       return a["data"][0];
     } else {
       return null;
@@ -75,10 +66,10 @@ class jokeRepository {
     var res = await client .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/$sug'));
     var jsoon = res.body;
     //var a = json;
+    print(res.body);
     if (res.statusCode == 200) {
       var b = json.decode(jsoon);
-      var a = b["data"][0]['media'];
-      var c = json.encode(a);
+
 
       return b["data"][0];
     } else {

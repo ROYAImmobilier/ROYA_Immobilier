@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../Model/Contact.dart';
-import '../View/page/auth/Login/components/body.dart';
 import '../variable/variable.dart';
 class GetContcts{
  static Future getContacts() async {

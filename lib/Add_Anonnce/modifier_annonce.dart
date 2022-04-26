@@ -1,12 +1,7 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/View/routing_screen.dart';
 
-import '../View/order/contact_info.dart';
-import '../View/routing_login.dart';
 import '../variable/variable.dart';
 
 
@@ -43,8 +38,6 @@ class Modifier_Annonce {
         "city_id": city_id,
         "transaction": transaction,
         "property_type": property_type,
-        "transaction": transaction,
-        "property_type": property_type,
         "status": status,
         "address": adress,
         "quartier": quartier,
@@ -79,6 +72,7 @@ class Modifier_Annonce {
             'Authorization': 'Bearer $token_global'
           });
         print(response_1.statusCode);
+        print(response_1.body);
       if (response_1.statusCode == 500) {
 
        return  response_1.statusCode;

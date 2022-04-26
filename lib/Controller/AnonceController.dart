@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
-
 import 'package:get/get.dart';
-
+import 'package:get/state_manager.dart';
 import 'package:roya_immobilie/Model/category.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 
@@ -41,7 +38,6 @@ class AnnonceController extends GetxController {
   bool _loading = false;
   List<FavCategoryItem> _cartProductsModel = [];
   List<FavCategoryItem> get cartProductsModel => _cartProductsModel;
-  double _totlaprice = 0;
   bool verife = false;
 
   getAllProducts() async {
@@ -82,7 +78,7 @@ class AnnonceController extends GetxController {
           advertiser: data.advertiser,
           area: data.area.toString(),
           quartier: data.quartier,
-          createdAt: data.createdAt.toString(),
+          createdAt: data.createdAt.toString(), abilities: [],
         ));
         return;
       }

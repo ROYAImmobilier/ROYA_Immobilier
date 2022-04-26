@@ -68,6 +68,7 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           }
+          ListAbility=ability;
         });
       }
     } catch (e) {}

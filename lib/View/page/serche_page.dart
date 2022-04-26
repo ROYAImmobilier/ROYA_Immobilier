@@ -322,4 +322,4 @@ List<Joke> _searchResult = [];
 
 List<Joke> _userDetails = [];
 
-final String url = "https://dashboard.royaimmo.ma/api/site/annonces";
+final String url = "https://dashboard.royaimmo.ma/api/site/annonces/?limit=500";

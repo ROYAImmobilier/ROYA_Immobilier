@@ -283,8 +283,6 @@ class Transation extends Translations {
           'Appartements': 'Apartments',
           'Chambre': 'Rooms',
           'Maison': 'House',
-          "villa": 'Villa',
-          "riad": 'Riad',
           "commercialeSpace": 'Commercial',
           "Bureau": 'Office',
           "Terre": 'Land',

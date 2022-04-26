@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import 'package:roya_immobilie/View/page/Home/home.dart';
 
-import 'package:roya_immobilie/View/page/auth/Login/profile.dart';
+import 'package:roya_immobilie/View/page/Profile/profile.dart';
 
 import '../Model/joke.dart';
 import 'order/order_distination.dart';

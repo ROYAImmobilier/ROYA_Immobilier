@@ -1,19 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../Add_Anonnce/annonce_as_login.dart';
 import '../../Add_Anonnce/modifier_annonce.dart';
 import '../../Model/ability.dart';
 import '../../variable/variable.dart';
 import '../page/auth/Login/login_screen.dart';
 import '../routing_screen.dart';
-import 'order_details.dart';
 
 class ContactInfo extends StatefulWidget {
   String? Property_details;
@@ -71,14 +70,11 @@ class _ContactInfoState extends State<ContactInfo> {
   var _phone1 = TextEditingController();
   var _phone2 = TextEditingController();
   var _phone3 = TextEditingController();
-  // String ?base64string;
-  List<File> _image = [];
-  //final picker = ImagePicker();
+
 
   final ImagePicker imgpicker = ImagePicker();
   String imagepath = "";
 
-  //late Future<File> file;
   String status = '';
   String? base64Image;
   File? tmpFile;
@@ -115,6 +111,7 @@ class _ContactInfoState extends State<ContactInfo> {
   @override
   void initState() {
     widget._id_region = getRegionid(widget.region_1!);
+    if( widget._id_city.toString().isNotEmpty)
     widget._id_city = getCityid(widget.city!);
 
     setState(() {
@@ -474,7 +471,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                     progress_modife = true;
                                   });
                                   var x;
-                                //  print("8761");
+
                                   isLogin == false
                                       ? Get.to(LoginScreen(
                                           region_id:
@@ -595,7 +592,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   );
 
                                   if (x == 500 || x == 200) {
-                                    Get.snackbar("update".tr, "success".tr);
+                                    Get.snackbar( "success".tr,"update".tr);
 
                                     setState(() {
                                       verify_update = false;

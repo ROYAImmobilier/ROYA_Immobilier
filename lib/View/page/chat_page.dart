@@ -2,23 +2,21 @@ import 'dart:convert';
 
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart'as http;
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
-import 'package:http/http.dart'as http;
-import '../../Controller/getContasts.dart';
+
 import '../../Model/Contact.dart';
-import '../../Model/joke.dart';
 import '../../cashd_image/image.dart';
 import '../../screenSize/screenSized.dart';
 import '../../variable/variable.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({Key? key}) : super(key: key);
-  Joke? _annonce;
+
   late int index;
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -401,17 +399,7 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  getAnonce(int id)async {
-    print(slug_data[id].title);
-    for (int i = 0; i < slug_data.length; i++) {
-      if (id == slug_data[i].id) {
-        widget._annonce =await slug_data[i];
-      }
 
-      //print(" fgsd"+widget._annonce?.title);
-      // return;
-    }
-  }
   Future getContacts() async {
     print(token_global);
     try {

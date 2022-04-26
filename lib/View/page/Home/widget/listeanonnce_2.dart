@@ -1,14 +1,11 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Colors/colors.dart';
 import 'package:roya_immobilie/Controller/AnonceController.dart';
 import 'package:roya_immobilie/Model/anonce_model_favote.dart';
 import 'package:roya_immobilie/cashd_image/image.dart';
-
-import '../../../../Model/category.dart';
 
 
 class Liste_Annonce_2 extends StatefulWidget {
@@ -40,10 +37,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                   height: 120.h,
                   width: 150.w,
                   decoration:  const BoxDecoration(
-                    // image: DecorationImage(
-                    //                 image:
-                    //                 fit: BoxFit.fill,
-                    //               ),
+
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
@@ -114,7 +108,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                                   advertiser: widget.data.advertiser,
                                   area: widget.data.area.toString(),
                                   quartier: widget.data.quartier,
-                                  createdAt: widget.data.createdAt.toString(),
+                                  createdAt: widget.data.createdAt.toString(), abilities: [],
                                 ));
                                 controller.getAllProducts();
                               },

@@ -50,6 +50,7 @@ class Services {
     } catch (e) {
       // return List<City>();
     }
+    return null;
   }
 }
 
@@ -69,5 +70,6 @@ class ServicesRgion {
     } catch (e) {
        //return List<Region> c;
     }
+    return null;
   }
 }

@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/View/routing_screen.dart';
+import 'package:roya_immobilie/Model/anonnce.dart';
 
 import '../variable/variable.dart';
 
@@ -43,19 +41,19 @@ class Annonce_As_Login {
             "password": password,
           });
       // print(response.body);
+      print(1111);
+      print("response" + response.statusCode.toString());
+
 
       var token = json.decode(response.body);
       token_global = token['data']['token'];
       print(response.body);
       if (response.statusCode == 200) {
-        isLogin = true;
         print("test" + response.body);
 
         Map<String, dynamic> lisst = {
           "region_id": region_id,
           "city_id": city_id,
-          "transaction": transaction,
-          "property_type": property_type,
           "transaction": transaction,
           "property_type": property_type,
           "status": status,
@@ -90,7 +88,12 @@ class Annonce_As_Login {
         print(response_1.body);
         print(response_1.statusCode);
         if (response_1.statusCode == 201) {
-          Get.offAll(RoutingScreen());
+          isLogin = true;
+          //  Get.offAll(RoutingScreen());
+          return response_1.statusCode;
+        }
+        else {
+          return response_1.statusCode;
         }
       }
     } catch (e) {
@@ -127,8 +130,6 @@ class Annonce_As_Login {
       Map<String, dynamic> list = {
         "region_id": region_id,
         "city_id": city_id,
-        "transaction": transaction,
-        "property_type": property_type,
         "transaction": transaction,
         "property_type": property_type,
         "status": status,
@@ -172,13 +173,12 @@ class Annonce_As_Login {
     }
   }
 
-  static Future PostContact(
-      {required annonce_id,
-      required full_name,
-      required email,
-      required phone,
-      required subject,
-      required message}) async {
+  static Future PostContact({required annonce_id,
+    required full_name,
+    required email,
+    required phone,
+    required subject,
+    required message}) async {
     try {
       Map<String, dynamic> list = {
         "annonce_id": annonce_id,
@@ -197,10 +197,10 @@ class Annonce_As_Login {
         'Content-type': 'application/json',
         'Accept': 'application/json',
       }
-         );
-     print(response.body) ;
-     print(response.statusCode) ;
-      if(response.statusCode==200){
+      );
+      print(response.body);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
         return response.statusCode;
       }
     }
@@ -209,4 +209,36 @@ class Annonce_As_Login {
     }
   }
 
+  static getAnonnce() async {
+    var response = await http.get(
+        Uri.parse("https://dashboard.royaimmo.ma/api/site/annonces"), headers: {
+
+      'Authorization': 'Bearer $token_global'
+    }
+    );
+    // print(response.body);
+    if (response.statusCode == 200) {
+      // print(response.body);
+      final responseJsoon = json.decode(response.body);
+      final responseJson = responseJsoon;
+
+      Map<String, dynamic>list = responseJson;
+
+      print(list["links"]["next"]);
+      response = await http.get(
+          Uri.parse(list["links"]["next"]), headers: {
+
+        'Authorization': 'Bearer $token_global'
+      });
+      if (response.statusCode == 200) {
+        // print(response.body);
+        final responseJsoon = json.decode(response.body);
+        final responseJson = responseJsoon;
+
+        Map<String, dynamic>list = responseJson;
+
+        print(list['data']);
+      }
+    }
+  }
 }

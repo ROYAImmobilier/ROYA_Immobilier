@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import '../../../Model/joke.dart';
 import '../../../Model/repositery.dart';
 import '../../../variable/variable.dart';
-import '../../routing_login.dart';
-import '../Profile/detaille_profile.dart';
 import 'details.dart';
 
 class ListView_in_Detalis extends StatelessWidget {
@@ -20,11 +16,10 @@ class ListView_in_Detalis extends StatelessWidget {
     late List<String>images = [];
     late List<String>abilityicon = [];
     getdate(int index)async{
-      String x ="" ;
-      int i=0;
+
       abilityicon=[];
       images = [];
-      var l = await jokeRepository.GetDetiller(sug: data[index].slug);
+       var l = await jokeRepository.GetDetiller(sug: slug_data[index].slug);
       var k = l['media'] ;
       var abi = l["abilities"];
       print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");

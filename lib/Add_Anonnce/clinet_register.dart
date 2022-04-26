@@ -1,10 +1,6 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/View/page/home_c.dart';
-import 'package:roya_immobilie/View/routing_screen.dart';
 
 
 class Annonce_As_SingUp {
@@ -33,7 +29,7 @@ class Annonce_As_SingUp {
     required String? password_confimation,
     required String? name,
     required List<dynamic> abilities,
-    required List<String> media,
+    required List<String> media, phone2,
   }) async {
     try {
       print("address " + address!);
@@ -62,8 +58,6 @@ class Annonce_As_SingUp {
         "city_id": city_id,
         "transaction": transaction,
         "property_type": property_type,
-        "transaction": transaction,
-        "property_type": property_type,
         "status": status,
         "address": address,
         "quartier": quartier,
@@ -79,6 +73,7 @@ class Annonce_As_SingUp {
         "title": title,
         "description": description,
         "phone1": phone1,
+        "phone2": phone2,
         "abilities": abilities,
         "media": media,
         "name": name,
@@ -132,7 +127,10 @@ class Annonce_As_SingUp {
       print(response.body);
 
       if (response.statusCode == 201) {
-        Get.to( RoutingScreen());
+        //Get.to( RoutingScreen());
+        return response.statusCode;
+      }else{
+        return response.statusCode;
       }
     } catch (e) {
       print('error ' + e.toString());

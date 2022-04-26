@@ -1,18 +1,16 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/joke.dart';
 
 import '../Model/Contact.dart';
-import '../Model/login.dart';
+import '../Model/ability.dart';
+import '../Model/anonnce.dart';
 import '../Model/city.dart';
 import '../Model/cityrepo.dart';
-import '../Model/data_list.dart';
 import '../Model/region.dart';
-import 'data.dart';
 
 var region_1;
 
@@ -67,6 +65,7 @@ const String columnvalidated = 'validated';
 final String columnvcreated_at = 'created_at';
 const String columncover = 'cover';
 const String columncreatedAt = 'createdAt';
+const String columnabilities = 'abilities';
 
 const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
@@ -92,7 +91,7 @@ height: 40,) ;
 
  //data for modification
 var getData_put;
-bool verify=false;
+//bool verify=false;
 
 ///region and city
 List<Region>? region;
@@ -242,3 +241,7 @@ List<String>? slug_image;
 bool fromContact=false;
 //reload
 bool relaod=false;
+//list ability
+List<Ability> ListAbility=[];
+//anonnce
+List<Datum> listAnonce=[];

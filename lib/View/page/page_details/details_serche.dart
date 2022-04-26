@@ -1,21 +1,15 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:roya_immobilie/View/page/Home/category_items.dart';
 import 'package:roya_immobilie/View/page/page_details/listview_in_detalis.dart';
-import 'package:roya_immobilie/View/page/searchfilter.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
 import 'package:roya_immobilie/screenSize/screenSized.dart';
+
 import '../../../Model/joke.dart';
 import '../../../data.dart';
-import 'details.dart';
-import 'icon_status.dart';
 
 class d extends StatefulWidget {
   late String image;

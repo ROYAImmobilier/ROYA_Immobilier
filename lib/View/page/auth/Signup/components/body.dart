@@ -5,10 +5,10 @@ import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/auth/Signup/components/background.dart';
 import 'package:roya_immobilie/View/page/auth/Signup/components/or_divider.dart';
 import 'package:roya_immobilie/View/page/auth/Signup/components/social_icon.dart';
-import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
-import '../../../../../Add_Anonnce/clinet_register.dart';
 
+import '../../../../../Add_Anonnce/clinet_register.dart';
 import '../../../../../variable/variable.dart';
+import '../../../../routing_screen.dart';
 import '../../components/text_field_container.dart';
 import '../rounded_password_field_signup.dart';
 
@@ -64,6 +64,7 @@ class Body extends StatefulWidget {
     this.abilities,
     this.transaction,
   });
+  int y=0;
   @override
   State<Body> createState() => _BodyState();
 }
@@ -81,7 +82,7 @@ class _BodyState extends State<Body> {
 
    // late String email = '';
   //  late String name = '';
-
+    print("y:"+widget.y.toString());
     return Form(
       key: _key_signup,
       child: Background(
@@ -177,8 +178,10 @@ class _BodyState extends State<Body> {
                       'Sing UP',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      int ?x;
 
+        List<String> image=[];
                       print(widget.adress);
                       print(widget.property_type);
                       print(widget.status);
@@ -202,8 +205,11 @@ class _BodyState extends State<Body> {
                       print(password.text);
                       print(emaill.text);
                       //
+                      for(int i=0;i<widget.media!.length;i++){
+                        image.add("data:image/jpeg;base64,${widget.media![i]}");
+                      }
                       if (_key_signup.currentState!.validate()) {
-                        Annonce_As_SingUp.Add_Annonce_SingUp(
+                    x = await  Annonce_As_SingUp.Add_Annonce_SingUp(
                             address: widget.adress.toString(),
                             status: widget.status,
                             transaction:  widget.transaction,
@@ -211,7 +217,7 @@ class _BodyState extends State<Body> {
                             kitchens: widget.kitchens.toString(),
                             title: widget.title,
                             floor_type: widget.floor_type,
-                            media: widget.media!,
+                            media:image,
                             floor: ''.toString(),
                             abilities:widget.abilities!,
                             area: widget.area,
@@ -220,7 +226,7 @@ class _BodyState extends State<Body> {
                             apartment: "2".toString(),
                             bedrooms: widget.bedrooms.toString(),
                             phone1: widget.phone1.toString(),
-                           // phone2: widget.phone2,
+                            phone2: widget.phone2,
                             quartier: widget.quartier,
                             password: password.text,
                             age: widget.age,
@@ -230,9 +236,28 @@ class _BodyState extends State<Body> {
                             region_id: widget.region_id,
                             email: emaill.text,
                             city_id: widget.city_id.toString());
-
-
                       }
+                                         widget.y++;
+                                 print("wetwrw"+x.toString());
+                                if (x == 201 ) {
+                                  Get.snackbar(
+                                      "success".tr, "Your ad is added".tr);
+                                  verify_update = false;
+                                  progress_modife = false;
+                                 // Get.to( RoutingScreen());
+                                } else if(x!=201) {
+                                  Get.snackbar("Error",
+                                      "Votre Annonce ne pas ajouté".tr);
+                                setState(() {
+                                  progress_modife = false;
+                                });
+                                              }
+                                if(widget.y==2){
+                                  Get.snackbar("Error",
+                                      "Répété plus tard".tr);
+                                 // print("y:"+widget.y.toString());
+                                  Get.offAll(RoutingScreen());
+                                }
 
                     },
                     style: ElevatedButton.styleFrom(

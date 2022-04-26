@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:roya_immobilie/View/page/page_details/details.dart';
 
 import '../../Add_Anonnce/annonce_as_login.dart';
-import '../../variable/variable.dart';
 
 class ContactSend extends StatefulWidget {
   int annonce_id;
@@ -26,7 +24,7 @@ class _ContactSendState extends State<ContactSend> {
   var message = TextEditingController();
   var object;
   var _keyContact = GlobalKey<FormState>();
-  String? _object;
+
   @override
   Widget build(BuildContext context) {
 
@@ -245,7 +243,7 @@ class _ContactSendState extends State<ContactSend> {
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   setState(() {
-                                    _object = newValue;
+
                                     // CondationLangage.status(newValue!);
                                     object = newValue;
                                   });
