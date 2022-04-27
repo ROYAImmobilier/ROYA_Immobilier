@@ -10,6 +10,7 @@ import '../../../../variable/variable.dart';
 import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
 import '../../Profile/profile.dart';
+import '../../chat_page.dart';
 
 final List locale = [
   {'name': 'English', 'locale': const Locale('en', 'US')},
@@ -262,18 +263,21 @@ class _DrawerPageState extends State<DrawerPage> {
                         : const SizedBox(),
                     Padding(
                       padding: const EdgeInsets.only(left: 12, right: 12),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/icon/nav_menu/cc-chat.svg',
-                            width: 25,
-                            height: 25,
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Text('Contact'.tr, style: TextStyle(fontSize: 20.sm))
-                        ],
+                      child: GestureDetector(
+                        onTap: ()=>Get.to(ChatPage()),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icon/nav_menu/cc-chat.svg',
+                              width: 25,
+                              height: 25,
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text('Contact'.tr, style: TextStyle(fontSize: 20.sm))
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(

@@ -1,13 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../Add_Anonnce/annonce_as_login.dart';
 import '../../../Model/cityrepo.dart';
 import '../../../Model/joke.dart';
 import '../../../Model/repositery.dart';
@@ -110,6 +109,9 @@ class _ProfileState extends State<Profile> {
       relaod = false;
     }
     getdate(int index) async {
+      setState(() {
+        progressdetille =true ;
+      });
     //  print(token_global);
       // print(data[0].slug);
       var slug;
@@ -120,33 +122,23 @@ class _ProfileState extends State<Profile> {
         print(Poste[index].title);
       print("slug "+slug_data[0].slug.toString());
      // print("id "+.toString());
-      for(int i=0;i<slug_data.length;i++){
-        if(slug_data[i].id==Poste[index].id){
-          print("slug"+slug_data[i].id.toString());
-          print("id"+Poste[index].id.toString());
-          slug=slug_data[i].slug;
-        }
 
-      }
-     print("slug 1"+slug.toString());
-     print(Poste[index].id);
+
       var l = await jokeRepository.GetDetillerLogin(sug: Poste[index].id);
       var k = l['media'];
       var abi = l["abilities"];
-      print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-      //sprint(k[0]['file_name']);
-      //  print(k.length.toString());
+
       if (k.toString().isNotEmpty)
         for (int i = 0; i < k.length; i++) {
           images.add(k[i]['file_name']);
-          print(k[i]['file_name']);
+
         }
       //
 
         abilityicon=abi;
-       print(abi.toString());
+     //  print(abi.toString());
 
-      print(abilityicon);
+     // print(abilityicon);
       Navigator.of(context)
           .push(
             MaterialPageRoute(
@@ -162,6 +154,10 @@ class _ProfileState extends State<Profile> {
       //   images: images,
       //   data: Poste[index],
       // ),);
+      setState(() {
+        progressdetille =false ;
+      });
+
     }
 
     return ScreenUtilInit(
@@ -315,6 +311,7 @@ class _ProfileState extends State<Profile> {
                     SingleChildScrollView(
                       child: Stack(
                         children: [
+
                           ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
@@ -587,6 +584,7 @@ class _ProfileState extends State<Profile> {
                                             ],
                                           ),
                                         ),
+
                                       ],
                                     ),
                                   ),
@@ -594,6 +592,7 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                           ),
+
                         ],
                       ),
                     ),
@@ -603,6 +602,17 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
+              progressdetille? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(   backgroundColor: Colors.grey,
+                      strokeWidth: 8,
+                   ),SizedBox(height: 5,),
+                    Text("please wait"),
+                  ],
+                ),
+              ):Container(),
             ],
           )),
     );

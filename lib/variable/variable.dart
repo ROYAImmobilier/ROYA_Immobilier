@@ -243,5 +243,5 @@ bool fromContact=false;
 bool relaod=false;
 //list ability
 List<Ability> ListAbility=[];
-//anonnce
-List<Datum> listAnonce=[];
+////progess data
+bool progressdetille = false ;

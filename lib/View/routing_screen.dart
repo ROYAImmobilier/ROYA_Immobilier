@@ -26,17 +26,7 @@ class RoutingScreen extends StatefulWidget {
 }
 
 class _RoutingScreenState extends State<RoutingScreen> {
-  // for(int i = 0 ;i<allAnnonce.length ; i++){
-  //   for(int j=0; j <Listannonce.length ;j++){
-  //     if(allAnnonce[i]==Listannonce[j]){
-  //       return ;
-  //     }
-  //     allAnnonce.add(Listannonce[j]);
-  //   }
-  //
-  // }
 
-  // final CityController annonceController = Get.put(CityController());
   int bottomSelectedIndex = 0;
   var pageController;
 

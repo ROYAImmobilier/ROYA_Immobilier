@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home: VerificationScreen(),
+      home: OnBoarding(),
       // initialRoute: RouteScreen.getHomepage(),
       //     getPages: RouteScreen.route,
     );

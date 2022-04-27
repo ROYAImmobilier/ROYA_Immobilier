@@ -17,7 +17,7 @@ import 'listeanonnce_2.dart';
 import 'mobilestackwidget.dart';
 
 
-final colors = Color(0xefefef);
+
 class StackWidget_2 extends StatefulWidget {
   List<Joke> data;
 
@@ -65,6 +65,7 @@ int _maxIndex=15;
   }
   @override
   Widget build(BuildContext context) {
+    print("stack "+progressdetille.toString());
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     //var ScreenSized=MediaQuery.of(context).size.width;

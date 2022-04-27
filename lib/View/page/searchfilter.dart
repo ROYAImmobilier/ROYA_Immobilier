@@ -70,8 +70,8 @@ class _SearchFiltterState extends State<SearchFiltter> {
             backgroundColor: Colors.white,
             elevation: 0,
             leading:Center(
-              child: const Text(
-                'Filtrer',
+              child:  Text(
+                'Filtrer'.tr,
                 style: TextStyle(color: Colors.black),
               ),
             ),
@@ -90,8 +90,8 @@ class _SearchFiltterState extends State<SearchFiltter> {
                     });
 
                   },
-                  child: const Text(
-                    'EFFACER',
+                  child:  Text(
+                    'EFFACER'.tr,
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
@@ -118,7 +118,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                               controller: _search,
                               validator: (val){
                                 if(val!.isEmpty){
-                                  return "Que rechercher vous ?";
+                                  return 'Que rechercher vous ?'.tr;
                                 }
                                 return null;
                               },
@@ -130,7 +130,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                   // labelText: "",
                                   fillColor: Colors.white,
                                   filled: true,
-                                  hintText: 'Que rechercher vous ?',
+                                  hintText: 'Que rechercher vous ?'.tr,
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide(width: 3.w),
                                       borderRadius: BorderRadius.circular(5))),
@@ -165,7 +165,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                   height: 2,
                                   // color: Colors.deepPurpleAccent,
                                 ),
-                                  hint: Text('Category'),
+                                  hint: Text('Catégorie'.tr),
                                 value: _categorie,
                                // value: dropdownValue,
                                 items: categorie
@@ -201,7 +201,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                 controller: _ville_search,
                                 validator: (val){
                                   if (val!.isEmpty){
-                                    return 'entre ville';
+                                    return 'entre ville'.tr;
                                   }return null;
                                 },
 
@@ -299,6 +299,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                TextButton(
                                     onPressed: () {
                                  setState(() {
+                                   filtrResulta=[];
                                    show=!show;
                                  });
                                     if(_keyVent.currentState!.validate() &&_categorie!.isNotEmpty) {
@@ -364,8 +365,8 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                       width: 400.h,
                                     ),
                                   ),
-                                  const Text(
-                                    'Search results are empty ',
+                                   Text(
+                                    'Search results are empty '.tr,
                                     style: TextStyle(
                                       fontSize: 20,
                                     ),
