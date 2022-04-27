@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
+import '../../../../variable/variable.dart';
 import '../../page_details/details.dart';
-bool progressdetille = false ;
+
 class TbletGridView extends StatefulWidget {
   TbletGridView({required this.data, required this.leng});
   var data;

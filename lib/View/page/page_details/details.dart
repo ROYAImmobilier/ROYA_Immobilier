@@ -66,6 +66,7 @@ class _DetailsState extends State<Details> {
       widget.MainAbilities=[];
       widget.innerAbility=[];
       widget.AdditionalAbilities=[];
+        progressdetille =false ;
     });
     abilitycompre();
     super.initState();
@@ -738,14 +739,14 @@ class _DetailsState extends State<Details> {
 
   abilitycompre() {
     ListAbility;
-    print("abi"+widget.iconability.toString());
+  //  print("abi"+widget.iconability.toString());
           for(int j=0;j<widget.iconability.length;j++){
     for(int i=0;i<ListAbility.length;i++){
       if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
 
         widget.MainAbilities.add(widget.iconability[j]);
-        print(ListAbility[i].icon.split('/')[2]);
-        print(" ${widget.iconability[j]}.svg".toString());
+      //  print(ListAbility[i].icon.split('/')[2]);
+      //  print(" ${widget.iconability[j]}.svg".toString());
      }
       else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
 
@@ -760,8 +761,6 @@ class _DetailsState extends State<Details> {
     } }
 
   }
-  getid( ){
 
-  }
 
 }

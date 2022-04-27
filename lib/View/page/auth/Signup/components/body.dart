@@ -5,7 +5,7 @@ import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/auth/Signup/components/background.dart';
 import 'package:roya_immobilie/View/page/auth/Signup/components/or_divider.dart';
 import 'package:roya_immobilie/View/page/auth/Signup/components/social_icon.dart';
-
+import 'package:http/http.dart'as http;
 import '../../../../../Add_Anonnce/clinet_register.dart';
 import '../../../../../variable/variable.dart';
 import '../../../../routing_screen.dart';
@@ -180,7 +180,7 @@ class _BodyState extends State<Body> {
                     ),
                     onPressed: () async {
                       int ?x;
-
+                      int ?accant;
         List<String> image=[];
                       print(widget.adress);
                       print(widget.property_type);
@@ -205,59 +205,103 @@ class _BodyState extends State<Body> {
                       print(password.text);
                       print(emaill.text);
                       //
-                      for(int i=0;i<widget.media!.length;i++){
-                        image.add("data:image/jpeg;base64,${widget.media![i]}");
+                      if(isCamindingfrom){
+                        for(int i=0;i<widget.media!.length;i++){
+                          image.add("data:image/jpeg;base64,${widget.media![i]}");
+                        }
                       }
+
                       if (_key_signup.currentState!.validate()) {
-                    x = await  Annonce_As_SingUp.Add_Annonce_SingUp(
-                            address: widget.adress.toString(),
-                            status: widget.status,
-                            transaction:  widget.transaction,
-                            bathrooms: widget.bathrooms.toString(),
-                            kitchens: widget.kitchens.toString(),
-                            title: widget.title,
-                            floor_type: widget.floor_type,
-                            media:image,
-                            floor: ''.toString(),
-                            abilities:widget.abilities!,
-                            area: widget.area,
-                            name:_name.text ,
-                            description: widget.description,
-                            apartment: "2".toString(),
-                            bedrooms: widget.bedrooms.toString(),
-                            phone1: widget.phone1.toString(),
-                            phone2: widget.phone2,
-                            quartier: widget.quartier,
-                            password: password.text,
-                            age: widget.age,
-                            price: widget.price.toString(),
-                            property_type: widget.property_type.toString(),
-                            password_confimation: password_2.text,
-                            region_id: widget.region_id,
-                            email: emaill.text,
-                            city_id: widget.city_id.toString());
+                        if(isCamindingfrom){
+                          await  Annonce_As_SingUp.Add_Annonce_SingUp(
+                              address: widget.adress.toString(),
+                              status: widget.status,
+                              transaction:  widget.transaction,
+                              bathrooms: widget.bathrooms.toString(),
+                              kitchens: widget.kitchens.toString(),
+                              title: widget.title,
+                              floor_type: widget.floor_type,
+                              media:image,
+                              floor: ''.toString(),
+                              abilities:widget.abilities!,
+                              area: widget.area,
+                              name:_name.text ,
+                              description: widget.description,
+                              apartment: "2".toString(),
+                              bedrooms: widget.bedrooms.toString(),
+                              phone1: widget.phone1.toString(),
+                              phone2: widget.phone2,
+                              quartier: widget.quartier,
+                              password: password.text,
+                              age: widget.age,
+                              price: widget.price.toString(),
+                              property_type: widget.property_type.toString(),
+                              password_confimation: password_2.text,
+                              region_id: widget.region_id,
+                              email: emaill.text,
+                              city_id: widget.city_id.toString());
+                          widget.y++;
+                          print("wetwrw"+x.toString());
+                          if (x == 201 ) {
+                            Get.snackbar(
+                                "success".tr, "Your ad is added".tr);
+                            verify_update = false;
+                            progress_modife = false;
+                            // Get.to( RoutingScreen());
+                          } else if(x!=201) {
+                            Get.snackbar("Error",
+                                "Votre Annonce ne pas ajouté".tr);
+                            setState(() {
+                              progress_modife = false;
+                            });
+                          }
+                          if(widget.y==2){
+                            Get.snackbar("Error",
+                                "Répété plus tard".tr);
+                            // print("y:"+widget.y.toString());
+                            Get.offAll(RoutingScreen());
+                          }
+                        }else if(!isCamindingfrom){
+                        accant=await  _Signup(email: emaill.text, confirmation: password_2.text, name: _name.text, password: password.text);
+                        if(accant==200){
+                          Get.snackbar("Voter Copmte et cree",
+                              "".tr);
+                          // print("y:"+widget.y.toString());
+                        } if(accant==302){
+                          Get.snackbar("Error",
+                              "".tr);
+                          // print("y:"+widget.y.toString());
+                        }
+                        }
+                        // isCamindingfrom==true?  await  Annonce_As_SingUp.Add_Annonce_SingUp(
+                        //     address: widget.adress.toString(),
+                        //     status: widget.status,
+                        //     transaction:  widget.transaction,
+                        //     bathrooms: widget.bathrooms.toString(),
+                        //     kitchens: widget.kitchens.toString(),
+                        //     title: widget.title,
+                        //     floor_type: widget.floor_type,
+                        //     media:image,
+                        //     floor: ''.toString(),
+                        //     abilities:widget.abilities!,
+                        //     area: widget.area,
+                        //     name:_name.text ,
+                        //     description: widget.description,
+                        //     apartment: "2".toString(),
+                        //     bedrooms: widget.bedrooms.toString(),
+                        //     phone1: widget.phone1.toString(),
+                        //     phone2: widget.phone2,
+                        //     quartier: widget.quartier,
+                        //     password: password.text,
+                        //     age: widget.age,
+                        //     price: widget.price.toString(),
+                        //     property_type: widget.property_type.toString(),
+                        //     password_confimation: password_2.text,
+                        //     region_id: widget.region_id,
+                        //     email: emaill.text,
+                        //     city_id: widget.city_id.toString()):_Signup(email: emaill.text, confirmation: password_2.text, name: _name.text, password: password.text);
                       }
-                                         widget.y++;
-                                 print("wetwrw"+x.toString());
-                                if (x == 201 ) {
-                                  Get.snackbar(
-                                      "success".tr, "Your ad is added".tr);
-                                  verify_update = false;
-                                  progress_modife = false;
-                                 // Get.to( RoutingScreen());
-                                } else if(x!=201) {
-                                  Get.snackbar("Error",
-                                      "Votre Annonce ne pas ajouté".tr);
-                                setState(() {
-                                  progress_modife = false;
-                                });
-                                              }
-                                if(widget.y==2){
-                                  Get.snackbar("Error",
-                                      "Répété plus tard".tr);
-                                 // print("y:"+widget.y.toString());
-                                  Get.offAll(RoutingScreen());
-                                }
+
 
                     },
                     style: ElevatedButton.styleFrom(
@@ -339,5 +383,35 @@ class _BodyState extends State<Body> {
         ),
       ),
     );
+  }
+  Future _Signup({
+    required var email,
+    required var password,
+    required var name,
+    required var confirmation,
+  }) async {
+
+    try {
+      var response = await http.post(
+          Uri.parse('https://dashboard.royaimmo.ma/api/auth/register'),
+          body: {
+            "email": email,
+            "name": name,
+            "password": password,
+            "confirmation_password": confirmation,
+          });
+      print(response.body);
+
+      print("response"+response.statusCode.toString());
+      if (response.statusCode == 200) {
+
+        return response.statusCode;
+      } else {
+
+        return response.statusCode;
+      }
+    } catch (e) {
+      print('error ' + e.toString());
+    }
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+
 import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
 
+import '../../../../variable/variable.dart';
 import '../../page_details/details.dart';
 class MobileGridView extends StatefulWidget {
   MobileGridView({required this.data, required this.leng});
@@ -20,31 +21,44 @@ class _MobileGridViewState extends State<MobileGridView> {
   late List<String>images = [];
   late List<String>abilityicon = [];
   getdate(int index)async{
+
+
+
     images = [];
     abilityicon=[];
     var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
-    var k = l['media'] ;
-    var abi = l["abilities"];
-    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    //print(k[0]['file_name']);
-  //  print(k.length.toString());
-    if(k.toString().isNotEmpty)
-    for(int i =0 ; i<k.length;i++){
-      images.add(k[i]['file_name']);
-      print(k[i]['file_name']);
+
+    if(l!=null){
+      var k = l['media'] ;
+      var abi = l["abilities"];
+      // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+      //print(k[0]['file_name']);
+      //  print(k.length.toString());
+      if(k.toString().isNotEmpty)
+        for(int i =0 ; i<k.length;i++){
+          images.add(k[i]['file_name']);
+          //  print(k[i]['file_name']);
+        }else
+          {
+            Get.snackbar("title", "message");
+          }
+
+      for(int i =0 ; i<abi.length ; i++){
+        abilityicon.add(abi[i]["icon"]);
+        // print(abi[i]["icon"].toString());
+      }
+      //  print(abilityicon);
+
+      Get.to(Details(
+        images: images,
+        data: widget.data[index],
+        iconability:abilityicon,
+      ),);
     }
 
-    for(int i =0 ; i<abi.length ; i++){
-      abilityicon.add(abi[i]["icon"]);
-     // print(abi[i]["icon"].toString());
-    }
-    print(abilityicon);
 
-    Get.to(Details(
-      images: images,
-      data: widget.data[index],
-      iconability:abilityicon,
-    ),);
+
+
   }
   @override
   void initState() {
@@ -74,7 +88,13 @@ class _MobileGridViewState extends State<MobileGridView> {
               return index==widget.leng?
               const SizedBox(height: 200,):
                 GestureDetector(
-                  onTap: () =>getdate(index),
+                  onTap: () {
+                    setState(() {
+                      progressdetille =true ;
+                    });
+                    getdate(index);
+
+                  },
                   child: test(
                       data: widget.data[index],
                       image: widget.data[index]

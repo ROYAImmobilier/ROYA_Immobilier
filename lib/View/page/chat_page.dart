@@ -18,6 +18,7 @@ class ChatPage extends StatefulWidget {
   ChatPage({Key? key}) : super(key: key);
 
   late int index;
+  int ?x;
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -120,6 +121,13 @@ class _ChatPageState extends State<ChatPage> {
                 itemBuilder: (context, i) {
 
                   widget.index=contact[i].annonceId!.toInt();
+                  for(int i=0;i<slug_data.length;i++){
+                    if(slug_data[i].id==widget.index){
+                      widget.x=i;
+                    }
+                  }
+
+                  //print(slug_data[widget.index].cover.toString());
                   // print(_annonce?.cover.toString());
                   return Card(
                     elevation: 2,
@@ -264,7 +272,7 @@ class _ChatPageState extends State<ChatPage> {
                   child: Stack(children: [
                   Container(
                   child: cachedImage(
-                  "https://dashboard.royaimmo.ma/images/annonces/${slug_data[widget.index].cover}",),
+                  "https://dashboard.royaimmo.ma/images/annonces/${slug_data[widget.x!].cover}",),
                   height: 100,
                   width: 150,
                   decoration: const BoxDecoration(
@@ -299,7 +307,7 @@ class _ChatPageState extends State<ChatPage> {
                   padding: EdgeInsets.only(
                   top: 15, left: 10),
                   child: Text(
-                  "${slug_data[widget.index].title}",
+                  "${slug_data[widget.x!].title}",
                   maxLines: 2,
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -321,7 +329,7 @@ class _ChatPageState extends State<ChatPage> {
                       .location_on_rounded,
                   size: 14,
                   ),
-                  Text("${slug_data[widget.index].region}",
+                  Text("${slug_data[widget.x!].region}",
                   style: TextStyle(
                   fontSize: 12),),
                   ],
@@ -336,7 +344,7 @@ class _ChatPageState extends State<ChatPage> {
                   Icons.home,
                   size: 14,
                   ),
-                  Text("${slug_data[widget.index].city}",
+                  Text("${slug_data[widget.x!].city}",
                   style: TextStyle(
                   fontSize: 14),),
                   ],
