@@ -72,7 +72,7 @@ class jokeRepository {
         Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/$sug'));
     var jsoon = res.body;
     //var a = json;
-    print(res.body);
+   // print(res.body);
     if (res.statusCode == 200) {
       var b = json.decode(jsoon);
       var a = b["data"][0]['media'];
@@ -87,6 +87,7 @@ class jokeRepository {
   }
 
   static Future GetDetillerLogin({required sug}) async {
+    print(token_global);
     var res = await client.get(
         Uri.parse('https://dashboard.royaimmo.ma/api/annonces/$sug'), headers: {
       // 'Content-type': 'application/json',

@@ -55,14 +55,6 @@ class ContactInfo extends StatefulWidget {
     this.flooring,
     this.area,
   });
-
-  String? value;
-  String? city;
-  @override
-  State<ContactInfo> createState() => _ContactInfoState();
-}
-
-class _ContactInfoState extends State<ContactInfo> {
   List<Ability> allAbility = [];
   var _key_Contact = GlobalKey<FormState>();
   var _titel = TextEditingController();
@@ -87,23 +79,31 @@ class _ContactInfoState extends State<ContactInfo> {
   final ImagePicker imagePicker = ImagePicker();
   List<XFile>? imageFileList = [];
 
+  String? value;
+  String? city;
+  @override
+  State<ContactInfo> createState() => _ContactInfoState();
+}
+
+class _ContactInfoState extends State<ContactInfo> {
+
   void choseImage() async {
     var imageTemporary;
-    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
+    final List<XFile>? selectedImages = await widget.imagePicker.pickMultiImage();
     if (selectedImages!.isNotEmpty) {
-      imageFileList!.addAll(selectedImages);
+      widget.imageFileList!.addAll(selectedImages);
     }
-    for (int i = 0; i < imageFileList!.length; i++) {
-      imageTemporary = File(imageFileList![i].path);
-      _file = imageTemporary;
-      _listimage.add(_file!);
-      _listimagebase64.add("${base64Encode(_file!.readAsBytesSync())}");
+    for (int i = 0; i < widget.imageFileList!.length; i++) {
+      imageTemporary = File(widget.imageFileList![i].path);
+      widget._file = imageTemporary;
+      widget._listimage.add(widget._file!);
+      widget._listimagebase64.add("${base64Encode(widget._file!.readAsBytesSync())}");
     }
     setState(() {});
     if (verify_update)
       setState(() {
-        for (int i = 0; i < _listimagebase64.length; i++) {
-          _listimagebase64_com.add(_listimagebase64[i]);
+        for (int i = 0; i < widget._listimagebase64.length; i++) {
+          widget._listimagebase64_com.add(widget._listimagebase64[i]);
         }
       });
   }
@@ -111,24 +111,24 @@ class _ContactInfoState extends State<ContactInfo> {
   @override
   void initState() {
     widget._id_region = getRegionid(widget.region_1!);
-    if( widget._id_city.toString().isNotEmpty)
+    if( widget.city.toString().isNotEmpty)
     widget._id_city = getCityid(widget.city!);
 
     setState(() {
       if (verify_update) {
-        _titel.text = getData_put["title"].toString();
-        _description.text = getData_put["description"].toString();
+        widget._titel.text = getData_put["title"].toString();
+        widget._description.text = getData_put["description"].toString();
         if (getData_put["phone1"] != null) {
-          _phone1.text = getData_put["phone1"].toString();
+          widget._phone1.text = getData_put["phone1"].toString();
         }
         if (getData_put["phone2"] != null) {
-          _phone2.text = getData_put["phone2"].toString();
+          widget._phone2.text = getData_put["phone2"].toString();
         }
         if (getData_put["phone3"] != null) {
-          _phone3.text = getData_put["phone3"].toString();
+          widget._phone3.text = getData_put["phone3"].toString();
         }
         for (int i = 0; i < getData_put["media"].length; i++) {
-          _listimagebase64_com.add("${getData_put["media"][i]["blob"]}");
+          widget._listimagebase64_com.add("${getData_put["media"][i]["blob"]}");
         }
       }
     });
@@ -177,7 +177,7 @@ class _ContactInfoState extends State<ContactInfo> {
           elevation: 0,
         ),
         body: Form(
-          key: _key_Contact,
+          key: widget._key_Contact,
           child: Stack(
 
               children: [
@@ -218,7 +218,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                     return null;
                                   }
                                 },
-                                controller: _titel,
+                                controller: widget._titel,
                                 decoration: const InputDecoration(
                                   isDense: true, // Added this
                                   contentPadding: EdgeInsets.only(
@@ -249,7 +249,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   }
                                 },
                                 maxLines: 3,
-                                controller: _description,
+                                controller: widget._description,
                                 decoration: const InputDecoration(
                                   isDense: true, // Added this
                                   contentPadding: EdgeInsets.only(
@@ -280,7 +280,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                   }
                                 },
                                 maxLength: 10,
-                                controller: _phone1,
+                                controller: widget._phone1,
                                 decoration: const InputDecoration(
                                   isDense: true, // Added this
                                   contentPadding: EdgeInsets.only(
@@ -304,7 +304,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               ),
                               TextFormField(
                                 maxLength: 10,
-                                controller: _phone2,
+                                controller: widget._phone2,
                                 //: title,
                                 decoration: const InputDecoration(
                                   isDense: true, // Added this
@@ -329,7 +329,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               ),
                               TextFormField(
                                 maxLength: 10,
-                                controller: _phone3,
+                                controller: widget._phone3,
                                 decoration: const InputDecoration(
                                   isDense: true, // Added this
                                   contentPadding: EdgeInsets.only(
@@ -372,8 +372,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         itemCount: verify_update == false
-                                            ? _listimage.length
-                                            : _listimagebase64_com.length,
+                                            ? widget._listimage.length
+                                            : widget._listimagebase64_com.length,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, i) {
                                           print(verify_update);
@@ -382,8 +382,8 @@ class _ContactInfoState extends State<ContactInfo> {
                                             onLongPress: () {
                                               setState(() {
                                                 verify_update == false
-                                                    ? _listimage.removeAt(i)
-                                                    : _listimagebase64_com
+                                                    ? widget._listimage.removeAt(i)
+                                                    : widget._listimagebase64_com
                                                         .removeAt(i);
                                               });
                                             },
@@ -392,7 +392,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                               child: Row(children: [
                                                 verify_update == false
                                                     ? Image.file(
-                                                        _listimage[i],
+                                                        widget._listimage[i],
                                                         width: 100,
                                                         height: 250,
                                                         fit: BoxFit.cover,
@@ -400,7 +400,7 @@ class _ContactInfoState extends State<ContactInfo> {
                                                     : Image.memory(
                                                         (const Base64Decoder()
                                                             .convert(
-                                                                _listimagebase64_com[
+                                                                widget._listimagebase64_com[
                                                                         i]
                                                                     .toString())),
                                                         fit: BoxFit.cover,
@@ -458,7 +458,7 @@ class _ContactInfoState extends State<ContactInfo> {
                             onPressed:   progress_modife ==true? null:() async{
                               FocusManager.instance.primaryFocus?.unfocus();
 
-                              if (_key_Contact.currentState!.validate()) {
+                              if (widget._key_Contact.currentState!.validate()) {
                                 // Get.to(LoginScreen());
 
                                 // verify=false;
@@ -491,13 +491,13 @@ class _ContactInfoState extends State<ContactInfo> {
                                           bedrooms: widget.bedroms,
                                           bathrooms: widget.bathrooms,
                                           kitchens: widget.kichens,
-                                          title: _titel.text,
-                                          description: _description.text,
-                                          phone1: _phone1.text,
-                                          phone2: _phone2.text,
-                                          phone3: _phone3.text,
+                                          title: widget._titel.text,
+                                          description: widget._description.text,
+                                          phone1: widget._phone1.text,
+                                          phone2: widget._phone2.text,
+                                          phone3: widget._phone3.text,
                                           abilities: widget.ablity,
-                                          media: _listimagebase64))
+                                          media: widget._listimagebase64))
                                       : x = await Annonce_As_Login
                                           .Add_Annonce_As_Aredy_Login(
                                           region_id:
@@ -516,31 +516,31 @@ class _ContactInfoState extends State<ContactInfo> {
                                           bathrooms:
                                               widget.bathrooms.toString(),
                                           kitchens: widget.kichens.toString(),
-                                          title: _titel.text,
-                                          description: _description.text,
-                                          phone1: _phone1.text,
-                                          phone2: _phone2.text,
-                                          phone3: _phone3.text,
+                                    title: widget._titel.text,
+                                    description: widget._description.text,
+                                    phone1: widget._phone1.text,
+                                    phone2: widget._phone2.text,
+                                    phone3: widget._phone3.text,
                                           abilities: widget.ablity!,
-                                          media: _listimagebase64,
+                                          media: widget._listimagebase64,
                                           floor_type: widget.flooring,
                                           floor: "4",
                                         );
-                                  //  print("wetwrw"+x.toString());
-                                  // if (x == 201) {
-                                  //   Get.snackbar(
-                                  //       "success".tr, "Your ad is added".tr);
-                                  //   verify_update = false;
-                                  //   progress_modife = false;
-                                  //   Get.to( RoutingScreen());
-                                  // } else {
-                                  //   Get.snackbar("Error",
-                                  //       "Your ad is not adding".tr);
-                                  //   verify_update = false;
+                                   print("wetwrw"+x.toString());
+                                  if (x == 201) {
+                                    Get.snackbar(
+                                        "success".tr, "Your ad is added".tr);
+                                    verify_update = false;
+                                    progress_modife = false;
+                                    Get.to( RoutingScreen());
+                                  } else {
+                                    Get.snackbar("Error",
+                                        "Your ad is not adding".tr);
+                                    verify_update = false;
                                     setState(() {
                                       progress_modife = false;
                                     });
-                                  // }
+                                   }
                                 } else {
                                   // print("876");
                                   // print(widget.Property_details);
@@ -580,13 +580,13 @@ class _ContactInfoState extends State<ContactInfo> {
                                     bedrooms: widget.bedroms.toString(),
                                     bathrooms: widget.bathrooms.toString(),
                                     kitchens: widget.kichens.toString(),
-                                    title: _titel.text.toString(),
-                                    description: _description.text.toString(),
-                                    phone1: _phone1.text.toString(),
-                                    phone2: _phone2.text.toString(),
-                                    phone3: _phone3.text.toString(),
+                                    title: widget._titel.text,
+                                    description: widget._description.text,
+                                    phone1: widget._phone1.text,
+                                    phone2: widget._phone2.text,
+                                    phone3: widget._phone3.text,
                                     abilities: widget.ablity!,
-                                    media: _listimagebase64_com,
+                                    media: widget._listimagebase64_com,
                                     floor_type: widget.flooring.toString(),
                                     floor: "4",
                                   );

@@ -60,9 +60,9 @@ class _HomePageState extends State<HomePage> {
                   //menu.svg
                   icon: SvgPicture.asset('assets/icon/menu.svg',
                       width:
-                          ScreenSized.IconFiltter(Screenwidth, Screenheight).w,
+                          ScreenSized.IconFiltter(Screenwidth, Screenheight),
                       height:
-                          ScreenSized.IconFiltter(Screenwidth, Screenheight).h,
+                          ScreenSized.IconFiltter(Screenwidth, Screenheight),
                       matchTextDirection: true),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();

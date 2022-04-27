@@ -9,6 +9,7 @@ import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import '../../cashd_image/image.dart';
+import 'Profile/detaille_profile.dart';
 
 
 class FavoritePage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _FavoritePageState extends State<FavoritePage> {
     Get.to(Details(
       images: images,
       data: data[index],
-      iconability:abilityicon,
+      iconability:abilityicon, index: null,
     ),);
   }
   @override
@@ -103,10 +104,10 @@ class _FavoritePageState extends State<FavoritePage> {
                         List<String>images=[] ;
                         images.add(controller.cartProductsModel[i].cover);
                         //getdate(i, controller.cartProductsModel[i].sulg, controller.cartProductsModel[i]);
-                        Get.to(Details(
+                        Get.to(DetailleProfile(
                            iconability: ["1","2"],
-                            images:images ,
-                            data: controller.cartProductsModel[i]));
+                            //images:images ,
+                            data: controller.cartProductsModel[i], index: controller.cartProductsModel[i].id,));
                       },
                       child: ScreenUtilInit(
                           splitScreenMode: true,

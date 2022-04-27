@@ -11,29 +11,33 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../Model/joke.dart';
+import '../../../Model/repositery.dart';
 import '../../../data.dart';
 import '../../../main.dart';
 import '../../../variable/variable.dart';
 import '../Home/home.dart';
 import '../Home/widget/drawerpage.dart';
+import '../Profile/detaille_profile.dart';
 import '../contact_send.dart';
 
 class Details extends StatefulWidget {
+  var idAnonnce;
   List<String> images;
-  List<String> iconability;
+  List<dynamic> iconability;
   List<String> innerAbility = [];
   List<String> MainAbilities = [];
   List<String> AdditionalAbilities = [];
   int activeindex = 0;
   var data;
   bool _shownumber = false;
-
+   String? index;
   bool? showList;
 
   Details(
       {required this.images,
       required this.iconability,
       required this.data,
+       this.index,
       this.showList = false});
 
   @override
@@ -44,36 +48,49 @@ class _DetailsState extends State<Details> {
   List<Joke> select = [];
   bool grid = true;
 
-  //fonction prendre le date String et return la difirent
-  String datename(dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    Duration diff = DateTime.now().difference(dateTime);
-    if (diff.inDays >= 1) {
-      return 'Membre depuis ${diff.inDays} day(s) ';
-    } else if (diff.inHours >= 1) {
-      return 'Membre depuis ${diff.inHours} hour(s) ';
-    } else if (diff.inMinutes >= 1) {
-      return 'Membre depuis ${diff.inMinutes} minute(s) ';
-    } else if (diff.inSeconds >= 1) {
-      return 'Membre depuis ${diff.inSeconds} second(s) ';
-    } else {
-      return 'just now';
-    }
-  }
   @override
   void initState() {
-    setState(() {
-      widget.MainAbilities=[];
-      widget.innerAbility=[];
-      widget.AdditionalAbilities=[];
-        progressdetille =false ;
-    });
-    abilitycompre();
+    widget.iconability=[];
+    widget.images=[];
+    getdate();
     super.initState();
+  }
+
+  getdate() async {
+//print( widget.index);
+    widget.idAnonnce =await jokeRepository.GetDetiller(sug: widget.index);
+    var k =widget.idAnonnce['media'];
+    var abi = widget.idAnonnce["abilities"];
+
+for(int i =0 ; i<abi.length ; i++){
+  widget.iconability.add(abi[i]["icon"]);
+  print(abi[i]["icon"].toString());
+}
+print(widget.iconability);
+    //
+  for(int i=0;i<widget.idAnonnce['media'].length;i++){
+  //  print();
+     widget.images.add(widget.idAnonnce['media'][i]["file_name"]);
+  }
+
+   abilitycompre();
+    //  print(abi.toString());
+
+    // print(abilityicon);
+
+    // Get.to(DetailleProfile(
+    //   images: images,
+    //   data: Poste[index],
+    // ),);
+    setState(() {
+      progressdetille =false ;
+    });
+
   }
 
   @override
   Widget build(BuildContext context) {
+
    // print(locale[1]["name"]);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
@@ -97,7 +114,7 @@ class _DetailsState extends State<Details> {
                     icon: Icon(Icons.arrow_back_ios_sharp),
                     color: Colors.blue,
                   )),
-              body: ListView(children: [
+              body:widget.idAnonnce!=null? ListView(children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -286,10 +303,10 @@ class _DetailsState extends State<Details> {
                                         ))
                                     .toList()),
                           ),
-                          Positioned(
+                          widget.idAnonnce!=null?  Positioned(
                             child: BuldeIndector(),
                             bottom: 5,
-                          ),
+                          ):Container(),
                         ]),
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
@@ -325,7 +342,7 @@ class _DetailsState extends State<Details> {
                                         padding: EdgeInsets.only(
                                             top: 15.h, left: 10.w),
                                         child:
-                                            Text("${widget.data.advertiser}")),
+                                            Text(widget.idAnonnce["advertiser"])),
                                     Container(
                                       padding:
                                           EdgeInsets.only(top: 3.h, left: 10.w),
@@ -376,7 +393,7 @@ class _DetailsState extends State<Details> {
                                     slug_image = widget.images;
                                     // print("images "+widget.images);
                                     Get.to(ContactSend(
-                                      annonce_id: widget.data.id,
+                                      annonce_id: widget.idAnonnce["id"],
                                     ));
                                   },
                                 ),
@@ -416,7 +433,7 @@ class _DetailsState extends State<Details> {
                                     });
                                     // String telephoneNumber = '+2347012345678';
                                     String telephoneUrl =
-                                        "tel:${widget.data.phone1.toString()}";
+                                        "tel:${l["phone1"]}";
                                     if (widget._shownumber ==
                                         true) if (await canLaunchUrlString(telephoneUrl)) {
                                       await launchUrlString(telephoneUrl);
@@ -451,7 +468,7 @@ class _DetailsState extends State<Details> {
                                 Radius.circular(10.r),
                               )),
                           child: Text(
-                            widget.data.title,
+                           widget.idAnonnce["title"],
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 20.sm),
                             maxLines: 2,
@@ -460,6 +477,7 @@ class _DetailsState extends State<Details> {
                         Padding(
                           padding: const EdgeInsets.all(25.0),
                           child: Row(
+
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Row(children: [
@@ -474,7 +492,9 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bedrooms} " + "Beds".tr,
+                                  "${widget.idAnonnce[
+                                  "bedrooms"
+                                  ]} Beds",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -490,7 +510,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.bathrooms} " + "Baths".tr,
+                                  "${widget.idAnonnce["bathrooms"]} Boths",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -506,9 +526,8 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.data.area} m²",
-                                  style:
-                                      const TextStyle(color: Color(0xff8a8a8a)),
+                                  widget.idAnonnce["area"].toString()+ "m²",
+                                  style: const TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
                             ],
@@ -548,7 +567,7 @@ class _DetailsState extends State<Details> {
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: SvgPicture.asset(
-                                      "lib/abilities/${widget.MainAbilities[index].toString()}.svg",
+                                      widget.MainAbilities[index].toString(),
                                       width: 25,
                                       height: 25,
                                       color: Colors.blue,
@@ -576,7 +595,7 @@ class _DetailsState extends State<Details> {
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: SvgPicture.asset(
-                                        "lib/abilities/${widget.innerAbility[index].toString()}.svg",
+                                        widget.innerAbility[index].toString(),
                                         width: 25,
                                         height: 25,
                                         color: Colors.blue),
@@ -603,7 +622,7 @@ class _DetailsState extends State<Details> {
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: SvgPicture.asset(
-                                        "lib/abilities/${widget.AdditionalAbilities[index].toString()}.svg",
+                                        widget.AdditionalAbilities[index].toString(),
                                         width: 25,
                                         height: 25,
                                         color: Colors.blue),
@@ -639,11 +658,11 @@ class _DetailsState extends State<Details> {
                                   //  alignment: Alignment.topLeft,
                                   child: Text("Adresse".tr)),
                               Container(
-                                alignment: Alignment.center,
+                                alignment: Alignment.topRight,
                                 child: Text(
-                                  widget.data.address +
+                                  widget.idAnonnce["address"] +
                                       ' => ' +
-                                      widget.data.quartier,
+                                      widget.idAnonnce["quartier"],
                                 ),
                               )
                             ],
@@ -679,7 +698,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
-                          child: Text(widget.data.description),
+                          child: Text(widget.idAnonnce["description"]),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -722,12 +741,22 @@ class _DetailsState extends State<Details> {
                     ),
                   ),
                 ]),
-              ]),
+              ]): Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(   backgroundColor: Colors.grey,
+                      strokeWidth: 8,
+                    ),SizedBox(height: 5,),
+                    Text("please wait"),
+                  ],
+                ),
+              ),
             ));
   }
 
   Widget BuldeIndector() => AnimatedSmoothIndicator(
-        count: widget.images.length,
+        count:  widget.images.length,
         activeIndex: widget.activeindex,
         effect: WormEffect(
           dotHeight: 16,
@@ -738,29 +767,33 @@ class _DetailsState extends State<Details> {
       );
 
   abilitycompre() {
-    ListAbility;
-  //  print("abi"+widget.iconability.toString());
-          for(int j=0;j<widget.iconability.length;j++){
-    for(int i=0;i<ListAbility.length;i++){
-      if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
+print(widget.iconability.length);
+      print("abi"+widget.iconability.toString());
 
-        widget.MainAbilities.add(widget.iconability[j]);
-      //  print(ListAbility[i].icon.split('/')[2]);
-      //  print(" ${widget.iconability[j]}.svg".toString());
-     }
-      else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
+for(int j=0;j<widget.iconability.length;j++){
+  for(int i=0;i<ListAbility.length;i++){
+    if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
 
-        widget.AdditionalAbilities.add(widget.iconability[j]);
+      widget.MainAbilities.add(ListAbility[i].icon);
+      print(ListAbility[i].icon.split('/')[2]);
+      print(" ${widget.iconability[j]}.svg".toString());
+    }
+    else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
 
-      }
-      else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="inner" ){
+      widget.AdditionalAbilities.add(ListAbility[i].icon);
 
-        widget.innerAbility.add(widget.iconability[j]);
+    }
+    else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="inner" ){
 
-      }
-    } }
+      widget.innerAbility.add(ListAbility[i].icon);
 
-  }
+    }
+  } }
+      print(widget.MainAbilities.length);
+          print(widget.innerAbility.length);
+print(widget.AdditionalAbilities.length);
+    }
+
 
 
 }

@@ -20,46 +20,46 @@ class MobileGridView extends StatefulWidget {
 class _MobileGridViewState extends State<MobileGridView> {
   late List<String>images = [];
   late List<String>abilityicon = [];
-  getdate(int index)async{
+  // getdate(int index)async{
+  //
+  //
+  //
+  //   images = [];
+  //   abilityicon=[];
+  //   var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
+  //
+  //   if(l!=null){
+  //     var k = l['media'] ;
+  //     var abi = l["abilities"];
+  //     // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+  //     //print(k[0]['file_name']);
+  //     //  print(k.length.toString());
+  //     if(k.toString().isNotEmpty)
+  //       for(int i =0 ; i<k.length;i++){
+  //         images.add(k[i]['file_name']);
+  //         //  print(k[i]['file_name']);
+  //       }else
+  //         {
+  //           Get.snackbar("title", "message");
+  //         }
+  //
+  //     for(int i =0 ; i<abi.length ; i++){
+  //       abilityicon.add(abi[i]["icon"]);
+  //       // print(abi[i]["icon"].toString());
+  //     }
+  //     //  print(abilityicon);
+  //
+  //     Get.to(Details(
+  //       images: images,
+  //       data: widget.data[index],
+  //       iconability:abilityicon,
+  //     ),);
+  //   }}
 
 
 
-    images = [];
-    abilityicon=[];
-    var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
-
-    if(l!=null){
-      var k = l['media'] ;
-      var abi = l["abilities"];
-      // print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-      //print(k[0]['file_name']);
-      //  print(k.length.toString());
-      if(k.toString().isNotEmpty)
-        for(int i =0 ; i<k.length;i++){
-          images.add(k[i]['file_name']);
-          //  print(k[i]['file_name']);
-        }else
-          {
-            Get.snackbar("title", "message");
-          }
-
-      for(int i =0 ; i<abi.length ; i++){
-        abilityicon.add(abi[i]["icon"]);
-        // print(abi[i]["icon"].toString());
-      }
-      //  print(abilityicon);
-
-      Get.to(Details(
-        images: images,
-        data: widget.data[index],
-        iconability:abilityicon,
-      ),);
-    }
 
 
-
-
-  }
   @override
   void initState() {
    setState(() {
@@ -89,10 +89,13 @@ class _MobileGridViewState extends State<MobileGridView> {
               const SizedBox(height: 200,):
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      progressdetille =true ;
-                    });
-                    getdate(index);
+                   print(widget.data[index].id);
+                    Get.to(Details(
+                      index:widget.data[index].slug ,
+                              images: images,
+                              data: widget.data[index],
+                              iconability:abilityicon,
+                            ));
 
                   },
                   child: test(

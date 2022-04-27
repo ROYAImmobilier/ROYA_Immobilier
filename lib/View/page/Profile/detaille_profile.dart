@@ -11,17 +11,20 @@ import '../../../Model/cityrepo.dart';
 import '../../../Model/repositery.dart';
 import '../../../screenSize/screenSized.dart';
 import '../../order/order_distination.dart';
-
+var l;
 class DetailleProfile extends StatefulWidget {
-  List<String> images;
+  List<String>? images;
   var data;
   List<dynamic>iconability ;
   List<String> innerAbility = [];
   List<String> MainAbilities = [];
   List<String> AdditionalAbilities = [];
   int activeindex=0;
+  int index;
 
-  DetailleProfile({required this.images, required this.data,required this.iconability});
+
+
+  DetailleProfile({ this.images,  this.data,required this.iconability,required this.index});
 
   @override
   _DetailleProfileState createState() => _DetailleProfileState();
@@ -31,12 +34,52 @@ class _DetailleProfileState extends State<DetailleProfile> {
 
 @override
   void initState() {
-  abilitycompre();
+  getdate(widget.index);
+
     super.initState();
   }
+getdate(int index) async {
+  setState(() {
+    progressdetille =true ;
+  });
+  //  print(token_global);
+  // print(data[0].slug);
+  print(index);
+  // await Annonce_As_Login.getAnonnce();
+  //print(Poste[index].title);
+  print("slug "+slug_data[0].slug.toString());
+  // print("id "+.toString());
+
+
+ l = await jokeRepository.GetDetillerLogin(sug: index);
+  var k = l['media'];
+  var abi = l["abilities"];
+
+  if (k.toString().isNotEmpty)
+    for (int i = 0; i < k.length; i++) {
+      widget.images?.add(k[i]['file_name']);
+
+    }
+  //
+
+  widget.iconability=abi;
+  abilitycompre();
+  //  print(abi.toString());
+
+  // print(abilityicon);
+
+  // Get.to(DetailleProfile(
+  //   images: images,
+  //   data: Poste[index],
+  // ),);
+  setState(() {
+    progressdetille =false ;
+  });
+
+}
   @override
   Widget build(BuildContext context) {
-    print(widget.iconability);
+   // print(widget.iconability);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
@@ -55,7 +98,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                 (Icons.arrow_back_ios_sharp) , color: Colors.blue,)
 
           ),
-          body: SingleChildScrollView(
+          body:l!=null? SingleChildScrollView(
             child: Column(
               children: [
 
@@ -97,7 +140,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                               },
                             ),
                             items: widget.images
-                                .map((String slider) => Builder(
+                                ?.map((String slider) => Builder(
                               builder: (BuildContext context) {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.only(
@@ -199,12 +242,12 @@ class _DetailleProfileState extends State<DetailleProfile> {
                               // alignment: Alignment.topLeft,
                                 padding: EdgeInsets.only(
                                     top: 15.h, left: 10.w),
-                                child: Text("${widget.data.advertiser}")),
+                                child: Text(l["advertiser"])),
                             Container(
                               padding:
                               EdgeInsets.only(top: 3.h, left: 10.w),
                               child:  Text(
-                                widget.data.createdAt,
+                               l["created_at"].toString(),
                                 style: TextStyle(color: Colors.grey),
                               ),
                             ),
@@ -364,7 +407,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                         Radius.circular(10.r),
                       )),
                   child: Text(
-                    widget.data.title,
+                   l["title"],
                     style: TextStyle(fontSize: 24,),
                     textAlign: TextAlign.center,
                   ),
@@ -387,7 +430,9 @@ class _DetailleProfileState extends State<DetailleProfile> {
                           width: 5.w,
                         ),
                         Text(
-                          "${widget.data.bedrooms} Beds",
+                          "${l[
+                          "bedrooms"
+                        ]} Beds",
                           style: TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
@@ -403,7 +448,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                           width: 5.w,
                         ),
                         Text(
-                          "${widget.data.bathrooms} Boths",
+                          "${l["bathrooms"]} Boths",
                           style: TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
@@ -419,7 +464,7 @@ class _DetailleProfileState extends State<DetailleProfile> {
                           width: 5.w,
                         ),
                         Text(
-                          "${widget.data.area} m²",
+                          l["area"].toString()+ "m²",
                           style: const TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
@@ -451,9 +496,9 @@ class _DetailleProfileState extends State<DetailleProfile> {
                       Container(
                         alignment: Alignment.topRight,
                         child: Text(
-                          widget.data.address +
+                         l["address"] +
                               ' => ' +
-                              widget.data.quartier,
+                             l["quartier"],
                         ),
                       )
                     ],
@@ -576,18 +621,29 @@ class _DetailleProfileState extends State<DetailleProfile> {
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
                   alignment: Alignment.topLeft,
-                  child: Text(widget.data.description),
+                  child: Text(l["description"]),
                 ),
                 SizedBox(height: 20,),
               ],
             ),
+          ):
+          Center(
+            child: Column(
+               mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(   backgroundColor: Colors.grey,
+                    strokeWidth: 8,
+                 ),SizedBox(height: 5,),
+                  Text("please wait"),
+                ],
+              ),
           ),
         );
       }
     );
   }
   Widget BuldeIndector() => AnimatedSmoothIndicator(
-    count: widget.images.length,
+    count: l["media"].length,
     activeIndex: widget.activeindex,
     effect:  WormEffect(
       dotHeight: 16,

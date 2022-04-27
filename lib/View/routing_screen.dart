@@ -39,8 +39,8 @@ class _RoutingScreenState extends State<RoutingScreen> {
   void OnbottomTapped(int index) {
     if ((bottomSelectedIndex - index.abs() == 1)) {
       pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeOutSine);
+           duration: const Duration(milliseconds: 400),
+           curve: Curves.easeOutSine);
     } else {
       pageController.jumpToPage(index);
     }

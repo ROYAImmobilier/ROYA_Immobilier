@@ -124,18 +124,18 @@ class _ProfileState extends State<Profile> {
      // print("id "+.toString());
 
 
-      var l = await jokeRepository.GetDetillerLogin(sug: Poste[index].id);
-      var k = l['media'];
-      var abi = l["abilities"];
-
-      if (k.toString().isNotEmpty)
-        for (int i = 0; i < k.length; i++) {
-          images.add(k[i]['file_name']);
-
-        }
+      // var l = await jokeRepository.GetDetillerLogin(sug: Poste[index].id);
+      // var k = l['media'];
+      // var abi = l["abilities"];
       //
-
-        abilityicon=abi;
+      // if (k.toString().isNotEmpty)
+      //   for (int i = 0; i < k.length; i++) {
+      //     images.add(k[i]['file_name']);
+      //
+      //   }
+      // //
+      //
+      //   abilityicon=abi;
      //  print(abi.toString());
 
      // print(abilityicon);
@@ -143,9 +143,9 @@ class _ProfileState extends State<Profile> {
           .push(
             MaterialPageRoute(
                 builder: (_) => DetailleProfile(
-                      images: images,
-                      data: Poste[index],
-                      iconability: abilityicon,
+                    //  images: images,
+                     // data: Poste[index],
+                      iconability: abilityicon, index: Poste[index].id,
                     )),
           )
           .then((val) => val ? _getRequests() : null);
@@ -312,7 +312,7 @@ class _ProfileState extends State<Profile> {
                       child: Stack(
                         children: [
 
-                          ListView.builder(
+                         Poste.length!=0? ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: Poste.length,
@@ -591,7 +591,17 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                             ),
-                          ),
+                          ): Center(
+      child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(   backgroundColor: Colors.grey,
+            strokeWidth: 8,
+          ),SizedBox(height: 5,),
+          Text("please wait"),
+        ],
+      ),
+    ),
 
                         ],
                       ),
@@ -602,17 +612,17 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-              progressdetille? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(   backgroundColor: Colors.grey,
-                      strokeWidth: 8,
-                   ),SizedBox(height: 5,),
-                    Text("please wait"),
-                  ],
-                ),
-              ):Container(),
+              // progressdetille? Center(
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       CircularProgressIndicator(   backgroundColor: Colors.grey,
+              //         strokeWidth: 8,
+              //      ),SizedBox(height: 5,),
+              //       Text("please wait"),
+              //     ],
+              //   ),
+              // ):Container(),
             ],
           )),
     );
