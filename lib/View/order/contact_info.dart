@@ -158,6 +158,7 @@ class _ContactInfoState extends State<ContactInfo> {
 
   @override
   Widget build(BuildContext context) {
+    progress_modife = false;
     //  var image= getData_put["media"][0]["blob"]=_listimagebase64[0];
     // print( image);
     //  print("base64");
@@ -526,21 +527,16 @@ class _ContactInfoState extends State<ContactInfo> {
                                           floor_type: widget.flooring,
                                           floor: "4",
                                         );
+                                  print(token_global);
                                    print("wetwrw"+x.toString());
                                   if (x == 201) {
                                     Get.snackbar(
                                         "success".tr, "Your ad is added".tr);
-                                    verify_update = false;
+                                   // verify_update = false;
                                     progress_modife = false;
                                     Get.to( RoutingScreen());
-                                  } else {
-                                    Get.snackbar("Error",
-                                        "Your ad is not adding".tr);
-                                    verify_update = false;
-                                    setState(() {
-                                      progress_modife = false;
-                                    });
-                                   }
+                                  }
+
                                 } else {
                                   // print("876");
                                   // print(widget.Property_details);

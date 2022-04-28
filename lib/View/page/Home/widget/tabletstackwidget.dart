@@ -19,37 +19,6 @@ class _TbletGridViewState extends State<TbletGridView> {
   late List<String>images = [];
   late List<String>abilityicon = [];
 
-  getdate(int index)async{
-    setState(() {
-      progressdetille =true ;
-    });
-
-    images = [];
-    var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
-    var k = l['media'] ;
-    var abi = l["abilities"];
-    if(k.toString().isNotEmpty)
-      for(int i =0 ; i<k.length;i++){
-        images.add(k[i]['file_name']);
-        print(k[i]['file_name']);
-      }
-
-    for(int i =0 ; i<abi.length ; i++){
-      abilityicon.add(abi[i]["icon"]);
-      print(abi[i]["icon"].toString());
-    }
-
-
-    Get.to(Details(
-      images: images,
-      data: widget.data[index],
-      iconability:abilityicon,
-    ),);
-
-    setState(() {
-      progressdetille=false;
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -66,9 +35,12 @@ class _TbletGridViewState extends State<TbletGridView> {
             mainAxisSpacing: 5),
         itemBuilder: (BuildContext ctx, index) {
           return GestureDetector(
-              onTap: () {
-                getdate(index);
-                  },
+              onTap: () => Get.to(Details(
+                index:widget.data[index].slug ,
+                images: images,
+                data: widget.data[index],
+                iconability:abilityicon,
+              )),
                       child: test(
                       data: widget.data[index],
                       image: widget.data[index]

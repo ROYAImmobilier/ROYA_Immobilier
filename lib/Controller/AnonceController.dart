@@ -63,6 +63,7 @@ class AnnonceController extends GetxController {
     for (int i = 0; i < _cartProductsModel.length; i++) {
       if (_cartProductsModel[i].id == data.id) {
         removebook(FavCategoryItem(
+          slug: data.slug,
           id: data.id,
           region: data.region,
           city: data.city,

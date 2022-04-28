@@ -103,11 +103,12 @@ class _FavoritePageState extends State<FavoritePage> {
                       onTap: () {
                         List<String>images=[] ;
                         images.add(controller.cartProductsModel[i].cover);
-                        //getdate(i, controller.cartProductsModel[i].sulg, controller.cartProductsModel[i]);
-                        Get.to(DetailleProfile(
+                       // getdate(i, controller.cartProductsModel[i].sulg, controller.cartProductsModel[i]);
+                        Get.to(Details(
                            iconability: ["1","2"],
                             //images:images ,
-                            data: controller.cartProductsModel[i], index: controller.cartProductsModel[i].id,));
+                          showList: true,
+                            data: controller.cartProductsModel[i], index: controller.cartProductsModel[i].slug, images: [],));
                       },
                       child: ScreenUtilInit(
                           splitScreenMode: true,

@@ -58,33 +58,32 @@ class _DetailsState extends State<Details> {
 
   getdate() async {
 //print( widget.index);
-    widget.idAnonnce =await jokeRepository.GetDetiller(sug: widget.index);
+  try{
+    var idann = await jokeRepository.GetDetiller(sug: widget.index);
+    widget.idAnonnce = idann ;
     var k =widget.idAnonnce['media'];
     var abi = widget.idAnonnce["abilities"];
 
-for(int i =0 ; i<abi.length ; i++){
-  widget.iconability.add(abi[i]["icon"]);
-  print(abi[i]["icon"].toString());
-}
-print(widget.iconability);
+    for(int i =0 ; i<abi.length ; i++){
+      widget.iconability.add(abi[i]["icon"]);
+      print(abi[i]["icon"].toString());
+    }
+    print(widget.iconability);
     //
-  for(int i=0;i<widget.idAnonnce['media'].length;i++){
-  //  print();
-     widget.images.add(widget.idAnonnce['media'][i]["file_name"]);
-  }
+    for(int i=0;i<widget.idAnonnce['media'].length;i++){
+      //  print();
+      widget.images.add(widget.idAnonnce['media'][i]["file_name"]);
+    }
 
-   abilitycompre();
-    //  print(abi.toString());
-
-    // print(abilityicon);
-
-    // Get.to(DetailleProfile(
-    //   images: images,
-    //   data: Poste[index],
-    // ),);
+    abilitycompre();
     setState(() {
       progressdetille =false ;
     });
+
+  }catch(e){
+    print("error : "+e.toString());
+  }
+
 
   }
 
@@ -556,25 +555,31 @@ print(widget.iconability);
                         Padding(
                           padding: EdgeInsets.only(
                               right: 20.w, left: 20.w, bottom: 5),
-                          child: Container(
-                            height: 50,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                //   physics: const NeverScrollableScrollPhysics(),
-                                itemCount: widget.MainAbilities.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SvgPicture.asset(
-                                      widget.MainAbilities[index].toString(),
-                                      width: 25,
-                                      height: 25,
-                                      color: Colors.blue,
-                                    ),
-                                  );
-                                }),
-                          ),
+                          child: GridView.builder(
+                              shrinkWrap: true,
+                              //   physics: const NeverScrollableScrollPhysics(),
+                              itemCount: widget.MainAbilities.length,
+
+                              gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 50,
+                                  mainAxisExtent:50
+                                  ,
+                                  childAspectRatio: 2,
+                                  crossAxisSpacing: 5,
+                                  mainAxisSpacing: 5),
+
+                              itemBuilder: (BuildContext ctx, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(
+                                    widget.MainAbilities[index].toString(),
+                                    width: 25,
+                                    height: 25,
+                                    color: Colors.blue,
+                                  ),
+                                );
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -584,24 +589,28 @@ print(widget.iconability);
                         Padding(
                           padding: EdgeInsets.only(
                               right: 20.w, left: 20.w, bottom: 5),
-                          child: Container(
-                            height: 50,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                //  physics: const NeverScrollableScrollPhysics(),
-                                itemCount: widget.innerAbility.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SvgPicture.asset(
-                                        widget.innerAbility[index].toString(),
-                                        width: 25,
-                                        height: 25,
-                                        color: Colors.blue),
-                                  );
-                                }),
-                          ),
+                          child: GridView.builder(
+                              shrinkWrap: true,
+                              //  physics: const NeverScrollableScrollPhysics(),
+                              itemCount: widget.innerAbility.length,
+                              gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 50,
+                                  mainAxisExtent:50
+                                  ,
+                                  childAspectRatio: 2,
+                                  crossAxisSpacing: 5,
+                                  mainAxisSpacing: 5),
+                              itemBuilder: (BuildContext ctx, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(
+                                      widget.innerAbility[index].toString(),
+                                      width: 25,
+                                      height: 25,
+                                      color: Colors.blue),
+                                );
+                              }),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
@@ -611,24 +620,28 @@ print(widget.iconability);
                         Padding(
                           padding: EdgeInsets.only(
                               right: 20.w, left: 20.w, bottom: 5),
-                          child: Container(
-                            height: 50,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                //   physics: const NeverScrollableScrollPhysics(),
-                                itemCount: widget.AdditionalAbilities.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SvgPicture.asset(
-                                        widget.AdditionalAbilities[index].toString(),
-                                        width: 25,
-                                        height: 25,
-                                        color: Colors.blue),
-                                  );
-                                }),
-                          ),
+                          child: GridView.builder(
+                              shrinkWrap: true,
+                              //   physics: const NeverScrollableScrollPhysics(),
+                              itemCount: widget.AdditionalAbilities.length,
+                              gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 50,
+                                  mainAxisExtent:50
+                                  ,
+                                  childAspectRatio: 2,
+                                  crossAxisSpacing: 5,
+                                  mainAxisSpacing: 5),
+                              itemBuilder: (BuildContext ctx, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(
+                                      widget.AdditionalAbilities[index].toString(),
+                                      width: 25,
+                                      height: 25,
+                                      color: Colors.blue),
+                                );
+                              }),
                         ),
                         SizedBox(
                           height: 10,

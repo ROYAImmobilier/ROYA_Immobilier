@@ -94,6 +94,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
                               onPressed: () {
                                 controller.addProducts(FavCategoryItem(
                                   id: widget.data.id,
+                                  slug: widget.data.slug,
                                   region: widget.data.region,
                                   city: widget.data.city,
                                   title: widget.data.title,

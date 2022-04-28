@@ -33,26 +33,7 @@ class _HomePageState extends State<Sercher> {
 
   List<String>images=[];
   List<String>abilityicon=[];
-  getdate(int index)async{
-    var l = await jokeRepository.GetDetiller(sug: _searchResult[index].slug);
-    var k = l['media'] ;
-    var abi = l["abilities"];
-    if(k.toString().isNotEmpty)
-      for(int i =0 ; i<k.length;i++){
-        images.add(k[i]['file_name']);
-        print(k[i]['file_name']);
-      }
 
-    for(int i =0 ; i<abi.length ; i++){
-      abilityicon.add(abi[i]["icon"]);
-      print(abi[i]["icon"].toString());
-    }
-    Get.to(Details(
-      iconability: abilityicon,
-      images: images,
-      data: _searchResult[index],
-    ),);
-  }
 
   @override
   void initState() {
@@ -120,13 +101,12 @@ class _HomePageState extends State<Sercher> {
                       itemCount: _searchResult.length,
                       itemBuilder: (context, i) {
                         return GestureDetector(
-                          onTap: (() {
-                            getdate(i);
-                          //   Get.to(Details(
-                          //     data: _searchResult[i], image: _searchResult[i].cover,
-                          //   ));
-                          //   print("aaaaaaaa" + _searchResult[i].toString());
-                           }),
+                          onTap:()=> Get.to(Details(
+                            index:_searchResult[i].slug ,
+                            images: images,
+                            data: _searchResult[i],
+                            iconability:abilityicon,
+                          )),
                           child: ScreenUtilInit(
                               splitScreenMode: true,
                               builder: () {
@@ -208,10 +188,8 @@ class _HomePageState extends State<Sercher> {
                                                   ),
                                                 ),
                                               ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
+                                              Wrap(
+
                                                 children: [
                                                   Container(
                                                     child: Row(children: [

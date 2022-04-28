@@ -31,29 +31,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
 
   List<String>images=[];
   List<String>abilityicon=[];
-  getdate(int index )async{
-    var l = await jokeRepository.GetDetiller(sug: widget.data[index].slug);
-    var k = l['media'] ;
-    var abi = l["abilities"];
-    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    //print(k[0]['file_name']);
-    //  print(k.length.toString());
-    if(k.toString().isNotEmpty)
-      for(int i =0 ; i<k.length;i++){
-        images.add(k[i]['file_name']);
-        print(k[i]['file_name']);
-      }
 
-    for(int i =0 ; i<abi.length ; i++){
-      abilityicon.add(abi[i]["icon"]);
-      print(abi[i]["icon"].toString());
-    }
-    Get.to(Details(
-      iconability: abilityicon,
-      images: images,
-      data: filtrResulta[index],
-    ),);
-  }
 
 
   @override
@@ -379,9 +357,19 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                   itemBuilder: (context , i) {
                                     return Card(
                                       child: GestureDetector(
-                                        onTap: (){
-                                        getdate(i);
-                                        },
+
+                                        onTap: ()=>
+                                        {
+                                          print(i),
+                                          print(filtrResulta[i].slug),
+                                          print(filtrResulta[i].title),
+                                          Get.to(Details(
+
+                                          index: filtrResulta[i].slug,
+                                          images: images,
+                                          data: filtrResulta[i],
+                                          iconability: abilityicon,
+                                        )),},
                                         //   Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
                                         // },
                                         child: ListTile(

@@ -66,6 +66,7 @@ final String columnvcreated_at = 'created_at';
 const String columncover = 'cover';
 const String columncreatedAt = 'createdAt';
 const String columnabilities = 'abilities';
+const String columnslug = 'slug';
 
 const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);

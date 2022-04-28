@@ -1,5 +1,6 @@
 class FavCategoryItem {
   late int id;
+  late String slug;
   late String region;
   late String city;
   late String title;
@@ -18,6 +19,7 @@ class FavCategoryItem {
    List<String>? abilities;
   FavCategoryItem(
       {required this.id,
+      required this.slug,
       required this.region,
       required this.city,
       required this.title,
@@ -40,6 +42,7 @@ class FavCategoryItem {
       return;
     }
     id = map["id"];
+    slug = map["slug"];
     region = map['region'];
     city = map['city'];
     title = map['title'].toString();
@@ -73,6 +76,7 @@ class FavCategoryItem {
       "advertiser": advertiser,
       "phone1": phone1,
       "area": area,
+      "slug": slug,
       "quartier": quartier,
       "createdAt": createdAt,
     };

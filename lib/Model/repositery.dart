@@ -72,7 +72,8 @@ class jokeRepository {
         Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/$sug'));
     var jsoon = res.body;
     //var a = json;
-   // print(res.body);
+    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    print(res.body);
     if (res.statusCode == 200) {
       var b = json.decode(jsoon);
       var a = b["data"][0]['media'];
