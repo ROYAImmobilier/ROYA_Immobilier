@@ -36,10 +36,9 @@ class _SmallScreenState extends State<SmallScreen> {
         itemBuilder: (BuildContext ctx, index) {
           return GestureDetector(
               onTap: () => Get.to(Details(
-                index:widget.data[index].slug ,
-                images: images,
+
                 data: widget.data[index],
-                iconability:abilityicon,
+
               )),
               child: test(
                   data: widget.data[index],

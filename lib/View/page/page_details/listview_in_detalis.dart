@@ -15,35 +15,34 @@ class ListView_in_Detalis extends StatelessWidget {
   Widget build(BuildContext context) {
     late List<String>images = [];
     late List<String>abilityicon = [];
-    getdate(int index)async{
-
-      abilityicon=[];
-      images = [];
-       var l = await jokeRepository.GetDetiller(sug: slug_data[index].slug);
-      var k = l['media'] ;
-      var abi = l["abilities"];
-      print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-      //print(k[0]['file_name']);
-      //  print(k.length.toString());
-      if(k.toString().isNotEmpty)
-        for(int i =0 ; i<k.length;i++){
-          images.add(k[i]['file_name']);
-          print(k[i]['file_name']);
-        }
-
-      for(int i =0 ; i<abi.length ; i++){
-        abilityicon.add(abi[i]["icon"]);
-        print(abi[i]["icon"].toString());
-      }
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Details(
-        iconability: abilityicon,
-        images:images, data: data,showList: true,)));
-    }
+    // getdate(int index)async{
+    //
+    //   abilityicon=[];
+    //   images = [];
+    //    var l = await jokeRepository.GetDetiller(sug: slug_data[index].slug);
+    //   var k = l['media'] ;
+    //   var abi = l["abilities"];
+    //   print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+    //   //print(k[0]['file_name']);
+    //   //  print(k.length.toString());
+    //   if(k.toString().isNotEmpty)
+    //     for(int i =0 ; i<k.length;i++){
+    //       images.add(k[i]['file_name']);
+    //       print(k[i]['file_name']);
+    //     }
+    //
+    //   for(int i =0 ; i<abi.length ; i++){
+    //     abilityicon.add(abi[i]["icon"]);
+    //     print(abi[i]["icon"].toString());
+    //   }
+    //
+    // }
     return ScreenUtilInit(
       builder: () =>
           MaterialButton(
             onPressed: () {
-              getdate(index!);
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Details(
+                      data: data,showList: true,)));
               },
             child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         Container(

@@ -102,10 +102,8 @@ class _HomePageState extends State<Sercher> {
                       itemBuilder: (context, i) {
                         return GestureDetector(
                           onTap:()=> Get.to(Details(
-                            index:_searchResult[i].slug ,
-                            images: images,
                             data: _searchResult[i],
-                            iconability:abilityicon,
+
                           )),
                           child: ScreenUtilInit(
                               splitScreenMode: true,

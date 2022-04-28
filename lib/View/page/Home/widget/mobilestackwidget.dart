@@ -54,11 +54,10 @@ class _MobileGridViewState extends State<MobileGridView> {
                 GestureDetector(
                   onTap: () {
                    print(widget.data[index].id);
+                   print(widget.data[index].title);
+                   print(widget.data[index].price);
                     Get.to(Details(
-                      index:widget.data[index].slug ,
-                              images: images,
                               data: widget.data[index],
-                              iconability:abilityicon,
                             ));
 
                   },

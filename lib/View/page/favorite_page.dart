@@ -46,9 +46,7 @@ class _FavoritePageState extends State<FavoritePage> {
 
 
     Get.to(Details(
-      images: images,
       data: data[index],
-      iconability:abilityicon, index: null,
     ),);
   }
   @override
@@ -105,10 +103,10 @@ class _FavoritePageState extends State<FavoritePage> {
                         images.add(controller.cartProductsModel[i].cover);
                        // getdate(i, controller.cartProductsModel[i].sulg, controller.cartProductsModel[i]);
                         Get.to(Details(
-                           iconability: ["1","2"],
+
                             //images:images ,
                           showList: true,
-                            data: controller.cartProductsModel[i], index: controller.cartProductsModel[i].slug, images: [],));
+                            data: controller.cartProductsModel[i],));
                       },
                       child: ScreenUtilInit(
                           splitScreenMode: true,

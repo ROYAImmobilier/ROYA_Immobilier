@@ -22,8 +22,8 @@ import '../contact_send.dart';
 
 class Details extends StatefulWidget {
   var idAnonnce;
-  List<String> images;
-  List<dynamic> iconability;
+  List<String> ?images;
+  List<dynamic>? iconability;
   List<String> innerAbility = [];
   List<String> MainAbilities = [];
   List<String> AdditionalAbilities = [];
@@ -34,10 +34,8 @@ class Details extends StatefulWidget {
   bool? showList;
 
   Details(
-      {required this.images,
-      required this.iconability,
+      {
       required this.data,
-       this.index,
       this.showList = false});
 
   @override
@@ -59,21 +57,26 @@ class _DetailsState extends State<Details> {
   getdate() async {
 //print( widget.index);
   try{
-    var idann = await jokeRepository.GetDetiller(sug: widget.index);
+    var idann = await jokeRepository.GetDetiller(sug: widget.data.slug);
     widget.idAnonnce = idann ;
     var k =widget.idAnonnce['media'];
     var abi = widget.idAnonnce["abilities"];
 
     for(int i =0 ; i<abi.length ; i++){
-      widget.iconability.add(abi[i]["icon"]);
+      widget.iconability?.add(abi[i]["icon"]);
       print(abi[i]["icon"].toString());
     }
     print(widget.iconability);
     //
-    for(int i=0;i<widget.idAnonnce['media'].length;i++){
-      //  print();
-      widget.images.add(widget.idAnonnce['media'][i]["file_name"]);
+    if(widget.idAnonnce!=null){
+      for(int i=0;i<widget.idAnonnce['media'].length;i++){
+        //  print();
+        widget.images?.add(widget.idAnonnce['media'][i]["file_name"]);
+      }
+    }else{
+      widget.images=widget.data.cover;
     }
+
 
     abilitycompre();
     setState(() {
@@ -93,7 +96,7 @@ class _DetailsState extends State<Details> {
    // print(locale[1]["name"]);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
-
+print(widget.data.cover);
     return ScreenUtilInit(
         builder: () => Scaffold(
               appBar: AppBar(
@@ -113,7 +116,7 @@ class _DetailsState extends State<Details> {
                     icon: Icon(Icons.arrow_back_ios_sharp),
                     color: Colors.blue,
                   )),
-              body:widget.idAnonnce!=null? ListView(children: [
+              body: ListView(children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -251,7 +254,7 @@ class _DetailsState extends State<Details> {
                                   },
                                 ),
                                 items: widget.images
-                                    .map((String slider) => Builder(
+                                    ?.map((String slider) => Builder(
                                           builder: (BuildContext context) {
                                             return ClipRRect(
                                               borderRadius: BorderRadius.only(
@@ -341,7 +344,7 @@ class _DetailsState extends State<Details> {
                                         padding: EdgeInsets.only(
                                             top: 15.h, left: 10.w),
                                         child:
-                                            Text(widget.idAnonnce["advertiser"])),
+                                            Text(widget.data.advertiser)),
                                     Container(
                                       padding:
                                           EdgeInsets.only(top: 3.h, left: 10.w),
@@ -392,7 +395,7 @@ class _DetailsState extends State<Details> {
                                     slug_image = widget.images;
                                     // print("images "+widget.images);
                                     Get.to(ContactSend(
-                                      annonce_id: widget.idAnonnce["id"],
+                                      annonce_id: widget.data.id,
                                     ));
                                   },
                                 ),
@@ -432,7 +435,7 @@ class _DetailsState extends State<Details> {
                                     });
                                     // String telephoneNumber = '+2347012345678';
                                     String telephoneUrl =
-                                        "tel:${l["phone1"]}";
+                                        "tel:${widget.data.phone1}";
                                     if (widget._shownumber ==
                                         true) if (await canLaunchUrlString(telephoneUrl)) {
                                       await launchUrlString(telephoneUrl);
@@ -467,7 +470,7 @@ class _DetailsState extends State<Details> {
                                 Radius.circular(10.r),
                               )),
                           child: Text(
-                           widget.idAnonnce["title"],
+                           widget.data.title,
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 20.sm),
                             maxLines: 2,
@@ -491,9 +494,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.idAnonnce[
-                                  "bedrooms"
-                                  ]} Beds",
+                                  "${widget.data.bedrooms} Beds",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -509,7 +510,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  "${widget.idAnonnce["bathrooms"]} Boths",
+                                  "${widget.data.bathrooms} Boths",
                                   style: TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -525,7 +526,7 @@ class _DetailsState extends State<Details> {
                                   width: 5.w,
                                 ),
                                 Text(
-                                  widget.idAnonnce["area"].toString()+ "m²",
+                                  widget.data.area.toString()+ "m²",
                                   style: const TextStyle(color: Color(0xff8a8a8a)),
                                 )
                               ]),
@@ -557,7 +558,7 @@ class _DetailsState extends State<Details> {
                               right: 20.w, left: 20.w, bottom: 5),
                           child: GridView.builder(
                               shrinkWrap: true,
-                              //   physics: const NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                               itemCount: widget.MainAbilities.length,
 
                               gridDelegate:
@@ -591,7 +592,7 @@ class _DetailsState extends State<Details> {
                               right: 20.w, left: 20.w, bottom: 5),
                           child: GridView.builder(
                               shrinkWrap: true,
-                              //  physics: const NeverScrollableScrollPhysics(),
+                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: widget.innerAbility.length,
                               gridDelegate:
                               SliverGridDelegateWithMaxCrossAxisExtent(
@@ -622,7 +623,7 @@ class _DetailsState extends State<Details> {
                               right: 20.w, left: 20.w, bottom: 5),
                           child: GridView.builder(
                               shrinkWrap: true,
-                              //   physics: const NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                               itemCount: widget.AdditionalAbilities.length,
                               gridDelegate:
                               SliverGridDelegateWithMaxCrossAxisExtent(
@@ -673,9 +674,9 @@ class _DetailsState extends State<Details> {
                               Container(
                                 alignment: Alignment.topRight,
                                 child: Text(
-                                  widget.idAnonnce["address"] +
+                                  widget.data.address +
                                       ' => ' +
-                                      widget.idAnonnce["quartier"],
+                                      widget.data.quartier,
                                 ),
                               )
                             ],
@@ -711,7 +712,7 @@ class _DetailsState extends State<Details> {
                         Container(
                           margin: EdgeInsets.only(right: 20.w, left: 20.w),
                           alignment: Alignment.topLeft,
-                          child: Text(widget.idAnonnce["description"]),
+                          child: Text(widget.data.description),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -754,22 +755,23 @@ class _DetailsState extends State<Details> {
                     ),
                   ),
                 ]),
-              ]): Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(   backgroundColor: Colors.grey,
-                      strokeWidth: 8,
-                    ),SizedBox(height: 5,),
-                    Text("please wait"),
-                  ],
-                ),
-              ),
+              ])
+      // : Center(
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       CircularProgressIndicator(   backgroundColor: Colors.grey,
+              //         strokeWidth: 8,
+              //       ),SizedBox(height: 5,),
+              //       Text("please wait"),
+              //     ],
+              //   ),
+              // ),
             ));
   }
 
   Widget BuldeIndector() => AnimatedSmoothIndicator(
-        count:  widget.images.length,
+        count:widget.idAnonnce==null?widget.data.cover.length:widget.images?.length,
         activeIndex: widget.activeindex,
         effect: WormEffect(
           dotHeight: 16,
@@ -780,23 +782,23 @@ class _DetailsState extends State<Details> {
       );
 
   abilitycompre() {
-print(widget.iconability.length);
+
       print("abi"+widget.iconability.toString());
 
-for(int j=0;j<widget.iconability.length;j++){
+for(int j=0;j<widget.iconability!.length;j++){
   for(int i=0;i<ListAbility.length;i++){
-    if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="main" ){
+    if (ListAbility[i].icon.split('/')[2]=="${widget.iconability![j]}.svg" && ListAbility[i].type=="main" ){
 
       widget.MainAbilities.add(ListAbility[i].icon);
       print(ListAbility[i].icon.split('/')[2]);
-      print(" ${widget.iconability[j]}.svg".toString());
+      print(" ${widget.iconability![j]}.svg".toString());
     }
-    else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="additional" ){
+    else if(ListAbility[i].icon.split('/')[2]=="${widget.iconability![j]}.svg" && ListAbility[i].type=="additional" ){
 
       widget.AdditionalAbilities.add(ListAbility[i].icon);
 
     }
-    else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability[j]}.svg" && ListAbility[i].type=="inner" ){
+    else if (ListAbility[i].icon.split('/')[2]=="${widget.iconability![j]}.svg" && ListAbility[i].type=="inner" ){
 
       widget.innerAbility.add(ListAbility[i].icon);
 
