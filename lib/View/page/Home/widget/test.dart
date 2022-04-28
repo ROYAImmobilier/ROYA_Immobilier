@@ -78,6 +78,7 @@ class test extends StatelessWidget {
                           child: IconButton(
                             onPressed: () {
                               controller.addProducts(FavCategoryItem(
+                                slug: data.slug,
                                 id:data.id,
                                 region:data.region,
                                 city:data.city,

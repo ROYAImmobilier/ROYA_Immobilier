@@ -38,6 +38,7 @@ class CordDatabaseHelper {
         $columnarea TEXT NOT NULL,
         $columnquartier TEXT NOT NULL,
         $columnabilities TEXT,
+        $columnslug TEXT,
         $columncreatedAt TEXT NOT NULL
         )
       ''');
