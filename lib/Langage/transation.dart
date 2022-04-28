@@ -133,8 +133,11 @@ class Transation extends Translations {
           "Entrez le nom de la ville ?":"أدخل اسم المدينة",
           "Demande":"طلب",
           "Type d\'annonce":"نوع الاعلان",
+          "Error":"اغلاق",
+          "Error in server":'مشكلة في السيرفر'
         },
         'fr_FR': {
+          "Error in server":"Error in server",
           "Filtrer":"Filtrer",
           'EFFACER':'EFFACER',
           'Que rechercher vous ?':"Que rechercher vous ?",
@@ -245,6 +248,7 @@ class Transation extends Translations {
           "Demande":"Demande",
         },
         'en_US': {
+          "Error in server":"Error in server",
           "Filtrer":"Filter",
           'EFFACER':'TO ERASE',
           'Que rechercher vous ?':"What are you looking for?",

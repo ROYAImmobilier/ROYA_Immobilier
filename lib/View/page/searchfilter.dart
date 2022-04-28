@@ -364,11 +364,8 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                           print(filtrResulta[i].slug),
                                           print(filtrResulta[i].title),
                                           Get.to(Details(
-
-                                          index: filtrResulta[i].slug,
-                                          images: images,
                                           data: filtrResulta[i],
-                                          iconability: abilityicon,
+
                                         )),},
                                         //   Get.to(Details(image: filtrResulta[i].cover, data: filtrResulta[i]));
                                         // },

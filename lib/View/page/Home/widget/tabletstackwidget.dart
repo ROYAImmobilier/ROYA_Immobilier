@@ -36,10 +36,9 @@ class _TbletGridViewState extends State<TbletGridView> {
         itemBuilder: (BuildContext ctx, index) {
           return GestureDetector(
               onTap: () => Get.to(Details(
-                index:widget.data[index].slug ,
-                images: images,
+
                 data: widget.data[index],
-                iconability:abilityicon,
+
               )),
                       child: test(
                       data: widget.data[index],

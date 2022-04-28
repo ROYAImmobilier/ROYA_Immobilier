@@ -86,7 +86,7 @@ class ContactInfo extends StatefulWidget {
 }
 
 class _ContactInfoState extends State<ContactInfo> {
-
+int nmbreerror = 0 ;
   void choseImage() async {
     var imageTemporary;
     final List<XFile>? selectedImages = await widget.imagePicker.pickMultiImage();
@@ -527,8 +527,29 @@ class _ContactInfoState extends State<ContactInfo> {
                                           floor_type: widget.flooring,
                                           floor: "4",
                                         );
-                                  print(token_global);
-                                   print("wetwrw"+x.toString());
+
+                                 if(x==500){
+
+                                   Get.snackbar(
+                                       "Error".tr, "Your ad is not adding".tr);
+                                   nmbreerror ++ ;
+                                   if(nmbreerror==1 || nmbreerror ==0){
+                                     progress_modife = false;
+
+                                   }else{
+                                     Get.snackbar(
+                                         "Error in server".tr, "Your ad is not adding".tr);
+                                     progress_modife = false;
+                                     Get.to(RoutingScreen());
+                                   }
+
+                                 }
+
+
+
+
+
+
                                   if (x == 201) {
                                     Get.snackbar(
                                         "success".tr, "Your ad is added".tr);

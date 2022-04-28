@@ -110,6 +110,7 @@ class OnBoardingState extends State<OnBoarding> {
     bool finishedOnBoarding = (prefs.getBool('finishedOnBoarding') ?? false);
 
     if (finishedOnBoarding) {
+      FocusManager.instance.primaryFocus?.unfocus();
       //Get.offAll(BoardingPage());
       Get.to( RoutingScreen());
       if (prefs.getString("token") != null) {
@@ -118,6 +119,7 @@ class OnBoardingState extends State<OnBoarding> {
         isLogin = true;
       }
     } else {
+      FocusManager.instance.primaryFocus?.unfocus();
       Get.offAll(BoardingPage());
     }
   }

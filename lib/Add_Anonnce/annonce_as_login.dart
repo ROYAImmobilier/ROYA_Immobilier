@@ -47,7 +47,7 @@ class Annonce_As_Login {
 
       var token = json.decode(response.body);
       token_global = token['data']['token'];
-      print(response.body);
+
       if (response.statusCode == 200) {
         print("test" + response.body);
 
@@ -161,8 +161,7 @@ class Annonce_As_Login {
             'Accept': 'application/json',
             'Authorization': 'Bearer $token_global'
           });
-      print("tes" + response_1.body);
-      print(response_1.statusCode);
+
       if (response_1.statusCode == 201) {
         return response_1.statusCode;
       } else {
