@@ -74,15 +74,15 @@ class jokeRepository {
     //var a = json;
     print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     print(res.body);
+    print(res.statusCode);
+
+
     if (res.statusCode == 200) {
       var b = json.decode(jsoon);
       var a = b["data"][0]['media'];
 
       return b["data"][0];
     } else {
-      var b = json.decode(jsoon);
-      var a = b["data"][0];
-
       return null;
     }
   }

@@ -144,8 +144,9 @@ class _ProfileState extends State<Profile> {
             MaterialPageRoute(
                 builder: (_) => DetailleProfile(
                     //  images: images,
-                     // data: Poste[index],
-                      iconability: abilityicon, index: Poste[index].id,
+                      data: Poste[index],
+                      iconability: abilityicon,
+                  index: Poste[index].id,
                     )),
           )
           .then((val) => val ? _getRequests() : null);
@@ -337,23 +338,18 @@ class _ProfileState extends State<Profile> {
                                               (regions) {
                                                 setState(() {
                                                   region = regions!;
-                                                  ListCity();
                                                 });
                                               },
                                             );
                                           //amar
-                                          getData_put =
-                                              await jokeRepository.getdata(
-                                                  id: Poste[index]
-                                                      .id
-                                                      .toString());
+
                                         //  verify = true;
-                                          print(getData_put);
-                                          if (getData_put == null) {
-                                            Get.snackbar("Error", "Server");
+
+
+
                                             // Get.to(Add_Annonce());
                                             // reloud();
-                                          } else if (!getData_put.isEmpty) {
+
                                             Get.defaultDialog(
                                                 title: "Modification",
                                                 textCancel: "Cancel".tr,
@@ -361,11 +357,14 @@ class _ProfileState extends State<Profile> {
                                                 middleText:
                                                     "Are you wante to modifier ?"
                                                         .tr,
-                                                onCancel: () {},
+                                                onCancel: () {
+                                                  Get.back();
+                                                },
                                                 onConfirm: () {
-                                                  Get.to(Add_Annonce());
+                                                  Get.to(Add_Annonce(data: Poste[index],));
+
                                                 });
-                                          }
+
                                           verify_update = true;
                                           //  Get.to(Add_Annonce());
                                           // setState(() {

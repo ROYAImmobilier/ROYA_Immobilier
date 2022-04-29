@@ -28,7 +28,7 @@ class ContactInfo extends StatefulWidget {
   late int _id_region;
   late int _id_city;
   bool addimage = false;
-
+var data;
   List<dynamic>? ablity;
 
   String? area;
@@ -53,7 +53,7 @@ class ContactInfo extends StatefulWidget {
     this.age,
     this.price,
     this.flooring,
-    this.area,
+    this.area, this.data,
   });
   List<Ability> allAbility = [];
   var _key_Contact = GlobalKey<FormState>();
@@ -116,16 +116,16 @@ int nmbreerror = 0 ;
 
     setState(() {
       if (verify_update) {
-        widget._titel.text = getData_put["title"].toString();
-        widget._description.text = getData_put["description"].toString();
-        if (getData_put["phone1"] != null) {
-          widget._phone1.text = getData_put["phone1"].toString();
+        widget._titel.text = widget.data.title.toString();
+        widget._description.text = widget.data.description.toString();
+        if (widget.data.phone1 != null) {
+          widget._phone1.text = widget.data.phone1.toString();
         }
-        if (getData_put["phone2"] != null) {
-          widget._phone2.text = getData_put["phone2"].toString();
+        if (widget.data.phone2 != null) {
+          widget._phone2.text = widget.data.phone2.toString();
         }
-        if (getData_put["phone3"] != null) {
-          widget._phone3.text = getData_put["phone3"].toString();
+        if (widget.data.phone3 != null) {
+          widget._phone3.text = widget.data.phone3.toString();
         }
         for (int i = 0; i < getData_put["media"].length; i++) {
           widget._listimagebase64_com.add("${getData_put["media"][i]["blob"]}");

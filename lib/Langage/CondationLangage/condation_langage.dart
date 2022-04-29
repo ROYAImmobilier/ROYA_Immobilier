@@ -44,10 +44,10 @@ class CondationLangage {
     if (_categorie=="apartment") {
       _categorie_select = "Appartements";
     }
-    else if (_categorie=="Office Space") {
+    else if (_categorie=="office") {
       _categorie_select = "Bureau";
     }else if (_categorie=="commercialSpace") {
-      _categorie_select = "commercial";
+      _categorie_select = "Commercial";
     }else if (_categorie=="land") {
       _categorie_select = "Terre";
     }else if (_categorie=="riad") {

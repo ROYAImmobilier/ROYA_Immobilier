@@ -228,6 +228,37 @@ ListCity() async{
     });
 
 }
+
+CitySelect(int id){
+  if(id==1){
+    return listCity_Region_1 ;
+  }if(id==2){
+    return listCity_Region_2 ;
+  }else if(id==3){
+    return listCity_Region_3 ;
+  }else if(id==4){
+    return listCity_Region_4 ;
+  }else if(id==5){
+    return listCity_Region_5 ;
+  }else if(id==6){
+    return listCity_Region_6 ;
+  }else if(id==7){
+    return listCity_Region_7 ;
+  }else if(id==8){
+    return listCity_Region_8 ;
+  }else if(id==9){
+    return listCity_Region_9 ;
+  } else if(id==10){
+    return listCity_Region_10 ;
+  } else if(id==11){
+    return listCity_Region_11 ;
+  } else if(id==12){
+    return listCity_Region_12 ;
+  }else{
+    return null ;
+  }
+}
+
 ///get slug
 List<Joke> slug_data=[];
 ///data loaded

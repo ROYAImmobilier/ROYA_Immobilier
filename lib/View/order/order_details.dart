@@ -6,6 +6,7 @@ import 'package:roya_immobilie/Langage/CondationLangage/condation_langage.dart';
 import 'package:roya_immobilie/Model/ability.dart';
 import 'package:roya_immobilie/main.dart';
 
+import '../../Model/repositery.dart';
 import '../../variable/variable.dart';
 import 'contact_info.dart';
 List<dynamic> media=getData_put["media"];
@@ -17,9 +18,10 @@ class Add_Annonce_2 extends StatefulWidget {
   String? region;
   String? ville;
   String? quartier;
-
+var data;
   Add_Annonce_2(
       {this.Property_details,
+        this.data,
       this.categorie,
       this.statut,
       this.adress,
@@ -45,13 +47,25 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   void initState() {
     setState(() {
       if (verify_update ) {
+
+    if(getData_put==null){
+      getData_m();
+    }
+
         print(getData_put["abilities"]);
         idability = getData_put["abilities"];
         print(getData_put["area"]);
-        double x = getData_put["area"] + 0.0;
+        double x =widget.data.area+0.0;
         area.text = x.toString();
-        double y = getData_put["price"] + 0.0;
+        double y = widget.data.price+0.0;
         price.text = y.toString();
+
+        // idability = getData_put["abilities"];
+        // print(getData_put["area"]);
+        // double x = getData_put["area"] + 0.0;
+        // area.text = x.toString();
+        // double y = getData_put["price"] + 0.0;
+        // price.text = y.toString();
 
         // if (getData_put["floor_type"] == "Wooden" ||
         //     getData_put["floor_type"] == "Marble" ||
@@ -60,17 +74,20 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
         //   _flooring = getData_put["floor_type"];
         // }
 
-       var _floo=CondationLangage.flooring_put(getData_put["floor_type"])?.tr;
+       var _floo=CondationLangage.flooring_put(widget.data.floorType)?.tr;
        if(_floo!=null)
          _flooring=_floo;
-        _age = CondationLangage.age_put(getData_put['age'])?.tr;
-        _age_select=getData_put['age'];
+        _age = CondationLangage.age_put(widget.data.age)?.tr;
+        if(_age!=null)
+        _age_select=widget.data.age;
 
         //
-        _bathrooms = getData_put["bathrooms"];
-        _bedroms = getData_put["bedrooms"];
-        kichens = getData_put["kitchens"];
+        _bathrooms = widget.data.bathrooms;
+        _bedroms = widget.data.bedrooms;
+        kichens = widget.data.kitchens;
       }
+
+
       for (int i = 0; i < ability.length; i++) {
         if (ability[i].type == "main") {
           lmain.add(ability[i]);
@@ -97,6 +114,14 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
   String? _floor_select;
 
   var _key_details = GlobalKey<FormState>();
+
+  getData_m() async {
+    getData_put =
+    await jokeRepository.getdata(
+        id: widget.data
+            .id
+            .toString());
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -702,7 +727,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                               widget.Property_details,
                                           kichens: kichens,
                                           adress: widget.adress,
-                                          //ville: widget.ville,
+                                          data: widget.data,
                                           age: _age_select,
                                           price: price.text,
                                           flooring: _floor_select,

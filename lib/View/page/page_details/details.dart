@@ -674,9 +674,9 @@ print(widget.data.cover);
                               Container(
                                 alignment: Alignment.topRight,
                                 child: Text(
-                                  widget.data.address +
+                                  widget.data.address.toString() +
                                       ' => ' +
-                                      widget.data.quartier,
+                                      widget.data.quartier.toString(),
                                 ),
                               )
                             ],

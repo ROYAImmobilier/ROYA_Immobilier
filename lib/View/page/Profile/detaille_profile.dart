@@ -364,6 +364,7 @@ getdate(int index) async {
 
                                   },
                                   onConfirm: () async {
+                                    print(widget.data.id.toString());
                                     await jokeRepository.deleteitem(
                                         id: widget.data.id.toString());
                                     Get.snackbar("Sucsses", "Voter Annonce et supprimer" );

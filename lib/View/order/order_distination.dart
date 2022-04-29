@@ -5,10 +5,15 @@ import 'package:get/get.dart';
 
 import '../../Langage/CondationLangage/condation_langage.dart';
 
+import '../../Model/repositery.dart';
 import '../../variable/variable.dart';
 import 'order_details.dart';
 
 class Add_Annonce extends StatefulWidget {
+  var data;
+
+  Add_Annonce({this.data});
+
   @override
   State<Add_Annonce> createState() => _Add_AnnonceState();
 }
@@ -30,21 +35,51 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   void initState() {
-    listCity=[];
+    Get.snackbar("Error", "Server");
+
+      if(!verify_region_city)
+        ListCity();
+      setState(() {
+        listCity=[];
+      });
+
+
+    print("data "+widget.data.id.toString());
+
     super.initState();
     if (verify_update) {
-      adresse.text = getData_put["address"].toString();
-      quartier_.text = getData_put["quartier"].toString();
-      String cat = getData_put["property_type"].toString();
+      getData_m();
+      setState(() {
+       listCity=CitySelect(region_id(widget.data.region));
+      });
+
+      if(getData_put!=null){
+
+      }
+      adresse.text = widget.data.address.toString();
+      quartier_.text = widget.data.quartier.toString();
+      String cat = widget.data.propertyType;
       _categorie = CondationLangage.categorey_put(cat)?.tr;
       _categorie_select = cat;
-      String status = getData_put["status"].toString();
-      name_rigion = getNameRegion(getData_put["region_id"]);
+      String status =widget.data.status.toString();
+      name_rigion =widget.data.region;
       value = name_rigion;
 
-      city_stecte = getNameCity(getData_put["city_id"]);
-      id_region = getData_put["region_id"];
+     city_stecte = widget.data.city;
+      //id_region = widget.data.region;
       _statut = status;
+      // adresse.text = getData_put["address"].toString();
+      // quartier_.text = getData_put["quartier"].toString();
+      // String cat = getData_put["property_type"].toString();
+      // _categorie = CondationLangage.categorey_put(cat)?.tr;
+      // _categorie_select = cat;
+      // String status = getData_put["status"].toString();
+      // name_rigion = getNameRegion(getData_put["region_id"]);
+      // value = name_rigion;
+      //
+      // city_stecte = getNameCity(getData_put["city_id"]);
+      // id_region = getData_put["region_id"];
+      // _statut = status;
       // getidCity(city_stecte!);
       // region_id(name_rigion);
       var x = CondationLangage.status_put(status)?.tr;
@@ -62,7 +97,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     }
   }
 
-  void region_id(String? value_2) {
+  int region_id(String? value_2) {
     for (int i = 0; i < region!.length; i++) {
       if (region![i].regionName == value_2) {
         id_region = region![i].id;
@@ -71,6 +106,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
         //  getCity();
       }
     }
+    return id_region;
   }
 
   getNameRegion(int id) {
@@ -93,7 +129,13 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     print(cityGet);
     return cityGet;
   }
-
+getData_m() async {
+  getData_put =
+      await jokeRepository.getdata(
+      id: widget.data
+          .id
+          .toString());
+}
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -382,7 +424,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                       setState(() {
                                         city_stecte = null;
                                         listCity = [];
-                                        Region_id.Region(value_2!);
+                                          Region_id.Region(value_2!);
                                         value = value_2;
                                         // print(region![12].regionName);
 
@@ -430,7 +472,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                   .map<DropdownMenuItem<String>>((value) {
                                 return DropdownMenuItem<String>(
                                   value: value.cityName,
-                                  child: Text(value.cityName),
+                                  child: Text("  "+value.cityName),
                                 );
                               }).toList(),
                               onChanged: (String? Value) {
@@ -521,6 +563,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
                                       adress: adresse.text,
                                       region: value,
                                       ville: city_stecte,
+                                      data: widget.data,
                                       quartier: quartier_.text));
                                 }
                               },

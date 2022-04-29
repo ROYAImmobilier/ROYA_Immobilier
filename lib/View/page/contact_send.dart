@@ -31,9 +31,9 @@ class _ContactSendState extends State<ContactSend> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.blueAccent,
+        leading: IconButton(
+
+          color: Colors.blueAccent, onPressed: () { Get.back(); }, icon: Icon(Icons.arrow_back) ,
         ),
         elevation: 0.0,
         backgroundColor: const Color(0xFFDDECF2).withOpacity(0.35),

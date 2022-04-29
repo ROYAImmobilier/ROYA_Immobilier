@@ -266,7 +266,7 @@ class _BodyState extends State<Body> {
                         if(accant==200){
                           Get.snackbar("Voter Copmte et cree",
                               "".tr);
-                          // print("y:"+widget.y.toString());
+                         Get.offAll(RoutingScreen());
                         } if(accant==302){
                           Get.snackbar("Error",
                               "".tr);

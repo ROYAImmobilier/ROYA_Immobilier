@@ -28,6 +28,8 @@ print("token"+token_global!);
           }
 
           }
+      else
+        return null;
        // print(contact[0].email);
 
     } catch (e) {
