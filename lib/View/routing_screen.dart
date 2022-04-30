@@ -85,12 +85,12 @@ class _RoutingScreenState extends State<RoutingScreen> {
           ),
           onPressed: () async {
             verify_update = false;
-            if (!verify_region_city) {
+            if (!verify_region) {
               await ServicesRgion.getUsers().then(
                 (regions) {
                   setState(() {
                     region = regions!;
-                    ListCity();
+                    verify_region=true;
                   });
                 },
               );

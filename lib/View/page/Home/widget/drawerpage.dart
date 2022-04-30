@@ -142,12 +142,11 @@ class _DrawerPageState extends State<DrawerPage> {
                         ),
                         onPressed: () async {
                           verify_update = false;
-                          if (!verify_region_city) {
+                          if (region!.isEmpty) {
                             await ServicesRgion.getUsers().then(
                               (regions) {
                                 setState(() {
                                   region = regions!;
-                                  ListCity();
                                 });
                               },
                             );

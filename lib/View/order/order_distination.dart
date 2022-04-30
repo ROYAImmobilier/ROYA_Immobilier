@@ -12,7 +12,7 @@ import 'order_details.dart';
 class Add_Annonce extends StatefulWidget {
   var data;
 
-  Add_Annonce({this.data});
+  Add_Annonce( {this.data});
 
   @override
   State<Add_Annonce> createState() => _Add_AnnonceState();
@@ -37,14 +37,13 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   void initState() {
     Get.snackbar("Error", "Server");
 
-      if(!verify_region_city)
+      if(!verify_city)
         ListCity();
       setState(() {
         listCity=[];
       });
 
 
-    print("data "+widget.data.id.toString());
 
     super.initState();
     if (verify_update) {
@@ -87,8 +86,8 @@ class _Add_AnnonceState extends State<Add_Annonce> {
       if (x != null) {
         statut = x;
       }
-      var len = getData_put["media"].length;
-      print("tee" + len.toString());
+
+
 
       //getName_region_city();
 

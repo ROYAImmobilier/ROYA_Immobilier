@@ -13,6 +13,8 @@ import '../../Model/ability.dart';
 import '../../variable/variable.dart';
 import '../page/auth/Login/login_screen.dart';
 import '../routing_screen.dart';
+import 'order_details.dart';
+import 'order_distination.dart';
 
 class ContactInfo extends StatefulWidget {
   String? Property_details;
@@ -158,12 +160,7 @@ int nmbreerror = 0 ;
 
   @override
   Widget build(BuildContext context) {
-    progress_modife = false;
-    //  var image= getData_put["media"][0]["blob"]=_listimagebase64[0];
-    // print( image);
-    //  print("base64");
-    // print(_listimagebase64);
-    // print(widget.ablity.toString());
+
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
@@ -443,7 +440,7 @@ int nmbreerror = 0 ;
                                 borderRadius: BorderRadius.circular(12.r),
                                 side: const BorderSide(color: Color(0xE2DDD9))),
                             onPressed: progress_modife ==true?null:() {
-                              Get.back();
+                              Navigator.pop(context);
                             },
                             child: Text(
                               "Precedent".tr,
@@ -527,7 +524,6 @@ int nmbreerror = 0 ;
                                           floor_type: widget.flooring,
                                           floor: "4",
                                         );
-
                                  if(x==500){
 
                                    Get.snackbar(

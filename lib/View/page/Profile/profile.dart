@@ -17,8 +17,8 @@ import 'detaille_profile.dart';
 import '../auth/Login/components/body.dart';
 
 class Profile extends StatefulWidget {
-   Profile({Key? key}) : super(key: key);
-  List<String> iconability=[];
+  Profile({Key? key}) : super(key: key);
+  List<String> iconability = [];
   List<String> innerAbility = [];
   List<String> MainAbilities = [];
   List<String> AdditionalAbilities = [];
@@ -44,11 +44,12 @@ class _ProfileState extends State<Profile> {
     Poste = [];
     PosteValide = [];
 
-    var response_1 = await http
-        .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces/?limit=500'), headers: {
-      //HttpHeaders.authorizationHeader:token_1.toString(),
-      'Authorization': 'Bearer $token_global'
-    });
+    var response_1 = await http.get(
+        Uri.parse('https://dashboard.royaimmo.ma/api/annonces/?limit=500'),
+        headers: {
+          //HttpHeaders.authorizationHeader:token_1.toString(),
+          'Authorization': 'Bearer $token_global'
+        });
     print(response_1.body);
 
     if (response_1.statusCode == 200) {
@@ -110,19 +111,18 @@ class _ProfileState extends State<Profile> {
     }
     getdate(int index) async {
       setState(() {
-        progressdetille =true ;
+        progressdetille = true;
       });
-    //  print(token_global);
+      //  print(token_global);
       // print(data[0].slug);
       var slug;
       abilityicon = [];
       images = [];
-        print(index);
-    // await Annonce_As_Login.getAnonnce();
-        print(Poste[index].title);
-      print("slug "+slug_data[0].slug.toString());
-     // print("id "+.toString());
-
+      print(index);
+      // await Annonce_As_Login.getAnonnce();
+      print(Poste[index].title);
+      print("slug " + slug_data[0].slug.toString());
+      // print("id "+.toString());
 
       // var l = await jokeRepository.GetDetillerLogin(sug: Poste[index].id);
       // var k = l['media'];
@@ -136,17 +136,14 @@ class _ProfileState extends State<Profile> {
       // //
       //
       //   abilityicon=abi;
-     //  print(abi.toString());
+      //  print(abi.toString());
 
-     // print(abilityicon);
+      // print(abilityicon);
       Navigator.of(context)
           .push(
             MaterialPageRoute(
                 builder: (_) => DetailleProfile(
-                    //  images: images,
                       data: Poste[index],
-                      iconability: abilityicon,
-                  index: Poste[index].id,
                     )),
           )
           .then((val) => val ? _getRequests() : null);
@@ -156,9 +153,8 @@ class _ProfileState extends State<Profile> {
       //   data: Poste[index],
       // ),);
       setState(() {
-        progressdetille =false ;
+        progressdetille = false;
       });
-
     }
 
     return ScreenUtilInit(
@@ -312,304 +308,329 @@ class _ProfileState extends State<Profile> {
                     SingleChildScrollView(
                       child: Stack(
                         children: [
-                         Poste.length!=0? ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: Poste.length,
-                            itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                getdate(index);
+                          Poste.length != 0
+                              ? ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: Poste.length,
+                                  itemBuilder: (context, index) =>
+                                      GestureDetector(
+                                    onTap: () {
+                                      getdate(index);
+                                    },
+                                    child: Slidable(
+                                      key: UniqueKey(),
+                                      startActionPane: ActionPane(
+                                          motion: const ScrollMotion(),
+                                          children: [
+                                            SlidableAction(
+                                              flex: 2,
+                                              autoClose: true,
+                                              label: 'Update'.tr,
+                                              onPressed: (context) async {
+                                                if (!verify_region)
+                                                  await ServicesRgion.getUsers()
+                                                      .then(
+                                                    (regions) {
+                                                      setState(() {
+                                                        region = regions!;
+                                                        verify_region = true;
+                                                      });
+                                                    },
+                                                  );
+                                                //amar
 
-                              },
-                              child: Slidable(
-                                key: UniqueKey(),
-                                startActionPane: ActionPane(
-                                    motion: const ScrollMotion(),
-                                    children: [
-                                      SlidableAction(
-                                        flex: 2,
-                                        autoClose: true,
-                                        label: 'Update'.tr,
-                                        onPressed: (context) async {
-                                          print(verify_region_city);
-                                          if (!verify_region_city)
-                                            await ServicesRgion.getUsers().then(
-                                              (regions) {
+                                                //  verify = true;
+
+                                                // Get.to(Add_Annonce());
+                                                // reloud();
+
+                                                Get.defaultDialog(
+                                                    title: "Modification",
+                                                    textCancel: "Cancel".tr,
+                                                    textConfirm: "yes".tr,
+                                                    middleText:
+                                                        "Are you wante to modifier ?"
+                                                            .tr,
+                                                    onCancel: () {
+                                                      Navigator.of(context).pop;
+                                                    },
+                                                    onConfirm: () {
+                                                      Get.to(Add_Annonce(
+                                                        data: Poste[index],
+                                                      ));
+                                                    });
+
+                                                verify_update = true;
+                                                //  Get.to(Add_Annonce());
+                                                // setState(() {
+                                                //   reloud();
+                                                //
+                                                // });
+                                                //delete
+                                              },
+                                              backgroundColor:
+                                                  const Color(0xff5E5480),
+                                              foregroundColor: Colors.white,
+                                              icon: Icons.update,
+                                            ),
+                                          ]),
+                                      endActionPane: ActionPane(
+                                        motion: const ScrollMotion(),
+                                        dismissible:
+                                            DismissiblePane(onDismissed: () {
+                                          Get.defaultDialog(
+                                              title: "Supprimer",
+                                              textCancel: "Cancel".tr,
+                                              textConfirm: "yes".tr,
+                                              middleText:
+                                                  "Are you want to delete ?".tr,
+                                              barrierDismissible: false,
+                                              onCancel: () {
                                                 setState(() {
-                                                  region = regions!;
+                                                  reloud();
                                                 });
                                               },
-                                            );
-                                          //amar
-
-                                        //  verify = true;
-
-
-
-                                            // Get.to(Add_Annonce());
-                                            // reloud();
-
-                                            Get.defaultDialog(
-                                                title: "Modification",
-                                                textCancel: "Cancel".tr,
-                                                textConfirm: "yes".tr,
-                                                middleText:
-                                                    "Are you wante to modifier ?"
-                                                        .tr,
-                                                onCancel: () {
-                                                  Get.back();
-                                                },
-                                                onConfirm: () {
-                                                  Get.to(Add_Annonce(data: Poste[index],));
-
-                                                });
-
-                                          verify_update = true;
-                                          //  Get.to(Add_Annonce());
-                                          // setState(() {
-                                          //   reloud();
-                                          //
-                                          // });
-                                          //delete
-                                        },
-                                        backgroundColor:
-                                            const Color(0xff5E5480),
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.update,
-                                      ),
-                                    ]),
-                                endActionPane: ActionPane(
-                                  motion: const ScrollMotion(),
-                                  dismissible: DismissiblePane(onDismissed: () {
-                                    Get.defaultDialog(
-                                        title: "Supprimer",
-                                        textCancel: "Cancel".tr,
-                                        textConfirm: "yes".tr,
-                                        middleText:
-                                            "Are you want to delete ?".tr,
-                                        barrierDismissible: false,
-                                        onCancel: () {
-                                          setState(() {
-                                            reloud();
-                                          });
-                                        },
-                                        onConfirm: () async {
-                                          await jokeRepository.deleteitem(
-                                              id: Poste[index].id.toString());
-                                          Get.back();
-                                        });
-                                  }),
-                                  children: [
-                                    SlidableAction(
-                                      onPressed: (context) {
-                                        Get.defaultDialog(
-                                            title: "Supprimer",
-                                            textCancel: "Cancel".tr,
-                                            textConfirm: "yes".tr,
-                                            middleText:
-                                                "Are you want to delete ?".tr,
-                                            barrierDismissible: false,
-                                            onCancel: () {
-                                              setState(() {
-                                                reloud();
+                                              onConfirm: () async {
+                                                await jokeRepository.deleteitem(
+                                                    id: Poste[index]
+                                                        .id
+                                                        .toString());
+                                                Get.back();
                                               });
+                                        }),
+                                        children: [
+                                          SlidableAction(
+                                            onPressed: (context) {
+                                              Get.defaultDialog(
+                                                  title: "Supprimer",
+                                                  textCancel: "Cancel".tr,
+                                                  textConfirm: "yes".tr,
+                                                  middleText:
+                                                      "Are you want to delete ?"
+                                                          .tr,
+                                                  barrierDismissible: false,
+                                                  onCancel: () {
+                                                    setState(() {
+                                                      reloud();
+                                                    });
+                                                  },
+                                                  onConfirm: () async {
+                                                    await jokeRepository
+                                                        .deleteitem(
+                                                            id: Poste[index]
+                                                                .id
+                                                                .toString());
+                                                    Get.back();
+                                                    setState(() {
+                                                      reloud();
+                                                    });
+                                                  });
                                             },
-                                            onConfirm: () async {
-                                              await jokeRepository.deleteitem(
-                                                  id: Poste[index]
-                                                      .id
-                                                      .toString());
-                                              Get.back();
-                                              setState(() {
-                                                reloud();
-                                              });
-                                            });
-                                      },
-                                      label: "Delete".tr,
-                                      backgroundColor: Color(0xFFFE4A49),
-                                      foregroundColor: Colors.white,
-                                      icon: Icons.delete,
-                                    ),
-                                  ],
-                                ),
-                                child: Directionality(
-                                  textDirection: TextDirection.ltr,
-                                  child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          child: cachedImage(
-                                            "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",
+                                            label: "Delete".tr,
+                                            backgroundColor: Color(0xFFFE4A49),
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.delete,
                                           ),
-                                          height: 130.h,
-                                          width: 150.w,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(10),
-                                                bottomLeft:
-                                                    Radius.circular(10)),
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 150.w),
-                                          height: 130.h,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10)),
-                                          ),
+                                        ],
+                                      ),
+                                      child: Directionality(
+                                        textDirection: TextDirection.ltr,
+                                        child: Container(
+                                          padding: EdgeInsets.all(5),
                                           child: Stack(
                                             children: [
                                               Container(
-                                                  padding: EdgeInsets.only(
-                                                      top: 10.h, left: 10.w),
-                                                  child: Text(
-                                                    Poste[index]
-                                                            .price
-                                                            .toString() +
-                                                        ' dh',
-                                                    style: TextStyle(
-                                                      fontSize: 18.sp,
-                                                      color: Color(
-                                                        0xffb58350,
-                                                      ),
-                                                    ),
-                                                  )),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 35.h, left: 10.w),
-                                                child: Text(
-                                                  Poste[index].title,
-                                                  maxLines: 1,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                    fontSize: 14.sp,
-                                                  ),
+                                                child: cachedImage(
+                                                  "https://dashboard.royaimmo.ma/images/annonces/${Poste[index].cover}",
+                                                ),
+                                                height: 130.h,
+                                                width: 150.w,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  10)),
                                                 ),
                                               ),
-                                              // Positioned(
-                                              //     top: -5.h,
-                                              //     right: 0,
-                                              //     child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
-                                              //         icon: const Icon( Icons.more_vert)))),
-                                              Positioned(
-                                                bottom: -10,
-                                                right: -2,
-                                                child: Align(
-                                                  alignment: Alignment.topRight,
-                                                  // child: IconButton(
-                                                  //   onPressed: ()async {
-                                                  //
-                                                  //
-                                                  //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
-                                                  //     setState(() {
-                                                  //       if(v==0) {
-                                                  //         allAnnonceLogin.remove(
-                                                  //             Poste[index]);
-                                                  //       }
-                                                  //       else if (v==1) {
-                                                  //         allAnnonceLogin.remove(
-                                                  //             PosteValide[index]);
-                                                  //       }else{
-                                                  //         allAnnonceLogin.remove(
-                                                  //             PosteNonValide[index]);
-                                                  //       }
-                                                  //       PosteNonValide=[];
-                                                  //       Poste = [];
-                                                  //       PosteValide = [];
-                                                  //       Poste = allAnnonceLogin ;
-                                                  //       for(int i =0 ; i<Poste.length ; i++){
-                                                  //         if(Poste[i].validated==1){
-                                                  //           PosteValide.add(Poste[i]);
-                                                  //         }else{
-                                                  //           PosteNonValide.add(Poste[i]);
-                                                  //         }
-                                                  //       }
-                                                  //     });
-                                                  //
-                                                  //
-                                                  //   },
-                                                  //   icon: Icon(Icons.delete,
-                                                  //       color: Colors.black54),
-                                                  // ),
-                                                ),
-                                              ),
-
                                               Container(
                                                 margin: EdgeInsets.only(
-                                                    top: 85.h, left: 10.w),
-                                                child: Wrap(
+                                                    left: 150.w),
+                                                height: 130.h,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  10)),
+                                                ),
+                                                child: Stack(
                                                   children: [
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .location_on_rounded,
-                                                          size: 14,
-                                                        ),
-                                                        Text(
-                                                          Poste[index].region,
+                                                    Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 10.h,
+                                                                left: 10.w),
+                                                        child: Text(
+                                                          Poste[index]
+                                                                  .price
+                                                                  .toString() +
+                                                              ' dh',
                                                           style: TextStyle(
-                                                              fontSize: 12.sp),
+                                                            fontSize: 18.sp,
+                                                            color: Color(
+                                                              0xffb58350,
+                                                            ),
+                                                          ),
+                                                        )),
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                          top: 35.h,
+                                                          left: 10.w),
+                                                      child: Text(
+                                                        Poste[index].title,
+                                                        maxLines: 1,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                          fontSize: 14.sp,
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                    const SizedBox(
-                                                      width: 5,
+                                                    // Positioned(
+                                                    //     top: -5.h,
+                                                    //     right: 0,
+                                                    //     child: Align(alignment:Alignment.topRight,child: IconButton(onPressed: (){},
+                                                    //         icon: const Icon( Icons.more_vert)))),
+                                                    Positioned(
+                                                      bottom: -10,
+                                                      right: -2,
+                                                      child: Align(
+                                                        alignment:
+                                                            Alignment.topRight,
+                                                        // child: IconButton(
+                                                        //   onPressed: ()async {
+                                                        //
+                                                        //
+                                                        //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                                        //     setState(() {
+                                                        //       if(v==0) {
+                                                        //         allAnnonceLogin.remove(
+                                                        //             Poste[index]);
+                                                        //       }
+                                                        //       else if (v==1) {
+                                                        //         allAnnonceLogin.remove(
+                                                        //             PosteValide[index]);
+                                                        //       }else{
+                                                        //         allAnnonceLogin.remove(
+                                                        //             PosteNonValide[index]);
+                                                        //       }
+                                                        //       PosteNonValide=[];
+                                                        //       Poste = [];
+                                                        //       PosteValide = [];
+                                                        //       Poste = allAnnonceLogin ;
+                                                        //       for(int i =0 ; i<Poste.length ; i++){
+                                                        //         if(Poste[i].validated==1){
+                                                        //           PosteValide.add(Poste[i]);
+                                                        //         }else{
+                                                        //           PosteNonValide.add(Poste[i]);
+                                                        //         }
+                                                        //       }
+                                                        //     });
+                                                        //
+                                                        //
+                                                        //   },
+                                                        //   icon: Icon(Icons.delete,
+                                                        //       color: Colors.black54),
+                                                        // ),
+                                                      ),
                                                     ),
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.home,
-                                                          size: 14,
-                                                        ),
-                                                        Text(
-                                                          Poste[index].city,
-                                                          style: TextStyle(
-                                                              fontSize: 12.sp),
-                                                        ),
-                                                      ],
-                                                    ),
+
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          top: 85.h,
+                                                          left: 10.w),
+                                                      child: Wrap(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .location_on_rounded,
+                                                                size: 14,
+                                                              ),
+                                                              Text(
+                                                                Poste[index]
+                                                                    .region,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        12.sp),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 5,
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons.home,
+                                                                size: 14,
+                                                              ),
+                                                              Text(
+                                                                Poste[index]
+                                                                    .city,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        12.sp),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
                                                   ],
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           ),
                                         ),
-
-                                      ],
+                                      ),
                                     ),
                                   ),
+                                )
+                              : SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/notdata.svg',
+                                        width: 100,
+                                        height: 100,
+                                      ),
+                                      SizedBox(
+                                        height: 50,
+                                      ),
+                                      Text(
+                                        'My Annonce is Empty',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ):
-                         SingleChildScrollView(
-                           child: Column(
-                             children: [
-                               SvgPicture.asset(
-                                 'assets/notdata.svg',
-                                 width: 100,
-                                 height: 100,
-                               ),
-                               SizedBox(height: 50,),
-                               Text(
-                                 'My Annonce is Empty',
-                                 style: TextStyle(
-                                   fontSize: 16,
-                                 ),
-                               ),
-
-                             ],
-                           ),
-                         ),
-
                         ],
                       ),
                     ),
@@ -623,7 +644,6 @@ class _ProfileState extends State<Profile> {
           )),
     );
   }
-
 }
 
 class CustomClipPath extends CustomClipper<Path> {
@@ -639,7 +659,6 @@ class CustomClipPath extends CustomClipper<Path> {
 
     return path;
   }
-
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;

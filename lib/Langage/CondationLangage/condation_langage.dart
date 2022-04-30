@@ -140,7 +140,7 @@ class CondationLangage {
       _age="1 à 5 ans";
     }
     else if(age=="F5T10"){
-      _age="5 à 1 ans";
+      _age="5 à 10 ans";
     }else if(age=="F10T20"){
       _age="10 à 20 ans";
     }else if(age=="F20T30"){

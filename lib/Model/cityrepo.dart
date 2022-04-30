@@ -65,7 +65,7 @@ class ServicesRgion {
         final List<Region> region = regionFromJson(response.body);
         return region;
       } else {
-        return regionFromJson(response.body);
+        return null;
       }
     } catch (e) {
        //return List<Region> c;
