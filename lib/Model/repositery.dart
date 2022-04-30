@@ -97,7 +97,7 @@ class jokeRepository {
     });
     var jsoon = res.body;
     //var a = json;
-  //  print(res.body);
+  print(res.body);
     if (res.statusCode == 200) {
       var b = json.decode(jsoon);
 
@@ -106,7 +106,7 @@ class jokeRepository {
     } else {
       var b = json.decode(jsoon);
       var a = b["data"][0];
-      return a;
+      return null;
     }
   }
 }

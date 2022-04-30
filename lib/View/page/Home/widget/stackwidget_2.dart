@@ -65,7 +65,7 @@ int _maxIndex=15;
   }
   @override
   Widget build(BuildContext context) {
-    print("stack "+progressdetille.toString());
+
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     //var ScreenSized=MediaQuery.of(context).size.width;

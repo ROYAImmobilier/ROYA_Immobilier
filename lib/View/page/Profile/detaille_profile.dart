@@ -11,20 +11,22 @@ import '../../../Model/cityrepo.dart';
 import '../../../Model/repositery.dart';
 import '../../../screenSize/screenSized.dart';
 import '../../order/order_distination.dart';
+import '../Home/widget/drawerpage.dart';
 var l;
 class DetailleProfile extends StatefulWidget {
-  List<String>? images;
+  List<String>? images=[];
   var data;
-  List<dynamic>iconability ;
+  var idAnonnce;
+  List<dynamic>?iconability ;
   List<String> innerAbility = [];
   List<String> MainAbilities = [];
   List<String> AdditionalAbilities = [];
   int activeindex=0;
-  int index;
 
 
 
-  DetailleProfile({ this.images,  this.data,required this.iconability,required this.index});
+
+  DetailleProfile({ required  this.data, this.iconability,});
 
   @override
   _DetailleProfileState createState() => _DetailleProfileState();
@@ -34,36 +36,34 @@ class _DetailleProfileState extends State<DetailleProfile> {
 
 @override
   void initState() {
-  getdate(widget.index);
+
+setState(() {
+  widget.iconability=[];
+
+});
+  getdate();
 
     super.initState();
   }
-getdate(int index) async {
-  setState(() {
-    progressdetille =true ;
-  });
-  //  print(token_global);
-  // print(data[0].slug);
-  print(index);
-  // await Annonce_As_Login.getAnonnce();
-  //print(Poste[index].title);
-  print("slug "+slug_data[0].slug.toString());
-  // print("id "+.toString());
+getdate() async {
 
 
- l = await jokeRepository.GetDetillerLogin(sug: index);
-  var k = l['media'];
-  var abi = l["abilities"];
 
-  if (k.toString().isNotEmpty)
-    for (int i = 0; i < k.length; i++) {
-      widget.images?.add(k[i]['file_name']);
+ widget.idAnonnce = await jokeRepository.GetDetillerLogin(sug: widget.data.id);
+  var abi = widget.idAnonnce["abilities"];
 
-    }
+ if(widget.idAnonnce!=null){
+   for(int i=0;i<widget.idAnonnce['media'].length;i++){
+     //  print();
+     widget.images?.add(widget.idAnonnce['media'][i]["file_name"]);
+   }
+ }else{
+
+   widget.images=widget.data.cover;
+ }
   //
 
-  widget.iconability=abi;
-  abilitycompre();
+
   //  print(abi.toString());
 
   // print(abilityicon);
@@ -72,10 +72,11 @@ getdate(int index) async {
   //   images: images,
   //   data: Poste[index],
   // ),);
-  setState(() {
-    progressdetille =false ;
-  });
 
+setState(() {
+  widget.iconability=abi;
+  abilitycompre();
+});
 }
   @override
   Widget build(BuildContext context) {
@@ -101,106 +102,97 @@ getdate(int index) async {
           body: SingleChildScrollView(
             child: Column(
               children: [
-
-                Stack(
-                    alignment: Alignment.center,
-                    children: [
-
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: 20.h, right: 20.w, left: 20.w),
-                        height:
-                        (MediaQuery.of(context).size.height * 0.30).h,
-                        decoration: BoxDecoration(
-                          // image: DecorationImage(
-                          //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[0]),
-                          //   fit: BoxFit.fill,
-                          // ),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.r),
-                                topRight: Radius.circular(10.r))),
-                        child: CarouselSlider(
-                            options: CarouselOptions(
-                              //  height:    450.h ,
-                              height: (MediaQuery.of(context).size.height),
-                              scrollDirection: Axis.horizontal,
-                              viewportFraction: 1,
-                              initialPage: 0,
-                              enableInfiniteScroll: false,
-                              reverse: false,
-                              autoPlay: false,
-                              pageSnapping: true,
-                              autoPlayCurve: Curves.fastOutSlowIn,
-                              enlargeCenterPage: true,
-                              onPageChanged: (value, res) {
-                                setState(() {
-                                  widget.activeindex = value;
-                                });
-                              },
-                            ),
-                            items: widget.images
-                                ?.map((String slider) => Builder(
-                              builder: (BuildContext context) {
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft:
-                                      Radius.circular(10.r),
-                                      topRight:
-                                      Radius.circular(10.r)),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        // margin: EdgeInsets.only(top: 50),
-                                        height:
-                                        (MediaQuery.of(context)
+                Stack(alignment: Alignment.center, children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: 20.h, right: 20.w, left: 20.w),
+                    height:
+                    (MediaQuery.of(context).size.height * 0.30).h,
+                    decoration: BoxDecoration(
+                      // image: DecorationImage(
+                      //   image: NetworkImage("https://dashboard.royaimmo.ma/images/annonces/"+widget.images[0]),
+                      //   fit: BoxFit.fill,
+                      // ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.r),
+                            topRight: Radius.circular(10.r))),
+                    child: CarouselSlider(
+                        options: CarouselOptions(
+                          //  height:    450.h ,
+                          height: (MediaQuery.of(context).size.height),
+                          scrollDirection: Axis.horizontal,
+                          viewportFraction: 1,
+                          initialPage: 0,
+                          enableInfiniteScroll: false,
+                          reverse: false,
+                          autoPlay: false,
+                          pageSnapping: true,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enlargeCenterPage: true,
+                          onPageChanged: (value, res) {
+                            setState(() {
+                              widget.activeindex = value;
+                            });
+                          },
+                        ),
+                        items: widget.images
+                            ?.map((String slider) => Builder(
+                          builder: (BuildContext context) {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft:
+                                  Radius.circular(10.r),
+                                  topRight:
+                                  Radius.circular(10.r)),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    // margin: EdgeInsets.only(top: 50),
+                                    height:
+                                    (MediaQuery.of(context)
+                                        .size
+                                        .height *
+                                        0.5)
+                                        .h,
+                                    // decoration: const BoxDecoration(
+                                    // //   borderRadius: BorderRadius.all(
+                                    // //       Radius.circular(4.5)),
+                                    // ),
+                                    child: ClipRRect(
+                                      // borderRadius: const BorderRadius.all(
+                                      //     Radius.circular(10)),
+                                      child: CachedNetworkImage(
+                                        width: MediaQuery.of(
+                                            context)
                                             .size
-                                            .height *
-                                            0.5)
-                                            .h,
-                                        // decoration: const BoxDecoration(
-                                        // //   borderRadius: BorderRadius.all(
-                                        // //       Radius.circular(4.5)),
-                                        // ),
-                                        child: ClipRRect(
-                                          // borderRadius: const BorderRadius.all(
-                                          //     Radius.circular(10)),
-                                          child: CachedNetworkImage(
-                                            width: MediaQuery.of(
-                                                context)
-                                                .size
-                                                .width,
-                                            fit: BoxFit.fill,
-                                            imageUrl:
-                                            "https://dashboard.royaimmo.ma/images/annonces/" +
-                                                slider,
-                                            placeholder: (context,
-                                                url) =>
-                                                Icon(Icons.image),
-                                            errorWidget: (context,
-                                                url, error) =>
-                                            const Icon(
-                                                Icons.error),
-                                          ),
-                                        ),
+                                            .width,
+                                        fit: BoxFit.fill,
+                                        imageUrl:
+                                        "https://dashboard.royaimmo.ma/images/annonces/" +
+                                            slider,
+                                        placeholder: (context,
+                                            url) =>
+                                            Icon(Icons.image),
+                                        errorWidget: (context,
+                                            url, error) =>
+                                        const Icon(
+                                            Icons.error),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                );
-                              },
-                            ))
-                                .toList()),
-                      ),
-
-                      Positioned(
-                        child: BuldeIndector(),
-                        // top: 0,
-                        // right: 0,
-                        // left: MediaQuery.of(context).size.width.toDouble()/2,
-                        bottom: 5,
-                      ),
-
-                    ]),
+                                ],
+                              ),
+                            );
+                          },
+                        ))
+                            .toList()),
+                  ),
+                  widget.idAnonnce!=null?  Positioned(
+                    child: BuldeIndector(),
+                    bottom: 5,
+                  ):Container(),
+                ]),
                 // Container(
                 //   margin:
                 //   EdgeInsets.only(top: 20.h, right: 20.w, left: 20.w),
@@ -284,28 +276,18 @@ getdate(int index) async {
                               ],
                             ),
                             onPressed: ()async {
-                              if (!verify_region_city)
+                              if (!verify_region)
                                 await ServicesRgion.getUsers().then(
                                     (regions) {
                                   setState(() {
                                     region = regions!;
-                                    ListCity();
+                                    verify_region=true;
                                   });
                                 },
                               );
                               //amar
-                              getData_put =
-                                  await jokeRepository.getdata(
-                                  id: widget.data
-                                      .id
-                                      .toString());
                              // verify = true;
-                              print(getData_put);
-                              if (getData_put==null) {
-                                Get.snackbar("Error", "Server");
-                                // Get.to(Add_Annonce());
-                                // reloud();
-                              } else if (!getData_put.isEmpty) {
+
                                 Get.defaultDialog(
                                     title: "Modification",
                                     textCancel: "Cancel".tr,
@@ -314,13 +296,13 @@ getdate(int index) async {
                                     "Are you wante to modifier ?"
                                         .tr,
                                     onCancel: () {
-                                      Get.back();
+                                    Navigator.of(context).pop;
                                     },
                                     onConfirm: () {
                                       verify_update = true;
-                                      Get.to(Add_Annonce());
+                                      Get.to(Add_Annonce(data: widget.data,));
                                     });
-                              }
+
 
                               //  Get.to(Add_Annonce());
                               // setState(() {
@@ -490,14 +472,14 @@ getdate(int index) async {
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
                   child: Stack(
-                    // mainAxisAlignment: ,
+
                     children: [
                       Container(
-                          alignment: Alignment.topLeft,
-                          child: Text("Adresse")),
+                          alignment:locale[0]['name']=="France"||locale[1]['name']=="English"? Alignment.topLeft:Alignment.topRight,
+                          child: Text("Adresse".tr)),
                       SizedBox(width: 15,),
                       Container(
-                        alignment: Alignment.topRight,
+                        alignment:locale[0]['name']=="France"||locale[1]['name']=="English"? Alignment.topRight:Alignment.topLeft,
                         child: Text(
                           widget.data.address.toString() +
                               ' => ' +
@@ -612,9 +594,9 @@ getdate(int index) async {
 
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                  alignment: Alignment.topLeft,
-                  child: const Text(
-                    'Description',
+                  alignment:locale[0]['name']=="France"||locale[1]['name']=="English"? Alignment.topLeft:Alignment.topRight,
+                  child:  Text(
+                    'Description'.tr,
                     style: TextStyle(fontSize: 25),
                   ),
                 ),
@@ -635,7 +617,7 @@ getdate(int index) async {
     );
   }
   Widget BuldeIndector() => AnimatedSmoothIndicator(
-    count: l["media"].length,
+    count:widget.idAnonnce==null?widget.data.cover.length:widget.images?.length,
     activeIndex: widget.activeindex,
     effect:  WormEffect(
       dotHeight: 16,
@@ -647,19 +629,19 @@ getdate(int index) async {
   );
 abilitycompre() {
 
-  for(int j=0;j<widget.iconability.length;j++){
+  for(int j=0;j<widget.iconability!.length;j++){
     for(int i=0;i<ListAbility.length;i++){
-      if (ListAbility[i].id.toString()==widget.iconability[j].toString() && ListAbility[i].type=="main" ){
+      if (ListAbility[i].id.toString()==widget.iconability![j].toString() && ListAbility[i].type=="main" ){
 
         widget.MainAbilities.add(ListAbility[i].icon.split("/")[2]);
 
       }
-      else if(ListAbility[i].id.toString()==widget.iconability[j].toString() && ListAbility[i].type=="additional" ){
+      else if(ListAbility[i].id.toString()==widget.iconability![j].toString() && ListAbility[i].type=="additional" ){
 
         widget.AdditionalAbilities.add(ListAbility[i].icon.split("/")[2]);
 
       }
-      else if (ListAbility[i].id.toString()==widget.iconability[j].toString() && ListAbility[i].type=="inner" ){
+      else if (ListAbility[i].id.toString()==widget.iconability![j].toString() && ListAbility[i].type=="inner" ){
 
         widget.innerAbility.add(ListAbility[i].icon.split("/")[2]);
 

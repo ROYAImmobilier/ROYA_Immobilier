@@ -115,7 +115,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("EMAIL", textAlign: TextAlign.left),
+                            child: Text("EMAIL".tr, textAlign: TextAlign.left),
                           )),
                     ),
                     Padding(
@@ -154,7 +154,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("PHONE", ),
+                            child: Text("PHONE".tr, ),
                           )),
                     ),
                     Padding(

@@ -664,13 +664,14 @@ class _DetailsState extends State<Details> {
                             left: 20.w,
                           ),
                           child: Stack(
-                            // mainAxisAlignment: ,
+
                             children: [
                               Container(
-                                  //  alignment: Alignment.topLeft,
+                                  alignment:locale[0]['name']=="France"||locale[1]['name']=="English"? Alignment.topLeft:Alignment.topRight,
                                   child: Text("Adresse".tr)),
+                              SizedBox(width: 15,),
                               Container(
-                                alignment: Alignment.topRight,
+                                alignment:locale[0]['name']=="France"||locale[1]['name']=="English"? Alignment.topRight:Alignment.topLeft,
                                 child: Text(
                                   widget.data.address.toString() +
                                       ' => ' +

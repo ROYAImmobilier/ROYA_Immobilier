@@ -142,12 +142,11 @@ class _DrawerPageState extends State<DrawerPage> {
                         ),
                         onPressed: () async {
                           verify_update = false;
-                          if (!verify_region_city) {
+                          if (region!.isEmpty) {
                             await ServicesRgion.getUsers().then(
                               (regions) {
                                 setState(() {
                                   region = regions!;
-                                  ListCity();
                                 });
                               },
                             );
@@ -343,7 +342,7 @@ class _DrawerPageState extends State<DrawerPage> {
                       height: 15,
                     ),
                     GestureDetector(
-                      onTap: ()=>Get.to(ContactSend(idexiste: true,)),
+                      onTap: ()=>Get.to(ContactSend(annonce_id: 0,)),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12, right: 12),
                         child: Row(

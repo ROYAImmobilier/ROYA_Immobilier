@@ -144,7 +144,8 @@ class Region_id{
   }
 }
 ///verify region and city uload
-bool verify_region_city=false;
+bool verify_region=false;
+bool verify_city=false;
 
 
 //
@@ -224,7 +225,7 @@ ListCity() async{
           listCity_Region_12.add(city![i]);
         }
       }
-      verify_region_city = true;
+      verify_city = true;
     });
 
 }

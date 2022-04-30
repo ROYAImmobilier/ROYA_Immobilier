@@ -9,6 +9,7 @@ import 'package:roya_immobilie/main.dart';
 import '../../Model/repositery.dart';
 import '../../variable/variable.dart';
 import 'contact_info.dart';
+import 'order_distination.dart';
 List<dynamic> media=getData_put["media"];
 class Add_Annonce_2 extends StatefulWidget {
   String? Property_details;
@@ -670,7 +671,7 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                 alignment: Alignment.topRight,
                                 child: TextButton(
                                   onPressed: () {
-                                    Get.back();
+                                    Navigator.pop(context);
                                   },
                                   child: Container(
                                     width: 120,
