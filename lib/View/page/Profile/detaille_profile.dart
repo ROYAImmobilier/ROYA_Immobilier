@@ -105,6 +105,7 @@ getdate(int index) async {
                 Stack(
                     alignment: Alignment.center,
                     children: [
+
                       Container(
                         margin: EdgeInsets.only(
                             top: 20.h, right: 20.w, left: 20.w),
@@ -122,8 +123,7 @@ getdate(int index) async {
                         child: CarouselSlider(
                             options: CarouselOptions(
                               //  height:    450.h ,
-                              height:
-                              (MediaQuery.of(context).size.height),
+                              height: (MediaQuery.of(context).size.height),
                               scrollDirection: Axis.horizontal,
                               viewportFraction: 1,
                               initialPage: 0,
@@ -152,8 +152,8 @@ getdate(int index) async {
                                     children: [
                                       Container(
                                         // margin: EdgeInsets.only(top: 50),
-                                        height: (MediaQuery.of(
-                                            context)
+                                        height:
+                                        (MediaQuery.of(context)
                                             .size
                                             .height *
                                             0.5)
@@ -165,8 +165,7 @@ getdate(int index) async {
                                         child: ClipRRect(
                                           // borderRadius: const BorderRadius.all(
                                           //     Radius.circular(10)),
-                                          child:
-                                          CachedNetworkImage(
+                                          child: CachedNetworkImage(
                                             width: MediaQuery.of(
                                                 context)
                                                 .size
@@ -192,6 +191,7 @@ getdate(int index) async {
                             ))
                                 .toList()),
                       ),
+
                       Positioned(
                         child: BuldeIndector(),
                         // top: 0,
@@ -311,10 +311,12 @@ getdate(int index) async {
                                     middleText:
                                     "Are you wante to modifier ?"
                                         .tr,
-                                    onCancel: () {},
+                                    onCancel: () {
+                                      Get.back();
+                                    },
                                     onConfirm: () {
                                       verify_update = true;
-                          Get.to(Add_Annonce());
+                                      Get.to(Add_Annonce());
                                     });
                               }
 

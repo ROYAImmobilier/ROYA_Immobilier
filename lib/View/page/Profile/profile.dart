@@ -590,17 +590,23 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                             ),
-                          ): Center(
-      child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircularProgressIndicator(   backgroundColor: Colors.grey,
-            strokeWidth: 8,
-          ),SizedBox(height: 5,),
-          Text("please wait"),
-        ],
-      ),
-    ),
+                          ):
+                         SingleChildScrollView(
+                           child: Column(
+
+                             children: [
+                               SvgPicture.asset(
+                                 'assets/notdata.svg',
+                               ),
+                               Text(
+                                 'My Annonce is Empty',
+                                 style: TextStyle(
+                                   fontSize: 20,
+                                 ),
+                               )
+                             ],
+                           ),
+                         ),
 
                         ],
                       ),
