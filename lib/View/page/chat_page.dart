@@ -270,123 +270,123 @@ class _ChatPageState extends State<ChatPage> {
                                                   ),
                                                 )),
                                           ),
-                                          Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                padding: EdgeInsets.all(5),
-                                                child: Stack(
-                                                  children: [
-                                                    Container(
-                                                      child: cachedImage(
-                                                        "https://dashboard.royaimmo.ma/images/annonces/${slug_data[widget.index].cover}",
-                                                      ),
-                                                      height: 100,
-                                                      width: 150,
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        // image: DecorationImage(
-                                                        //                 image:
-                                                        //                 fit: BoxFit.fill,
-                                                        //               ),
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        10)),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 150),
-                                                      height: 100,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        10)),
-                                                      ),
-                                                      child: Stack(
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 15,
-                                                                    left: 10),
-                                                            child: Text(
-                                                              "${slug_data[widget.index].title}",
-                                                              maxLines: 2,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: TextStyle(
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 60,
-                                                                    left: 10),
-                                                            child: Wrap(
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .location_on_rounded,
-                                                                      size: 14,
-                                                                    ),
-                                                                    Text(
-                                                                      "${slug_data[widget.index].region}",
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 20,
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .home,
-                                                                      size: 14,
-                                                                    ),
-                                                                    Text(
-                                                                      "${slug_data[widget.index].city}",
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              14),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )),
+                                          // Padding(
+                                          //     padding:
+                                          //         const EdgeInsets.all(8.0),
+                                          //     child: Container(
+                                          //       padding: EdgeInsets.all(5),
+                                          //       child: Stack(
+                                          //         children: [
+                                          //           Container(
+                                          //             child: cachedImage(
+                                          //               "https://dashboard.royaimmo.ma/images/annonces/${slug_data[widget.index].cover}",
+                                          //             ),
+                                          //             height: 100,
+                                          //             width: 150,
+                                          //             decoration:
+                                          //                 const BoxDecoration(
+                                          //               // image: DecorationImage(
+                                          //               //                 image:
+                                          //               //                 fit: BoxFit.fill,
+                                          //               //               ),
+                                          //               color: Colors.white,
+                                          //               borderRadius:
+                                          //                   BorderRadius.only(
+                                          //                       topLeft: Radius
+                                          //                           .circular(
+                                          //                               10),
+                                          //                       bottomLeft: Radius
+                                          //                           .circular(
+                                          //                               10)),
+                                          //             ),
+                                          //           ),
+                                          //           Container(
+                                          //             margin: EdgeInsets.only(
+                                          //                 left: 150),
+                                          //             height: 100,
+                                          //             width:
+                                          //                 MediaQuery.of(context)
+                                          //                     .size
+                                          //                     .width,
+                                          //             decoration:
+                                          //                 const BoxDecoration(
+                                          //               color: Colors.white,
+                                          //               borderRadius:
+                                          //                   BorderRadius.only(
+                                          //                       topRight: Radius
+                                          //                           .circular(
+                                          //                               10),
+                                          //                       bottomRight: Radius
+                                          //                           .circular(
+                                          //                               10)),
+                                          //             ),
+                                          //             child: Stack(
+                                          //               children: [
+                                          //                 Padding(
+                                          //                   padding:
+                                          //                       EdgeInsets.only(
+                                          //                           top: 15,
+                                          //                           left: 10),
+                                          //                   child: Text(
+                                          //                     "${slug_data[widget.index].title}",
+                                          //                     maxLines: 2,
+                                          //                     textAlign:
+                                          //                         TextAlign
+                                          //                             .start,
+                                          //                     style: TextStyle(
+                                          //                       fontSize: 14,
+                                          //                     ),
+                                          //                   ),
+                                          //                 ),
+                                          //                 Container(
+                                          //                   margin:
+                                          //                       EdgeInsets.only(
+                                          //                           top: 60,
+                                          //                           left: 10),
+                                          //                   child: Wrap(
+                                          //                     children: [
+                                          //                       Row(
+                                          //                         children: [
+                                          //                           Icon(
+                                          //                             Icons
+                                          //                                 .location_on_rounded,
+                                          //                             size: 14,
+                                          //                           ),
+                                          //                           Text(
+                                          //                             "${slug_data[widget.index].region}",
+                                          //                             style: TextStyle(
+                                          //                                 fontSize:
+                                          //                                     12),
+                                          //                           ),
+                                          //                         ],
+                                          //                       ),
+                                          //                       SizedBox(
+                                          //                         height: 20,
+                                          //                       ),
+                                          //                       Row(
+                                          //                         children: [
+                                          //                           Icon(
+                                          //                             Icons
+                                          //                                 .home,
+                                          //                             size: 14,
+                                          //                           ),
+                                          //                           Text(
+                                          //                             "${slug_data[widget.index].city}",
+                                          //                             style: TextStyle(
+                                          //                                 fontSize:
+                                          //                                     14),
+                                          //                           ),
+                                          //                         ],
+                                          //                       ),
+                                          //                     ],
+                                          //                   ),
+                                          //                 )
+                                          //               ],
+                                          //             ),
+                                          //           ),
+                                          //         ],
+                                          //       ),
+                                          //     )),
                                         ],
                                       ),
                                     ),

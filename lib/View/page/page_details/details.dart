@@ -93,10 +93,8 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
 
-   // print(locale[1]["name"]);
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
-print(widget.data.cover);
     return ScreenUtilInit(
         builder: () => Scaffold(
               appBar: AppBar(

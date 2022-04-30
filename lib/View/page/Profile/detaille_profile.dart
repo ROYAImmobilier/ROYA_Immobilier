@@ -98,13 +98,14 @@ getdate(int index) async {
                 (Icons.arrow_back_ios_sharp) , color: Colors.blue,)
 
           ),
-          body:l!=null? SingleChildScrollView(
+          body: SingleChildScrollView(
             child: Column(
               children: [
 
                 Stack(
                     alignment: Alignment.center,
                     children: [
+
                       Container(
                         margin: EdgeInsets.only(
                             top: 20.h, right: 20.w, left: 20.w),
@@ -122,8 +123,7 @@ getdate(int index) async {
                         child: CarouselSlider(
                             options: CarouselOptions(
                               //  height:    450.h ,
-                              height:
-                              (MediaQuery.of(context).size.height),
+                              height: (MediaQuery.of(context).size.height),
                               scrollDirection: Axis.horizontal,
                               viewportFraction: 1,
                               initialPage: 0,
@@ -152,8 +152,8 @@ getdate(int index) async {
                                     children: [
                                       Container(
                                         // margin: EdgeInsets.only(top: 50),
-                                        height: (MediaQuery.of(
-                                            context)
+                                        height:
+                                        (MediaQuery.of(context)
                                             .size
                                             .height *
                                             0.5)
@@ -165,8 +165,7 @@ getdate(int index) async {
                                         child: ClipRRect(
                                           // borderRadius: const BorderRadius.all(
                                           //     Radius.circular(10)),
-                                          child:
-                                          CachedNetworkImage(
+                                          child: CachedNetworkImage(
                                             width: MediaQuery.of(
                                                 context)
                                                 .size
@@ -192,6 +191,7 @@ getdate(int index) async {
                             ))
                                 .toList()),
                       ),
+
                       Positioned(
                         child: BuldeIndector(),
                         // top: 0,
@@ -229,10 +229,12 @@ getdate(int index) async {
                         Container(
                           padding: EdgeInsets.only(top: 10.h, left: 10.w),
                           alignment: Alignment.topLeft,
-                          child: const CircleAvatar(
+                          child:  CircleAvatar(
                             backgroundColor: Color(0xffbfa280),
                             radius: 20,
-                            child: Text('AA'),
+                            child: Text(widget.data.advertiser[0]
+                                .toString() +
+                                widget.data.advertiser[0].toString()),
                           ),
                         ),
                         Column(
@@ -242,12 +244,12 @@ getdate(int index) async {
                               // alignment: Alignment.topLeft,
                                 padding: EdgeInsets.only(
                                     top: 15.h, left: 10.w),
-                                child: Text(l["advertiser"])),
+                                child: Text(widget.data.advertiser)),
                             Container(
                               padding:
                               EdgeInsets.only(top: 3.h, left: 10.w),
                               child:  Text(
-                               l["created_at"].toString(),
+                                widget.data.createdAt.toString(),
                                 style: TextStyle(color: Colors.grey),
                               ),
                             ),
@@ -311,10 +313,12 @@ getdate(int index) async {
                                     middleText:
                                     "Are you wante to modifier ?"
                                         .tr,
-                                    onCancel: () {},
+                                    onCancel: () {
+                                      Get.back();
+                                    },
                                     onConfirm: () {
                                       verify_update = true;
-                          Get.to(Add_Annonce());
+                                      Get.to(Add_Annonce());
                                     });
                               }
 
@@ -408,7 +412,7 @@ getdate(int index) async {
                         Radius.circular(10.r),
                       )),
                   child: Text(
-                   l["title"],
+                    widget.data.title,
                     style: TextStyle(fontSize: 24,),
                     textAlign: TextAlign.center,
                   ),
@@ -431,9 +435,7 @@ getdate(int index) async {
                           width: 5.w,
                         ),
                         Text(
-                          "${l[
-                          "bedrooms"
-                        ]} Beds",
+                          "${widget.data.bedrooms} Beds",
                           style: TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
@@ -449,7 +451,7 @@ getdate(int index) async {
                           width: 5.w,
                         ),
                         Text(
-                          "${l["bathrooms"]} Boths",
+                          "${widget.data.bathrooms}  Boths",
                           style: TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
@@ -465,7 +467,7 @@ getdate(int index) async {
                           width: 5.w,
                         ),
                         Text(
-                          l["area"].toString()+ "m²",
+                          widget.data.area.toString()+ "m²",
                           style: const TextStyle(color: Color(0xff8a8a8a)),
                         )
                       ]),
@@ -497,9 +499,9 @@ getdate(int index) async {
                       Container(
                         alignment: Alignment.topRight,
                         child: Text(
-                         l["address"] +
+                          widget.data.address.toString() +
                               ' => ' +
-                             l["quartier"],
+                              widget.data.quartier.toString(),
                         ),
                       )
                     ],
@@ -622,23 +624,12 @@ getdate(int index) async {
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
                   alignment: Alignment.topLeft,
-                  child: Text(l["description"]),
+                  child: Text(widget.data.description),
                 ),
                 SizedBox(height: 20,),
               ],
             ),
-          ):
-          Center(
-            child: Column(
-               mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(   backgroundColor: Colors.grey,
-                    strokeWidth: 8,
-                 ),SizedBox(height: 5,),
-                  Text("please wait"),
-                ],
-              ),
-          ),
+          )
         );
       }
     );

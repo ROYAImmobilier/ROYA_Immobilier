@@ -16,6 +16,8 @@ import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
 import 'package:http/http.dart' as http;
 
+import 'View/splash_screen.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -91,7 +93,7 @@ class _MyAppState extends State<MyApp> {
       translations: Transation(),
       locale: Locale('fr'),
       fallbackLocale: Locale('fr'),
-      home: OnBoarding(),
+      home:SplashScreen()
       // initialRoute: RouteScreen.getHomepage(),
       //     getPages: RouteScreen.route,
     );
@@ -113,7 +115,7 @@ class OnBoardingState extends State<OnBoarding> {
     if (finishedOnBoarding) {
       FocusManager.instance.primaryFocus?.unfocus();
       //Get.offAll(BoardingPage());
-      Get.to( RoutingScreen());
+      Get.offAll( RoutingScreen());
       if (prefs.getString("token") != null) {
         username = prefs.getString("username")!;
         token_global = prefs.getString("token");

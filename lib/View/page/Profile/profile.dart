@@ -312,7 +312,6 @@ class _ProfileState extends State<Profile> {
                     SingleChildScrollView(
                       child: Stack(
                         children: [
-
                          Poste.length!=0? ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
@@ -590,17 +589,26 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                             ),
-                          ): Center(
-      child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircularProgressIndicator(   backgroundColor: Colors.grey,
-            strokeWidth: 8,
-          ),SizedBox(height: 5,),
-          Text("please wait"),
-        ],
-      ),
-    ),
+                          ):
+                         SingleChildScrollView(
+                           child: Column(
+                             children: [
+                               SvgPicture.asset(
+                                 'assets/notdata.svg',
+                                 width: 100,
+                                 height: 100,
+                               ),
+                               SizedBox(height: 50,),
+                               Text(
+                                 'My Annonce is Empty',
+                                 style: TextStyle(
+                                   fontSize: 16,
+                                 ),
+                               ),
+
+                             ],
+                           ),
+                         ),
 
                         ],
                       ),
@@ -611,17 +619,6 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-              // progressdetille? Center(
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       CircularProgressIndicator(   backgroundColor: Colors.grey,
-              //         strokeWidth: 8,
-              //      ),SizedBox(height: 5,),
-              //       Text("please wait"),
-              //     ],
-              //   ),
-              // ):Container(),
             ],
           )),
     );
