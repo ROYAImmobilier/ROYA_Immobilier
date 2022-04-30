@@ -11,6 +11,7 @@ import '../../../order/order_distination.dart';
 import '../../auth/Login/login_screen.dart';
 import '../../Profile/profile.dart';
 import '../../chat_page.dart';
+import '../../contact_send.dart';
 
 final List locale = [
   {'name': 'English', 'locale': const Locale('en', 'US')},
@@ -341,21 +342,24 @@ class _DrawerPageState extends State<DrawerPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12, right: 12),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/icon/nav_menu/telephone.svg',
-                            width: 25,
-                            height: 25,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text('Contactez nous'.tr,
-                              style: TextStyle(fontSize: 20.sm))
-                        ],
+                    GestureDetector(
+                      onTap: ()=>Get.to(ContactSend(idexiste: true,)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12, right: 12),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icon/nav_menu/telephone.svg',
+                              width: 25,
+                              height: 25,
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text('Contactez nous'.tr,
+                                style: TextStyle(fontSize: 20.sm))
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(

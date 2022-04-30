@@ -172,12 +172,7 @@ class Annonce_As_Login {
     }
   }
 
-  static Future PostContact({required annonce_id,
-    required full_name,
-    required email,
-    required phone,
-    required subject,
-    required message}) async {
+  static Future PostContact({required annonce_id, required full_name, required email, required phone, required subject, required message}) async {
     try {
       Map<String, dynamic> list = {
         "annonce_id": annonce_id,
@@ -207,6 +202,39 @@ class Annonce_As_Login {
       return 1;
     }
   }
+  static Future PostContactidnotexist({ required full_name, required email, required phone, required subject, required message}) async {
+    try {
+      Map<String, dynamic> list = {
+
+        "full_name": full_name,
+        "phone": phone,
+        "subject": subject,
+        "message": message,
+        "email": email
+      };
+
+      var body = json.encode(list);
+      print(body);
+      var response = await http.post(
+          Uri.parse("https://dashboard.royaimmo.ma/api/contacts/storeAnnonces"),
+          body: body, headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      }
+      );
+      print(response.body);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        return response.statusCode;
+      }
+    }
+    catch (e) {
+      return 1;
+    }
+  }
+
+
+
 
   static getAnonnce() async {
     var response = await http.get(

@@ -7,10 +7,11 @@ import 'package:get/get.dart';
 import '../../Add_Anonnce/annonce_as_login.dart';
 
 class ContactSend extends StatefulWidget {
-  int annonce_id;
-  //List<String> image;
+  int? annonce_id;
 
-  ContactSend({Key? key, required this.annonce_id, }) : super(key: key);
+  bool idexiste;
+
+  ContactSend({Key? key,  this.annonce_id,this.idexiste=false }) : super(key: key);
 
   @override
   State<ContactSend> createState() => _ContactSendState();
@@ -311,13 +312,29 @@ class _ContactSendState extends State<ContactSend> {
                                         "Are you wante to publisher ?".tr,
                                     onCancel: () {},
                                     onConfirm: () async {
-                                      code = await Annonce_As_Login.PostContact(
+
+
+                                      code =
+
+                                      widget.idexiste ==false?
+
+                                      await Annonce_As_Login.PostContact(
                                           annonce_id: widget.annonce_id,
                                           full_name: fullname.text,
                                           email: email.text,
                                           phone: phone.text,
                                           subject: object,
+                                          message: message.text):
+
+                                      await Annonce_As_Login.PostContactidnotexist(
+                                          full_name: fullname.text,
+                                          email: email.text,
+                                          phone: phone.text,
+                                          subject: object,
                                           message: message.text);
+
+
+
                                       if (code.toString() == "200") {
                                         Get.snackbar("Sucsses", "Message envoi");
                                       // fromContact=true;
