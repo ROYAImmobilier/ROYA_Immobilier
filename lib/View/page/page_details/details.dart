@@ -78,9 +78,9 @@ class _DetailsState extends State<Details> {
     }
 
 
-    abilitycompre();
+
     setState(() {
-      progressdetille =false ;
+      abilitycompre();
     });
 
   }catch(e){
