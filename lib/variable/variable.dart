@@ -278,3 +278,5 @@ bool relaod=false;
 List<Ability> ListAbility=[];
 ////progess data
 bool progressdetille = false ;
+///logage
+String lengage="France";

@@ -47,8 +47,12 @@ class _DrawerPageState extends State<DrawerPage> {
                       child: GestureDetector(
                         child: Text(locale[index]['name'.tr]),
                         onTap: () {
-                          // print(locale[index]['name']);
-                          updateLanguage(locale[index]['locale']);
+
+                          setState(() {
+                            updateLanguage(locale[index]['locale']);
+                            lengage=locale[index]['name'];
+                          });
+
                         },
                       ),
                     );
