@@ -22,8 +22,8 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]);
 
+  ]);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if(prefs.getString("langagekey")!=null){
@@ -57,7 +57,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
   getability() async {
-    print("e.");
     try {
       final response = await http
           .get(Uri.parse('https://dashboard.royaimmo.ma/public/api/abilities'));

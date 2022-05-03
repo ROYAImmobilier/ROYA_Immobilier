@@ -219,7 +219,7 @@ setState(() {
                     Row(
                       children: [
                         Container(
-                          padding: EdgeInsets.only(top: 10.h, left: 10.w),
+                          padding: EdgeInsets.only(top: 10.h, left: 10.w,right: 10.w),
                           alignment: Alignment.topLeft,
                           child:  CircleAvatar(
                             backgroundColor: Color(0xffbfa280),

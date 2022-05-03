@@ -88,7 +88,7 @@ class jokeRepository {
   }
 
   static Future GetDetillerLogin({required sug}) async {
-    print(token_global);
+
     var res = await client.get(
         Uri.parse('https://dashboard.royaimmo.ma/api/annonces/$sug'), headers: {
       // 'Content-type': 'application/json',

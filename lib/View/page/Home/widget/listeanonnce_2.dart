@@ -23,7 +23,7 @@ class _Liste_Annonce_2State extends State<Liste_Annonce_2> {
   @override
   Widget build(BuildContext context) {
     var sizeScreen = MediaQuery.of(context).size.width;
-    print(sizeScreen);
+
     return ScreenUtilInit(
         splitScreenMode: true,
         builder: () {

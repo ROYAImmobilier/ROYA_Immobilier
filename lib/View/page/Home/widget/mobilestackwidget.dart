@@ -53,9 +53,6 @@ class _MobileGridViewState extends State<MobileGridView> {
               const SizedBox(height: 200,):
                 GestureDetector(
                   onTap: () {
-                   print(widget.data[index].id);
-                   print(widget.data[index].title);
-                   print(widget.data[index].price);
                     Get.to(Details(
                               data: widget.data[index],
                             ));
