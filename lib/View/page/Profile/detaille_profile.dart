@@ -54,7 +54,7 @@ getdate() async {
 
  if(widget.idAnonnce!=null){
    for(int i=0;i<widget.idAnonnce['media'].length;i++){
-     //  print();
+
      widget.images?.add(widget.idAnonnce['media'][i]["file_name"]);
    }
  }else{
@@ -80,7 +80,7 @@ setState(() {
 }
   @override
   Widget build(BuildContext context) {
-   // print(widget.iconability);
+
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
@@ -296,7 +296,7 @@ setState(() {
                                     "Are you wante to modifier ?"
                                         .tr,
                                     onCancel: () {
-                                    Navigator.of(context).pop;
+                                    Navigator.pop(context);
                                     },
                                     onConfirm: () {
                                       verify_update = true;
@@ -350,7 +350,7 @@ setState(() {
 
                                   },
                                   onConfirm: () async {
-                                    print(widget.data.id.toString());
+
                                     await jokeRepository.deleteitem(
                                         id: widget.data.id.toString());
                                     Get.snackbar("Sucsses", "Voter Annonce et supprimer" );
@@ -475,11 +475,11 @@ setState(() {
 
                     children: [
                       Container(
-                          alignment:locale[1]['name']=="France"||locale[0]['name']=="English"? Alignment.topLeft:Alignment.topRight,
+                          alignment:lengage=="France"||lengage=="English"? Alignment.topLeft:Alignment.topRight,
                           child: Text("Adresse".tr)),
                       SizedBox(width: 15,),
                       Container(
-                        alignment:locale[1]['name']=="France"||locale[0]['name']=="English"? Alignment.topRight:Alignment.topLeft,
+                        alignment:lengage=="France"||lengage=="English"? Alignment.topRight:Alignment.topLeft,
                         child: Text(
                           widget.data.address.toString() +
                               ' => ' +
@@ -594,7 +594,7 @@ setState(() {
 
                 Container(
                   margin: EdgeInsets.only(right: 20.w, left: 20.w),
-                  alignment:locale[0]['name']=="France"||locale[1]['name']=="English"? Alignment.topLeft:Alignment.topRight,
+                  alignment:lengage=="France"||lengage=="English"? Alignment.topLeft:Alignment.topRight,
                   child:  Text(
                     'Description'.tr,
                     style: TextStyle(fontSize: 25),

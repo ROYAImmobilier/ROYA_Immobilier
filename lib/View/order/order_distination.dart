@@ -35,8 +35,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
   @override
   void initState() {
-    Get.snackbar("Error", "Server");
-
       if(!verify_city)
         ListCity();
       setState(() {

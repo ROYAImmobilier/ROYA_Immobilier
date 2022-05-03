@@ -11,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
 import 'View/page/auth/Login/components/body.dart';
-import 'View/page/auth/Signup/verification.dart';
 import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
 import 'package:http/http.dart' as http;

@@ -161,7 +161,7 @@ class Annonce_As_Login {
             'Accept': 'application/json',
             'Authorization': 'Bearer $token_global'
           });
-
+       // print(response_1.statusCode);
       if (response_1.statusCode == 201) {
         return response_1.statusCode;
       } else {
@@ -192,7 +192,7 @@ class Annonce_As_Login {
         'Accept': 'application/json',
       }
       );
-      print(response.body);
+     // print(response.body);
       print(response.statusCode);
       if (response.statusCode == 200) {
         return response.statusCode;
@@ -222,7 +222,7 @@ class Annonce_As_Login {
         'Accept': 'application/json',
       }
       );
-      print(response.body);
+     // print(response.body);
       print(response.statusCode);
       if (response.statusCode == 200) {
         return response.statusCode;
