@@ -76,7 +76,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("FULL NAME".tr, ),
+                            child: Text('FULL NAME'.tr, ),
                           )),
                     ),
                     Padding(
@@ -91,7 +91,7 @@ class _ContactSendState extends State<ContactSend> {
                           cursorColor: Colors.white,
                           validator: (value) {
                             if (value?.length == 0) {
-                              return " Full name";
+                              return 'FULL NAME'.tr;
                             } else {
                               return null;
                             }
@@ -115,7 +115,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("EMAIL".tr, textAlign: TextAlign.left),
+                            child: Text("Your Email".tr, ),
                           )),
                     ),
                     Padding(
@@ -130,7 +130,7 @@ class _ContactSendState extends State<ContactSend> {
                           cursorColor: Colors.white,
                           validator: (value) {
                             if (value?.length == 0) {
-                              return " Email";
+                              return "Your Email".tr;
                             } else {
                               return null;
                             }
@@ -140,7 +140,7 @@ class _ContactSendState extends State<ContactSend> {
                               contentPadding: EdgeInsets.all(8),
                               //fillColor: Colors.white,
                               // labelText: "",
-                              hintText: 'EMAIL'.tr,
+                              hintText: "Your Email".tr,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(width: 3.w),
                                   borderRadius: BorderRadius.circular(5.r))),
@@ -154,7 +154,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("PHONE".tr, ),
+                            child: Text('Phone 1 :'.tr, ),
                           )),
                     ),
                     Padding(
@@ -179,7 +179,7 @@ class _ContactSendState extends State<ContactSend> {
                               contentPadding: EdgeInsets.all(8),
                               //fillColor: Colors.white,
                               // labelText: "",
-                              hintText: 'PHONE'.tr,
+                              hintText: 'Phone 1 :'.tr,
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(width: 3),
                                   borderRadius: BorderRadius.circular(5))),
@@ -193,7 +193,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("OBJECT", textAlign: TextAlign.left),
+                            child: Text("OBJECT".tr, ),
                           )),
                     ),
                     Padding(
@@ -257,7 +257,7 @@ class _ContactSendState extends State<ContactSend> {
                           width: MediaQuery.of(context).size.width,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text("MESSAGE",),
+                            child: Text("MESSAGE".tr,),
                           )),
                     ),
                     Padding(
@@ -336,13 +336,13 @@ class _ContactSendState extends State<ContactSend> {
 
 
                                       if (code.toString() == "200") {
-                                        Get.snackbar("Sucsses", "Message envoi");
+                                        Get.snackbar("success".tr, "Message envoi".tr);
                                       // fromContact=true;
                                         Navigator.pop(context);
                                         Navigator.pop(context);
 
                                       } else {
-                                        Get.snackbar("error", "Message pas envoi");
+                                        Get.snackbar("Error".tr, "Message not sent".tr);
                                       }
 
 
@@ -363,7 +363,7 @@ class _ContactSendState extends State<ContactSend> {
                                   top: 10, left: 25, bottom: 10, right: 25),
                               child: Center(
                                 child: Text(
-                                  "SEND MESSAGE",
+                                  "SEND MESSAGE".tr,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 12.sp),
                                 ),

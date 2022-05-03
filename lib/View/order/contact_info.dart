@@ -450,6 +450,7 @@ int nmbreerror = 0 ;
                               ),
                             ),
                           ),
+
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r)),
@@ -469,6 +470,7 @@ int nmbreerror = 0 ;
                                     progress_modife = true;
                                   });
                                   var x;
+
 
                                   isLogin == false
                                       ? Get.to(LoginScreen(
@@ -524,18 +526,58 @@ int nmbreerror = 0 ;
                                           floor_type: widget.flooring,
                                           floor: "4",
                                         );
-                                 if(x==500){
 
-                                   Get.snackbar(
-                                       "Error".tr, "Your ad is not adding".tr);
+
+                                  if (x == 201) {
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text("Your ad is added".tr),
+                                            backgroundColor: Colors.grey,
+                                            behavior: SnackBarBehavior.floating,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(24),
+
+                                            ),
+
+                                           ));
+                          // Get.snackbar(
+                          // "success".tr, );
+                          // verify_update = false;
+                          progress_modife = false;
+                          Get.to( RoutingScreen());
+                          }
+                           else if(x==500 ){
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text( "Your ad is not adding".tr),
+                                      backgroundColor: Colors.grey,
+                                      behavior: SnackBarBehavior.floating,
+
+                                     ));
+
+                                   // Get.snackbar(
+                                   //     );
                                    nmbreerror ++ ;
                                    if(nmbreerror==1 || nmbreerror ==0){
-                                     progress_modife = false;
+                                     setState(() {
+                                       progress_modife = false;
+                                     });
+
 
                                    }else{
-                                     Get.snackbar(
-                                         "Error in server".tr, "Your ad is not adding".tr);
-                                     progress_modife = false;
+                                     ScaffoldMessenger.of(context).showSnackBar(
+                                         SnackBar(
+                                           content: Text( "Error in server".tr),
+                                           backgroundColor: Colors.grey,
+                                           behavior: SnackBarBehavior.fixed,
+
+                                         ));
+                                     setState(() {
+                                       progress_modife = false;
+                                     });
+
                                      Get.to(RoutingScreen());
                                    }
 
@@ -546,13 +588,7 @@ int nmbreerror = 0 ;
 
 
 
-                                  if (x == 201) {
-                                    Get.snackbar(
-                                        "success".tr, "Your ad is added".tr);
-                                   // verify_update = false;
-                                    progress_modife = false;
-                                    Get.to( RoutingScreen());
-                                  }
+
 
                                 } else {
                                   // print("876");

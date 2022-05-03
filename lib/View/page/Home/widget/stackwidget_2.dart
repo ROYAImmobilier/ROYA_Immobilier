@@ -10,6 +10,7 @@ import '../../../../data.dart';
 import '../../../../screenSize/screenSized.dart';
 import '../../../../variable/variable.dart';
 import '../../../routing_screen.dart';
+import '../../page_details/details.dart';
 import '../../page_details/details_serche.dart';
 import '../../searchfilter.dart';
 import '../home.dart';
@@ -199,10 +200,10 @@ int _maxIndex=15;
                             itemBuilder:
                                 (BuildContext context, int index) {
                               return GestureDetector(
-                                  onTap: () => Get.to(d(
-                                    image: widget.data[index].cover,
-                                    //?? 'https://c8.alamy.com/compfr/j7kk5a/cabinet-en-bois-aux-fenetres-de-l-appartement-avec-vue-sur-le-london-platanes-j7kk5a.jpg',
+                                  onTap: () => Get.to(Details(
+
                                     data: widget.data[index],
+
                                   )),
                                   child: Liste_Annonce_2(
                                       data: widget.data[index],

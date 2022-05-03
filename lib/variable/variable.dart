@@ -93,7 +93,7 @@ height: 40,) ;
  //data for modification
 var getData_put;
 //bool verify=false;
-
+var langagevariable ='fr';
 ///region and city
 List<Region>? region;
 List<City>? city;

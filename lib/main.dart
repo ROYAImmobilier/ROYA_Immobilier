@@ -11,19 +11,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
 import 'Model/joke.dart';
 import 'View/page/auth/Login/components/body.dart';
-import 'View/page/auth/Signup/verification.dart';
 import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
 import 'package:http/http.dart' as http;
 
 import 'View/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(prefs.getString("langagekey")!=null){
+        langagevariable = prefs.getString("langagekey")!;
+    }
+
   runApp(const MyApp());
 }
 
@@ -78,8 +84,11 @@ class _MyAppState extends State<MyApp> {
     } catch (e) {}
   }
 
+
+
   @override
   void initState() {
+
     super.initState();
     getUserDetails();
     getability();
@@ -87,11 +96,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //  initialBinding: Binding(),
       translations: Transation(),
-      locale: Locale('fr'),
+      locale: Locale(langagevariable),
       fallbackLocale: Locale('fr'),
       home:SplashScreen()
       // initialRoute: RouteScreen.getHomepage(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roya_immobilie/View/page/auth/components/text_field_container.dart';
 
 import '../../../../variable/variable.dart';
@@ -25,7 +26,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
       child: TextFormField(
         validator: (val){
           if(val!.isEmpty){
-            return "entre voter password";
+            return "entre voter password".tr;
           } else
         {
             return null;
@@ -36,7 +37,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         onChanged: widget.onChanged,
         cursorColor: kPrimaryColor,
         decoration:  InputDecoration(
-          hintText: "Password",
+          hintText: "Password".tr,
           icon: const Icon(
             Icons.lock,
             color: kPrimaryColor,

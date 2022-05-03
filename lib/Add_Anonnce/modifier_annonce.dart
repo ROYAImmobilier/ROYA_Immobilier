@@ -59,8 +59,8 @@ class Modifier_Annonce {
         "media":media,
       };
       var body = json.encode(list);
-      print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-      print(body);
+     // print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+     // print(body);
       var response_1 = await http.put(
           Uri.parse(
               'https://dashboard.royaimmo.ma/api/annonces/${getData_put["id"]}'),
@@ -71,8 +71,8 @@ class Modifier_Annonce {
             //HttpHeaders.authorizationHeader:token_1.toString(),
             'Authorization': 'Bearer $token_global'
           });
-        print(response_1.statusCode);
-        print(response_1.body);
+      //  print(response_1.statusCode);
+     //   print(response_1.body);
       if (response_1.statusCode == 500) {
 
        return  response_1.statusCode;

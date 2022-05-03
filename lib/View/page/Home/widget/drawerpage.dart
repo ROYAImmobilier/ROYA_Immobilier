@@ -46,12 +46,28 @@ class _DrawerPageState extends State<DrawerPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         child: Text(locale[index]['name'.tr]),
-                        onTap: () {
+                        onTap: () async {
 
-                          setState(() {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          print(prefs.get("langagekey"));
+
+                          setState(()  {
+
                             updateLanguage(locale[index]['locale']);
                             lengage=locale[index]['name'];
+
+                             if(lengage=="France")
+                                    prefs.setString("langagekey",'fr');
+                             if(lengage=="English")
+                                    prefs.setString("langagekey",'en');
+                             else
+                                    prefs.setString("langagekey",'ar');
+
+
+
+
                           });
+                          print(prefs.get("langagekey"));
 
                         },
                       ),

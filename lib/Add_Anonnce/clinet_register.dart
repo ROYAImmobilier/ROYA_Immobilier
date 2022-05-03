@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -32,27 +34,6 @@ class Annonce_As_SingUp {
     required List<String> media, phone2,
   }) async {
     try {
-      print("address " + address!);
-      //  print(categorie);
-      print(status);
-      print(bathrooms);
-      print(kitchens);
-      print(title);
-      print(floor_type);
-      print(floor);
-      print(area);
-      print(name);
-      print(description);
-      print(phone1);
-      print(quartier);
-      print(age);
-      print("wewe" + transaction.toString());
-      print(region_id);
-      print(city_id);
-      print(email);
-      print(password);
-      print(media);
-      //print(phone2);
       Map<String, dynamic> list = {
         "region_id": region_id,
         "city_id": city_id,

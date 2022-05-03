@@ -80,9 +80,6 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-   // late String email = '';
-  //  late String name = '';
-    print("y:"+widget.y.toString());
     return Form(
       key: _key_signup,
       child: Background(
@@ -91,8 +88,8 @@ class _BodyState extends State<Body> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                "SIGNUP",
+               Text(
+                 "Sign Up".tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: size.height * 0.03),
@@ -113,12 +110,12 @@ class _BodyState extends State<Body> {
                   },
                   //onChanged: onChanged,
                   cursorColor: kPrimaryColor,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     icon: Icon(
                       Icons.person,
                       color: kPrimaryColor,
                     ),
-                    hintText: "Your Name",
+                    hintText: 'FULL NAME'.tr,
                     border: InputBorder.none,
                   ),
                 ),
@@ -137,10 +134,10 @@ class _BodyState extends State<Body> {
                   validator: ( val){
                     if(val!.isEmpty)
                     {
-                      return 'Please a Enter';
+                      return "Your Email".tr;
                     }
                     if(!RegExp("^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val)){
-                      return 'Please a valid Email';
+                      return "Your Email".tr;
                     }
                     return null;
                   },
@@ -151,7 +148,7 @@ class _BodyState extends State<Body> {
                       Icons.email,
                       color: kPrimaryColor,
                     ),
-                    hintText: "Your Email",
+                    hintText: "Your Email".tr,
                     border: InputBorder.none,
 
                   ),
@@ -174,36 +171,36 @@ class _BodyState extends State<Body> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(29),
                   child: ElevatedButton(
-                    child: const Text(
-                      'Sing UP',
+                    child:  Text(
+                      "Sign Up".tr,
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
                       int ?x;
                       int ?accant;
         List<String> image=[];
-                      print(widget.adress);
-                      print(widget.property_type);
-                      print(widget.status);
-                      print( widget.bathrooms);
-                      print(widget.kitchens);
-                      print(widget.title);
-                      print( widget.floor_type);
-                      print(widget.floor);
-                      print( widget.area);
-                      print(_name.text);
-                      print(widget.description);
-                      print(widget.phone1);
-                      print( widget.quartier);
-                      print(widget.age);
-                      print( widget.transaction.toString());
-                      print (widget.region_id);
-                      print( widget.city_id);
-                      print(widget.phone2);
-                      print(widget.abilities);
-                      print(password_2.text);
-                      print(password.text);
-                      print(emaill.text);
+                      // print(widget.adress);
+                      // print(widget.property_type);
+                      // print(widget.status);
+                      // print( widget.bathrooms);
+                      // print(widget.kitchens);
+                      // print(widget.title);
+                      // print( widget.floor_type);
+                      // print(widget.floor);
+                      // print( widget.area);
+                      // print(_name.text);
+                      // print(widget.description);
+                      // print(widget.phone1);
+                      // print( widget.quartier);
+                      // print(widget.age);
+                      // print( widget.transaction.toString());
+                      // print (widget.region_id);
+                      // print( widget.city_id);
+                      // print(widget.phone2);
+                      // print(widget.abilities);
+                      // print(password_2.text);
+                      // print(password.text);
+                      // print(emaill.text);
                       //
                       if(isCamindingfrom){
                         for(int i=0;i<widget.media!.length;i++){
@@ -213,7 +210,7 @@ class _BodyState extends State<Body> {
 
                       if (_key_signup.currentState!.validate()) {
                         if(isCamindingfrom){
-                          await  Annonce_As_SingUp.Add_Annonce_SingUp(
+                        x=  await  Annonce_As_SingUp.Add_Annonce_SingUp(
                               address: widget.adress.toString(),
                               status: widget.status,
                               transaction:  widget.transaction,
@@ -227,7 +224,7 @@ class _BodyState extends State<Body> {
                               area: widget.area,
                               name:_name.text ,
                               description: widget.description,
-                              apartment: "2".toString(),
+                              apartment: "".toString(),
                               bedrooms: widget.bedrooms.toString(),
                               phone1: widget.phone1.toString(),
                               phone2: widget.phone2,
@@ -241,13 +238,13 @@ class _BodyState extends State<Body> {
                               email: emaill.text,
                               city_id: widget.city_id.toString());
                           widget.y++;
-                          print("wetwrw"+x.toString());
                           if (x == 201 ) {
                             Get.snackbar(
-                                "success".tr, "Your ad is added".tr);
+                                "success".tr, "Your ad is added & please verify your email".tr);
                             verify_update = false;
                             progress_modife = false;
-                            // Get.to( RoutingScreen());
+                             Get.to( RoutingScreen());
+                            print("getto");
                           } else if(x!=201) {
                             Get.snackbar("Error",
                                 "Votre Annonce ne pas ajouté".tr);
@@ -259,12 +256,12 @@ class _BodyState extends State<Body> {
                             Get.snackbar("Error",
                                 "Répété plus tard".tr);
                             // print("y:"+widget.y.toString());
-                            Get.offAll(RoutingScreen());
+                          //  Get.offAll(RoutingScreen());
                           }
                         }else if(!isCamindingfrom){
                         accant=await  _Signup(email: emaill.text, confirmation: password_2.text, name: _name.text, password: password.text);
                         if(accant==200){
-                          Get.snackbar("Voter Copmte et cree",
+                          Get.snackbar("Voter Copmte et cree".tr,
                               "".tr);
                          Get.offAll(RoutingScreen());
                         } if(accant==302){
@@ -319,8 +316,8 @@ class _BodyState extends State<Body> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
-                    "Already have an Account ? ",
+                   Text(
+                    "Already have an Account ? ".tr,
                     style: TextStyle(color: kPrimaryColor),
                   ),
                   GestureDetector(
@@ -350,8 +347,8 @@ class _BodyState extends State<Body> {
                           city_id: widget.city_id
                       ));
                     },
-                    child: const Text(
-                      "Login In",
+                    child:  Text(
+                      'Login'.tr,
                       style: TextStyle(
                         color: kPrimaryColor,
                         fontWeight: FontWeight.bold,

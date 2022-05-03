@@ -386,10 +386,10 @@ class _ProfileState extends State<Profile> {
                                               textConfirm: "yes".tr,
                                               middleText:
                                                   "Are you want to delete ?".tr,
-                                              barrierDismissible: false,
+                                             // barrierDismissible: false,
                                               onCancel: () {
                                                 setState(() {
-                                                 Get.back();
+                                                  Navigator.pop(context);
                                                 });
                                               },
                                               onConfirm: () async {
@@ -397,7 +397,7 @@ class _ProfileState extends State<Profile> {
                                                     id: Poste[index]
                                                         .id
                                                         .toString());
-                                                Get.back();
+                                               Navigator.pop(context);
                                               });
                                         }),
                                         children: [
@@ -410,11 +410,10 @@ class _ProfileState extends State<Profile> {
                                                   middleText:
                                                       "Are you want to delete ?"
                                                           .tr,
-                                                  barrierDismissible: false,
+                                                //  barrierDismissible: false,
                                                   onCancel: () {
-                                                    setState(() {
-                                                      Get.back();
-                                                    });
+                                                     Get.back();
+
                                                   },
                                                   onConfirm: () async {
                                                     await jokeRepository
@@ -422,10 +421,11 @@ class _ProfileState extends State<Profile> {
                                                             id: Poste[index]
                                                                 .id
                                                                 .toString());
-                                                    Get.back();
+
                                                     setState(() {
                                                       reloud();
                                                     });
+                                                   Get.back();
                                                   });
                                             },
                                             label: "Delete".tr,

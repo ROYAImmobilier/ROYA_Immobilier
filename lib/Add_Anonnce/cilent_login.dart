@@ -22,18 +22,18 @@ class Clinet_Login{
       // print(response.body);
       var token=json.decode(response.body);
       token_global=token['data']['token'];
-      print(response.body);
+     // print(response.body);
       if(response.statusCode==200){
 
         isLogin=true;
-        print("test" +response.body);
+       // print("test" +response.body);
         var response_1 = await http
             .get(Uri.parse('https://dashboard.royaimmo.ma/api/annonces'), headers: {
           //HttpHeaders.authorizationHeader:token_1.toString(),
           'Authorization': 'Bearer $token_global'
         }
         );
-        print(response_1.body);
+      //  print(response_1.body);
 
 
 

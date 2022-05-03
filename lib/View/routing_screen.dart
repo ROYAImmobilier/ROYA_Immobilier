@@ -29,7 +29,7 @@ class _RoutingScreenState extends State<RoutingScreen> {
 
   int bottomSelectedIndex = 0;
   var pageController;
-
+  bool prog =false ;
   void OnPageChanged(int index) {
     setState(() {
       bottomSelectedIndex = index;
@@ -77,13 +77,17 @@ class _RoutingScreenState extends State<RoutingScreen> {
           isExtended: false,
           backgroundColor: Color.fromARGB(255, 130, 108, 219),
           // mini: true,
-          child: SvgPicture.asset(
+          child:prog?CircularProgressIndicator(color: Colors.white,): SvgPicture.asset(
             'assets/icon/math-plus.svg',
             width: 20.w,
             height: 20.h,
             color: Colors.white,
           ),
           onPressed: () async {
+            setState(() {
+              prog=true;
+            });
+
             verify_update = false;
             if (!verify_region) {
               await ServicesRgion.getUsers().then(
@@ -95,7 +99,9 @@ class _RoutingScreenState extends State<RoutingScreen> {
                 },
               );
             }
-
+setState(() {
+  prog=false;
+});
             Get.to(Add_Annonce());
           },
         ),

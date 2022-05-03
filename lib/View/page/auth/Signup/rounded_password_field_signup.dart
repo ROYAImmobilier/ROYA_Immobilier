@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roya_immobilie/View/page/auth/components/text_field_container.dart';
 
 import '../../../../variable/variable.dart';
@@ -27,9 +28,9 @@ class _RoundedPasswordFieldSignupState extends State<RoundedPasswordFieldSignup>
           controller: widget.password,
           validator: (val){
             if(val!.isEmpty){
-              return "entre voter password";
+              return "entre voter password".tr;
             } else if(val.length<=5) {
-              return "password";
+              return "Password".tr;
             }
             else
           {
@@ -40,7 +41,7 @@ class _RoundedPasswordFieldSignupState extends State<RoundedPasswordFieldSignup>
           obscureText: isvesible,
           cursorColor: kPrimaryColor,
           decoration:  InputDecoration(
-            hintText: "Password",
+            hintText: "Password".tr,
             icon: Icon(
               Icons.lock,
               color: kPrimaryColor,
@@ -60,19 +61,19 @@ class _RoundedPasswordFieldSignupState extends State<RoundedPasswordFieldSignup>
             validator: (val){
               if(val!.isEmpty)
               {
-                return 'Please re-enter password';
+                return 'Please re-enter password'.tr;
               }
               print(widget.password.text);
              print(widget.password_2.text);
                 if(widget.password.text!=widget.password_2.text){
-                  return "Password does not match";
+                  return "Password does not match".tr;
                 }
               return null;
             },
             obscureText: isvesible,
             cursorColor: kPrimaryColor,
             decoration:  InputDecoration(
-              hintText: "Password",
+              hintText: "Password".tr,
               icon: Icon(
                 Icons.lock,
                 color: kPrimaryColor,
