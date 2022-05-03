@@ -42,7 +42,6 @@ class Clinet_Login{
           progress=false;
 
           isLogin=true;
-          print(isLogin);
           final responseJsoon = json.decode(response_1.body);
           final responseJson = responseJsoon["data"];
 

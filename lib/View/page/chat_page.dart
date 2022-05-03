@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,9 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/View/page/Home/widget/drawerpage.dart';
 import 'package:roya_immobilie/View/page/auth/Login/login_screen.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
-
 import '../../Model/Contact.dart';
-import '../../cashd_image/image.dart';
 import '../../screenSize/screenSized.dart';
 import '../../variable/variable.dart';
 
@@ -26,7 +23,6 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
-   // print(5);
     if (contact.isEmpty && isLogin) {
       setState(() {
         getContacts();
@@ -38,8 +34,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(11);
-    print(contact.isEmpty);
+
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -113,8 +108,7 @@ class _ChatPageState extends State<ChatPage> {
                           }
                         }
 
-                        //print(slug_data[widget.index].cover.toString());
-                        // print(_annonce?.cover.toString());
+
                         return Card(
                             elevation: 2,
                             shape: RoundedRectangleBorder(
@@ -438,7 +432,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Future getContacts() async {
-    print(token_global);
+
     try {
       var response = await http.get(
           Uri.parse('https://dashboard.royaimmo.ma/api/contacts'),
@@ -446,21 +440,18 @@ class _ChatPageState extends State<ChatPage> {
             //HttpHeaders.authorizationHeader:token_1.toString(),
             'Authorization': 'Bearer $token_global'
           });
-      // print(response.body);
 
-//print(response.body);
-     // print(response.statusCode);
       if (response.statusCode == 200) {
         final responseJsoon = json.decode(response.body);
         final responseJson = responseJsoon["data"];
-       // print(responseJson);
+
         setState(() {
           for (Map annoncelogin in responseJson) {
             contact.add(Contacts.fromJson(annoncelogin.cast()));
           }
         });
       }
-      // print(contact[0].email);
+
 
     } catch (e) {
       print('error ' + e.toString());

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -104,8 +102,7 @@ class Annonce_As_SingUp {
           // print(response.body)
 
           );
-      print(response.statusCode);
-      print(response.body);
+
 
       if (response.statusCode == 201) {
         //Get.to( RoutingScreen());

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:roya_immobilie/Model/joke.dart';
-import 'package:roya_immobilie/Model/repositery.dart';
+
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 
 

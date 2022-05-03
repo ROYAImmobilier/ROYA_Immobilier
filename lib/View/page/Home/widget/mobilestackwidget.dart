@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:roya_immobilie/View/page/Home/widget/test.dart';
-
-import '../../../../variable/variable.dart';
 import '../../page_details/details.dart';
 class MobileGridView extends StatefulWidget {
   MobileGridView({required this.data, required this.leng});

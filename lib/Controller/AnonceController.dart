@@ -45,7 +45,7 @@ class AnnonceController extends GetxController {
     var dbHelper = CordDatabaseHelper.db;
     _cartProductsModel =
         (await dbHelper.getAllProdects()).cast<FavCategoryItem>();
-    print(_cartProductsModel.length);
+
     // print(_cartProductsModel[0].toJson());
     update();
   }

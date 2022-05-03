@@ -13,11 +13,11 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../../Model/joke.dart';
 import '../../../Model/repositery.dart';
 import '../../../data.dart';
-import '../../../main.dart';
+
 import '../../../variable/variable.dart';
 import '../Home/home.dart';
 import '../Home/widget/drawerpage.dart';
-import '../Profile/detaille_profile.dart';
+
 import '../contact_send.dart';
 
 class Details extends StatefulWidget {
@@ -52,22 +52,21 @@ class _DetailsState extends State<Details> {
   }
 
   getdate() async {
-//print( widget.index);
+
     try {
       var idann = await jokeRepository.GetDetiller(sug: widget.data.slug);
       widget.idAnonnce = idann;
-      var k = widget.idAnonnce['media'];
       var abi = widget.idAnonnce["abilities"];
 
       for (int i = 0; i < abi.length; i++) {
         widget.iconability?.add(abi[i]["icon"]);
-        print(abi[i]["icon"].toString());
+
       }
 
       //
       if (widget.idAnonnce != null) {
         for (int i = 0; i < widget.idAnonnce['media'].length; i++) {
-          //  print();
+
           widget.images?.add(widget.idAnonnce['media'][i]["file_name"]);
         }
       } else {
@@ -357,7 +356,7 @@ class _DetailsState extends State<Details> {
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
-                                      'assets/icon/cc-chat.svg',
+                                      'assets/icon/nav_menu/cc-chat.svg',
                                       width: 20.w,
                                       height: 20.h,
                                       matchTextDirection: true,
@@ -377,9 +376,9 @@ class _DetailsState extends State<Details> {
                                   ],
                                 ),
                                 onPressed: () {
-                                  print(widget.data.id);
+
                                   slug_image = widget.images;
-                                  // print("images "+widget.images);
+
                                   Get.to(ContactSend(
                                     annonce_id: widget.data.id,
                                   ));

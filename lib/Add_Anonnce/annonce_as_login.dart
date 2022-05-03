@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/Model/anonnce.dart';
+
 
 import '../variable/variable.dart';
 
@@ -40,16 +40,14 @@ class Annonce_As_Login {
             "email": email,
             "password": password,
           });
-      // print(response.body);
-      print(1111);
-      print("response" + response.statusCode.toString());
+
 
 
       var token = json.decode(response.body);
       token_global = token['data']['token'];
 
       if (response.statusCode == 200) {
-        print("test" + response.body);
+
 
         Map<String, dynamic> lisst = {
           "region_id": region_id,
@@ -75,7 +73,7 @@ class Annonce_As_Login {
           "media": media,
         };
         var body = json.encode(lisst);
-        print(body);
+
         var response_1 = await http.post(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
             body: body,
@@ -85,8 +83,7 @@ class Annonce_As_Login {
               'Accept': 'application/json',
               'Authorization': 'Bearer $token_global'
             });
-        print(response_1.body);
-        print(response_1.statusCode);
+
         if (response_1.statusCode == 201) {
           isLogin = true;
           //  Get.offAll(RoutingScreen());
@@ -152,7 +149,7 @@ class Annonce_As_Login {
       };
 
       var body = json.encode(list);
-      print(body);
+
       var response_1 = await http.post(
           Uri.parse('https://dashboard.royaimmo.ma/api/annonce/storeAsLogin'),
           body: body,
@@ -184,7 +181,7 @@ class Annonce_As_Login {
       };
 
       var body = json.encode(list);
-      print(body);
+
       var response = await http.post(
           Uri.parse("https://dashboard.royaimmo.ma/api/contacts/storeAnnonces"),
           body: body, headers: {
@@ -192,8 +189,7 @@ class Annonce_As_Login {
         'Accept': 'application/json',
       }
       );
-     // print(response.body);
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         return response.statusCode;
       }
@@ -214,7 +210,7 @@ class Annonce_As_Login {
       };
 
       var body = json.encode(list);
-      print(body);
+
       var response = await http.post(
           Uri.parse("https://dashboard.royaimmo.ma/api/contacts/storeAnnonces"),
           body: body, headers: {
@@ -222,50 +218,18 @@ class Annonce_As_Login {
         'Accept': 'application/json',
       }
       );
-     // print(response.body);
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         return response.statusCode;
       }
     }
     catch (e) {
-      return 1;
+      return null;
     }
   }
 
 
 
 
-  static getAnonnce() async {
-    var response = await http.get(
-        Uri.parse("https://dashboard.royaimmo.ma/api/site/annonces"), headers: {
 
-      'Authorization': 'Bearer $token_global'
-    }
-    );
-    // print(response.body);
-    if (response.statusCode == 200) {
-      // print(response.body);
-      final responseJsoon = json.decode(response.body);
-      final responseJson = responseJsoon;
-
-      Map<String, dynamic>list = responseJson;
-
-      print(list["links"]["next"]);
-      response = await http.get(
-          Uri.parse(list["links"]["next"]), headers: {
-
-        'Authorization': 'Bearer $token_global'
-      });
-      if (response.statusCode == 200) {
-        // print(response.body);
-        final responseJsoon = json.decode(response.body);
-        final responseJson = responseJsoon;
-
-        Map<String, dynamic>list = responseJson;
-
-        print(list['data']);
-      }
-    }
-  }
 }

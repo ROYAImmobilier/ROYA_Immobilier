@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:roya_immobilie/Model/joke.dart';
-import 'package:roya_immobilie/Model/repositery.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 
 import '../../variable/variable.dart';
@@ -220,7 +219,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                       onChanged: (value) {
                                         setState(() {
                                           _propritr_filter='Vente';
-                                         // print(_propritr_filter);
+
 
                                         });
                                       },
@@ -239,7 +238,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                       onChanged: (value) {
                                         setState(() {
                                           _propritr_filter='À location';
-                                         //  print(_propritr_filter);
+
                                         });
                                       },
                                     ),
@@ -255,7 +254,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
                                         setState(() {
 
                                           _propritr_filter='Demande';
-                                        //  print(_propritr_filter);
+
                                         });
                                       },
                                     ),
@@ -360,9 +359,6 @@ class _SearchFiltterState extends State<SearchFiltter> {
 
                                         onTap: ()=>
                                         {
-                                          print(i),
-                                          print(filtrResulta[i].slug),
-                                          print(filtrResulta[i].title),
                                           Get.to(Details(
                                           data: filtrResulta[i],
 

@@ -11,7 +11,6 @@ import '../../../../screenSize/screenSized.dart';
 import '../../../../variable/variable.dart';
 import '../../../routing_screen.dart';
 import '../../page_details/details.dart';
-import '../../page_details/details_serche.dart';
 import '../../searchfilter.dart';
 import '../home.dart';
 import 'listeanonnce_2.dart';
@@ -32,7 +31,6 @@ class StackWidget_2 extends StatefulWidget {
 
 class _StackWidget_2State extends State<StackWidget_2> {
 ScrollController _scrollController=ScrollController();
-int _maxIndex=15;
   List<Joke> select = [];
   int j = indexselectCategory ;
   bool grid = true;

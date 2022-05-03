@@ -49,25 +49,19 @@ class _DrawerPageState extends State<DrawerPage> {
                         onTap: () async {
 
                           SharedPreferences prefs = await SharedPreferences.getInstance();
-                          print(prefs.get("langagekey"));
 
                           setState(()  {
-
                             updateLanguage(locale[index]['locale']);
                             lengage=locale[index]['name'];
 
                              if(lengage=="France")
                                     prefs.setString("langagekey",'fr');
-                             if(lengage=="English")
+                             else if(lengage=="English")
                                     prefs.setString("langagekey",'en');
                              else
                                     prefs.setString("langagekey",'ar');
 
-
-
-
                           });
-                          print(prefs.get("langagekey"));
 
                         },
                       ),

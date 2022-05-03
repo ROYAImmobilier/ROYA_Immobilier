@@ -34,7 +34,7 @@ class jokeRepository {
 
 
     if (res.statusCode == 200) {
-      print(res.body);
+    //  print(res.body);
       return null;
     } else {
       return null;
@@ -42,7 +42,7 @@ class jokeRepository {
   }
 
   static Future getdata({required id}) async {
-    print(id);
+   // print(id);
     var res = await client
         .get(Uri.parse(
         'https://dashboard.royaimmo.ma/api/annonces/${id.toString()}'),
@@ -54,8 +54,8 @@ class jokeRepository {
     if (res.statusCode == 200) {
       var jsoon = res.body;
       var a = json.decode(jsoon);
-      print(res.statusCode);
-      print(res.body);
+      // print(res.statusCode);
+      // print(res.body);
       if (a.isEmpty) {
         return null;
       }
@@ -104,8 +104,7 @@ class jokeRepository {
 
       return b["data"][0];
     } else {
-      var b = json.decode(jsoon);
-      var a = b["data"][0];
+
       return null;
     }
   }

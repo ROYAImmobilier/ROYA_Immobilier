@@ -13,8 +13,7 @@ import '../../Model/ability.dart';
 import '../../variable/variable.dart';
 import '../page/auth/Login/login_screen.dart';
 import '../routing_screen.dart';
-import 'order_details.dart';
-import 'order_distination.dart';
+
 
 class ContactInfo extends StatefulWidget {
   String? Property_details;
@@ -374,7 +373,7 @@ int nmbreerror = 0 ;
                                             : widget._listimagebase64_com.length,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, i) {
-                                          print(verify_update);
+
 
                                           return GestureDetector(
                                             onLongPress: () {

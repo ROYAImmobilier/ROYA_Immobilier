@@ -135,8 +135,8 @@ class Datum {
     "price": price,
     "age": age,
     "floor_type": floorType,
-    "floor": floor == null ? null : floor,
-    "apartment": apartment == null ? null : apartment,
+    "floor": floor,
+    "apartment": apartment,
     "bedrooms": bedrooms,
     "bathrooms": bathrooms,
     "kitchens": kitchens,
@@ -144,7 +144,7 @@ class Datum {
     "slug": slug,
     "description": description,
     "phone1": phone1,
-    "phone2": phone2 == null ? null : phone2,
+    "phone2": phone2,
     "phone3": phone3,
     "validated": validated,
     "created_at": createdAt,
@@ -242,7 +242,7 @@ class Link {
   );
 
   Map<String, dynamic> toJson() => {
-    "url": url == null ? null : url,
+    "url": url,
     "label": label,
     "active": active,
   };

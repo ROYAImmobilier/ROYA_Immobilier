@@ -89,8 +89,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
 
       //getName_region_city();
 
-      print(_categorie);
-      print(statut);
     }
   }
 
@@ -98,9 +96,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
     for (int i = 0; i < region!.length; i++) {
       if (region![i].regionName == value_2) {
         id_region = region![i].id;
-        //  id_region_=_region![i].id;
-        //  print("id region"+ id_region_.toString());
-        //  getCity();
+
       }
     }
     return id_region;
@@ -123,7 +119,6 @@ class _Add_AnnonceState extends State<Add_Annonce> {
         cityGet = listCity[i].cityName;
       }
     }
-    print(cityGet);
     return cityGet;
   }
 getData_m() async {
@@ -263,7 +258,7 @@ getData_m() async {
                                     _categorie = newValue;
                                     _categorie_select =
                                         CondationLangage.categorey(newValue!);
-                                    print(_categorie);
+
                                   });
                                 },
                               )),
@@ -541,13 +536,13 @@ getData_m() async {
                             alignment: Alignment.topRight,
                             child: TextButton(
                               onPressed: () {
-                                print(_Property_details);
-                                print(_categorie_select);
-                                print(_statut);
-                                print(adresse.text);
-                                print(value);
-                                print(city_stecte);
-                                print(quartier_.text);
+                                // print(_Property_details);
+                                // print(_categorie_select);
+                                // print(_statut);
+                                // print(adresse.text);
+                                // print(value);
+                                // print(city_stecte);
+                                // print(quartier_.text);
                                 //  print(city);
                                 if (_keytest.currentState!.validate() &&
                                     value != null &&

@@ -63,8 +63,7 @@ class _RoundedPasswordFieldSignupState extends State<RoundedPasswordFieldSignup>
               {
                 return 'Please re-enter password'.tr;
               }
-              print(widget.password.text);
-             print(widget.password_2.text);
+
                 if(widget.password.text!=widget.password_2.text){
                   return "Password does not match".tr;
                 }

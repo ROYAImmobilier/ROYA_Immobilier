@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -50,7 +48,7 @@ class _ProfileState extends State<Profile> {
           //HttpHeaders.authorizationHeader:token_1.toString(),
           'Authorization': 'Bearer $token_global'
         });
-    print(response_1.body);
+
 
     if (response_1.statusCode == 200) {
       final responseJsoon = json.decode(response_1.body);
@@ -103,8 +101,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    late List<String> images = [];
-    late List<dynamic> abilityicon = [];
+
+
     if (relaod == true) {
       reloud();
       relaod = false;
@@ -113,32 +111,7 @@ class _ProfileState extends State<Profile> {
       setState(() {
         progressdetille = true;
       });
-      //  print(token_global);
-      // print(data[0].slug);
-      var slug;
-      abilityicon = [];
-      images = [];
-      print(index);
-      // await Annonce_As_Login.getAnonnce();
-      print(Poste[index].title);
-      print("slug " + slug_data[0].slug.toString());
-      // print("id "+.toString());
 
-      // var l = await jokeRepository.GetDetillerLogin(sug: Poste[index].id);
-      // var k = l['media'];
-      // var abi = l["abilities"];
-      //
-      // if (k.toString().isNotEmpty)
-      //   for (int i = 0; i < k.length; i++) {
-      //     images.add(k[i]['file_name']);
-      //
-      //   }
-      // //
-      //
-      //   abilityicon=abi;
-      //  print(abi.toString());
-
-      // print(abilityicon);
       Navigator.of(context)
           .push(
             MaterialPageRoute(

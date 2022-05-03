@@ -39,7 +39,7 @@ class Transation extends Translations {
           "success": "نجاح",
           "Precedent": "السابق",
           'Phone 1 :': 'الهاتف 1 :',
-          'Phone 1 :': 'الهاتف 1 :',
+          //'Phone 1 :': 'الهاتف 1 :',
           'Phone 2 :': 'الهاتف 2 :',
           'Phone 3 :': 'الهاتف 3 :',
           " Entre L \' Phone": "أدخل الهاتف",
@@ -149,7 +149,7 @@ class Transation extends Translations {
           "Error":"اغلاق",
           "Error in server":'مشكلة في السيرفر',
           "Message envoi":"تم الارسال",
-          "SEND MESSAGE":"ارسال الرسالة",
+          //"SEND MESSAGE":"ارسال الرسالة",
           'FULL NAME':"الاسم"
 },
         'fr_FR': {
@@ -175,7 +175,7 @@ class Transation extends Translations {
           "Type d\'annonce":"Type d\'annonce",
           'Compte':'Compte',
           "SHOW NUMBER": "AFFICHER LE NUMÉRO",
-          "SEND MESSAGE": "ENVOYER UN MESSAGE",
+         // "SEND MESSAGE": "ENVOYER UN MESSAGE",
           "Area ": "Zone ",
           'Price': "Prix:",
           'Age': "Âge :",
@@ -274,7 +274,7 @@ class Transation extends Translations {
           "Delete": "Supprimer",
           "Update": "Éditer",
           'Search results are empty ': 'Search results are empty ',
-          'Search results are empty ':"نتائج البحث فارغة",
+          //'Search results are empty ':"نتائج البحث فارغة",
           "Demande":"Demande",
           'FULL NAME':'FULL NAME',
 

@@ -142,7 +142,7 @@ class _BodyState extends State<Body> {
 
                       FocusManager.instance.primaryFocus?.unfocus();
                       if (_key_validation.currentState!.validate()) {
-                        print(email + ' ' + password);
+
                        // isCamindingfrom = true;
                         //
                           progress = true;
@@ -283,7 +283,7 @@ class _BodyState extends State<Body> {
             "email": email,
             "password": password,
           });
-      print(response.body);
+
 
       var token = json.decode(response.body);
       var token_1 = token['data']['token'];
@@ -296,8 +296,6 @@ class _BodyState extends State<Body> {
         token_global = prefs.getString("token");
       });
 
-      print(token_1);
-      print("response"+response.statusCode.toString());
       if (response.statusCode == 200) {
         var response_1 = await http.get(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonces'),
@@ -305,7 +303,7 @@ class _BodyState extends State<Body> {
               //HttpHeaders.authorizationHeader:token_1.toString(),
               'Authorization': 'Bearer $token_global'
             });
-        print(response_1.body);
+
 
         if (response_1.statusCode == 200) {
           setState(() {
@@ -313,7 +311,7 @@ class _BodyState extends State<Body> {
           });
 
           isLogin = true;
-          print(isLogin);
+
           final responseJsoon = json.decode(response_1.body);
           final responseJson = responseJsoon["data"];
           setState(() {
@@ -328,8 +326,7 @@ class _BodyState extends State<Body> {
             progress = false;
           });
         }
-        // print(response_1.body);
-        //  Get.to(const HomeC());
+
         return response.statusCode;
       } else {
         setState(() {

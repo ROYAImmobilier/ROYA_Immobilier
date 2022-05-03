@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:roya_immobilie/View/page/auth/Login/components/background.dart';
-import 'package:roya_immobilie/View/routing_screen.dart';
-
 import '../data.dart';
 import '../main.dart';
 import '../screenSize/screenSized.dart';
 
 class SplashScreen extends StatelessWidget {
 
-  ScrollController _scrollController=ScrollController();
+
 
   @override
   Widget build(BuildContext context) {

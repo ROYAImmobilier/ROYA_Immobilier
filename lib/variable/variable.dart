@@ -7,7 +7,6 @@ import 'package:roya_immobilie/Model/joke.dart';
 
 import '../Model/Contact.dart';
 import '../Model/ability.dart';
-import '../Model/anonnce.dart';
 import '../Model/city.dart';
 import '../Model/cityrepo.dart';
 import '../Model/region.dart';

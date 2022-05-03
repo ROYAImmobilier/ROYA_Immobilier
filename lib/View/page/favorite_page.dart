@@ -9,7 +9,6 @@ import 'package:roya_immobilie/View/page/page_details/details.dart';
 import 'package:roya_immobilie/View/page/serche_page.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 import '../../cashd_image/image.dart';
-import 'Profile/detaille_profile.dart';
 
 
 class FavoritePage extends StatefulWidget {
@@ -30,18 +29,15 @@ class _FavoritePageState extends State<FavoritePage> {
     var l = await jokeRepository.GetDetiller(sug: data[index].slug);
     var k = l['media'] ;
     var abi = l["abilities"];
-    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-    //print(k[0]['file_name']);
-    //  print(k.length.toString());
+
+
     if(k.toString().isNotEmpty)
       for(int i =0 ; i<k.length;i++){
         images.add(k[i]['file_name']);
-        print(k[i]['file_name']);
       }
 
     for(int i =0 ; i<abi.length ; i++){
       abilityicon.add(abi[i]["icon"]);
-      print(abi[i]["icon"].toString());
     }
 
 

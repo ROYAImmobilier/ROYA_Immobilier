@@ -25,8 +25,7 @@ class CityRepo {
     var jsoon = res.body;
     var a = json.decode(jsoon);
 
-    print("city");
-    print(a);
+
     //List<Annonce> dataa = a["data"];
 
     return a;

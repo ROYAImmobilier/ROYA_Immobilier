@@ -11,7 +11,6 @@ import '../../../Model/cityrepo.dart';
 import '../../../Model/repositery.dart';
 import '../../../screenSize/screenSized.dart';
 import '../../order/order_distination.dart';
-import '../Home/widget/drawerpage.dart';
 var l;
 class DetailleProfile extends StatefulWidget {
   List<String>? images=[];
@@ -64,9 +63,6 @@ getdate() async {
   //
 
 
-  //  print(abi.toString());
-
-  // print(abilityicon);
 
   // Get.to(DetailleProfile(
   //   images: images,

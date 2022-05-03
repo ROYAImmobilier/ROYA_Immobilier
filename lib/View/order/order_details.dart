@@ -9,8 +9,8 @@ import 'package:roya_immobilie/main.dart';
 import '../../Model/repositery.dart';
 import '../../variable/variable.dart';
 import 'contact_info.dart';
-import 'order_distination.dart';
-List<dynamic> media=getData_put["media"];
+
+
 class Add_Annonce_2 extends StatefulWidget {
   String? Property_details;
   String? categorie;
@@ -53,9 +53,9 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
       getData_m();
     }
 
-        print(getData_put["abilities"]);
+       // print(getData_put["abilities"]);
         idability = getData_put["abilities"];
-        print(getData_put["area"]);
+      //  print(getData_put["area"]);
         double x =widget.data.area+0.0;
         area.text = x.toString();
         double y = widget.data.price+0.0;
@@ -700,19 +700,19 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                                 alignment: Alignment.topLeft,
                                 child: TextButton(
                                   onPressed: () {
-                                    print(widget.Property_details);
-                                    print(widget.categorie);
-                                    print(widget.statut);
-                                    print(widget.adress);
-                                    print(widget.region);
-                                  //  print(widget.ville);
-                                    print(widget.quartier);
-                                    print(area.text);
-                                    print(price.text);
-                                    print(_price_type);
-                                    print(_age_select);
-                                    print(_floor_select);
-                                    print(idability);
+                                  //   print(widget.Property_details);
+                                  //   print(widget.categorie);
+                                  //   print(widget.statut);
+                                  //   print(widget.adress);
+                                  //   print(widget.region);
+                                  // //  print(widget.ville);
+                                  //   print(widget.quartier);
+                                  //   print(area.text);
+                                  //   print(price.text);
+                                  //   print(_price_type);
+                                  //   print(_age_select);
+                                  //   print(_floor_select);
+                                  //   print(idability);
                                     if (_key_details.currentState!.validate() &&
                                         _age != null) {
                                       Get.to(ContactInfo(
@@ -850,7 +850,6 @@ class _Add_AnnonceState extends State<Add_Annonce_2> {
                             }
                           }
                           idability.add(data[index].id);
-                          print(idability.length);
                         });
                       },
                       child: colorAbility(data[index].id)
