@@ -8,13 +8,13 @@ import 'package:roya_immobilie/View/page/Profile/profile.dart';
 import 'package:roya_immobilie/View/page/notification_page.dart';
 
 import '../Model/cityrepo.dart';
-import '../Model/joke.dart';
+import '../Model/ModelAnnonce.dart';
 import '../variable/variable.dart';
 import 'order/order_distination.dart';
 import 'page/chat_page.dart';
 import 'page/favorite_page.dart';
 
-List<Joke> allAnnonce = [];
+List<ModelAnnonce> allAnnonce = [];
 
 class RoutingScreen extends StatefulWidget {
   static final id = "RoutingScreen";

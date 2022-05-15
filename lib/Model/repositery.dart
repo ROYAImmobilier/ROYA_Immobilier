@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 
 import '../variable/variable.dart';
 
-class jokeRepository {
+class ModelAnnonceRepository {
   static var client = http.Client();
 
-  static Future<List<Joke>?> featcherJoke() async {
+  static Future<List<ModelAnnonce>?> featcherModelAnnonce() async {
     var res = await client
         .get(Uri.parse('https://dashboard.royaimmo.ma/api/site/annonces/'));
     var jsoon = res.body;
@@ -18,7 +18,7 @@ class jokeRepository {
       var a = b["data"];
       var c = json.encode(a);
       // print(a[0]['title']);
-      return jokeFromJson(c);
+      return ModelAnnonceFromJson(c);
     } else {
       return null;
     }

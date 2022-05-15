@@ -48,7 +48,7 @@ getdate() async {
 
 
 
- widget.idAnonnce = await jokeRepository.GetDetillerLogin(sug: widget.data.id);
+ widget.idAnonnce = await ModelAnnonceRepository.GetDetillerLogin(sug: widget.data.id);
   var abi = widget.idAnonnce["abilities"];
 
  if(widget.idAnonnce!=null){
@@ -347,7 +347,7 @@ setState(() {
                                   },
                                   onConfirm: () async {
 
-                                    await jokeRepository.deleteitem(
+                                    await ModelAnnonceRepository.deleteitem(
                                         id: widget.data.id.toString());
                                     Get.snackbar("Sucsses", "Voter Annonce et supprimer" );
                                     //  Future.delayed( Duration(milliseconds: 500), () {

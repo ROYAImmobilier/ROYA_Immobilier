@@ -10,7 +10,7 @@ import 'package:roya_immobilie/screenSize/screenSized.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../../Model/joke.dart';
+import '../../../Model/ModelAnnonce.dart';
 import '../../../Model/repositery.dart';
 import '../../../data.dart';
 
@@ -40,7 +40,7 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  List<Joke> select = [];
+  List<ModelAnnonce> select = [];
   bool grid = true;
 
   @override
@@ -54,7 +54,7 @@ class _DetailsState extends State<Details> {
   getdate() async {
 
     try {
-      var idann = await jokeRepository.GetDetiller(sug: widget.data.slug);
+      var idann = await ModelAnnonceRepository.GetDetiller(sug: widget.data.slug);
       widget.idAnonnce = idann;
       var abi = widget.idAnonnce["abilities"];
 

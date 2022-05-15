@@ -9,7 +9,7 @@ import 'package:roya_immobilie/on_boding_screen.dart';
 import 'package:roya_immobilie/variable/variable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Model/ability.dart';
-import 'Model/joke.dart';
+import 'Model/ModelAnnonce.dart';
 import 'View/page/auth/Login/components/body.dart';
 import 'View/page/serche_page.dart';
 import 'View/routing_screen.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatefulWidget {
 List<Ability> ability = [];
 
 class _MyAppState extends State<MyApp> {
-  List<Joke> Listannonce = [];
+  List<ModelAnnonce> Listannonce = [];
 
   Future<void> getUserDetails() async {
     final response = await http.get(Uri.parse(url));
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     final responseJson = responseJsoon["data"];
     setState(() {
       for (Map user in responseJson) {
-        allAnnonce.add(Joke.fromJson(user.cast()));
+        allAnnonce.add(ModelAnnonce.fromJson(user.cast()));
       }
       slug_data = allAnnonce;
       isLoaded=true;

@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -27,29 +28,47 @@ class SplashScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15,right: 15),
                 child: Container(
                   height: 60,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-
-    itemCount: dataCategory.length,
-    scrollDirection: Axis.horizontal,
-    itemBuilder: (context, i) {
-          return Row(
+                  child:
+           Row(
             children: [
-              SizedBox(width: 15,),
-              CircleAvatar(
-                backgroundColor:  Colors.white,
-                radius: ScreenSized.Avatar(
-                        Screenwidth,
-                        Screenheight),
-                child: SvgPicture.asset(
-                        dataCategory[i].icon,
-                        width: 40,
-                        height: 40,
-                        color: const Color(0xffC0A280)),
-              ),
+              //SizedBox(width: 30,),
+              Container(
+                height:500,
+                width:MediaQuery.of(context).size.width*0.90,
+                child: CarouselSlider(
+                  options: CarouselOptions(height: 400.0,
+                    aspectRatio: 16/9,
+                    viewportFraction: 2,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                   // onPageChanged: callbackFunction,
+                    scrollDirection: Axis.horizontal,
+                  ),
+                  items: dataCategory.map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return
+                          SvgPicture.asset(
+                              i.icon,
+                              width: 100,
+                              height: 100,
+                              color:  Color(0xffC0A280));
+                      },
+                    );
+                  }).toList(),
+                ),
+              )
+
+
             ],
-          );
-    }),
+           ),
+
                 ),
               ),
 

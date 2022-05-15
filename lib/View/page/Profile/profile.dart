@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../../Model/cityrepo.dart';
-import '../../../Model/joke.dart';
+import '../../../Model/ModelAnnonce.dart';
 import '../../../Model/repositery.dart';
 import '../../../cashd_image/image.dart';
 import '../../../variable/variable.dart';
@@ -28,9 +28,9 @@ class _ProfileState extends State<Profile> {
   List<String> iconability = [];
 
   late int v = 0;
-  List<Joke> Poste = [];
-  List<Joke> PosteValide = [];
-  List<Joke> PosteNonValide = [];
+  List<ModelAnnonce> Poste = [];
+  List<ModelAnnonce> PosteValide = [];
+  List<ModelAnnonce> PosteNonValide = [];
 
   Color colorPost = Colors.blue;
   Color colorPosteValide = Colors.white;
@@ -55,7 +55,7 @@ class _ProfileState extends State<Profile> {
       final responseJson = responseJsoon["data"];
       setState(() {
         for (Map annoncelogin in responseJson) {
-          allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
+          allAnnonceLogin.add(ModelAnnonce.fromJson(annoncelogin.cast()));
         }
 
         setState(() {
@@ -366,7 +366,7 @@ class _ProfileState extends State<Profile> {
                                                 });
                                               },
                                               onConfirm: () async {
-                                                await jokeRepository.deleteitem(
+                                                await ModelAnnonceRepository.deleteitem(
                                                     id: Poste[index]
                                                         .id
                                                         .toString());
@@ -389,7 +389,7 @@ class _ProfileState extends State<Profile> {
 
                                                   },
                                                   onConfirm: () async {
-                                                    await jokeRepository
+                                                    await ModelAnnonceRepository
                                                         .deleteitem(
                                                             id: Poste[index]
                                                                 .id
@@ -498,7 +498,7 @@ class _ProfileState extends State<Profile> {
                                                         //   onPressed: ()async {
                                                         //
                                                         //
-                                                        //     await  jokeRepository.deleteitem(id: Poste[index].id.toString());
+                                                        //     await  ModelAnnonceRepository.deleteitem(id: Poste[index].id.toString());
                                                         //     setState(() {
                                                         //       if(v==0) {
                                                         //         allAnnonceLogin.remove(

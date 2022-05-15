@@ -6,7 +6,7 @@ import 'package:roya_immobilie/Model/category.dart';
 import 'package:roya_immobilie/Model/repositery.dart';
 
 import '../Model/anonce_model_favote.dart';
-import '../Model/joke.dart';
+import '../Model/ModelAnnonce.dart';
 import '../View/routing_screen.dart';
 import '../service/database/favorite_database_local.dart';
 
@@ -14,18 +14,18 @@ class AnnonceController extends GetxController {
   ValueNotifier<bool> get loding => _loding;
   ValueNotifier<bool> _loding = ValueNotifier(false);
   AnnonceController() {
-    getJokeys();
+    getModelAnnonceys();
     getAllProducts();
   }
-  var allJokes = <Joke>[].obs;
+  var allModelAnnonces = <ModelAnnonce>[].obs;
 
-  getJokeys() async {
+  getModelAnnonceys() async {
     try {
-      var jokes = await jokeRepository.featcherJoke();
+      var ModelAnnonces = await ModelAnnonceRepository.featcherModelAnnonce();
 
-      if (jokes != null) {
-        allJokes.value = jokes;
-      //  print(allJokes);
+      if (ModelAnnonces != null) {
+        allModelAnnonces.value = ModelAnnonces;
+      //  print(allModelAnnonces);
       }
     } catch (e) {
     } finally {}
@@ -50,7 +50,7 @@ class AnnonceController extends GetxController {
     update();
   }
 
-  bool FavIcon(Joke mode) {
+  bool FavIcon(ModelAnnonce mode) {
     for (int i = 0; i < _cartProductsModel.length; i++) {
       if (mode.id == _cartProductsModel[i].id) {
         return true;
@@ -96,8 +96,8 @@ class AnnonceController extends GetxController {
 
 
 //********************************
- late  List<Joke> _select;
-    List<Joke>get  select =>_select;
+ late  List<ModelAnnonce> _select;
+    List<ModelAnnonce>get  select =>_select;
 
   selectCtegory(Category select)
   {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/testplatform.dart';
@@ -19,7 +19,7 @@ import 'mobilestackwidget.dart';
 
 
 class StackWidget_2 extends StatefulWidget {
-  List<Joke> data;
+  List<ModelAnnonce> data;
 
   int leng;
 
@@ -31,7 +31,7 @@ class StackWidget_2 extends StatefulWidget {
 
 class _StackWidget_2State extends State<StackWidget_2> {
 ScrollController _scrollController=ScrollController();
-  List<Joke> select = [];
+  List<ModelAnnonce> select = [];
   int j = indexselectCategory ;
   bool grid = true;
 

@@ -123,7 +123,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
   }
 getData_m() async {
   getData_put =
-      await jokeRepository.getdata(
+      await ModelAnnonceRepository.getdata(
       id: widget.data
           .id
           .toString());

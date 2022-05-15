@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../Model/joke.dart';
+import '../Model/ModelAnnonce.dart';
 import '../View/page/auth/Login/components/body.dart';
 import '../variable/variable.dart';
 class Clinet_Login{
@@ -46,7 +46,7 @@ class Clinet_Login{
           final responseJson = responseJsoon["data"];
 
           for (Map annoncelogin in responseJson) {
-            allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
+            allAnnonceLogin.add(ModelAnnonce.fromJson(annoncelogin.cast()));
           }
 
         }else{

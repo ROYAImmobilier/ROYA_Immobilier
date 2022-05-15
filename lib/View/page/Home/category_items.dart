@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 import 'package:roya_immobilie/View/page/Home/widget/mobilestackwidget.dart';
 import 'package:roya_immobilie/View/page/Home/widget/smallScreen.dart';
 import 'package:roya_immobilie/View/page/Home/widget/tabletstackwidget.dart';
@@ -10,7 +10,7 @@ class CategoryItems extends StatelessWidget{
   late String icon ;
   late String title ;
   late int leng;
-  late List<Joke>data;
+  late List<ModelAnnonce>data;
   CategoryItems ({
     required this.icon,
     required this.title,

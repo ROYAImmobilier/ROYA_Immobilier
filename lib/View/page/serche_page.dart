@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 
@@ -26,7 +26,7 @@ class _HomePageState extends State<Sercher> {
     final responseJson = responseJsoon["data"];
     setState(() {
       for (Map user in responseJson) {
-        _userDetails.add(Joke.fromJson(user.cast()));
+        _userDetails.add(ModelAnnonce.fromJson(user.cast()));
       }
     });
   }
@@ -291,8 +291,8 @@ class _HomePageState extends State<Sercher> {
   }
 }
 
-List<Joke> _searchResult = [];
+List<ModelAnnonce> _searchResult = [];
 
-List<Joke> _userDetails = [];
+List<ModelAnnonce> _userDetails = [];
 
 final String url = "https://dashboard.royaimmo.ma/api/site/annonces/?limit=500";

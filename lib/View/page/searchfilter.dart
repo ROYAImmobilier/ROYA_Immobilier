@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 import 'package:roya_immobilie/View/page/page_details/details.dart';
 
 import '../../variable/variable.dart';
@@ -25,7 +25,7 @@ class _SearchFiltterState extends State<SearchFiltter> {
   var _ville_search=TextEditingController();
   String ? searchvlue ;
   String? searchVille ;
-  List<Joke> filtrResulta = [];
+  List<ModelAnnonce> filtrResulta = [];
   bool show = false ;
 
   List<String>images=[];

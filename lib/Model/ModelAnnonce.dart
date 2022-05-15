@@ -1,22 +1,22 @@
 // To parse this JSON data, do
 //
-//     final joke = jokeFromJson(jsonvar);
+//     final ModelAnnonce = ModelAnnonceFromJson(jsonvar);
 
 import 'dart:convert';
 
 
-List<Joke> jokeFromJson(var str) =>
-    List<Joke>.from(json.decode(str).map((x) => Joke.fromJson(x)));
+List<ModelAnnonce> ModelAnnonceFromJson(var str) =>
+    List<ModelAnnonce>.from(json.decode(str).map((x) => ModelAnnonce.fromJson(x)));
 
-String jokeToJson(List<Joke> data) =>
+String ModelAnnonceToJson(List<ModelAnnonce> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 
 
-class Joke {
+class ModelAnnonce {
 
 
-  Joke({
+  ModelAnnonce({
     required this.id,
     required this.advertiser,
     required this.region,
@@ -74,8 +74,8 @@ class Joke {
   var createdAt;
   var cover;
 
-  factory Joke.fromJson(Map<String, dynamic> json) =>
-      Joke(
+  factory ModelAnnonce.fromJson(Map<String, dynamic> json) =>
+      ModelAnnonce(
         id: json["id"],
         advertiser: json["advertiser"],
         region: json["region"],

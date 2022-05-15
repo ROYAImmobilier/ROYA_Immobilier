@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 
 import '../Model/Contact.dart';
 import '../Model/ability.dart';
@@ -260,7 +260,7 @@ CitySelect(int id){
 }
 
 ///get slug
-List<Joke> slug_data=[];
+List<ModelAnnonce> slug_data=[];
 ///data loaded
 bool isLoaded=false;
 ///get contacs

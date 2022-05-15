@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:roya_immobilie/Model/joke.dart';
+import 'package:roya_immobilie/Model/ModelAnnonce.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_input_field.dart';
 import 'package:roya_immobilie/View/page/auth/components/rounded_password_field.dart';
 import 'package:roya_immobilie/View/routing_screen.dart';
@@ -17,7 +17,7 @@ import '../../../../../variable/variable.dart';
 import '../../Signup/components/background.dart';
 import '../../Signup/signup_screen.dart';
 
-List<Joke> allAnnonceLogin = [];
+List<ModelAnnonce> allAnnonceLogin = [];
 String username = "";
 
 class Body extends StatefulWidget {
@@ -316,7 +316,7 @@ class _BodyState extends State<Body> {
           final responseJson = responseJsoon["data"];
           setState(() {
             for (Map annoncelogin in responseJson) {
-              allAnnonceLogin.add(Joke.fromJson(annoncelogin.cast()));
+              allAnnonceLogin.add(ModelAnnonce.fromJson(annoncelogin.cast()));
             }
           });
           indexPage=true;

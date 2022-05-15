@@ -26,7 +26,7 @@ class _FavoritePageState extends State<FavoritePage> {
   late List<String>abilityicon = [];
   getdate(int index , sulg , data)async{
     images = [];
-    var l = await jokeRepository.GetDetiller(sug: data[index].slug);
+    var l = await ModelAnnonceRepository.GetDetiller(sug: data[index].slug);
     var k = l['media'] ;
     var abi = l["abilities"];
 
