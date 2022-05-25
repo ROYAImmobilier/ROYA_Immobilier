@@ -112,8 +112,10 @@ int nmbreerror = 0 ;
   @override
   void initState() {
     widget._id_region = getRegionid(widget.region_1!);
-    if( widget.city.toString().isNotEmpty)
-    widget._id_city = getCityid(widget.city!);
+    if( widget.city.toString().isNotEmpty){
+      widget._id_city = getCityid(widget.city!);
+    }
+
 
     setState(() {
       if (verify_update) {

@@ -136,6 +136,7 @@ class _HomePageState extends State<Sercher> {
                                         Container(
                                           width: 200.w,
                                           height: 130.h,
+                                          padding: EdgeInsets.only(left: 10,right: 10),
                                           decoration: BoxDecoration(
                                               color: Colors.white,
                                               borderRadius: BorderRadius.only(
@@ -147,15 +148,15 @@ class _HomePageState extends State<Sercher> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
                                             children: [
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(right: 5.w),
-                                                alignment: Alignment.topRight,
-                                                child: Icon(
-                                                  Icons.more_vert,
-                                                  size: 15.sp,
-                                                ),
-                                              ),
+                                              // Container(
+                                              //   margin:
+                                              //       EdgeInsets.only(right: 5.w),
+                                              //   alignment: Alignment.topRight,
+                                              //   child: Icon(
+                                              //     Icons.more_vert,
+                                              //     size: 15.sp,
+                                              //   ),
+                                              // ),
                                               Container(
                                                   margin: EdgeInsets.only(
                                                       left: 5.w),
@@ -190,6 +191,7 @@ class _HomePageState extends State<Sercher> {
 
                                                 children: [
                                                   Container(
+                                                    padding: EdgeInsets.only(left: 10,right: 10),
                                                     child: Row(children: [
                                                       SvgPicture.asset(
                                                         'assets/icon/annonces/bed-sharp.svg',
@@ -209,6 +211,7 @@ class _HomePageState extends State<Sercher> {
                                                     ]),
                                                   ),
                                                   Container(
+                                                    padding: EdgeInsets.only(left: 10,right: 10),
                                                     child: Row(children: [
                                                       SvgPicture.asset(
                                                         'assets/icon/annonces/bathroom.svg',
@@ -228,6 +231,7 @@ class _HomePageState extends State<Sercher> {
                                                     ]),
                                                   ),
                                                   Container(
+                                                    padding: EdgeInsets.only(left: 10,right: 10),
                                                     child: Row(children: [
                                                       SvgPicture.asset(
                                                         'assets/icon/m.svg',

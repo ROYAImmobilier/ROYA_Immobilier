@@ -50,9 +50,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
        listCity=CitySelect(region_id(widget.data.region));
       });
 
-      if(getData_put!=null){
 
-      }
       adresse.text = widget.data.address.toString();
       quartier_.text = widget.data.quartier.toString();
       String cat = widget.data.propertyType;
@@ -380,53 +378,53 @@ getData_m() async {
                               ),
                             ),
                             child: ListView.builder(
-                              itemCount: 1,
-                              itemBuilder: (context, index) {
-                                // Region user = _region![index];
-                                return Container(
-                                  height: 35.h,
-                                  // decoration: BoxDecoration(
-                                  //   color: Colors.white,
-                                  //   // borderRadius:
-                                  //   // const BorderRadius.all(Radius.circular(5)),
-                                  //   // border: Border.all(
-                                  //   //   color: Colors.grey,
-                                  //   // ),
-                                  // ),
-                                  child: DropdownButton<String>(
-                                    icon: const Icon(
-                                        Icons.keyboard_arrow_down_sharp),
-                                    elevation: 16,
-                                    isExpanded: true,
-                                    underline: Container(
-                                      height: 2,
-                                      // color: Colors.deepPurpleAccent,
-                                    ),
-                                    hint: Text(" " + "Region".tr),
-                                    value: value,
-                                    items: region
-                                        ?.map<DropdownMenuItem<String>>(
-                                            (value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value.regionName,
-                                        child: Text("  " + value.regionName),
-                                      );
-                                    }).toList(),
-                                    onChanged: (value_2) {
-                                      setState(() {
-                                        city_stecte = null;
-                                        listCity = [];
-                                          Region_id.Region(value_2!);
-                                        value = value_2;
-                                        // print(region![12].regionName);
-
-                                        // test(value_2);
-                                      });
-                                    },
+                            itemCount: 1,
+                            itemBuilder: (context, index) {
+                              // Region user = _region![index];
+                              return Container(
+                                height: 35.h,
+                                // decoration: BoxDecoration(
+                                //   color: Colors.white,
+                                //   // borderRadius:
+                                //   // const BorderRadius.all(Radius.circular(5)),
+                                //   // border: Border.all(
+                                //   //   color: Colors.grey,
+                                //   // ),
+                                // ),
+                                child: DropdownButton<String>(
+                                  icon: const Icon(
+                                      Icons.keyboard_arrow_down_sharp),
+                                  elevation: 16,
+                                  isExpanded: true,
+                                  underline: Container(
+                                    height: 2,
+                                    // color: Colors.deepPurpleAccent,
                                   ),
-                                );
-                              },
-                            ),
+                                  hint: Text(" " + "Region".tr),
+                                  value: value,
+                                  items: region
+                                      ?.map<DropdownMenuItem<String>>(
+                                          (value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value.regionName,
+                                          child: Text("  " + value.regionName),
+                                        );
+                                      }).toList(),
+                                  onChanged: (value_2) {
+                                    setState(() {
+                                      city_stecte = null;
+                                      listCity = [];
+                                      Region_id.Region(value_2!);
+                                      value = value_2;
+                                      // print(region![12].regionName);
+
+                                      // test(value_2);
+                                    });
+                                  },
+                                ),
+                              );
+                            },
+                          ),
                           ),
                           SizedBox(
                             height: 15.h,

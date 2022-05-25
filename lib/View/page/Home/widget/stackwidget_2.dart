@@ -64,7 +64,7 @@ ScrollController _scrollController=ScrollController();
   }
   @override
   Widget build(BuildContext context) {
-
+    print("test "+widget.data.toString());
     var Screenwidth = MediaQuery.of(context).size.width;
     var Screenheight = MediaQuery.of(context).size.height;
     //var ScreenSized=MediaQuery.of(context).size.width;

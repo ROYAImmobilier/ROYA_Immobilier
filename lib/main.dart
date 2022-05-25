@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> getUserDetails() async {
     final response = await http.get(Uri.parse(url));
     final responseJsoon = json.decode(response.body);
+    print(response.statusCode);
     final responseJson = responseJsoon["data"];
     setState(() {
       for (Map user in responseJson) {
