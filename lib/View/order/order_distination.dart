@@ -58,9 +58,9 @@ class _Add_AnnonceState extends State<Add_Annonce> {
       _categorie_select = cat;
       String status =widget.data.status.toString();
       name_rigion =widget.data.region;
-      value = name_rigion;
+    //  value = name_rigion;
 
-     city_stecte = widget.data.city;
+
       //id_region = widget.data.region;
       _statut = status;
       // adresse.text = getData_put["address"].toString();
@@ -88,6 +88,7 @@ class _Add_AnnonceState extends State<Add_Annonce> {
       //getName_region_city();
 
     }
+
   }
 
   int region_id(String? value_2) {
@@ -544,7 +545,7 @@ getData_m() async {
                                 //  print(city);
                                 if (_keytest.currentState!.validate() &&
                                     value != null &&
-                                    city != null) {
+                                    city_stecte != null) {
                                   //
                                   Get.to(Add_Annonce_2(
                                       Property_details: _Property_details,
@@ -555,6 +556,8 @@ getData_m() async {
                                       ville: city_stecte,
                                       data: widget.data,
                                       quartier: quartier_.text));
+                                }else {
+                                  Get.snackbar("case vide", "replier tout les case",icon: Icon(Icons.error_outline));
                                 }
                               },
                               child: Container(

@@ -14,7 +14,6 @@ import '../../variable/variable.dart';
 import '../page/auth/Login/login_screen.dart';
 import '../routing_screen.dart';
 
-
 class ContactInfo extends StatefulWidget {
   String? Property_details;
   String? categorie;
@@ -29,7 +28,7 @@ class ContactInfo extends StatefulWidget {
   late int _id_region;
   late int _id_city;
   bool addimage = false;
-var data;
+  var data;
   List<dynamic>? ablity;
 
   String? area;
@@ -54,7 +53,8 @@ var data;
     this.age,
     this.price,
     this.flooring,
-    this.area, this.data,
+    this.area,
+    this.data,
   });
   List<Ability> allAbility = [];
   var _key_Contact = GlobalKey<FormState>();
@@ -63,7 +63,6 @@ var data;
   var _phone1 = TextEditingController();
   var _phone2 = TextEditingController();
   var _phone3 = TextEditingController();
-
 
   final ImagePicker imgpicker = ImagePicker();
   String imagepath = "";
@@ -87,10 +86,11 @@ var data;
 }
 
 class _ContactInfoState extends State<ContactInfo> {
-int nmbreerror = 0 ;
+  int nmbreerror = 0;
   void choseImage() async {
     var imageTemporary;
-    final List<XFile>? selectedImages = await widget.imagePicker.pickMultiImage();
+    final List<XFile>? selectedImages =
+        await widget.imagePicker.pickMultiImage();
     if (selectedImages!.isNotEmpty) {
       widget.imageFileList!.addAll(selectedImages);
     }
@@ -98,7 +98,8 @@ int nmbreerror = 0 ;
       imageTemporary = File(widget.imageFileList![i].path);
       widget._file = imageTemporary;
       widget._listimage.add(widget._file!);
-      widget._listimagebase64.add("${base64Encode(widget._file!.readAsBytesSync())}");
+      widget._listimagebase64
+          .add("${base64Encode(widget._file!.readAsBytesSync())}");
     }
     setState(() {});
     if (verify_update)
@@ -112,10 +113,8 @@ int nmbreerror = 0 ;
   @override
   void initState() {
     widget._id_region = getRegionid(widget.region_1!);
-    if( widget.city.toString().isNotEmpty){
+    if (widget.city.toString().isNotEmpty)
       widget._id_city = getCityid(widget.city!);
-    }
-
 
     setState(() {
       if (verify_update) {
@@ -161,7 +160,6 @@ int nmbreerror = 0 ;
 
   @override
   Widget build(BuildContext context) {
-
     return ScreenUtilInit(
       builder: () => Scaffold(
         appBar: AppBar(
@@ -177,15 +175,13 @@ int nmbreerror = 0 ;
         ),
         body: Form(
           key: widget._key_Contact,
-          child: Stack(
-
-              children: [
+          child: Stack(children: [
             Container(
               height: MediaQuery.of(context).size.height,
               color: Colors.white,
               child: ListView(children: [
                 Column(
-                 // mainAxisAlignment: MainAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.start,
 
                   children: [
                     Container(
@@ -203,9 +199,9 @@ int nmbreerror = 0 ;
                               Container(
                                   //alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Title'.tr,
-                                    style: TextStyle(fontSize: 13.sp),
-                                  )),
+                                'Title'.tr,
+                                style: TextStyle(fontSize: 13.sp),
+                              )),
                               SizedBox(
                                 height: 15.h,
                               ),
@@ -231,11 +227,11 @@ int nmbreerror = 0 ;
                                 height: 15.h,
                               ),
                               Container(
-                                 // alignment: Alignment.topLeft,
+                                  // alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Description :'.tr,
-                                    style: TextStyle(fontSize: 13.sp),
-                                  )),
+                                'Description :'.tr,
+                                style: TextStyle(fontSize: 13.sp),
+                              )),
                               const SizedBox(
                                 height: 15,
                               ),
@@ -262,11 +258,11 @@ int nmbreerror = 0 ;
                                 height: 15.h,
                               ),
                               Container(
-                                //  alignment: Alignment.topLeft,
+                                  //  alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Phone 1 :'.tr,
-                                    style: TextStyle(fontSize: 13.sp),
-                                  )),
+                                'Phone 1 :'.tr,
+                                style: TextStyle(fontSize: 13.sp),
+                              )),
                               SizedBox(
                                 height: 15.h,
                               ),
@@ -293,11 +289,11 @@ int nmbreerror = 0 ;
                                 height: 15,
                               ),
                               Container(
-                                //  alignment: Alignment.topLeft,
+                                  //  alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Phone 2 :'.tr,
-                                    style: TextStyle(fontSize: 13.sp),
-                                  )),
+                                'Phone 2 :'.tr,
+                                style: TextStyle(fontSize: 13.sp),
+                              )),
                               const SizedBox(
                                 height: 15,
                               ),
@@ -320,9 +316,9 @@ int nmbreerror = 0 ;
                               Container(
                                   //alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Phone 3 :'.tr,
-                                    style: TextStyle(fontSize: 13.sp),
-                                  )),
+                                'Phone 3 :'.tr,
+                                style: TextStyle(fontSize: 13.sp),
+                              )),
                               const SizedBox(
                                 height: 15,
                               ),
@@ -342,11 +338,11 @@ int nmbreerror = 0 ;
                                 height: 15,
                               ),
                               Container(
-                                 // alignment: Alignment.topLeft,
+                                  // alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Upload image(jpg-png-jpeg)'.tr,
-                                    style: TextStyle(fontSize: 13.sp),
-                                  )),
+                                'Upload image(jpg-png-jpeg)'.tr,
+                                style: TextStyle(fontSize: 13.sp),
+                              )),
                               SizedBox(
                                 height: 10.h,
                               ),
@@ -372,17 +368,18 @@ int nmbreerror = 0 ;
                                         physics: NeverScrollableScrollPhysics(),
                                         itemCount: verify_update == false
                                             ? widget._listimage.length
-                                            : widget._listimagebase64_com.length,
+                                            : widget
+                                                ._listimagebase64_com.length,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, i) {
-
-
                                           return GestureDetector(
                                             onLongPress: () {
                                               setState(() {
                                                 verify_update == false
-                                                    ? widget._listimage.removeAt(i)
-                                                    : widget._listimagebase64_com
+                                                    ? widget._listimage
+                                                        .removeAt(i)
+                                                    : widget
+                                                        ._listimagebase64_com
                                                         .removeAt(i);
                                               });
                                             },
@@ -398,10 +395,10 @@ int nmbreerror = 0 ;
                                                       )
                                                     : Image.memory(
                                                         (const Base64Decoder()
-                                                            .convert(
-                                                                widget._listimagebase64_com[
-                                                                        i]
-                                                                    .toString())),
+                                                            .convert(widget
+                                                                ._listimagebase64_com[
+                                                                    i]
+                                                                .toString())),
                                                         fit: BoxFit.cover,
                                                         width: 100,
                                                         height: 100,
@@ -440,9 +437,11 @@ int nmbreerror = 0 ;
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r),
                                 side: const BorderSide(color: Color(0xE2DDD9))),
-                            onPressed: progress_modife ==true?null:() {
-                              Navigator.pop(context);
-                            },
+                            onPressed: progress_modife == true
+                                ? null
+                                : () {
+                                    Navigator.pop(context);
+                                  },
                             child: Text(
                               "Precedent".tr,
                               style: TextStyle(
@@ -451,240 +450,241 @@ int nmbreerror = 0 ;
                               ),
                             ),
                           ),
-
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r)),
-                            onPressed:   progress_modife ==true? null:() async{
-                              FocusManager.instance.primaryFocus?.unfocus();
+                            onPressed: progress_modife == true
+                                ? null
+                                : () async {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
 
-                              if (widget._key_Contact.currentState!.validate()) {
-                                // Get.to(LoginScreen());
+                                    if (widget._key_Contact.currentState!
+                                        .validate()) {
+                                      // Get.to(LoginScreen());
 
-                                // verify=false;
-                                isCamindingfrom = true;
+                                      // verify=false;
+                                      isCamindingfrom = true;
 
-                                //
-                                // //  Get.to(LoginScreen());
-                                if (!verify_update) {
-                                  setState(() {
-                                    progress_modife = true;
-                                  });
-                                  var x;
+                                      //
+                                      // //  Get.to(LoginScreen());
+                                      if (!verify_update) {
+                                        setState(() {
+                                          progress_modife = true;
+                                        });
+                                        var x;
 
+                                        isLogin == false
+                                            ? Get.to(LoginScreen(
+                                                region_id: widget._id_region
+                                                    .toString(),
+                                                city_id:
+                                                    widget._id_city.toString(),
+                                                transaction:
+                                                    widget.Property_details,
+                                                property_type: widget.categorie,
+                                                status: widget.statut,
+                                                adress: widget.adress,
+                                                quartier: widget.quartier,
+                                                area: widget.area,
+                                                price: widget.price,
+                                                age: widget.age,
+                                                floor_type: widget.flooring,
+                                                floor: "4",
+                                                apartment: "1",
+                                                bedrooms: widget.bedroms,
+                                                bathrooms: widget.bathrooms,
+                                                kitchens: widget.kichens,
+                                                title: widget._titel.text,
+                                                description:
+                                                    widget._description.text,
+                                                phone1: widget._phone1.text,
+                                                phone2: widget._phone2.text,
+                                                phone3: widget._phone3.text,
+                                                abilities: widget.ablity,
+                                                media: widget._listimagebase64))
+                                            : x = await Annonce_As_Login
+                                                .Add_Annonce_As_Aredy_Login(
+                                                region_id: widget._id_region
+                                                    .toString(),
+                                                city_id:
+                                                    widget._id_city.toString(),
+                                                transaction:
+                                                    widget.Property_details,
+                                                property_type: widget.categorie,
+                                                status: widget.statut,
+                                                adress: widget.adress,
+                                                quartier: widget.quartier,
+                                                area: widget.area,
+                                                price: widget.price,
+                                                age: widget.age,
+                                                apartment: "1",
+                                                bedrooms:
+                                                    widget.bedroms.toString(),
+                                                bathrooms:
+                                                    widget.bathrooms.toString(),
+                                                kitchens:
+                                                    widget.kichens.toString(),
+                                                title: widget._titel.text,
+                                                description:
+                                                    widget._description.text,
+                                                phone1: widget._phone1.text,
+                                                phone2: widget._phone2.text,
+                                                phone3: widget._phone3.text,
+                                                abilities: widget.ablity!,
+                                                media: widget._listimagebase64,
+                                                floor_type: widget.flooring,
+                                                floor: "4",
+                                              );
 
-                                  isLogin == false
-                                      ? Get.to(LoginScreen(
+                                        if (x == 201) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content:
+                                                Text("Your ad is added".tr),
+                                            backgroundColor: Colors.grey,
+                                            behavior: SnackBarBehavior.floating,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(24),
+                                            ),
+                                          ));
+                                          // Get.snackbar(
+                                          // "success".tr, );
+                                          // verify_update = false;
+                                          progress_modife = false;
+                                          Get.to(RoutingScreen());
+                                        } else if (x == 500) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text(
+                                                "Your ad is not adding".tr),
+                                            backgroundColor: Colors.grey,
+                                            behavior: SnackBarBehavior.floating,
+                                          ));
+
+                                          // Get.snackbar(
+                                          //     );
+                                          nmbreerror++;
+                                          if (nmbreerror == 1 ||
+                                              nmbreerror == 0) {
+                                            setState(() {
+                                              progress_modife = false;
+                                            });
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                              content:
+                                                  Text("Error in server".tr),
+                                              backgroundColor: Colors.grey,
+                                              behavior: SnackBarBehavior.fixed,
+                                            ));
+                                            setState(() {
+                                              progress_modife = false;
+                                            });
+
+                                            Get.to(RoutingScreen());
+                                          }
+                                        }
+                                      } else {
+                                        print("876");
+                                        // print(widget.Property_details);
+                                        // print(widget.categorie);
+                                        // print(widget.statut);
+                                        // print(widget.adress);
+                                        // print(widget.region_1);
+                                        // print(widget.city);
+                                        // print(widget.quartier);
+                                        // print(widget.area);
+                                        // print(widget.price);
+                                        // print(widget.age);
+                                        // print(widget.flooring);
+                                        // print(widget.bedroms);
+                                        // print(widget.bathrooms);
+                                        // print(widget.kichens);
+                                        // print(_titel.text);
+                                        // print(_description.text);
+                                        // print(widget.ablity.toString());
+                                        // print(_listimagebase64);
+                                        // //verify=false;
+                                        setState(() {
+                                          progress_modife = true;
+                                        });
+                                        var x = await Modifier_Annonce.Modifier(
                                           region_id:
                                               widget._id_region.toString(),
                                           city_id: widget._id_city.toString(),
                                           transaction: widget.Property_details,
-                                          property_type: widget.categorie,
-                                          status: widget.statut,
-                                          adress: widget.adress,
-                                          quartier: widget.quartier,
-                                          area: widget.area,
-                                          price: widget.price,
-                                          age: widget.age,
-                                          floor_type: widget.flooring,
-                                          floor: "4",
-                                          apartment: "1",
-                                          bedrooms: widget.bedroms,
-                                          bathrooms: widget.bathrooms,
-                                          kitchens: widget.kichens,
-                                          title: widget._titel.text,
-                                          description: widget._description.text,
-                                          phone1: widget._phone1.text,
-                                          phone2: widget._phone2.text,
-                                          phone3: widget._phone3.text,
-                                          abilities: widget.ablity,
-                                          media: widget._listimagebase64))
-                                      : x = await Annonce_As_Login
-                                          .Add_Annonce_As_Aredy_Login(
-                                          region_id:
-                                              widget._id_region.toString(),
-                                          city_id: widget._id_city.toString(),
-                                          transaction: widget.Property_details,
-                                          property_type: widget.categorie,
-                                          status: widget.statut,
-                                          adress: widget.adress,
-                                          quartier: widget.quartier,
-                                          area: widget.area,
-                                          price: widget.price,
-                                          age: widget.age,
+                                          property_type:
+                                              widget.categorie.toString(),
+                                          status: widget.statut.toString(),
+                                          adress: widget.adress.toString(),
+                                          quartier: widget.quartier.toString(),
+                                          area: widget.area.toString(),
+                                          price: widget.price.toString(),
+                                          age: widget.age.toString(),
                                           apartment: "1",
                                           bedrooms: widget.bedroms.toString(),
                                           bathrooms:
                                               widget.bathrooms.toString(),
                                           kitchens: widget.kichens.toString(),
-                                    title: widget._titel.text,
-                                    description: widget._description.text,
-                                    phone1: widget._phone1.text,
-                                    phone2: widget._phone2.text,
-                                    phone3: widget._phone3.text,
+                                          title: widget._titel.text,
+                                          description: widget._description.text,
+                                          phone1: widget._phone1.text,
+                                          phone2: widget._phone2.text,
+                                          phone3: widget._phone3.text,
                                           abilities: widget.ablity!,
-                                          media: widget._listimagebase64,
-                                          floor_type: widget.flooring,
+                                          media: widget._listimagebase64_com,
+                                          floor_type:
+                                              widget.flooring.toString(),
                                           floor: "4",
                                         );
 
+                                        if (x == 500 || x == 200) {
+                                          Get.snackbar(
+                                              "success".tr, "update".tr);
 
-                                  if (x == 201) {
+                                          setState(() {
+                                            verify_update = false;
+                                            progress_modife = false;
+                                          });
 
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content: Text("Your ad is added".tr),
-                                            backgroundColor: Colors.grey,
-                                            behavior: SnackBarBehavior.floating,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(24),
+                                          Get.offAll(RoutingScreen());
+                                        }
+                                      }
+                                      // postdata(
+                                      //     address: widget.adress,
+                                      //     floor_type: "appartoment",
+                                      //     title: _titel.text,
+                                      //     media:base64Image,
+                                      //     bathrooms: "2",
+                                      //     transaction: "Rent",
+                                      //     status: widget.statut,
+                                      //     confirmation_password: "12345678",
+                                      //     kitchens: "4",
+                                      //     area: "120",
+                                      //     abilities:'1',
+                                      //     floor: "3",
+                                      //     region_id: '1',
+                                      //     city_id: "3",
+                                      //     email: "abde5@gmail.com",
+                                      //     phone1: _phone1.text,
+                                      //     phone3: _phone3.text,
+                                      //     bedrooms: '2',
+                                      //     apartment: "4",
+                                      //     description: _description.text,
+                                      //     name: "ahmed",
+                                      //     phone2: _phone2.text,
+                                      //     property_type: widget.Property_details,
+                                      //     age: widget.age,
+                                      //     price:"15000",
+                                      //     quartier: widget.quartier,
+                                      //     password: "12345678"
+                                      //
+                                      // );
 
-                                            ),
-
-                                           ));
-                          // Get.snackbar(
-                          // "success".tr, );
-                          // verify_update = false;
-                          progress_modife = false;
-                          Get.to( RoutingScreen());
-                          }
-                           else if(x==500 ){
-
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text( "Your ad is not adding".tr),
-                                      backgroundColor: Colors.grey,
-                                      behavior: SnackBarBehavior.floating,
-
-                                     ));
-
-                                   // Get.snackbar(
-                                   //     );
-                                   nmbreerror ++ ;
-                                   if(nmbreerror==1 || nmbreerror ==0){
-                                     setState(() {
-                                       progress_modife = false;
-                                     });
-
-
-                                   }else{
-                                     ScaffoldMessenger.of(context).showSnackBar(
-                                         SnackBar(
-                                           content: Text( "Error in server".tr),
-                                           backgroundColor: Colors.grey,
-                                           behavior: SnackBarBehavior.fixed,
-
-                                         ));
-                                     setState(() {
-                                       progress_modife = false;
-                                     });
-
-                                     Get.to(RoutingScreen());
-                                   }
-
-                                 }
-
-
-
-
-
-
-
-
-                                } else {
-                                  // print("876");
-                                  // print(widget.Property_details);
-                                  // print(widget.categorie);
-                                  // print(widget.statut);
-                                  // print(widget.adress);
-                                  // print(widget.region_1);
-                                  // print(widget.city);
-                                  // print(widget.quartier);
-                                  // print(widget.area);
-                                  // print(widget.price);
-                                  // print(widget.age);
-                                  // print(widget.flooring);
-                                  // print(widget.bedroms);
-                                  // print(widget.bathrooms);
-                                  // print(widget.kichens);
-                                  // print(_titel.text);
-                                  // print(_description.text);
-                                  // print(widget.ablity.toString());
-                                  // print(_listimagebase64);
-                                  // //verify=false;
-                                  setState(() {
-                                    progress_modife = true;
-                                  });
-                                  var x = await Modifier_Annonce.Modifier(
-                                    region_id: widget._id_region.toString(),
-                                    city_id: widget._id_city.toString(),
-                                    transaction: widget.Property_details,
-                                    property_type: widget.categorie.toString(),
-                                    status: widget.statut.toString(),
-                                    adress: widget.adress.toString(),
-                                    quartier: widget.quartier.toString(),
-                                    area: widget.area.toString(),
-                                    price: widget.price.toString(),
-                                    age: widget.age.toString(),
-                                    apartment: "1",
-                                    bedrooms: widget.bedroms.toString(),
-                                    bathrooms: widget.bathrooms.toString(),
-                                    kitchens: widget.kichens.toString(),
-                                    title: widget._titel.text,
-                                    description: widget._description.text,
-                                    phone1: widget._phone1.text,
-                                    phone2: widget._phone2.text,
-                                    phone3: widget._phone3.text,
-                                    abilities: widget.ablity!,
-                                    media: widget._listimagebase64_com,
-                                    floor_type: widget.flooring.toString(),
-                                    floor: "4",
-                                  );
-
-                                  if (x == 500 || x == 200) {
-                                    Get.snackbar( "success".tr,"update".tr);
-
-                                    setState(() {
-                                      verify_update = false;
-                                      progress_modife = false;
-                                    });
-
-                                   Get.offAll(RoutingScreen());
-                                  }
-                                }
-                                // postdata(
-                                //     address: widget.adress,
-                                //     floor_type: "appartoment",
-                                //     title: _titel.text,
-                                //     media:base64Image,
-                                //     bathrooms: "2",
-                                //     transaction: "Rent",
-                                //     status: widget.statut,
-                                //     confirmation_password: "12345678",
-                                //     kitchens: "4",
-                                //     area: "120",
-                                //     abilities:'1',
-                                //     floor: "3",
-                                //     region_id: '1',
-                                //     city_id: "3",
-                                //     email: "abde5@gmail.com",
-                                //     phone1: _phone1.text,
-                                //     phone3: _phone3.text,
-                                //     bedrooms: '2',
-                                //     apartment: "4",
-                                //     description: _description.text,
-                                //     name: "ahmed",
-                                //     phone2: _phone2.text,
-                                //     property_type: widget.Property_details,
-                                //     age: widget.age,
-                                //     price:"15000",
-                                //     quartier: widget.quartier,
-                                //     password: "12345678"
-                                //
-                                // );
-
-                              }
-                            },
+                                    }
+                                  },
                             child: Text(
                               "Reservez ".tr,
                               style: TextStyle(
@@ -714,6 +714,4 @@ int nmbreerror = 0 ;
       ),
     );
   }
-
-
 }
