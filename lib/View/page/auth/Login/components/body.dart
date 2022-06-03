@@ -19,6 +19,7 @@ import '../../Signup/signup_screen.dart';
 
 List<ModelAnnonce> allAnnonceLogin = [];
 String username = "";
+String avatar="";
 
 class Body extends StatefulWidget {
   var property_type;
@@ -290,12 +291,15 @@ class _BodyState extends State<Body> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('token', token_1 );
       prefs.setString("username", token['data']['name']);
+      prefs.setString("avatar", token['data']['avatar']);
 
+  print(token);
       setState(() {
         username = prefs.getString("username")!;
         token_global = prefs.getString("token");
+        avatar=prefs.getString("avatar")!;
       });
-
+  print(avatar);
       if (response.statusCode == 200) {
         var response_1 = await http.get(
             Uri.parse('https://dashboard.royaimmo.ma/api/annonces'),

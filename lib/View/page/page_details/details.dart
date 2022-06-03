@@ -719,7 +719,7 @@ class _DetailsState extends State<Details> {
                               child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   shrinkWrap: true,
-                                  itemCount: 5,
+                                  itemCount: allAnnonce.length>=5?5: allAnnonce.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return GestureDetector(

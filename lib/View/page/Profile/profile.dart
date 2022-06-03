@@ -57,7 +57,7 @@ class _ProfileState extends State<Profile> {
         for (Map annoncelogin in responseJson) {
           allAnnonceLogin.add(ModelAnnonce.fromJson(annoncelogin.cast()));
         }
-
+    print(response_1.body);
         setState(() {
           Poste = allAnnonceLogin;
           for (int i = 0; i < Poste.length; i++) {
@@ -93,6 +93,7 @@ class _ProfileState extends State<Profile> {
       }
     });
     super.initState();
+
   }
 
   String getSulg(id) {
@@ -168,8 +169,8 @@ class _ProfileState extends State<Profile> {
                                     child: CircleAvatar(
                                       backgroundColor:
                                           Color(0xFFDDECF2).withOpacity(0.35),
-                                      backgroundImage: const NetworkImage(
-                                        "https://i.pravatar.cc/",
+                                      backgroundImage:  NetworkImage(
+                                        "https://dashboard.royaimmo.ma/${avatar}",
                                       ),
                                       radius: 45.0,
                                     ),
